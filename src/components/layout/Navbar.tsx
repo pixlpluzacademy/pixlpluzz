@@ -117,7 +117,7 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden bg-navy-800 border-t border-white/10 px-4 py-4 space-y-1">
+        <div className="lg:hidden bg-navy-800 border-t border-white/10 px-4 py-4 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto">
           {NAV_LINKS.map(link =>
             link.children ? (
               <div key={link.label}>

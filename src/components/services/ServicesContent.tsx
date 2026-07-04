@@ -5,6 +5,7 @@ import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PixelButton } from '@/components/ui/PixelButton'
+import { BlurText } from '@/components/ui/BlurText'
 import { SERVICE_CLOUD_WORDS, SERVICE_DETAILS } from '@/lib/services-word-cloud'
 import { cn } from '@/lib/utils'
 
@@ -131,7 +132,7 @@ export function ServicesContent() {
     <div className="services-page bg-white text-navy-950">
       {/* Word cloud hero — tall track, sticky stage */}
       <div ref={trackRef} className="svc-cloud-track relative h-[320vh]">
-        <div className="svc-cloud-stage sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-white">
+        <div className="svc-cloud-stage sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-white">
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
@@ -164,15 +165,17 @@ export function ServicesContent() {
       </div>
 
       {/* Detail content — appears as cloud disperses */}
-      <section className="relative z-10 border-t border-blue-primary/10 bg-white px-6 py-24 sm:px-10 lg:px-16">
+      <section className="relative z-10 border-t border-blue-primary/10 bg-white px-6 py-16 sm:px-10 sm:py-24 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.35em] text-green-accent">
             Pixl Pluz Academy
           </p>
-          <h2 className="mb-5 text-center text-3xl font-black text-blue-primary sm:text-4xl lg:text-5xl">
-            Everything you need to <span className="text-green-accent">grow</span>
-          </h2>
-          <p className="mx-auto mb-14 max-w-2xl text-center text-base leading-relaxed text-gray-600">
+          <BlurText
+            as="h2"
+            className="mb-5 text-center text-3xl font-black text-blue-primary sm:text-4xl lg:text-5xl"
+            text="Everything you need to grow"
+          />
+          <p className="mx-auto mb-10 max-w-2xl text-center text-base leading-relaxed text-gray-600 sm:mb-14">
             Courses, mentorship, live projects and placement support — curated for careers in
             digital, AI and creative technology.
           </p>
@@ -198,7 +201,7 @@ export function ServicesContent() {
         </div>
       </section>
 
-      <section className="border-t border-blue-primary/10 bg-[#f7f9fc] px-6 py-24 sm:px-10 lg:px-16">
+      <section className="border-t border-blue-primary/10 bg-[#f7f9fc] px-6 py-16 sm:px-10 sm:py-24 lg:px-16">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-4 text-2xl font-black text-blue-primary sm:text-3xl">
             Ready to start your journey?

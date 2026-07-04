@@ -79,8 +79,8 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative -mt-16 h-[280vh] bg-navy-950">
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+    <section ref={sectionRef} className="relative -mt-16 h-[280vh] bg-navy-950" data-page-hero>
+      <div className="sticky top-0 flex h-svh flex-col overflow-hidden">
         {/* 3D cube cluster — the only thing visible at the top */}
         <HeroPixelField className="absolute inset-0 z-0" />
 

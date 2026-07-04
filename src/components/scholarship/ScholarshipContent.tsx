@@ -284,8 +284,8 @@ export function ScholarshipContent() {
   return (
     <div ref={rootRef} className="scholarship-page min-h-screen">
       {/* Intro — zoom through "l", white flash, reveal */}
-      <div ref={introRef} className="relative h-[320vh] bg-[#060b16]">
-        <div ref={stageRef} className="sch-intro-stage sticky top-0 h-screen">
+      <div ref={introRef} className="relative h-[320vh] bg-[#060b16]" data-page-hero>
+        <div ref={stageRef} className="sch-intro-stage sticky top-0 h-svh">
           <div ref={bgRef} className="absolute inset-0 z-0 bg-[#060b16]" aria-hidden />
 
           {/* White flash — completes the fly-through, masks giant letter fragments */}
@@ -340,7 +340,7 @@ export function ScholarshipContent() {
       </div>
 
       {/* Fund stats */}
-      <section className="border-t border-white/8 bg-[#060b16] px-4 py-20 sm:px-6 lg:px-8">
+      <section className="border-t border-white/8 bg-[#060b16] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="sch-fade-in mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
           <div className="border border-white/10 bg-navy-900/60 p-8 text-center">
             <p className="text-4xl font-black text-green-accent">100%</p>
@@ -354,11 +354,11 @@ export function ScholarshipContent() {
       </section>
 
       {/* Steps */}
-      <section className="border-t border-white/8 bg-[#060b16] px-4 py-24 sm:px-6 lg:px-8">
-        <div className="sch-fade-in mx-auto max-w-5xl">
-          <p className="sch-kicker mb-4">How it works</p>
-          <h2 className="mb-14 text-3xl font-black text-white sm:text-4xl">Four simple steps</h2>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="border-t border-white/8 bg-[#060b16] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          <p className="sch-fade-in sch-kicker mb-4">How it works</p>
+          <h2 className="mb-10 text-3xl font-black text-white sm:mb-14 sm:text-4xl">Four simple steps</h2>
+          <div className="sch-fade-in grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s) => (
               <div key={s.step} className="border border-white/8 bg-navy-900/40 p-6">
                 <span className="mb-4 block font-mono text-xs tracking-[0.3em] text-green-accent/60">{s.step}</span>
@@ -372,11 +372,11 @@ export function ScholarshipContent() {
       </section>
 
       {/* Eligibility */}
-      <section className="border-t border-white/8 bg-[#060b16] px-4 py-24 sm:px-6 lg:px-8">
-        <div className="sch-fade-in mx-auto max-w-2xl">
-          <p className="sch-kicker mb-4">Who can apply</p>
+      <section className="border-t border-white/8 bg-[#060b16] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-2xl">
+          <p className="sch-fade-in sch-kicker mb-4">Who can apply</p>
           <h2 className="mb-10 text-3xl font-black text-white">Eligibility criteria</h2>
-          <ul className="space-y-3">
+          <ul className="sch-fade-in space-y-3">
             {ELIGIBILITY.map((item) => (
               <li
                 key={item}
@@ -397,15 +397,15 @@ export function ScholarshipContent() {
       {/* CTA */}
       <section
         id="apply"
-        className="relative border-t border-white/8 bg-navy-950 px-4 py-24 sm:px-6 lg:px-8"
+        className="relative border-t border-white/8 bg-navy-950 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
       >
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
-        <div className="sch-fade-in relative z-10 mx-auto max-w-2xl text-center">
-          <p className="sch-kicker mb-4 text-blue-light/70">Ready to apply?</p>
+        <div className="relative z-10 mx-auto max-w-2xl text-center">
+          <p className="sch-fade-in sch-kicker mb-4 text-blue-light/70">Ready to apply?</p>
           <h2 className="mb-4 text-3xl font-black text-white sm:text-4xl">
             Your career shouldn&apos;t wait for permission.
           </h2>
-          <p className="mb-10 text-blue-light/80">
+          <p className="sch-fade-in mb-10 text-blue-light/80">
             Fill out the form and we will contact you with the scholarship test schedule.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

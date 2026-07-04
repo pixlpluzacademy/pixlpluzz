@@ -74,7 +74,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
   }, [])
 
   return (
-    <section ref={rootRef} className="bg-white dark:bg-navy-950 py-20 px-4">
+    <section ref={rootRef} className="bg-white dark:bg-navy-950 py-14 sm:py-20 px-4">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <SectionLabel className="mb-4 mx-auto">All Articles</SectionLabel>

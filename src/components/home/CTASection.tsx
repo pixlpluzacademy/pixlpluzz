@@ -14,7 +14,7 @@ const CTA_PIXELS = [
 
 export function CTASection() {
   return (
-    <section className="relative bg-navy-800 py-24 px-4 overflow-hidden">
+    <section className="relative bg-navy-800 py-16 sm:py-24 px-4 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-20" aria-hidden />
       <FloatingPixels pixels={CTA_PIXELS} />
 
@@ -23,16 +23,14 @@ export function CTASection() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl text-center">
+      <div className="relative z-10 mx-auto max-w-3xl text-center" data-no-blur-text>
         <AnimatedSection variant="fadeIn" delay={0} className="mb-6">
-          <SectionLabel light className="mx-auto">The Steps</SectionLabel>
+          <SectionLabel className="mx-auto">The Steps</SectionLabel>
         </AnimatedSection>
 
-        <AnimatedSection variant="fadeUp" delay={0.1}>
-          <h2 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl">
-            Pass the Test. Show Your Work.<br />Start Your Career.
-          </h2>
-        </AnimatedSection>
+        <h2 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl">
+          Pass the Test. Show Your Work.<br />Start Your Career.
+        </h2>
 
         <AnimatedSection variant="fadeUp" delay={0.2}>
           <p className="mx-auto mb-10 max-w-xl text-gray-400">

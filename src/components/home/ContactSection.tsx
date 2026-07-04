@@ -55,7 +55,7 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={sectionRef} className="relative bg-navy-900 py-24 px-4 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-navy-900 py-16 sm:py-24 px-4 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-0 overflow-hidden pixel-corner-lg border border-white/5">
@@ -75,8 +75,8 @@ export function ContactSection() {
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/45 to-black/10" />
 
-          <div className="relative z-10 p-10">
-            <SectionLabel light className="mb-4">Contact Us</SectionLabel>
+          <div className="relative z-10 p-6 sm:p-10" data-no-blur-text>
+            <SectionLabel className="mb-4">Contact Us</SectionLabel>
             <h3 className="text-3xl font-black text-white mb-3">
               Ready to Build Your Digital Career?
             </h3>
@@ -109,8 +109,8 @@ export function ContactSection() {
         </div>
 
         {/* Right panel — enquiry form */}
-        <div ref={rightRef} className="bg-navy-950 p-8 lg:p-12">
-          <SectionLabel light className="mb-4">Get In Touch</SectionLabel>
+        <div ref={rightRef} className="bg-navy-950 p-6 sm:p-8 lg:p-12" data-no-blur-text>
+          <SectionLabel className="mb-4">Get In Touch</SectionLabel>
           <h3 className="text-2xl font-black text-white mb-2">
             Get The Best Course Guidance For Your Future
           </h3>
@@ -134,7 +134,7 @@ export function ContactSection() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <input
                   type="text"
                   placeholder="Name *"

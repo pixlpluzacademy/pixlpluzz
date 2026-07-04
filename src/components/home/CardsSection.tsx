@@ -127,9 +127,11 @@ export function CardsSection() {
   }, [])
 
   return (
-    // CSS sticky pin — GSAP only reads scroll progress, never moves the node
-    <section ref={sectionRef} className="relative bg-navy-900 h-[200vh]">
-      <div className="sticky top-0 min-h-screen flex items-center overflow-hidden py-24 px-4">
+    // CSS sticky pin — GSAP only reads scroll progress, never moves the node.
+    // Pin only from sm: up — on phones the single-column card stack is taller
+    // than the pinned viewport and would get clipped, so it flows naturally.
+    <section ref={sectionRef} className="relative bg-navy-900 sm:h-[200vh]">
+      <div className="sm:sticky sm:top-0 sm:min-h-screen flex items-center overflow-hidden py-16 sm:py-24 px-4">
         <div className="mx-auto max-w-7xl w-full">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {CARDS.map((card) => (

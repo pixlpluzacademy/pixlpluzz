@@ -118,6 +118,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       {/* Hero */}
       <section
         ref={heroRef}
+        data-page-hero
         className="relative min-h-[min(52vh,480px)] overflow-hidden border-b border-white/10"
       >
         <div

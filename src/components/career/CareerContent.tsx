@@ -78,23 +78,23 @@ export function CareerContent({ careers }: { careers: Career[] }) {
   return (
     <div ref={rootRef} className="bg-navy-950 text-white">
       {/* ── Hero — giant stacked type ─────────────────────────── */}
-      <section className="relative flex min-h-[92vh] flex-col justify-between overflow-hidden px-4 pt-12 pb-14 sm:px-6 lg:px-12">
+      <section className="relative flex min-h-[92svh] flex-col justify-between overflow-hidden px-4 pt-12 pb-14 sm:px-6 lg:px-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
         <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
           <PixelTrail />
           <span className="block overflow-hidden">
-            <span className="career-hero-word block text-[clamp(3.4rem,14vw,12rem)] text-white">
+            <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
               Work
             </span>
           </span>
           <span className="block overflow-hidden">
-            <span className="career-hero-word block text-[clamp(3.4rem,14vw,12rem)] text-white">
+            <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
               With
             </span>
           </span>
           <span className="block overflow-hidden">
-            <span className="block whitespace-nowrap text-[clamp(3.4rem,14vw,12rem)]">
+            <span className="block whitespace-nowrap text-[clamp(2.5rem,14vw,12rem)]">
               {/* Separate pop targets so Pluz appears after Pixl, same line */}
               <span className="career-hero-word inline-block text-green-accent">Pixl</span>{' '}
               <span className="career-hero-word inline-block career-outline-word">Pluz</span>
@@ -115,18 +115,18 @@ export function CareerContent({ careers }: { careers: Career[] }) {
       </section>
 
       {/* ── What we believe ───────────────────────────────────── */}
-      <section className="border-t border-white/8 px-4 py-24 sm:px-6 lg:px-12">
+      <section className="border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <p className="career-reveal mb-16 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent">
+          <p className="career-reveal mb-10 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-16">
             What we believe
           </p>
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             {BELIEFS.map((b) => (
-              <div key={b.title} className="career-reveal">
+              <div key={b.title}>
                 <h2 className="mb-5 text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
                   {b.title}
                 </h2>
-                <p className="max-w-lg text-base leading-relaxed text-gray-400 sm:text-lg">
+                <p className="career-reveal max-w-lg text-base leading-relaxed text-gray-400 sm:text-lg">
                   {b.copy}
                 </p>
               </div>
@@ -136,9 +136,9 @@ export function CareerContent({ careers }: { careers: Career[] }) {
       </section>
 
       {/* ── Open positions ────────────────────────────────────── */}
-      <section className="border-t border-white/8 px-4 py-24 sm:px-6 lg:px-12">
+      <section className="border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <p className="career-reveal mb-14 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent">
+          <p className="career-reveal mb-10 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-14">
             Open positions
           </p>
 

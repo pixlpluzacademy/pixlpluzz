@@ -1,5 +1,8 @@
+'use client'
+
 import { FloatingPixels } from '@/components/ui/FloatingPixels'
 import { NoiseParticles } from '@/components/ui/NoiseParticles'
+import { BlurText } from '@/components/ui/BlurText'
 
 interface PageHeaderProps {
   breadcrumb: string
@@ -7,11 +10,19 @@ interface PageHeaderProps {
   subtitle?: string
   /** Adds a subtle flickering dot layer behind the title */
   noise?: boolean
+  /** Word-by-word blur reveal on load (about/placement-style hero) */
+  blurOnLoad?: boolean
 }
 
-export function PageHeader({ breadcrumb, title, subtitle, noise = false }: PageHeaderProps) {
+export function PageHeader({
+  breadcrumb,
+  title,
+  subtitle,
+  noise = false,
+  blurOnLoad = false,
+}: PageHeaderProps) {
   return (
-    <section className="relative bg-navy-950 py-20 px-4 overflow-hidden">
+    <section className="relative bg-navy-950 py-20 px-4 overflow-hidden" data-page-hero>
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-15" aria-hidden />
       {noise && <NoiseParticles />}
       <FloatingPixels pixels={[
@@ -23,9 +34,30 @@ export function PageHeader({ breadcrumb, title, subtitle, noise = false }: PageH
         <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">
           Home / {breadcrumb}
         </p>
-        <h1 className="text-5xl sm:text-6xl font-black text-white">{title}</h1>
-        {subtitle && (
-          <p className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg">{subtitle}</p>
+        {blurOnLoad ? (
+          <>
+            <BlurText
+              as="h1"
+              onLoad
+              className="text-5xl sm:text-6xl font-black text-white"
+              text={title}
+            />
+            {subtitle && (
+              <BlurText
+                as="p"
+                onLoad
+                className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg"
+                text={subtitle}
+              />
+            )}
+          </>
+        ) : (
+          <>
+            <h1 className="text-5xl sm:text-6xl font-black text-white">{title}</h1>
+            {subtitle && (
+              <p className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg">{subtitle}</p>
+            )}
+          </>
         )}
       </div>
       {/* Curved bottom */}

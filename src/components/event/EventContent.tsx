@@ -100,7 +100,7 @@ export function EventContent({ events }: { events: Event[] }) {
   return (
     <div ref={rootRef} className="bg-navy-950 text-white">
       {/* ── Hero — terminal-style opener ──────────────────────── */}
-      <section className="relative flex min-h-[92vh] flex-col justify-between overflow-hidden px-4 pt-10 pb-12 sm:px-6 lg:px-12">
+      <section className="relative flex min-h-[92svh] flex-col justify-between overflow-hidden px-4 pt-10 pb-12 sm:px-6 lg:px-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
         {/* Top status bar */}
@@ -118,8 +118,8 @@ export function EventContent({ events }: { events: Event[] }) {
           {/* z-10 creates the stacking context that keeps the trail cubes behind the letters */}
           <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
             <PixelTrail />
-            <span className="evt-hero-pop block text-[clamp(3.2rem,13vw,11rem)] career-outline-word">What&apos;s</span>
-            <span className="evt-hero-pop block text-[clamp(3.2rem,13vw,11rem)] text-white">Happening</span>
+            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word">What&apos;s</span>
+            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-white">Happening</span>
           </h1>
         </div>
 
@@ -132,7 +132,7 @@ export function EventContent({ events }: { events: Event[] }) {
             <p className="pl-5">reserveSeats();</p>
             <p className="text-gray-400">{'}'}</p>
           </div>
-          <div className="evt-hero-pop text-right">
+          <div className="evt-hero-pop text-left sm:text-right">
             <p className="font-mono text-[11px] uppercase tracking-widest text-gray-500">upcoming</p>
             <p className="text-6xl font-black text-white sm:text-7xl">{chapterNo(events.length - 1)}</p>
           </div>
@@ -143,7 +143,7 @@ export function EventContent({ events }: { events: Event[] }) {
       {events.map((event, i) => (
         <section
           key={event.id}
-          className="evt-chapter relative overflow-hidden border-t border-white/8 px-4 py-24 sm:px-6 lg:px-12"
+          className="evt-chapter relative overflow-hidden border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12"
         >
           {/* Ghost number */}
           <span
@@ -161,7 +161,7 @@ export function EventContent({ events }: { events: Event[] }) {
             <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
               {/* Left — title + description + CTA */}
               <div>
-                <h2 className="evt-reveal mb-6 text-4xl font-black leading-[1.02] sm:text-5xl lg:text-6xl">
+                <h2 className="mb-6 text-4xl font-black leading-[1.02] sm:text-5xl lg:text-6xl">
                   {event.title}
                 </h2>
                 <p className="evt-reveal mb-10 max-w-xl text-base leading-relaxed text-gray-400 sm:text-lg">
@@ -218,13 +218,13 @@ export function EventContent({ events }: { events: Event[] }) {
       )}
 
       {/* ── Final word ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-t border-white/8 px-4 py-28 sm:px-6 lg:px-12">
+      <section className="relative overflow-hidden border-t border-white/8 px-4 py-20 sm:px-6 sm:py-28 lg:px-12">
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
         <div className="relative z-10 mx-auto max-w-7xl">
           <p className="evt-outro-reveal mb-8 font-mono text-xs uppercase tracking-[0.35em] text-green-accent">
             final word
           </p>
-          <h2 className="evt-outro-reveal mb-10 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
+          <h2 className="mb-10 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
             Seats fill fast. Don&apos;t just scroll past — show up and build something.
           </h2>
           <div className="evt-outro-reveal">

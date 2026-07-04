@@ -154,7 +154,8 @@
   color: rgba(21, 62, 144, 0.45);
 }
 
-.about-blur-on-load .ab-word {
+.about-blur-on-load .ab-word,
+.blur-text-on-load .ab-word {
   opacity: 0;
   transform: translateY(14px);
   filter: blur(10px);

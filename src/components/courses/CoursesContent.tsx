@@ -72,6 +72,7 @@ export function CoursesContent({ courses }: CoursesContentProps) {
       {/* Header */}
       <section
         ref={heroRef}
+        data-page-hero
         className="relative min-h-[220px] md:min-h-[280px] overflow-hidden border-b border-white/10 px-4 py-14 md:py-20"
       >
         <div

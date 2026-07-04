@@ -28,18 +28,22 @@ const blogCardVariants = {
 
 export function BlogSection({ blogs }: { blogs: Blog[] }) {
   return (
-    <section className="bg-white dark:bg-navy-950 py-24 px-4">
+    <section className="bg-white dark:bg-navy-950 py-16 sm:py-24 px-4">
       <div className="mx-auto max-w-7xl">
-        <AnimatedSection variant="fadeUp" className="text-center mb-14">
-          <SectionLabel className="mb-4 mx-auto">Our Latest Posts</SectionLabel>
+        <div className="text-center mb-14">
+          <AnimatedSection variant="fadeUp">
+            <SectionLabel className="mb-4 mx-auto">Our Latest Posts</SectionLabel>
+          </AnimatedSection>
           <h2 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">
             Learn More About Digital<br />Marketing & Career Growth
           </h2>
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
-            Read our latest articles, student guides, career tips, course updates, and industry insights
-            to understand the skills needed for the future of digital marketing and online business.
-          </p>
-        </AnimatedSection>
+          <AnimatedSection variant="fadeUp" delay={0.1}>
+            <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+              Read our latest articles, student guides, career tips, course updates, and industry insights
+              to understand the skills needed for the future of digital marketing and online business.
+            </p>
+          </AnimatedSection>
+        </div>
 
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"

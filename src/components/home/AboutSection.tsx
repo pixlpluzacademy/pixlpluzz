@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { ArrowRight, Briefcase, Brain, Users, TrendingUp, BarChart2, Monitor, BrainCircuit, ShieldCheck } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import type { Course } from '@/lib/data'
 
@@ -60,14 +59,13 @@ const courseCardVariants = {
 
 export function AboutSection({ courses }: { courses: Course[] }) {
   return (
-    <section className="bg-white dark:bg-navy-950 py-24 px-4 overflow-hidden">
+    <section className="bg-white dark:bg-navy-950 py-16 sm:py-24 px-4 overflow-hidden">
       <div className="mx-auto max-w-7xl">
 
         {/* Main grid */}
         <div className="grid lg:grid-cols-3 gap-12 items-start">
 
-          {/* Left: text */}
-          <AnimatedSection variant="slideLeft" className="lg:col-span-1">
+          <div className="lg:col-span-1">
             <SectionLabel className="mb-4">About PixlPluz</SectionLabel>
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">
               Best Digital Marketing Academy in Kochi
@@ -86,7 +84,7 @@ export function AboutSection({ courses }: { courses: Course[] }) {
                 <ArrowRight size={15} />
               </Link>
             </motion.div>
-          </AnimatedSection>
+          </div>
 
           {/* Right: feature cards */}
           <motion.div

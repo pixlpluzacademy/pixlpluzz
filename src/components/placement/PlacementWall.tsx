@@ -57,9 +57,9 @@ export function PlacementWall() {
   }, [])
 
   return (
-    <section ref={rootRef} className="border-t border-white/8 bg-navy-950 px-4 py-24 sm:px-6 lg:px-12">
+    <section ref={rootRef} className="border-t border-white/8 bg-navy-950 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14 text-center">
+        <div className="mb-10 text-center sm:mb-14">
           <SectionLabel className="mb-4 mx-auto">Our Alumni</SectionLabel>
           <h2 className="text-4xl font-black text-white sm:text-5xl">
             Where Ambition Meets Achievement

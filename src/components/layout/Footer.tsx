@@ -34,34 +34,36 @@ const QUICK_LINKS = [
   { label: 'Home',        href: '/' },
   { label: 'About Us',    href: '/about' },
   { label: 'Careers',     href: '/career' },
-  { label: 'Instructors', href: '/about#team' },
-  { label: 'FAQ',         href: '/#faq' },
+  { label: 'Services',    href: '/services' },
+  { label: 'Scholarship', href: '/scholarship' },
+  { label: 'Placements',  href: '/placement' },
 ]
 
-const SERVICES = [
-  { label: 'Courses',    href: '/courses' },
-  { label: 'Scholarship',href: '/scholarship' },
-  { label: 'Placement',  href: '/placement' },
-  { label: 'Event',      href: '/event' },
-  { label: 'Services',   href: '/services' },
+const COURSES = [
+  { label: 'Digital Marketing',  href: '/courses/digital-marketing-course' },
+  { label: 'Web Development',    href: '/courses/ai-powered-web-development-course' },
+  { label: 'Data Science & AI',  href: '/courses/data-science-ai-course' },
+  { label: 'Cyber Security',     href: '/courses/cyber-security-course-with-ai' },
 ]
 
 export function Footer() {
   return (
     <footer className="bg-navy-900 text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/* Brand column gets more room; link columns share the rest evenly so
+            the visual gutters between all four columns look consistent */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-10 text-center sm:text-left">
 
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
+          <div className="lg:pr-8">
+            <Link href="/" className="flex items-center justify-center sm:justify-start gap-2 mb-4">
               <PixlLogo variant="white" className="h-[46px] w-[120px]" />
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
               PixlPluz Academy is a Kochi based digital marketing training institute built for practical skills,
               creative learning, AI-powered workflows, and career-focused training.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center sm:justify-start">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
                 className="p-2 border border-white/10 text-gray-400 hover:border-green-accent hover:text-green-accent transition-colors pixel-corner-sm">
                 <IconFacebook />
@@ -79,7 +81,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-green-accent mb-4">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -93,13 +95,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Courses */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
-              Services
+            <h4 className="text-xs font-bold uppercase tracking-widest text-green-accent mb-4">
+              Courses
             </h4>
             <ul className="space-y-2">
-              {SERVICES.map(l => (
+              {COURSES.map(l => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {l.label}
@@ -115,27 +117,27 @@ export function Footer() {
               Need Help?
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Phone size={15} className="mt-0.5 text-green-accent shrink-0" />
-                <div>
+                <div className="text-left">
                   <p className="text-xs text-gray-500">Call us directly</p>
                   <a href="tel:+919999900000" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
                     (+91) XXXXX-XXXXX
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Mail size={15} className="mt-0.5 text-green-accent shrink-0" />
-                <div>
+                <div className="text-left">
                   <p className="text-xs text-gray-500">Mail us directly</p>
                   <a href="mailto:info@pixlpluz.com" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
                     info@pixlpluz.com
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <MapPin size={15} className="mt-0.5 text-green-accent shrink-0" />
-                <div>
+                <div className="text-left">
                   <p className="text-xs text-gray-500">Our location</p>
                   <p className="text-sm text-white">Kochi, Kerala, India</p>
                 </div>

@@ -43,7 +43,7 @@ export default function ContactPage() {
         noise
       />
 
-      <section className="relative overflow-hidden bg-white dark:bg-navy-950 py-20 px-4">
+      <section className="relative overflow-hidden bg-white dark:bg-navy-950 py-14 sm:py-20 px-4">
         {/* Drifting brand pixels — kept near the edges so they never sit under the form */}
         <FloatingPixels pixels={[
           { size: 10, top: '6%',  left: '4%',   delay: '0s',   color: 'green', speed: 'slow'   },
@@ -57,10 +57,10 @@ export default function ContactPage() {
           { size: 8,  top: '94%', left: '48%',  delay: '0.7s', color: 'green', speed: 'normal' },
         ]} />
 
-        <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-16">
+        <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16">
 
           {/* Left: info */}
-          <div>
+          <div data-no-blur-text>
             <SectionLabel className="mb-4">Contact Information</SectionLabel>
             <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">
               We&apos;d love to hear from you.

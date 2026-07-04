@@ -43,16 +43,18 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="bg-white dark:bg-navy-950 py-24 px-4">
+    <section id="faq" className="bg-white dark:bg-navy-950 py-16 sm:py-24 px-4">
       <div className="mx-auto max-w-3xl">
-        <AnimatedSection variant="fadeUp" className="text-center mb-12">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-2">
             Questions &amp; Answers
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            What skills will I gain from the digital marketing course at Pixl Pluz Academy?
-          </p>
-        </AnimatedSection>
+          <AnimatedSection variant="fadeUp">
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
+              What skills will I gain from the digital marketing course at Pixl Pluz Academy?
+            </p>
+          </AnimatedSection>
+        </div>
 
         <motion.div
           className="space-y-3"

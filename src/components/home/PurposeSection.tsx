@@ -35,11 +35,11 @@ export function PurposeSection() {
   const imageY = useTransform(scrollYProgress, [0, 1], ['-18%', '18%'])
 
   return (
-    <section ref={sectionRef} className="bg-white dark:bg-navy-950 py-24 px-4">
+    <section ref={sectionRef} className="bg-white dark:bg-navy-950 py-16 sm:py-24 px-4">
       <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-center">
 
-        {/* Left image */}
-        <AnimatedSection variant="slideLeft" className="relative overflow-hidden pixel-corner-lg aspect-4/5">
+        {/* Left image — shown below the text on mobile */}
+        <AnimatedSection variant="slideLeft" className="relative overflow-hidden pixel-corner-lg aspect-4/5 order-2 lg:order-1">
           {/* Parallax layer — oversized so movement never reveals empty edges */}
           <motion.div
             style={{ y: imageY, position: 'absolute', inset: '-20%' }}
@@ -57,16 +57,14 @@ export function PurposeSection() {
 
         </AnimatedSection>
 
-        {/* Right text */}
-        <AnimatedSection variant="slideRight" delay={0.15}>
+        {/* Right text — comes first on mobile */}
+        <AnimatedSection variant="slideRight" delay={0.15} className="order-1 lg:order-2">
           <AnimatedSection variant="fadeIn" delay={0}>
             <SectionLabel className="mb-4">Our Purpose</SectionLabel>
           </AnimatedSection>
-          <AnimatedSection variant="fadeUp" delay={0.1}>
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">
-              Empowering the Next Generation of Creative Professionals.
-            </h2>
-          </AnimatedSection>
+          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">
+            Empowering the Next Generation of Creative Professionals.
+          </h2>
           <AnimatedSection variant="fadeUp" delay={0.2}>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
               Pixl Pluz Academy was created to help students build real creative and digital skills for the

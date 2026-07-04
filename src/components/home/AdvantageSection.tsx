@@ -142,7 +142,7 @@ export function AdvantageSection() {
       ref={sectionRef}
       className="relative bg-navy-950 lg:h-[500vh]"
     >
-      <div className="overflow-hidden py-24 lg:sticky lg:top-0 lg:h-screen lg:py-0">
+      <div className="overflow-hidden py-16 sm:py-24 lg:sticky lg:top-0 lg:h-screen lg:py-0">
         <div
           className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-20"
           aria-hidden
@@ -150,10 +150,10 @@ export function AdvantageSection() {
 
         <FloatingPixels />
 
-        <div className="relative z-10 mx-auto grid h-full max-w-7xl items-center gap-16 px-4 lg:grid-cols-2">
-          {/* Left: static text content */}
-          <div>
-            <SectionLabel light className="mb-4">
+        <div className="relative z-10 mx-auto grid h-full max-w-7xl items-center gap-12 px-4 sm:gap-16 lg:grid-cols-2">
+          {/* Left: static text content — opt out of auto blur (sticky scroll leaves words at mixed opacity) */}
+          <div data-no-blur-text>
+            <SectionLabel className="mb-4">
               The PixlPluz Advantage
             </SectionLabel>
 
@@ -219,26 +219,25 @@ export function AdvantageSection() {
           </div>
 
           {/* Mobile card grid — visible below lg only */}
-          <div ref={mobileGridRef} className="grid gap-5 lg:hidden">
+          <div ref={mobileGridRef} className="grid grid-cols-2 gap-4 sm:gap-5 lg:hidden">
             {FEATURES.map(({ icon: Icon, label, num }, i) => (
               <div
                 key={label}
                 ref={(el) => { mobileCardsRef.current[i] = el }}
-                className="aspect-square bg-navy-900/95"
+                className="aspect-square bg-navy-900/95 p-4 sm:p-7"
                 style={{
                   border: '1px solid rgba(255,255,255,0.16)',
-                  padding: '2rem',
                 }}
               >
                 <div className="flex h-full flex-col justify-between">
                   <div className="flex items-start justify-between">
-                    <span className="advantage-number text-7xl font-black leading-none text-green-accent">
+                    <span className="advantage-number text-4xl font-black leading-none text-green-accent sm:text-6xl">
                       {num}
                     </span>
-                    <Icon className="advantage-icon text-white/35" size={26} />
+                    <Icon className="advantage-icon shrink-0 text-white/35" size={22} />
                   </div>
 
-                  <p className="advantage-label text-lg font-black uppercase leading-tight text-white">
+                  <p className="advantage-label text-sm font-black uppercase leading-tight text-white sm:text-lg">
                     {label}
                   </p>
                 </div>

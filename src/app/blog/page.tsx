@@ -17,6 +17,7 @@ export default function BlogPage() {
         breadcrumb="Blog"
         title="Blog & Insights"
         subtitle="Career tips, AI tools guides, and digital marketing strategies from our instructors."
+        blurOnLoad
       />
       <BlogListContent blogs={blogs} />
     </>
