@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "title": "Digital Marketing Bootcamp — July 2026",
+    "description": "Join our intensive 1-day digital marketing bootcamp where you will learn SEO, social media strategy, content marketing, and Google Ads fundamentals. Perfect for beginners and entrepreneurs wanting to understand the digital landscape.",
+    "date": "2026-07-20",
+    "time": "10:00 AM – 5:00 PM",
+    "location": "Pixl Pluz Academy, Kochi",
+    "type": "Offline",
+    "thumbnail": "/images/events/event-1.jpg",
+    "registrationUrl": "/contact",
+    "seats": 30,
+    "price": 0,
+    "isFree": true
+  },
+  {
+    "id": "2",
+    "title": "Scholarship Entrance Test — Batch 1",
+    "description": "Register and attend the scholarship entrance test for our first batch starting July 2026. Students who pass the test and meet the criteria will receive scholarship support of up to ₹50,000 for their chosen course.",
+    "date": "2026-07-10",
+    "time": "9:00 AM – 12:00 PM",
+    "location": "Online (Zoom)",
+    "type": "Online",
+    "thumbnail": "/images/events/event-2.jpg",
+    "registrationUrl": "/scholarship",
+    "seats": 100,
+    "price": 0,
+    "isFree": true
+  },
+  {
+    "id": "3",
+    "title": "AI Tools & Career Workshop",
+    "description": "A free live workshop on the top AI tools every digital marketer and developer needs in 2026. Learn ChatGPT, Midjourney, Canva AI, Google Gemini, and automation workflows that save 10+ hours per week.",
+    "date": "2026-07-05",
+    "time": "7:00 PM – 9:00 PM",
+    "location": "Online (Zoom)",
+    "type": "Online",
+    "thumbnail": "/images/events/event-3.jpg",
+    "registrationUrl": "/contact",
+    "seats": 200,
+    "price": 0,
+    "isFree": true
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Arjun Menon",
+    "photo": "/images/placement/student-1.jpg",
+    "course": "Digital Marketing Course",
+    "company": "Neo Digital Hub",
+    "role": "Digital Marketing Executive",
+    "batch": "2025",
+    "testimonial": "Pixl Pluz gave me the practical skills and confidence I needed to land my first digital marketing role."
+  },
+  {
+    "id": "2",
+    "name": "Priya Nair",
+    "photo": "/images/placement/student-2.jpg",
+    "course": "AI Powered Web Development",
+    "company": "TechCorp India",
+    "role": "Junior Web Developer",
+    "batch": "2025",
+    "testimonial": "The hands-on projects at Pixl Pluz made my portfolio stand out during interviews."
+  },
+  {
+    "id": "3",
+    "name": "Mohammed Rizwan",
+    "photo": "/images/placement/student-3.jpg",
+    "course": "Data Science & AI Course",
+    "company": "DataMind Solutions",
+    "role": "Data Analyst",
+    "batch": "2025",
+    "testimonial": "The mentorship from industry experts was invaluable. I highly recommend Pixl Pluz to anyone serious about a career in data."
+  },
+  {
+    "id": "4",
+    "name": "Sneha Thomas",
+    "photo": "/images/placement/student-4.jpg",
+    "course": "Digital Marketing Course",
+    "company": "BrandBuzz Agency",
+    "role": "Social Media Manager",
+    "batch": "2025",
+    "testimonial": "I went from zero digital knowledge to managing campaigns for real clients in just 2 months."
+  },
+  {
+    "id": "5",
+    "name": "Rahul Krishnan",
+    "photo": "/images/placement/student-5.jpg",
+    "course": "Cyber Security Course With AI",
+    "company": "SecureNet Systems",
+    "role": "Junior Security Analyst",
+    "batch": "2025",
+    "testimonial": "The cybersecurity course was very practical and job-focused. Got placed within a month of completing."
+  },
+  {
+    "id": "6",
+    "name": "Fathima Sana",
+    "photo": "/images/placement/student-6.jpg",
+    "course": "Digital Marketing Course",
+    "company": "GrowthHive",
+    "role": "SEO Specialist",
+    "batch": "2025",
+    "testimonial": "Pixl Pluz's placement support was exceptional — resume review, mock interviews, and direct referrals."
+  }
+]

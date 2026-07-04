@@ -1,26 +1,412 @@
 @import "tailwindcss";
 
+/* ─── Dark-mode via .dark class ───────────────────────────── */
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Brand Theme ─────────────────────────────────────────── */
+@theme {
+  /* Brand colours — strict palette */
+  --color-blue-primary:  #153e90;
+  --color-blue-dark:     #0d2660;
+  --color-blue-mid:      #153e90;
+  --color-blue-light:    #153e90;
+  --color-green-accent:  #54e346;
+  --color-green-dark:    #54e346;
+  --color-green-light:   #54e346;
+
+  /* Dark surfaces */
+  --color-navy-950:  #060b16;
+  --color-navy-900:  #080d1a;
+  --color-navy-800:  #0d1730;
+  --color-navy-700:  #132048;
+  --color-navy-600:  #1a2a60;
+  --color-navy-500:  #223580;
+
+  /* Typography */
+  --font-display: 'Red Hat Display', system-ui, sans-serif;
+
+  /* Animations */
+  --animate-float:        float 3s ease-in-out infinite;
+  --animate-float-slow:   float 5s ease-in-out infinite;
+  --animate-float-fast:   float 2s ease-in-out infinite;
+  --animate-pixel-blink:  pixel-blink 1.5s steps(2) infinite;
+  --animate-slide-up:     slide-up 0.6s ease-out forwards;
+  --animate-fade-in:      fade-in 0.5s ease-out forwards;
+  --animate-pixel-spin:   pixel-spin 8s linear infinite;
+  --animate-marquee:      marquee 300s linear infinite;
+}
+
+/* ─── Keyframes ───────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes pixel-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pixel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 300s linear infinite;
+}
+
+.animate-marquee-fast {
+  animation: marquee 45s linear infinite;
+}
+
+/* About page — editorial studio layout */
+.about-page {
+  background-color: #060b16;
+  color: #f0f4ff;
+}
+
+.about-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(21, 62, 144, 0.55);
+}
+
+.about-kicker-accent {
+  color: #153e90;
+}
+
+.about-display {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.about-body {
+  color: rgba(176, 196, 230, 0.65);
+  line-height: 1.75;
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: #e8f0ff;
+  transition: color 0.25s ease;
+}
+
+.about-link:hover {
+  color: #153e90;
+}
+
+.about-value-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.about-process-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(21, 62, 144, 0.45);
+}
+
+.about-quote-mark {
+  font-size: clamp(4rem, 12vw, 8rem);
+  line-height: 0.7;
+  font-weight: 800;
+  color: rgba(21, 62, 144, 0.35);
+}
+
+.about-surface {
+  background-color: #060b16;
+}
+
+.about-muted {
+  color: rgba(176, 196, 230, 0.75);
+}
+
+.about-quote-dim {
+  color: rgba(21, 62, 144, 0.45);
+}
+
+.about-blur-on-load .ab-word {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(10px);
+}
+
+.about-hero .ab-fade {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Courses listing page */
+.courses-page {
+  background: linear-gradient(180deg, #0d2660 0%, #080d1a 28%, #060b16 100%);
+  color: #f0f4ff;
+}
+
+.courses-page .course-card {
+  opacity: 0;
+}
+
+.course-detail-page {
+  background: linear-gradient(180deg, #060b16 0%, #080d1a 100%);
+  color: #f0f4ff;
+}
+
+.course-detail-page .course-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #54e346;
+}
+
+.course-detail-page .course-hero-fade {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Scholarship — expanding hero word */
+.scholarship-page {
+  background-color: #060b16;
+  color: #f0f4ff;
+}
+
+.scholarship-page .sch-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(21, 62, 144, 0.55);
+}
+
+.scholarship-page .sch-mega-word {
+  /* Oversized layout — the wrapper scales it down at rest (WORD_BASE_SCALE).
+     Text rasterizes at layout size, so the zoom stretches a high-resolution
+     bitmap and stays sharp instead of blurring. */
+  font-size: clamp(12.5rem, 56vw, 36rem);
+}
+
+.scholarship-page .sch-letter-l {
+  /* Must be white — the zoom flies through this stroke and it becomes the white background */
+  color: #ffffff;
+}
+
+.sch-intro-stage {
+  isolation: isolate;
+  /* The word scales 100x+ during the fly-through — keep the paint inside the viewport */
+  overflow: hidden;
+}
+
+.sch-word-stage {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sch-word-zoom {
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+.sch-reveal-white {
+  pointer-events: none;
+}
+
+main:has(.scholarship-page) {
+  background-color: #060b16;
+}
+
+/* Services — word cloud hero */
+.services-page {
+  background-color: #ffffff;
+  color: #060b16;
+}
+
+.services-page .svc-word {
+  white-space: nowrap;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', 'Segoe UI', sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+.services-page .svc-word-hero {
+  font-size: clamp(3.5rem, 11vw, 8.5rem);
+  letter-spacing: 6px;
+  color: #153e90;
+  text-shadow: 0 0 60px rgba(21, 62, 144, 0.2);
+}
+
+.services-page .svc-word-blue {
+  color: #153e90;
+}
+
+.services-page .svc-word-green {
+  color: #54e346;
+}
+
+.services-page .svc-word-dim {
+  color: #7a8ba8;
+}
+
+.services-page .svc-scroll-hint {
+  animation: svc-hint-bob 2s ease-in-out infinite;
+}
+
+@keyframes svc-hint-bob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 8px); }
+}
+
+main:has(.services-page) {
+  background-color: #ffffff;
+}
+
+.ab-word {
+  will-change: filter, transform, opacity;
+}
+
+/* ─── Base (dark only) ─────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #080d1a;
+  --foreground: #f0f4ff;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  /* scroll-behavior: smooth removed — Lenis handles smooth scrolling globally */
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Lenis recommended CSS — prevents native smooth-scroll fighting Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display);
+}
+
+/* ─── Pixel Corner Utility (disabled — all elements use sharp rectangle corners) */
+.pixel-corner-sm {}
+.pixel-corner {}
+.pixel-corner-lg {}
+
+/* ─── Pixel Grid Background ───────────────────────────────── */
+.pixel-grid-bg {
+  background-image: radial-gradient(circle, rgba(83,227,70,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.pixel-dot-bg {
+  background-image: radial-gradient(circle, rgba(21,62,144,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Career hero — hollow outlined word */
+.career-outline-word {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #080d1a; }
+::-webkit-scrollbar-thumb { background: #153e90; }
+::-webkit-scrollbar-thumb:hover { background: #54e346; }
+
+/* ─── Selection ───────────────────────────────────────────── */
+::selection { background: #54e346; color: #080d1a; }
+
+/* ─── Float delay helpers ─────────────────────────────────── */
+.float-delay-1 { animation-delay: 0.3s; }
+.float-delay-2 { animation-delay: 0.6s; }
+.float-delay-3 { animation-delay: 0.9s; }
+.float-delay-4 { animation-delay: 1.2s; }
+.float-delay-5 { animation-delay: 1.5s; }
+
+/* ─── Shimmer sweep (buttons, card accents) ───────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ─── Glow pulse (section labels, CTA ring) ──────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(84,227,70,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(84,227,70,0.15); }
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Gradient text ───────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #54e346 0%, #153e90 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Respect reduced-motion preference ──────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,0 +1,213 @@
+[
+  {
+    "id": "1",
+    "slug": "digital-marketing-course",
+    "title": "Digital Marketing Course",
+    "shortDescription": "Learn digital marketing with real campaigns, tools, and portfolio projects",
+    "description": "The Digital Marketing Course at Pixl Pluz Academy is a comprehensive, agency-style training program designed to build job-ready skills in SEO, social media marketing, Google Ads, content strategy, email marketing, analytics, and AI-powered workflows. You will work on live projects, build a verified portfolio, and get career support from industry mentors.",
+    "level": "Beginner",
+    "duration": "2 months",
+    "durationHours": "200 hours",
+    "lessons": 20,
+    "price": 50000,
+    "instructor": "Pixl Pluz Team",
+    "instructorEmail": "info@pixlpluz.com",
+    "thumbnail": "/images/courses/digital-marketing.jpg",
+    "videoUrl": "",
+    "featured": true,
+    "tags": ["Digital Marketing", "SEO", "Social Media", "AI Tools"],
+    "features": [
+      "200+ hours of live training",
+      "Real agency projects",
+      "AI tools & automation",
+      "Portfolio building",
+      "Placement support",
+      "Certificate of Completion"
+    ],
+    "curriculum": [
+      {
+        "title": "Module 1: Digital Marketing Fundamentals",
+        "lessons": [
+          { "title": "What is Digital Marketing?", "locked": false },
+          { "title": "Digital Marketing Channels Overview", "locked": false },
+          { "title": "Setting Up Your Digital Workspace", "locked": true },
+          { "title": "Understanding Your Target Audience", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 2: SEO & Content Strategy",
+        "lessons": [
+          { "title": "On-Page SEO Fundamentals", "locked": true },
+          { "title": "Keyword Research with AI Tools", "locked": true },
+          { "title": "Content Calendar Planning", "locked": true },
+          { "title": "Link Building Strategies", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 3: Social Media Marketing",
+        "lessons": [
+          { "title": "Instagram & Facebook Ads", "locked": true },
+          { "title": "LinkedIn for B2B Marketing", "locked": true },
+          { "title": "Short-form Video Strategy", "locked": true }
+        ]
+      }
+    ],
+    "faqs": [
+      { "q": "Will I receive a certificate upon completion?", "a": "Yes, all students who complete the course and the final project receive a verified digital certificate from Pixl Pluz Academy." },
+      { "q": "What if I have questions during the course?", "a": "You will have access to your mentor through our student portal and weekly doubt-clearing sessions." },
+      { "q": "Can I access the course materials after completion?", "a": "Yes, you get lifetime access to all course materials including future updates." },
+      { "q": "Do I need any prior experience?", "a": "No prior experience is needed. The course is designed for beginners and working professionals." }
+    ]
+  },
+  {
+    "id": "2",
+    "slug": "ai-powered-web-development-course",
+    "title": "AI Powered Web Development Course",
+    "shortDescription": "Learn to design, build, and launch modern websites with AI integration",
+    "description": "The Web Development Course at Pixl Pluz Academy teaches you to build modern, responsive websites and web applications using HTML, CSS, JavaScript, React, and AI-powered development tools. Work on real projects and build a professional portfolio.",
+    "level": "Beginner",
+    "duration": "3 months",
+    "durationHours": "300 hours",
+    "lessons": 20,
+    "price": 60000,
+    "instructor": "Pixl Pluz Team",
+    "instructorEmail": "info@pixlpluz.com",
+    "thumbnail": "/images/courses/web-development.jpg",
+    "videoUrl": "",
+    "featured": true,
+    "tags": ["Web Development", "React", "JavaScript", "AI"],
+    "features": [
+      "300+ hours of live training",
+      "Full-stack projects",
+      "AI development tools",
+      "Portfolio with 5+ projects",
+      "Placement support",
+      "Certificate of Completion"
+    ],
+    "curriculum": [
+      {
+        "title": "Module 1: HTML & CSS Foundations",
+        "lessons": [
+          { "title": "HTML Structure & Semantics", "locked": false },
+          { "title": "CSS Layouts & Flexbox", "locked": false },
+          { "title": "Responsive Design", "locked": true },
+          { "title": "CSS Animations", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 2: JavaScript & React",
+        "lessons": [
+          { "title": "JavaScript ES6+", "locked": true },
+          { "title": "React Components & Hooks", "locked": true },
+          { "title": "State Management", "locked": true }
+        ]
+      }
+    ],
+    "faqs": [
+      { "q": "Do I need programming experience?", "a": "No. We start from the very basics and guide you step by step." },
+      { "q": "What projects will I build?", "a": "You will build 5+ real-world projects including a portfolio site, e-commerce page, and a React application." }
+    ]
+  },
+  {
+    "id": "3",
+    "slug": "data-science-ai-course",
+    "title": "Data Science & AI Course",
+    "shortDescription": "Learn how to turn data into decisions and AI into practical skills",
+    "description": "The Data Science & AI Course covers Python, machine learning, data analysis, visualization, and practical AI model deployment. Designed for students who want to work in the fast-growing data and AI industry.",
+    "level": "Expert",
+    "duration": "3 months",
+    "durationHours": "350 hours",
+    "lessons": 19,
+    "price": 75000,
+    "instructor": "Pixl Pluz Team",
+    "instructorEmail": "info@pixlpluz.com",
+    "thumbnail": "/images/courses/data-science.jpg",
+    "videoUrl": "",
+    "featured": true,
+    "tags": ["Data Science", "AI", "Python", "Machine Learning"],
+    "features": [
+      "350+ hours of live training",
+      "Real datasets & case studies",
+      "AI model deployment",
+      "Portfolio projects",
+      "Industry mentorship",
+      "Certificate of Completion"
+    ],
+    "curriculum": [
+      {
+        "title": "Introduction to Data Science",
+        "lessons": [
+          { "title": "What is Data Science?", "locked": false },
+          { "title": "Setting up your Data Science environment", "locked": false },
+          { "title": "Writing your first Data Science program", "locked": true },
+          { "title": "Understanding Data Science syntax and structure", "locked": true }
+        ]
+      },
+      {
+        "title": "Python for Data Analysis",
+        "lessons": [
+          { "title": "Pandas & NumPy fundamentals", "locked": true },
+          { "title": "Data Cleaning & Preprocessing", "locked": true },
+          { "title": "Data Visualization with Matplotlib", "locked": true }
+        ]
+      }
+    ],
+    "faqs": [
+      { "q": "Will I receive a certificate upon completion?", "a": "Yes, you receive a verified certificate upon completing all modules and projects." },
+      { "q": "What if I have questions during the course?", "a": "Weekly Q&A sessions with your mentor are included." },
+      { "q": "Can I access the course materials after completion?", "a": "Yes, lifetime access is included." },
+      { "q": "Do I need any prior programming experience to take this course?", "a": "Basic understanding of Python is helpful but not required. We cover all prerequisites." }
+    ]
+  },
+  {
+    "id": "4",
+    "slug": "cyber-security-course-with-ai",
+    "title": "Cyber Security Course With AI",
+    "shortDescription": "Learn how to protect digital systems, networks, and data",
+    "description": "The Cybersecurity Course at Pixl Pluz Academy introduces learners to the fundamentals of digital security, network protection, ethical hacking basics, security awareness, and practical cyber defence methods. The course is designed for students and IT learners who want to build a strong foundation in cybersecurity.",
+    "level": "Intermediate",
+    "duration": "2 months",
+    "durationHours": "240 hours",
+    "lessons": 16,
+    "price": 50000,
+    "instructor": "Pixl Pluz Team",
+    "instructorEmail": "info@pixlpluz.com",
+    "thumbnail": "/images/courses/cyber-security.jpg",
+    "videoUrl": "",
+    "featured": false,
+    "tags": ["AI", "Cybersecurity", "Education", "Networking"],
+    "features": [
+      "240 hours of live training",
+      "Ethical hacking labs",
+      "AI-powered security tools",
+      "Certification preparation",
+      "Placement support",
+      "Certificate of Completion"
+    ],
+    "curriculum": [
+      {
+        "title": "Introduction to Cybersecurity",
+        "lessons": [
+          { "title": "What is Cybersecurity?", "locked": false },
+          { "title": "Types of Cyber Threats", "locked": false },
+          { "title": "Network Fundamentals", "locked": true },
+          { "title": "Security Principles & CIA Triad", "locked": true }
+        ]
+      },
+      {
+        "title": "Ethical Hacking Basics",
+        "lessons": [
+          { "title": "Introduction to Ethical Hacking", "locked": true },
+          { "title": "Reconnaissance & Footprinting", "locked": true },
+          { "title": "Vulnerability Scanning", "locked": true }
+        ]
+      }
+    ],
+    "faqs": [
+      { "q": "Will I receive a certificate upon completion?", "a": "Yes, you receive a Pixl Pluz Academy certificate upon completing all modules." },
+      { "q": "What if I have questions during the course?", "a": "Access to mentor sessions and a community Discord server is included." },
+      { "q": "Can I access the course materials after completion?", "a": "Yes, lifetime access is included." },
+      { "q": "Do I need any prior programming experience to take this course?", "a": "Basic computer literacy is sufficient. We guide you from the fundamentals." }
+    ]
+  }
+]

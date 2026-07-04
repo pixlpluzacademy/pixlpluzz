@@ -1,0 +1,71 @@
+[
+  {
+    "id": "1",
+    "title": "Digital Marketing Trainer",
+    "type": "Full-time",
+    "location": "Kochi, Kerala",
+    "description": "We are looking for an experienced digital marketing trainer to join Pixl Pluz Academy. You will design and deliver course content, mentor students, evaluate projects, and contribute to curriculum development.",
+    "requirements": [
+      "3+ years of industry experience in digital marketing",
+      "Strong communication and teaching skills",
+      "Experience with SEO, Google Ads, and social media marketing",
+      "Familiarity with AI marketing tools",
+      "Portfolio of real-world campaigns"
+    ],
+    "responsibilities": [
+      "Deliver engaging classroom and online sessions",
+      "Develop course materials and assignments",
+      "Mentor students on live projects",
+      "Conduct portfolio reviews and mock interviews",
+      "Stay updated on digital marketing trends"
+    ],
+    "deadline": "2026-07-31",
+    "postedDate": "2026-06-01"
+  },
+  {
+    "id": "2",
+    "title": "Web Development Instructor",
+    "type": "Full-time",
+    "location": "Kochi, Kerala",
+    "description": "Join Pixl Pluz Academy as a Web Development Instructor and help students build job-ready skills in HTML, CSS, JavaScript, and React. You will guide students through real projects and portfolio development.",
+    "requirements": [
+      "2+ years of professional web development experience",
+      "Proficiency in HTML, CSS, JavaScript, and React",
+      "Experience with modern development tools and AI coding assistants",
+      "Good communication and presentation skills",
+      "GitHub portfolio of projects"
+    ],
+    "responsibilities": [
+      "Teach web development concepts from fundamentals to advanced",
+      "Review and provide feedback on student projects",
+      "Assist in curriculum development",
+      "Conduct code reviews and pair programming sessions",
+      "Support students in building their portfolios"
+    ],
+    "deadline": "2026-07-15",
+    "postedDate": "2026-06-01"
+  },
+  {
+    "id": "3",
+    "title": "Student Counsellor & Admissions Officer",
+    "type": "Full-time",
+    "location": "Kochi, Kerala",
+    "description": "We are looking for a motivated Student Counsellor to guide prospective students through the admissions process, scholarship applications, and course selection at Pixl Pluz Academy.",
+    "requirements": [
+      "1+ year of experience in education counselling or sales",
+      "Excellent communication and interpersonal skills",
+      "Understanding of digital careers and course offerings",
+      "Ability to handle multiple enquiries and follow-ups",
+      "Proficiency in CRM tools"
+    ],
+    "responsibilities": [
+      "Handle student enquiries via phone, email, and walk-ins",
+      "Guide students through scholarship and admission process",
+      "Maintain enquiry records and follow-up database",
+      "Coordinate with faculty for counselling sessions",
+      "Meet monthly admission targets"
+    ],
+    "deadline": "2026-07-20",
+    "postedDate": "2026-06-10"
+  }
+]
