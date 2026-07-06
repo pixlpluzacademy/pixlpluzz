@@ -30,19 +30,31 @@ function shouldSkipHeading(el: HTMLElement) {
   return false
 }
 
-function wrapHeadingWords(el: HTMLElement) {
-  const text = el.textContent?.trim() ?? ''
-  const parts = text.split(/\s+/).filter(Boolean)
+function createWordSpan(word: string) {
+  const span = document.createElement('span')
+  span.className = 'ab-word inline-block mr-[0.26em] align-top'
+  span.style.willChange = 'filter, transform, opacity'
+  span.textContent = word
+  return span
+}
 
-  el.replaceChildren(
-    ...parts.map((word) => {
-      const span = document.createElement('span')
-      span.className = 'ab-word inline-block mr-[0.26em] align-top'
-      span.style.willChange = 'filter, transform, opacity'
-      span.textContent = word
-      return span
-    }),
-  )
+function appendWordsFromText(text: string, fragment: DocumentFragment) {
+  const parts = text.split(/\s+/).filter(Boolean)
+  parts.forEach((word) => fragment.appendChild(createWordSpan(word)))
+}
+
+function wrapHeadingWords(el: HTMLElement) {
+  const fragment = document.createDocumentFragment()
+
+  for (const node of el.childNodes) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      appendWordsFromText(node.textContent ?? '', fragment)
+    } else if (node.nodeType === Node.ELEMENT_NODE && (node as HTMLElement).tagName === 'BR') {
+      fragment.appendChild(document.createElement('br'))
+    }
+  }
+
+  el.replaceChildren(fragment)
 }
 
 function animateHeadingWords(root: HTMLElement) {

@@ -68,11 +68,11 @@ export function ScholarshipSection() {
 
           // ── Desktop ────────────────────────────────────────────────
           // The section is CSS-sticky (not GSAP-pinned).  We make the
-          // outer wrapper tall enough that 1 800 px of scroll passes
+          // outer wrapper tall enough that ~900 px of scroll passes
           // while the inner section is stuck at top:0.
           // ScrollTrigger watches the wrapper; scrub drives the timeline.
           if (isDesktop) {
-            const SCROLL_DIST = 1800
+            const SCROLL_DIST = 900
 
             const setHeight = () => {
               if (wrapperRef.current) {
@@ -190,7 +190,9 @@ export function ScholarshipSection() {
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            Apply for the ₹50 Lakh<br />Scholarship Fund
+            Apply for the ₹50 Lakh
+            <br />
+            Scholarship Fund
           </h2>
 
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-3">

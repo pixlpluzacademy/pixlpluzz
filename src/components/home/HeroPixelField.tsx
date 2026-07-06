@@ -199,7 +199,7 @@ export function HeroPixelField({ className }: { className?: string }) {
     let scrollProgress = 0
     const readScroll = () => {
       scrollProgress = Math.min(
-        Math.max(window.scrollY / (window.innerHeight * 1.5), 0),
+        Math.max(window.scrollY / window.innerHeight, 0),
         1,
       )
     }

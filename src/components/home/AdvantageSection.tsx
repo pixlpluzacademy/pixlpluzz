@@ -75,7 +75,7 @@ export function AdvantageSection() {
           trigger: section,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1,
+          scrub: 0.6,
           invalidateOnRefresh: true,
         },
       })
@@ -90,10 +90,10 @@ export function AdvantageSection() {
             scale: 1,
             rotate: 0,
             filter: 'blur(0px)',
-            duration: 1,
+            duration: 0.75,
             ease: 'power3.out',
           },
-          i * 0.7
+          i * 1.05
         )
       })
     })
@@ -107,18 +107,14 @@ export function AdvantageSection() {
 
       gsap.set(mobileCards, {
         opacity: 0,
-        y: 60,
-        scale: 0.92,
-        filter: 'blur(8px)',
+        y: 48,
       })
 
       gsap.to(mobileCards, {
         opacity: 1,
         y: 0,
-        scale: 1,
-        filter: 'blur(0px)',
         stagger: 0.12,
-        ease: 'power3.out',
+        ease: 'power2.out',
         scrollTrigger: {
           trigger,
           start: 'top 80%',
@@ -136,11 +132,11 @@ export function AdvantageSection() {
   const cascadeSize = CARD + (FEATURES.length - 1) * STEP
 
   return (
-    // Desktop: 500vh outer section + CSS sticky inner panel (no GSAP pin)
+    // Desktop: 420vh outer section — enough scroll room for 8 cards to pop in one-by-one
     // Mobile: natural height, inner panel is just a normal block
     <section
       ref={sectionRef}
-      className="relative bg-navy-950 lg:h-[500vh]"
+      className="relative bg-navy-950 lg:h-[420vh]"
     >
       <div className="overflow-hidden py-16 sm:py-24 lg:sticky lg:top-0 lg:h-screen lg:py-0">
         <div
