@@ -80,7 +80,13 @@ export function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative -mt-16 h-[200vh] bg-navy-950" data-page-hero>
-      <div className="sticky top-0 flex h-svh flex-col overflow-hidden">
+      <div
+        className="sticky top-0 flex h-svh flex-col overflow-hidden"
+        style={{
+          background:
+            'radial-gradient(ellipse 140% 95% at 50% 100%, #0d1730 0%, #0a1228 28%, #080d1a 55%, #060b16 80%, #040810 100%)',
+        }}
+      >
         {/* 3D cube cluster — the only thing visible at the top */}
         <HeroPixelField className="absolute inset-0 z-0" />
 
@@ -96,8 +102,8 @@ export function HeroSection() {
         <div className="pointer-events-none absolute inset-0 z-[1] pixel-grid-bg opacity-10" aria-hidden />
 
         {/* Content — revealed by scroll */}
-        <div className="relative z-10 flex flex-1 flex-col justify-center px-6 pt-28 pb-20 sm:px-12 lg:px-20">
-          <div className="mx-auto w-full max-w-[1400px]">
+        <div className="relative z-10 flex flex-1 flex-col px-6 pt-28 pb-10 sm:px-12 lg:px-20">
+          <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center">
             <p className="hero-fade mb-8 text-[11px] font-semibold uppercase tracking-[0.4em] text-blue-primary">
               AI Integrated Academy — Kochi
             </p>
@@ -142,13 +148,13 @@ export function HeroSection() {
                 </Link>
               </div>
             </div>
-
-            <p className="hero-fade mt-12 text-xs text-gray-500">
-              Backed by{' '}
-              <span className="font-semibold text-green-accent">Neo Digital Hub</span>{' '}
-              and real agency mentors
-            </p>
           </div>
+
+          <p className="hero-fade mx-auto w-full max-w-[1400px] text-xs text-gray-500">
+            Backed by{' '}
+            <span className="font-semibold text-green-accent">Neo Digital Hub</span>{' '}
+            and real agency mentors
+          </p>
         </div>
 
         {/* Scroll hint — visible at load, gone once scrolling starts */}

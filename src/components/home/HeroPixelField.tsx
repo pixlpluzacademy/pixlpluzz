@@ -86,12 +86,12 @@ export function HeroPixelField({ className }: { className?: string }) {
       const aspect = mount.clientWidth / Math.max(mount.clientHeight, 1)
       if (aspect < 1) {
         // Portrait — centre → top
-        clusterStart.set(0.4, 0.2, -3)
-        clusterEnd.set(1.2, 4.4, -3)
+        clusterStart.set(0.4, -0.6, -3)
+        clusterEnd.set(1.2, 3.8, -3)
         cluster.scale.setScalar(0.62)
       } else {
-        clusterStart.set(0, 0.2, -1)
-        clusterEnd.set(Math.min(7.2, aspect * 4.4), 0.6, -1)
+        clusterStart.set(0, -0.8, -1)
+        clusterEnd.set(Math.min(7.2, aspect * 4.4), 0, -1)
         cluster.scale.setScalar(1)
       }
       cluster.position.copy(clusterStart)
