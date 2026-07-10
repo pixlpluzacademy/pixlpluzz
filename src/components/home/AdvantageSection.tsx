@@ -132,13 +132,13 @@ export function AdvantageSection() {
   const cascadeSize = CARD + (FEATURES.length - 1) * STEP
 
   return (
-    // Desktop: 420vh outer section — enough scroll room for 8 cards to pop in one-by-one
+    // Desktop: viewport + fixed scrub (not 420vh) so tall monitors don't balloon scroll length
     // Mobile: natural height, inner panel is just a normal block
     <section
       ref={sectionRef}
-      className="relative bg-navy-950 lg:h-[420vh]"
+      className="relative bg-navy-950 lg:h-[calc(100svh+2400px)]"
     >
-      <div className="overflow-hidden py-16 sm:py-24 lg:sticky lg:top-0 lg:h-screen lg:py-0">
+      <div className="overflow-hidden py-16 sm:py-24 lg:sticky lg:top-0 lg:h-svh lg:py-0">
         <div
           className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-20"
           aria-hidden
@@ -146,7 +146,7 @@ export function AdvantageSection() {
 
         <FloatingPixels />
 
-        <div className="relative z-10 mx-auto grid h-full max-w-7xl items-center gap-12 px-4 sm:gap-16 lg:grid-cols-2">
+        <div className="relative z-10 mx-auto grid h-full max-w-7xl items-center gap-10 px-4 sm:gap-12 lg:grid-cols-2 lg:gap-16 lg:py-[clamp(2rem,6vh,4.5rem)]">
           {/* Left: static text content — opt out of auto blur (sticky scroll leaves words at mixed opacity) */}
           <div data-no-blur-text>
             <SectionLabel className="mb-4">

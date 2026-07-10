@@ -79,7 +79,8 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative -mt-16 h-[200vh] bg-navy-950" data-page-hero>
+    {/* Fixed scrub distance (not 200vh) so tall monitors don't create a huge scroll gap */}
+    <section ref={sectionRef} className="relative -mt-16 h-[calc(100svh+900px)] bg-navy-950" data-page-hero>
       <div
         className="sticky top-0 flex h-svh flex-col overflow-hidden"
         style={{

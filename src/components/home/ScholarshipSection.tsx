@@ -178,10 +178,10 @@ export function ScholarshipSection() {
     <div ref={wrapperRef} className="relative">
 
       {/*
-        lg:sticky lg:top-0 lg:h-screen  — CSS pin (React-safe, no DOM moves)
+        lg:sticky lg:top-0 lg:h-svh  — CSS pin (React-safe, no DOM moves)
         py-24 lg:py-0                   — normal padding on mobile; centered via flex on desktop
       */}
-      <section className="lg:sticky lg:top-0 lg:h-screen bg-gray-50 dark:bg-navy-900 py-16 sm:py-24 lg:py-0 px-4 lg:flex lg:flex-col lg:justify-center overflow-hidden">
+      <section className="lg:sticky lg:top-0 lg:h-svh bg-gray-50 dark:bg-navy-900 py-16 sm:py-24 lg:py-[clamp(2rem,6vh,4.5rem)] px-4 lg:flex lg:flex-col lg:justify-center overflow-hidden">
         <div className="mx-auto max-w-7xl w-full text-center">
 
           {/* Heading — always visible; stays fixed while steps animate */}

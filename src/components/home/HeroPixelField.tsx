@@ -195,13 +195,15 @@ export function HeroPixelField({ className }: { className?: string }) {
     }
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
 
-    // 0 at top of page → 1 after ~1.5 viewport heights (matches the pinned hero)
+    // 0 at top of hero → 1 when the pinned hero scrub finishes (fixed px track, not vh)
     let scrollProgress = 0
     const readScroll = () => {
-      scrollProgress = Math.min(
-        Math.max(window.scrollY / window.innerHeight, 0),
+      const hero = document.querySelector<HTMLElement>('[data-page-hero]')
+      const scrub = Math.max(
+        (hero?.offsetHeight ?? window.innerHeight + 900) - window.innerHeight,
         1,
       )
+      scrollProgress = Math.min(Math.max(window.scrollY / scrub, 0), 1)
     }
     readScroll()
 
