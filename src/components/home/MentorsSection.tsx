@@ -11,29 +11,29 @@ gsap.registerPlugin(ScrollTrigger)
 
 const MENTORS = [
   {
-    name: 'Arjun Menon',
-    designation: 'Digital Marketing Strategist',
-    image: '/images/PIXL WEBSITE IMAGE-01.jpg.jpeg',
+    name: 'Ahmed Noor',
+    designation: '3D Specialist',
+    image: '/images/Ahmed Noor.jpeg',
   },
   {
-    name: 'Priya Nair',
-    designation: 'AI & Web Development Lead',
-    image: '/images/PIXL WEBSITE IMAGE-02.jpg.jpeg',
+    name: 'Aiswarya VP',
+    designation: 'SEO Specialist',
+    image: '/images/Aiswarya.jpeg',
   },
   {
-    name: 'Mohammed Rizwan',
-    designation: 'Data Science & AI Mentor',
-    image: '/images/PIXL WEBSITE IMAGE-03.jpg.jpeg',
+    name: 'Hina Javaid',
+    designation: 'Digital Marketing Expert',
+    image: '/images/Hina.jpeg',
   },
   {
-    name: 'Sneha Thomas',
-    designation: 'Social Media & Branding Expert',
-    image: '/images/PIXL WEBSITE IMAGE-04.jpg.jpeg',
+    name: 'Hojjat',
+    designation: '3D Visualizer',
+    image: '/images/Hojjat.jpeg',
   },
   {
-    name: 'Rahul Krishnan',
-    designation: 'Cyber Security Specialist',
-    image: '/images/PIXL WEBSITE IMAGE-05.jpg.jpeg',
+    name: 'Lakshmi',
+    designation: 'Web Developer',
+    image: '/images/Lakshmi.jpeg',
   },
 ]
 
