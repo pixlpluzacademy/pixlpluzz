@@ -23,9 +23,6 @@ const AdvantageSection = dynamic(
 const MentorsSection = dynamic(
   () => import('@/components/home/MentorsSection').then(m => ({ default: m.MentorsSection }))
 )
-const CardsSection = dynamic(
-  () => import('@/components/home/CardsSection').then(m => ({ default: m.CardsSection }))
-)
 const PurposeSection = dynamic(
   () => import('@/components/home/PurposeSection').then(m => ({ default: m.PurposeSection }))
 )
@@ -66,7 +63,6 @@ export default function HomePage() {
         <CoursesSection courses={courses} />
         <AdvantageSection />
         <MentorsSection />
-        <CardsSection />
         <PurposeSection />
         <ScholarshipSection />
         <ContactSection />

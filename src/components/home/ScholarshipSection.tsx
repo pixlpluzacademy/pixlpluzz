@@ -72,7 +72,7 @@ export function ScholarshipSection() {
           // while the inner section is stuck at top:0.
           // ScrollTrigger watches the wrapper; scrub drives the timeline.
           if (isDesktop) {
-            const SCROLL_DIST = Math.min(900, Math.round(window.innerHeight * 0.7))
+            const SCROLL_DIST = Math.min(560, Math.round(window.innerHeight * 0.45))
 
             const setHeight = () => {
               if (wrapperRef.current) {

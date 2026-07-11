@@ -99,11 +99,11 @@ export function HeroSection() {
     return () => mm.revert()
   }, [])
 
-  // Fixed scrub distance so tall monitors don't create a huge scroll gap.
+  // Capped scrub distance — avoids excessive empty scroll on tall monitors.
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-16 min-h-svh md:h-[calc(100svh+900px)] bg-navy-950"
+      className="relative -mt-16 min-h-svh md:min-h-svh md:h-[calc(100svh+min(560px,55dvh))] bg-navy-950"
       data-page-hero
     >
       <div
