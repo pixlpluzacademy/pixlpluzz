@@ -127,8 +127,8 @@ export function CardsSection() {
     return () => mm.revert()
   }, [])
 
+  // Pin only on lg+ with a fixed scrub distance — mobile/tablet flow naturally
   return (
-    // Pin only on lg+ with a fixed scrub distance — mobile/tablet flow naturally
     <section ref={sectionRef} className="relative bg-navy-900 lg:h-[calc(100svh+480px)]">
       <div className="flex items-center overflow-hidden py-14 sm:py-20 px-4 lg:sticky lg:top-0 lg:h-svh lg:py-16">
         <div className="mx-auto max-w-7xl w-full">

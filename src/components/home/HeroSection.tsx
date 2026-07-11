@@ -99,6 +99,7 @@ export function HeroSection() {
     return () => mm.revert()
   }, [])
 
+  // Fixed scrub distance so tall monitors don't create a huge scroll gap.
   return (
     <section
       ref={sectionRef}
