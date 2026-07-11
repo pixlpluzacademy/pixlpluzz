@@ -15,17 +15,17 @@ interface PixelButtonProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-display font-semibold tracking-wide uppercase text-sm transition-all duration-200 cursor-pointer select-none'
+  'inline-flex items-center justify-center gap-2 font-display font-semibold tracking-wide uppercase text-sm transition-[filter,background-color,color,transform,box-shadow,border-color] duration-200 cursor-pointer select-none'
 
 const variants = {
   primary:
-    'bg-blue-primary text-white hover:brightness-110 active:scale-95',
+    'btn-glaze btn-primary-fill',
   outline:
-    'bg-white/10 text-white hover:bg-blue-primary hover:text-white',
+    'btn-glaze btn-outline-bright border-2',
   ghost:
     'text-white underline underline-offset-4 hover:text-green-accent',
   green:
-    'bg-green-accent text-navy-900 hover:brightness-110 active:scale-95',
+    'btn-glaze bg-green-accent text-navy-950 hover:brightness-110 shadow-[0_0_0_1px_rgba(84,227,70,0.5),0_8px_22px_rgba(84,227,70,0.25)]',
 }
 
 const sizes = {
@@ -45,18 +45,19 @@ export function PixelButton({
   disabled,
 }: PixelButtonProps) {
   const cls = cn(base, variants[variant], sizes[size], className)
+  const content = <span className="relative z-1 inline-flex items-center gap-2">{children}</span>
 
   if (href) {
     return (
       <Link href={href} className={cls}>
-        {children}
+        {content}
       </Link>
     )
   }
 
   return (
     <button type={type} onClick={onClick} disabled={disabled} className={cls}>
-      {children}
+      {content}
     </button>
   )
 }

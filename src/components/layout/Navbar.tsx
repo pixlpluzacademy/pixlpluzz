@@ -100,7 +100,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-blue-primary text-white px-5 py-2.5 text-sm font-semibold uppercase tracking-wide pixel-corner-sm hover:brightness-110 transition-colors"
+              className="btn-glaze btn-primary-fill hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
             >
               Contact Us
             </Link>
@@ -160,7 +160,7 @@ export function Navbar() {
           <div className="pt-2">
             <Link
               href="/contact"
-              className="block text-center bg-blue-primary text-white px-5 py-3 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
+              className="btn-glaze btn-primary-fill block text-center px-5 py-3 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
             >
               Contact Us
             </Link>

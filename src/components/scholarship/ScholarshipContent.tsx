@@ -284,7 +284,12 @@ export function ScholarshipContent() {
   return (
     <div ref={rootRef} className="scholarship-page min-h-screen">
       {/* Intro — zoom through "l", white flash, reveal */}
-      <div ref={introRef} className="relative h-[320vh] bg-[#060b16]" data-page-hero>
+      {/* Fixed scrub (not 320vh) — shorter on mobile so tall screens / phones don't balloon scroll */}
+      <div
+        ref={introRef}
+        className="relative h-[calc(100svh+520px)] md:h-[calc(100svh+1400px)] bg-[#060b16]"
+        data-page-hero
+      >
         <div ref={stageRef} className="sch-intro-stage sticky top-0 h-svh">
           <div ref={bgRef} className="absolute inset-0 z-0 bg-[#060b16]" aria-hidden />
 

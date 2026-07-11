@@ -55,7 +55,7 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={sectionRef} className="relative bg-navy-900 py-16 sm:py-24 px-4 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-0 overflow-hidden pixel-corner-lg border border-white/5">
@@ -192,7 +192,7 @@ export function ContactSection() {
                 type="submit"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-blue-primary hover:brightness-110 text-white py-4 font-bold uppercase tracking-widest text-sm transition-colors pixel-corner-sm"
+                className="btn-glaze btn-primary-fill w-full py-4 font-bold uppercase tracking-widest text-sm pixel-corner-sm"
               >
                 Send Message
               </motion.button>

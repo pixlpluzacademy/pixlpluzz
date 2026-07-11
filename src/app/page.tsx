@@ -11,8 +11,17 @@ import { getBlogs, getCourses } from '@/lib/data'
 const AboutSection = dynamic(
   () => import('@/components/home/AboutSection').then(m => ({ default: m.AboutSection }))
 )
+const CertificatesMarquee = dynamic(
+  () => import('@/components/home/CertificatesMarquee').then(m => ({ default: m.CertificatesMarquee }))
+)
+const CoursesSection = dynamic(
+  () => import('@/components/home/CoursesSection').then(m => ({ default: m.CoursesSection }))
+)
 const AdvantageSection = dynamic(
   () => import('@/components/home/AdvantageSection').then(m => ({ default: m.AdvantageSection }))
+)
+const MentorsSection = dynamic(
+  () => import('@/components/home/MentorsSection').then(m => ({ default: m.MentorsSection }))
 )
 const CardsSection = dynamic(
   () => import('@/components/home/CardsSection').then(m => ({ default: m.CardsSection }))
@@ -38,7 +47,8 @@ const FAQSection = dynamic(
 
 export default function HomePage() {
   const blogs   = getBlogs().slice(0, 3)
-  const courses = getCourses().filter(c => c.featured).slice(0, 4)
+  const courses = getCourses()
+  const featuredCourses = courses.filter(c => c.featured).slice(0, 4)
 
   return (
     <>
@@ -51,8 +61,11 @@ export default function HomePage() {
         during client-side navigation (not on initial page load).
       */}
       <Suspense fallback={null}>
-        <AboutSection courses={courses} />
+        <AboutSection courses={featuredCourses} />
+        <CertificatesMarquee />
+        <CoursesSection courses={courses} />
         <AdvantageSection />
+        <MentorsSection />
         <CardsSection />
         <PurposeSection />
         <ScholarshipSection />

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 /**
@@ -20,16 +20,51 @@ function mulberry32(seed: number) {
   }
 }
 
+function canUseWebGL() {
+  try {
+    const canvas = document.createElement('canvas')
+    const gl =
+      canvas.getContext('webgl2', { failIfMajorPerformanceCaveat: false })
+      ?? canvas.getContext('webgl', { failIfMajorPerformanceCaveat: false })
+      ?? canvas.getContext('experimental-webgl')
+    return gl != null
+  } catch {
+    return false
+  }
+}
+
+function HeroPixelFallback() {
+  return (
+    <>
+      <div
+        className="absolute inset-0 opacity-80"
+        style={{
+          background:
+            'radial-gradient(ellipse 55% 45% at 72% 48%, rgba(21,62,144,0.42) 0%, transparent 68%), radial-gradient(ellipse 40% 35% at 28% 62%, rgba(84,227,70,0.14) 0%, transparent 62%)',
+        }}
+      />
+      <div className="absolute inset-0 pixel-grid-bg opacity-15" />
+    </>
+  )
+}
+
 // Strict brand palette only
 const CORE_COLORS = [0x54e346, 0x54e346, 0x54e346]
 const EDGE_COLORS = [0x153e90, 0x153e90, 0x54e346, 0x153e90]
 
 export function HeroPixelField({ className }: { className?: string }) {
   const mountRef = useRef<HTMLDivElement>(null)
+  const [useFallback, setUseFallback] = useState(false)
 
   useEffect(() => {
     const mount = mountRef.current
     if (!mount) return
+
+    // Skip Three.js when WebGL is unavailable (sandboxed GPU, etc.) — avoids console errors
+    if (!canUseWebGL()) {
+      setUseFallback(true)
+      return
+    }
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isMobile = window.innerWidth < 768
@@ -46,11 +81,24 @@ export function HeroPixelField({ className }: { className?: string }) {
     )
     camera.position.set(0, 0, 16)
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance',
-    })
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+        failIfMajorPerformanceCaveat: false,
+      })
+    } catch {
+      setUseFallback(true)
+      return
+    }
+
+    if (!renderer.getContext()) {
+      renderer.dispose()
+      setUseFallback(true)
+      return
+    }
     renderer.setSize(mount.clientWidth, mount.clientHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0)
@@ -195,9 +243,18 @@ export function HeroPixelField({ className }: { className?: string }) {
     }
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
 
-    // 0 at top of hero → 1 when the pinned hero scrub finishes (fixed px track, not vh)
+    // 0 at top of hero → 1 when the pinned hero scrub finishes
+    // Mobile: timed scatter so cluster shows first, then breaks apart
     let scrollProgress = 0
+    const mobileScatterStart = performance.now()
+    const MOBILE_SCATTER_MS = 1800
+
     const readScroll = () => {
+      if (isMobile) {
+        const t = Math.min((performance.now() - mobileScatterStart) / MOBILE_SCATTER_MS, 1)
+        scrollProgress = t * t * (3 - 2 * t)
+        return
+      }
       const hero = document.querySelector<HTMLElement>('[data-page-hero]')
       const scrub = Math.max(
         (hero?.offsetHeight ?? window.innerHeight + 900) - window.innerHeight,
@@ -312,5 +369,9 @@ export function HeroPixelField({ className }: { className?: string }) {
     }
   }, [])
 
-  return <div ref={mountRef} className={className} aria-hidden />
+  return (
+    <div ref={mountRef} className={className} aria-hidden>
+      {useFallback ? <HeroPixelFallback /> : null}
+    </div>
+  )
 }

@@ -60,7 +60,8 @@ export function CardsSection() {
 
     const mm = gsap.matchMedia()
 
-    mm.add('(min-width: 640px)', () => {
+    // Desktop only: sticky fan scrub. Tablets/phones use natural flow.
+    mm.add('(min-width: 1024px)', () => {
       const cards = Array.from(
         section.querySelectorAll<HTMLElement>('.card-fan-item')
       )
@@ -100,7 +101,7 @@ export function CardsSection() {
       })
     })
 
-    mm.add('(max-width: 639px)', () => {
+    mm.add('(max-width: 1023px)', () => {
       const cards = Array.from(
         section.querySelectorAll<HTMLElement>('.card-fan-item')
       )
@@ -110,12 +111,12 @@ export function CardsSection() {
       gsap.to(cards, {
         opacity: 1,
         y: 0,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
           start: 'top 88%',
-          end: 'bottom 20%',
+          end: 'top 40%',
           scrub: 0.45,
         },
       })
@@ -127,12 +128,9 @@ export function CardsSection() {
   }, [])
 
   return (
-    // CSS sticky pin — GSAP only reads scroll progress, never moves the node.
-    // Pin only from sm: up — on phones the single-column card stack is taller
-    // than the pinned viewport and would get clipped, so it flows naturally.
-    {/* Fixed scrub distance (not 150vh) so tall monitors don't create a huge scroll gap */}
-    <section ref={sectionRef} className="relative bg-navy-900 sm:h-[calc(100svh+480px)]">
-      <div className="sm:sticky sm:top-0 sm:h-svh flex items-center overflow-hidden py-16 sm:py-20 px-4">
+    // Pin only on lg+ with a fixed scrub distance — mobile/tablet flow naturally
+    <section ref={sectionRef} className="relative bg-navy-900 lg:h-[calc(100svh+480px)]">
+      <div className="flex items-center overflow-hidden py-14 sm:py-20 px-4 lg:sticky lg:top-0 lg:h-svh lg:py-16">
         <div className="mx-auto max-w-7xl w-full">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {CARDS.map((card) => (

@@ -100,7 +100,7 @@ export function EventContent({ events }: { events: Event[] }) {
   return (
     <div ref={rootRef} className="bg-navy-950 text-white">
       {/* ── Hero — terminal-style opener ──────────────────────── */}
-      <section className="relative flex min-h-[92svh] flex-col justify-between overflow-hidden px-4 pt-10 pb-12 sm:px-6 lg:px-12" data-page-hero>
+      <section className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden px-4 pt-24 pb-12 sm:px-6 lg:px-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
         {/* Top status bar */}
@@ -170,7 +170,7 @@ export function EventContent({ events }: { events: Event[] }) {
                 <div className="evt-reveal flex flex-wrap items-center gap-5">
                   <Link
                     href={event.registrationUrl}
-                    className="group inline-flex items-center gap-2 bg-green-accent px-7 py-3.5 text-xs font-black uppercase tracking-widest text-navy-950 transition-all hover:brightness-110 pixel-corner-sm"
+                    className="btn-glaze group inline-flex items-center gap-2 bg-green-accent px-7 py-3.5 text-xs font-black uppercase tracking-widest text-navy-950 transition-all hover:brightness-110 pixel-corner-sm"
                   >
                     Register Now
                     <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:rotate-45" />
@@ -212,7 +212,7 @@ export function EventContent({ events }: { events: Event[] }) {
       ))}
 
       {events.length === 0 && (
-        <section className="border-t border-white/8 px-4 py-32 text-center sm:px-6 lg:px-12">
+        <section className="border-t border-white/8 px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-12">
           <p className="font-mono text-sm text-gray-500">[status: no upcoming events — check back soon]</p>
         </section>
       )}
@@ -230,7 +230,7 @@ export function EventContent({ events }: { events: Event[] }) {
           <div className="evt-outro-reveal">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 border-2 border-white px-8 py-4 text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-navy-950 pixel-corner-sm"
+              className="btn-glaze btn-outline-bright group inline-flex items-center gap-2 border-2 px-8 py-4 text-xs font-black uppercase tracking-widest transition-colors pixel-corner-sm"
             >
               Talk to us
               <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:rotate-45" />

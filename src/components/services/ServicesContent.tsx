@@ -130,9 +130,12 @@ export function ServicesContent() {
 
   return (
     <div className="services-page bg-white text-navy-950">
-      {/* Word cloud hero — tall track, sticky stage */}
-      <div ref={trackRef} className="svc-cloud-track relative h-[320vh]">
-        <div className="svc-cloud-stage sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-white">
+      {/* Word cloud hero — fixed scrub track (not 320vh) so tall monitors / phones don't balloon */}
+      <div
+        ref={trackRef}
+        className="svc-cloud-track relative h-[calc(100svh+480px)] md:h-[calc(100svh+1100px)]"
+      >
+        <div className="svc-cloud-stage sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-white px-4">
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
@@ -142,7 +145,7 @@ export function ServicesContent() {
             aria-hidden
           />
 
-          <div className="svc-cloud relative h-[min(620px,82vh)] w-[min(1100px,96vw)]">
+          <div className="svc-cloud relative h-[min(520px,70svh)] w-[min(1100px,96vw)] md:h-[min(620px,75svh)]">
             {SERVICE_CLOUD_WORDS.map((word, i) => (
               <div
                 key={word.text}

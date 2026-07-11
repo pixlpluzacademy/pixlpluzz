@@ -122,12 +122,12 @@ export function AboutContent() {
       <AboutMarquee items={MARQUEE_A} speed="fast" />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="about-hero relative min-h-[calc(100svh-4rem)] flex flex-col justify-end px-6 md:px-16 lg:px-20 pb-16 md:pb-24 pt-24 overflow-hidden" data-page-hero>
+      <section className="about-hero relative flex flex-col justify-end px-6 md:px-16 lg:px-20 pb-14 pt-28 sm:pb-20 md:pb-24 overflow-hidden" data-page-hero>
         <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] bg-blue-primary/20 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4" />
         <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-mid/10 rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4" />
 
         <div className="relative z-10 max-w-[1400px] mx-auto w-full">
-          <div className="ab-fade flex flex-wrap items-end justify-between gap-8 mb-10 md:mb-24">
+          <div className="ab-fade flex flex-wrap items-end justify-between gap-8 mb-8 md:mb-14">
             <div>
               <p className="about-kicker mb-3">Est. 2026</p>
               <p className="about-muted text-sm md:text-base font-medium tracking-tight">
@@ -167,7 +167,7 @@ export function AboutContent() {
       <AboutMarquee items={MARQUEE_B} />
 
       {/* ── Story ────────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-36 border-b border-blue-primary/20">
+      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
         <div className="max-w-[1400px] mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-24 items-start">
           <p className="ab-reveal about-kicker about-kicker-accent">At Pixl Pluz,</p>
 
@@ -191,7 +191,7 @@ export function AboutContent() {
       </section>
 
       {/* ── Values ───────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-36 border-b border-blue-primary/20">
+      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-10 md:mb-20 max-w-2xl">
             <p className="ab-reveal about-kicker mb-5">Our values</p>
@@ -225,7 +225,7 @@ export function AboutContent() {
       </section>
 
       {/* ── Process ──────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-36 border-b border-blue-primary/20">
+      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-10 md:mb-20">
             <p className="ab-reveal about-kicker mb-5">Our process</p>
@@ -256,7 +256,7 @@ export function AboutContent() {
       </section>
 
       {/* ── Quote ────────────────────────────────────────────────── */}
-      <section className="ab-split px-6 md:px-16 lg:px-20 py-20 sm:py-28 md:py-40 border-b border-blue-primary/20 overflow-hidden">
+      <section className="ab-split px-6 md:px-16 lg:px-20 py-16 sm:py-20 md:py-28 border-b border-blue-primary/20 overflow-hidden">
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="about-quote-mark mb-6" aria-hidden>&ldquo;</p>
           <blockquote className="max-w-4xl mx-auto">
@@ -278,7 +278,7 @@ export function AboutContent() {
       </section>
 
       {/* ── Stats ────────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-32 border-b border-blue-primary/20">
+      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-12">
             <p className="ab-reveal about-kicker mb-4">By the numbers</p>
@@ -301,7 +301,7 @@ export function AboutContent() {
       </section>
 
       {/* ── Who we're for ────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-36 border-b border-blue-primary/20">
+      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
         <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-8 lg:gap-24">
           <div>
             <p className="ab-reveal about-kicker mb-5">Who we&apos;re for</p>
@@ -331,7 +331,7 @@ export function AboutContent() {
       <AboutServicesTeaser />
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="pp-cta-section px-6 md:px-16 lg:px-20 py-20 sm:py-32 md:py-48">
+      <section className="pp-cta-section px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-28">
         <div className="max-w-[1400px] mx-auto text-center">
           <p className="ab-reveal about-kicker about-kicker-accent mb-8">Start today</p>
           <AboutBlurText

@@ -45,7 +45,7 @@ export function CTASection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Link
                 href="/scholarship"
-                className="inline-flex items-center gap-2 bg-blue-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:brightness-110 pixel-corner-sm"
+                className="btn-glaze btn-primary-fill inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
               >
                 Apply Now &rsaquo;
               </Link>
@@ -53,7 +53,7 @@ export function CTASection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Link
                 href="/courses"
-                className="inline-flex items-center gap-2 border-2 border-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-navy-900 pixel-corner-sm"
+                className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-8 py-4 text-sm font-bold uppercase tracking-widest transition-colors pixel-corner-sm"
               >
                 Explore Courses &rsaquo;
               </Link>

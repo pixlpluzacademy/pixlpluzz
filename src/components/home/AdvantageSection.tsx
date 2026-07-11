@@ -1,19 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRef, useEffect, useLayoutEffect } from 'react'
 import { useLenis } from 'lenis/react'
-import {
-  ArrowRight,
-  GraduationCap,
-  Construction,
-  Users,
-  Bot,
-  TrendingUp,
-  Mic,
-  BookOpen,
-  BadgeCheck,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SectionLabel } from '@/components/ui/SectionLabel'
@@ -22,24 +13,21 @@ import { FloatingPixels } from '@/components/ui/FloatingPixels'
 gsap.registerPlugin(ScrollTrigger)
 
 const FEATURES = [
-  { icon: GraduationCap, label: 'Scholarship Based Courses', num: '01' },
-  { icon: Construction, label: 'Live Project & Training', num: '02' },
-  { icon: Users, label: 'Industry Expert Mentors', num: '03' },
-  { icon: Bot, label: 'AI Tools & Automation', num: '04' },
-  { icon: TrendingUp, label: '100% Placement Assistance', num: '05' },
-  { icon: Mic, label: 'Interview Preparation', num: '06' },
-  { icon: BookOpen, label: 'Practical Learning', num: '07' },
-  { icon: BadgeCheck, label: 'Verified Portfolio', num: '08' },
+  { label: 'Scholarship Based Courses', image: '/images/graduation.jpg' },
+  { label: 'Live Project & Training', image: '/images/class2.jpg' },
+  { label: 'Industry Expert Mentors', image: '/images/student2.jpg' },
+  { label: 'AI Tools & Automation', image: '/images/students2.jpg' },
+  { label: '100% Placement Assistance', image: '/images/graduation2.jpg' },
+  { label: 'Interview Preparation', image: '/images/students.jpg' },
+  { label: 'Practical Learning', image: '/images/room.jpg' },
+  { label: 'Verified Portfolio', image: '/images/boy.jpg' },
+  { label: 'Industry Certification', image: '/images/student.jpg' },
 ]
-
-const CARD = 380
-const STEP = 30
 
 export function AdvantageSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-  const mobileCardsRef = useRef<(HTMLDivElement | null)[]>([])
-  const mobileGridRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
 
   const lenis = useLenis()
 
@@ -51,94 +39,46 @@ export function AdvantageSection() {
   }, [lenis])
 
   useLayoutEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
+    const grid = gridRef.current
+    if (!grid) return
 
-    // gsap.matchMedia() manages its own context — no nested gsap.context() needed
-    const mm = gsap.matchMedia()
+    const cards = cardsRef.current.filter((c): c is HTMLDivElement => c !== null)
+    if (!cards.length) return
 
-    mm.add('(min-width: 1024px)', () => {
-      const cards = cardsRef.current.filter((c): c is HTMLDivElement => c !== null)
-      if (!cards.length) return
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-      gsap.set(cards, {
-        opacity: 0,
-        x: 600,
-        y: 350,
-        scale: 0.9,
-        rotate: 3,
-        filter: 'blur(10px)',
-      })
+    if (reduceMotion) {
+      gsap.set(cards, { opacity: 1, scale: 1, y: 0 })
+      return
+    }
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 0.6,
-          invalidateOnRefresh: true,
-        },
-      })
-
-      cards.forEach((card, i) => {
-        tl.to(
-          card,
-          {
-            opacity: 1,
-            x: i * STEP,
-            y: i * STEP,
-            scale: 1,
-            rotate: 0,
-            filter: 'blur(0px)',
-            duration: 0.75,
-            ease: 'power3.out',
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, scale: 0.88, y: 40, immediateRender: false },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 88%',
+            once: true,
           },
-          i * 1.05
-        )
-      })
-    })
-
-    mm.add('(max-width: 1023px)', () => {
-      const mobileCards = mobileCardsRef.current.filter(
-        (c): c is HTMLDivElement => c !== null
-      )
-      const trigger = mobileGridRef.current ?? section
-      if (!mobileCards.length) return
-
-      gsap.set(mobileCards, {
-        opacity: 0,
-        y: 48,
-      })
-
-      gsap.to(mobileCards, {
-        opacity: 1,
-        y: 0,
-        stagger: 0.12,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          scrub: 1,
         },
-      })
-    })
+      )
+    }, sectionRef)
 
     requestAnimationFrame(() => ScrollTrigger.refresh())
-
-    return () => mm.revert()
+    return () => ctx.revert()
   }, [])
 
-  const cascadeSize = CARD + (FEATURES.length - 1) * STEP
-
   return (
-    // Desktop: viewport + fixed scrub (not 420vh) so tall monitors don't balloon scroll length
-    // Mobile: natural height, inner panel is just a normal block
-    <section
-      ref={sectionRef}
-      className="relative bg-navy-950 lg:h-[calc(100svh+2400px)]"
-    >
-      <div className="overflow-hidden py-16 sm:py-24 lg:sticky lg:top-0 lg:h-svh lg:py-0">
+    <section ref={sectionRef} className="relative bg-navy-950 py-16 sm:py-24">
+      <div className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-20"
           aria-hidden
@@ -146,9 +86,8 @@ export function AdvantageSection() {
 
         <FloatingPixels />
 
-        <div className="relative z-10 mx-auto grid h-full max-w-7xl items-center gap-10 px-4 sm:gap-12 lg:grid-cols-2 lg:gap-16 lg:py-[clamp(2rem,6vh,4.5rem)]">
-          {/* Left: static text content — opt out of auto blur (sticky scroll leaves words at mixed opacity) */}
-          <div data-no-blur-text>
+        <div className="relative z-10 mx-auto grid max-w-7xl items-start gap-10 px-4 sm:gap-12 lg:grid-cols-2 lg:gap-16">
+          <div data-no-blur-text className="lg:sticky lg:top-28 lg:self-start">
             <SectionLabel className="mb-4">
               The PixlPluz Advantage
             </SectionLabel>
@@ -169,74 +108,43 @@ export function AdvantageSection() {
 
             <Link
               href="/courses"
-              className="inline-flex items-center gap-2 border border-white/30 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all hover:border-green-accent hover:text-green-accent pixel-corner-sm"
+              className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all pixel-corner-sm"
             >
               Become a Student
               <ArrowRight size={14} />
             </Link>
           </div>
 
-          {/* Right: desktop card cascade — visible on lg+ only */}
-          <div className="hidden items-center justify-center lg:flex">
-            <div
-              className="relative"
-              style={{ width: cascadeSize, height: cascadeSize }}
-            >
-              {FEATURES.map(({ icon: Icon, label, num }, i) => (
-                <div
-                  key={label}
-                  ref={(el) => { cardsRef.current[i] = el }}
-                  className="absolute left-0 top-0 flex flex-col justify-between bg-navy-900/95 backdrop-blur-md"
-                  style={{
-                    width: CARD,
-                    height: CARD,
-                    zIndex: i + 1,
-                    border: '1px solid rgba(255,255,255,0.16)',
-                    boxShadow: '0 30px 90px rgba(0,0,0,0.35)',
-                    padding: '2.5rem',
-                  }}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="advantage-number select-none text-[105px] font-black leading-none text-green-accent tabular-nums">
-                      {num}
-                    </span>
-                    <Icon
-                      size={30}
-                      className="advantage-icon mt-2 shrink-0 text-white/35"
-                    />
-                  </div>
-
-                  <p className="advantage-label max-w-[240px] text-xl font-black uppercase leading-tight tracking-wide text-white">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile card grid — visible below lg only */}
-          <div ref={mobileGridRef} className="grid grid-cols-2 gap-4 sm:gap-5 lg:hidden">
-            {FEATURES.map(({ icon: Icon, label, num }, i) => (
+          <div
+            ref={gridRef}
+            className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5 lg:grid-cols-3 lg:ml-auto lg:max-w-[34rem] xl:max-w-[36rem]"
+          >
+            {FEATURES.map(({ label, image }, i) => (
               <div
                 key={label}
-                ref={(el) => { mobileCardsRef.current[i] = el }}
-                className="aspect-square bg-navy-900/95 p-4 sm:p-7"
-                style={{
-                  border: '1px solid rgba(255,255,255,0.16)',
-                }}
+                ref={(el) => { cardsRef.current[i] = el }}
+                className="advantage-card group relative aspect-square w-full cursor-pointer overflow-hidden border border-white/16 bg-navy-900/95"
               >
-                <div className="flex h-full flex-col justify-between">
-                  <div className="flex items-start justify-between">
-                    <span className="advantage-number text-4xl font-black leading-none text-green-accent sm:text-6xl">
-                      {num}
-                    </span>
-                    <Icon className="advantage-icon shrink-0 text-white/35" size={22} />
-                  </div>
-
-                  <p className="advantage-label text-sm font-black uppercase leading-tight text-white sm:text-lg">
-                    {label}
-                  </p>
+                <div className="absolute inset-0">
+                  <Image
+                    src={image}
+                    alt=""
+                    aria-hidden
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover opacity-0 scale-105 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:scale-100"
+                  />
                 </div>
+
+                <div className="absolute inset-0 bg-navy-900/95 transition-opacity duration-500 group-hover:opacity-0" />
+
+                <div className="absolute inset-0 bg-linear-to-t from-navy-950/90 via-navy-950/35 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="absolute inset-0 bg-blue-primary/0 mix-blend-multiply transition-all duration-500 group-hover:bg-blue-primary/35" />
+
+                <p className="absolute inset-x-0 bottom-0 z-10 p-3.5 text-xs font-black uppercase leading-tight tracking-wide text-white transition-transform duration-500 group-hover:translate-y-0 sm:p-4 sm:text-sm">
+                  {label}
+                </p>
               </div>
             ))}
           </div>

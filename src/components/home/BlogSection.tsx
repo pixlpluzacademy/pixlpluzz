@@ -108,7 +108,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
         <AnimatedSection variant="fadeUp" delay={0.2} className="text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 border-2 border-blue-primary dark:border-white text-blue-primary dark:text-white px-8 py-3 text-sm font-bold uppercase tracking-wide hover:bg-blue-primary hover:text-white dark:hover:bg-white dark:hover:text-navy-900 transition-all pixel-corner-sm"
+            className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-8 py-3 text-sm font-bold uppercase tracking-wide transition-all pixel-corner-sm"
           >
             View All Posts <ArrowRight size={14} />
           </Link>

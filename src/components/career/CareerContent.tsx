@@ -78,7 +78,7 @@ export function CareerContent({ careers }: { careers: Career[] }) {
   return (
     <div ref={rootRef} className="bg-navy-950 text-white">
       {/* ── Hero — giant stacked type ─────────────────────────── */}
-      <section className="relative flex min-h-[92svh] flex-col justify-between overflow-hidden px-4 pt-12 pb-14 sm:px-6 lg:px-12" data-page-hero>
+      <section className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden px-4 pt-24 pb-14 sm:px-6 lg:px-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
         <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">

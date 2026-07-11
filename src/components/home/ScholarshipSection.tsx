@@ -72,7 +72,7 @@ export function ScholarshipSection() {
           // while the inner section is stuck at top:0.
           // ScrollTrigger watches the wrapper; scrub drives the timeline.
           if (isDesktop) {
-            const SCROLL_DIST = 900
+            const SCROLL_DIST = Math.min(900, Math.round(window.innerHeight * 0.7))
 
             const setHeight = () => {
               if (wrapperRef.current) {
@@ -207,7 +207,7 @@ export function ScholarshipSection() {
             <div className="inline-block hover:scale-105 active:scale-95 transition-transform duration-150">
               <Link
                 href="/scholarship"
-                className="inline-flex items-center gap-2 bg-blue-primary text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:brightness-110 transition-colors pixel-corner-sm"
+                className="btn-glaze btn-primary-fill inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
               >
                 Apply For Scholarship
               </Link>
