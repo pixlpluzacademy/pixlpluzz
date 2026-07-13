@@ -13,27 +13,27 @@ const MENTORS = [
   {
     name: 'Ahmed Noor',
     designation: '3D Specialist',
-    image: '/images/Ahmed Noor.jpeg',
+    image: '/images/Aishh_option_1.png',
   },
   {
     name: 'Aiswarya VP',
     designation: 'SEO Specialist',
-    image: '/images/Aiswarya.jpeg',
+    image: '/images/Aishh_option_2.png',
   },
   {
     name: 'Hina Javaid',
     designation: 'Digital Marketing Expert',
-    image: '/images/Hina.jpeg',
+    image: '/images/Aishh_option_3.png',
   },
   {
     name: 'Hojjat',
     designation: '3D Visualizer',
-    image: '/images/Hojjat.jpeg',
+    image: '/images/Aishh_option_4.png',
   },
   {
     name: 'Lakshmi',
     designation: 'Web Developer',
-    image: '/images/Lakshmi.jpeg',
+    image: '/images/Aishh_option_5.png',
   },
 ]
 
@@ -73,8 +73,15 @@ export function MentorsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="border-t border-white/8 bg-navy-900 py-16 sm:py-24 px-4">
-      <div className="mx-auto max-w-7xl">
+    <section ref={sectionRef} className="relative border-t border-white/8 bg-black py-16 sm:py-24 px-4 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 60% 45% at 80% 50%, rgba(84, 227, 70, 0.07) 0%, transparent 55%)',
+        }}
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-12 text-center sm:mb-14">
           <AnimatedSection variant="fadeUp">
             <SectionLabel className="mb-4 mx-auto">Our Mentors</SectionLabel>
@@ -96,7 +103,7 @@ export function MentorsSection() {
           {MENTORS.map(({ name, designation, image }) => (
             <article
               key={name}
-              className="mentor-card group overflow-hidden border border-white/10 bg-navy-950 pixel-corner transition-all duration-300 hover:border-green-accent/40 hover:-translate-y-1"
+              className="mentor-card group flex flex-col gap-3 bg-transparent transition-transform duration-300 hover:-translate-y-1.5"
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
@@ -106,14 +113,13 @@ export function MentorsSection() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-navy-950/80 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
               </div>
 
-              <div className="p-4 sm:p-5">
-                <h3 className="font-bold text-white group-hover:text-green-accent transition-colors">
+              <div className="border border-white/12 bg-black/55 px-3.5 py-3 backdrop-blur-md transition-all duration-300 group-hover:border-green-accent/40 group-hover:bg-black/70 group-hover:shadow-[0_0_24px_rgba(84,227,70,0.18)]">
+                <h3 className="text-sm font-bold tracking-tight text-white sm:text-base">
                   {name}
                 </h3>
-                <p className="mt-1 text-xs leading-relaxed text-gray-400 sm:text-sm">
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-green-accent sm:text-[11px]">
                   {designation}
                 </p>
               </div>

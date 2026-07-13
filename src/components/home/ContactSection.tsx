@@ -56,17 +56,24 @@ export function ContactSection() {
 
   return (
     <section ref={sectionRef} className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 50% 40% at 30% 50%, rgba(84, 227, 70, 0.06) 0%, transparent 55%)',
+        }}
+        aria-hidden
+      />
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-      <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-0 overflow-hidden pixel-corner-lg border border-white/5">
+      <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-0 overflow-hidden pixel-corner-lg border border-white/5 lg:min-h-[38rem]">
 
         {/* Left panel — student image + contact info */}
         <div
           ref={leftRef}
-          className="relative min-h-100 lg:min-h-0 flex flex-col justify-end overflow-hidden"
+          className="relative min-h-[26rem] sm:min-h-[28rem] lg:min-h-full flex flex-col justify-end overflow-hidden"
         >
           <Image
-            src="/images/student2.jpg"
+            src="/images/getintouch.png"
             alt="Pixl Pluz student"
             fill
             className="object-cover object-center"
@@ -76,16 +83,16 @@ export function ContactSection() {
           <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/45 to-black/10" />
 
           <div className="relative z-10 p-6 sm:p-10" data-no-blur-text>
-            <SectionLabel className="mb-4">Contact Us</SectionLabel>
+            <SectionLabel className="mb-4 self-start w-fit">Contact Us</SectionLabel>
             <h3 className="text-3xl font-black text-white mb-3">
               Ready to Build Your Digital Career?
             </h3>
-            <p className="text-gray-300 text-sm leading-relaxed mb-8">
+            <p className="text-justify text-gray-300 text-sm leading-relaxed mb-6">
               Have questions about courses, scholarship, entrance test, batch timing, or career support?
               Our team is here to guide you.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
                 { icon: Phone, label: 'Call Center',   value: '(+91) XXXXX-XXXXX' },
                 { icon: MapPin, label: 'Our Location', value: 'Kochi, Kerala' },
@@ -109,12 +116,12 @@ export function ContactSection() {
         </div>
 
         {/* Right panel — enquiry form */}
-        <div ref={rightRef} className="bg-navy-950 p-6 sm:p-8 lg:p-12" data-no-blur-text>
-          <SectionLabel className="mb-4">Get In Touch</SectionLabel>
+        <div ref={rightRef} className="bg-[#141414] p-6 sm:p-8 lg:p-10 flex flex-col justify-center min-h-[26rem] sm:min-h-[28rem] lg:min-h-full" data-no-blur-text>
+          <SectionLabel className="mb-3 self-start w-fit">Get In Touch</SectionLabel>
           <h3 className="text-2xl font-black text-white mb-2">
             Get The Best Course Guidance For Your Future
           </h3>
-          <p className="text-gray-400 text-sm mb-8">
+          <p className="text-justify text-gray-400 text-sm mb-6">
             Tell us your interest and our team will help you choose the right course.
           </p>
 
@@ -172,7 +179,7 @@ export function ContactSection() {
                 rows={4}
                 value={form.message}
                 onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                className="w-full bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200 resize-none"
+                className="w-full min-h-[6rem] bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200 resize-none"
               />
 
               <label className="flex items-start gap-3 cursor-pointer">
@@ -192,7 +199,7 @@ export function ContactSection() {
                 type="submit"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-glaze btn-primary-fill w-full py-4 font-bold uppercase tracking-widest text-sm pixel-corner-sm"
+                className="btn-glaze btn-cta-green w-full py-4 font-bold uppercase tracking-widest text-sm pixel-corner-sm"
               >
                 Send Message
               </motion.button>

@@ -46,8 +46,15 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-navy-950 py-16 sm:py-24 px-4">
-      <div className="mx-auto max-w-7xl">
+    <section ref={sectionRef} className="relative bg-[#0a0a0a] py-16 sm:py-24 px-4 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(21, 62, 144, 0.12) 0%, transparent 60%)',
+        }}
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12 sm:mb-14">
           <AnimatedSection variant="fadeUp">
             <SectionLabel className="mb-4 mx-auto">Our Courses</SectionLabel>
@@ -56,8 +63,8 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
             AI-Integrated Career Programs
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="max-w-2xl mx-auto text-gray-400">
-              Live projects, mentor support, and placement guidance — choose the path that fits your career goals.
+            <p className="max-w-2xl mx-auto text-justify text-gray-400">
+              Live projects, mentor support, and career guidance — choose the path that fits your career goals.
             </p>
           </AnimatedSection>
         </div>
@@ -71,14 +78,14 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
           ))}
         </div>
 
-        <AnimatedSection variant="fadeUp" delay={0.2} className="mt-10 text-center">
+        {/* <AnimatedSection variant="fadeUp" delay={0.2} className="mt-10 text-center">
           <Link
             href="/courses"
             className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-8 py-3 text-sm font-bold uppercase tracking-wide transition-all pixel-corner-sm"
           >
             View All Courses <ArrowRight size={14} />
           </Link>
-        </AnimatedSection>
+        </AnimatedSection> */}
       </div>
     </section>
   )

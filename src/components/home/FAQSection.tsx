@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Plus, Minus } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
@@ -25,7 +26,7 @@ const FAQS = [
   },
   {
     q: 'Does Pixl Pluz offer placement support after the course?',
-    a: 'Yes. We offer 100% placement assistance including portfolio reviews, resume coaching, LinkedIn optimisation, mock interviews, and direct connections to hiring companies.',
+    a: 'Yes. We offer comprehensive placement support including portfolio reviews, resume coaching, LinkedIn optimisation, mock interviews, and connections to hiring companies.',
   },
 ]
 
@@ -43,14 +44,25 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="bg-white dark:bg-navy-950 py-16 sm:py-24 px-4">
-      <div className="mx-auto max-w-3xl">
+    <section id="faq" className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <Image
+          src="/images/bg2.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          priority={false}
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-3xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-2">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             Questions &amp; Answers
           </h2>
           <AnimatedSection variant="fadeUp">
-            <p className="text-gray-500 dark:text-gray-400 text-sm">
+            <p className="text-base font-semibold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
               What skills will I gain from the digital marketing course at Pixl Pluz Academy?
             </p>
           </AnimatedSection>
@@ -69,31 +81,33 @@ export function FAQSection() {
               variants={faqItemVariants}
               transition={{ duration: 0.4, ease: 'easeOut' as const }}
               className={cn(
-                'border pixel-corner overflow-hidden transition-colors duration-200',
+                'overflow-hidden border bg-black/75 backdrop-blur-sm transition-colors duration-200',
                 openIdx === i
-                  ? 'border-blue-primary/40 dark:border-green-accent/40'
-                  : 'border-gray-200 dark:border-white/10'
+                  ? 'border-green-accent/50'
+                  : 'border-white/20'
               )}
             >
               <button
-                className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left hover:bg-white/5 transition-colors"
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}
               >
                 <span className="flex items-start gap-3">
                   <span className={cn(
-                    'mt-0.5 w-1 h-4 shrink-0 transition-colors duration-200',
-                    openIdx === i ? 'bg-green-accent' : 'bg-blue-primary dark:bg-green-accent'
+                    'mt-1.5 w-1 h-4 shrink-0 transition-colors duration-200',
+                    openIdx === i ? 'bg-green-accent' : 'bg-green-accent/50'
                   )} />
-                  <span className="text-sm font-semibold text-gray-900 dark:text-white">{faq.q}</span>
+                  <span className="text-base font-bold leading-snug text-white">
+                    {faq.q}
+                  </span>
                 </span>
                 <motion.span
                   animate={{ rotate: openIdx === i ? 45 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="mt-0.5 shrink-0"
+                  className="mt-1 shrink-0"
                 >
                   {openIdx === i
-                    ? <Minus size={16} className="text-blue-primary dark:text-green-accent" />
-                    : <Plus size={16} className="text-gray-400" />}
+                    ? <Minus size={18} className="text-green-accent" />
+                    : <Plus size={18} className="text-white" />}
                 </motion.span>
               </button>
 
@@ -107,7 +121,7 @@ export function FAQSection() {
                     transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
                     style={{ overflow: 'hidden' }}
                   >
-                    <div className="px-6 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-white/5 pt-4">
+                    <div className="border-t border-white/10 px-6 pb-5 pt-4 text-base font-semibold leading-relaxed text-justify text-white">
                       {faq.a}
                     </div>
                   </motion.div>

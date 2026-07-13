@@ -25,13 +25,13 @@ export function CertificatesMarquee({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        'relative overflow-hidden border-y border-white/10 bg-navy-900 py-5 sm:py-6',
+        'relative overflow-hidden border-y border-white/8 bg-black py-5 sm:py-6',
         className,
       )}
       aria-label="Certificates offered"
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-navy-900 to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-navy-900 to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-black to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-black to-transparent sm:w-24" />
 
       <div className="flex w-max animate-marquee-fast items-center">
         {track.map((name, i) => (

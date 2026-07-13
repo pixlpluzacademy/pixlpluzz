@@ -298,7 +298,7 @@ main:has(.services-page) {
 
 /* ─── Base (dark only) ─────────────────────────────────────── */
 :root {
-  --background: #080d1a;
+  --background: #000000;
   --foreground: #f0f4ff;
   color-scheme: dark;
 }
@@ -426,6 +426,24 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.35),
     0 0 0 1px rgba(84, 227, 70, 0.65),
     0 10px 28px rgba(31, 95, 224, 0.55);
+}
+
+/* Primary CTA — green fill (homepage + dark sections) */
+.btn-cta-green {
+  background: linear-gradient(135deg, #54e346 0%, #6ef05c 55%, #54e346 100%) !important;
+  color: #000000 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 0 0 1px rgba(84, 227, 70, 0.5),
+    0 8px 24px rgba(84, 227, 70, 0.25);
+}
+
+.btn-cta-green:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 0 1px rgba(84, 227, 70, 0.75),
+    0 10px 32px rgba(84, 227, 70, 0.35);
 }
 
 /* Stronger outline on dark surfaces */

@@ -48,7 +48,7 @@ const COURSES = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy-900 text-white">
+    <footer className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Brand column gets more room; link columns share the rest evenly so
             the visual gutters between all four columns look consistent */}

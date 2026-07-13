@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useEffect, useLayoutEffect } from 'react'
+import { useRef, useEffect, useLayoutEffect, useState } from 'react'
 import { useLenis } from 'lenis/react'
 import { ArrowRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FloatingPixels } from '@/components/ui/FloatingPixels'
+import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -17,7 +18,7 @@ const FEATURES = [
   { label: 'Live Project & Training', image: '/images/class2.jpg' },
   { label: 'Industry Expert Mentors', image: '/images/student2.jpg' },
   { label: 'AI Tools & Automation', image: '/images/students2.jpg' },
-  { label: '100% Placement Assistance', image: '/images/graduation2.jpg' },
+  { label: 'Career & Placement Support', image: '/images/graduation2.jpg' },
   { label: 'Interview Preparation', image: '/images/students.jpg' },
   { label: 'Practical Learning', image: '/images/room.jpg' },
   { label: 'Verified Portfolio', image: '/images/boy.jpg' },
@@ -28,6 +29,7 @@ export function AdvantageSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
   const gridRef = useRef<HTMLDivElement>(null)
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
 
   const lenis = useLenis()
 
@@ -77,13 +79,20 @@ export function AdvantageSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative bg-navy-950 py-16 sm:py-24">
-      <div className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-20"
-          aria-hidden
+    <section ref={sectionRef} className="relative bg-black py-16 sm:py-24 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <Image
+          src="/images/bg-advantage.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          priority={false}
         />
+        <div className="absolute inset-0 bg-black/90" />
+      </div>
 
+      <div className="relative overflow-hidden">
         <FloatingPixels />
 
         <div className="relative z-10 mx-auto grid max-w-7xl items-start gap-10 px-4 sm:gap-12 lg:grid-cols-2 lg:gap-16">
@@ -96,19 +105,33 @@ export function AdvantageSection() {
               Digital marketing agency in kerala
             </h2>
 
-            <p className="mb-10 max-w-xl text-gray-400 leading-relaxed">
-              Pixl Pluz offers an agency-based digital marketing course in Kochi,
-              Thiruvananthapuram, and Calicut. Learners can choose between our
-              Live Online Program or offline classes at our institutes, with
-              weekend batches available at all centres. Whether you&apos;re a
-              fresh graduate, working professional, homemaker, or business owner,
-              Pixl Pluz academy builds job-ready digital marketing careers through
-              hands-on, agency-style training — backed by Neo Digital Hub, Dubai.
-            </p>
+            <div className="mb-10 max-w-xl space-y-4">
+              <p className="m-0 text-justify text-white leading-relaxed">
+                Pixl Pluz offers an agency-based digital marketing course in Kochi,
+                Thiruvananthapuram, and Calicut. Learners can choose between our
+                Live Online Program or offline classes at our institutes, with
+                weekend batches available at all centres.
+              </p>
+              <p className="m-0 text-justify text-white leading-relaxed">
+                Whether you&apos;re a fresh graduate, working professional, homemaker,
+                or business owner, Pixl Pluz Academy builds job-ready digital marketing
+                careers through hands-on, agency-style training — backed by Neo Digital Hub, Dubai.
+              </p>
+              <p className="m-0 text-justify text-white leading-relaxed">
+                Every module is designed around real campaigns, mentor feedback, and
+                portfolio work so you leave with skills employers recognise. From SEO and
+                paid ads to AI tools and content systems, you train the way modern agencies work.
+              </p>
+              <p className="m-0 text-justify text-white leading-relaxed">
+                Join a learning environment built for clarity, practice, and career growth —
+                with scholarship pathways, interview preparation, and placement support to
+                help you take the next step confidently.
+              </p>
+            </div>
 
             <Link
               href="/courses"
-              className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all pixel-corner-sm"
+              className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all pixel-corner-sm"
             >
               Become a Student
               <ArrowRight size={14} />
@@ -119,34 +142,71 @@ export function AdvantageSection() {
             ref={gridRef}
             className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5 lg:grid-cols-3 lg:ml-auto lg:max-w-[34rem] xl:max-w-[36rem]"
           >
-            {FEATURES.map(({ label, image }, i) => (
-              <div
-                key={label}
-                ref={(el) => { cardsRef.current[i] = el }}
-                className="advantage-card group relative aspect-square w-full cursor-pointer overflow-hidden border border-white/16 bg-navy-900/95"
-              >
-                <div className="absolute inset-0">
-                  <Image
-                    src={image}
-                    alt=""
-                    aria-hidden
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover opacity-0 scale-105 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:scale-100"
+            {FEATURES.map(({ label, image }, i) => {
+              const isOpen = openIdx === i
+              const isHidden = openIdx !== null && !isOpen
+
+              return (
+                <div
+                  key={label}
+                  ref={(el) => { cardsRef.current[i] = el }}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
+                  aria-label={isOpen ? `Collapse ${label}` : `Expand ${label}`}
+                  onClick={() => setOpenIdx(isOpen ? null : i)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      setOpenIdx(isOpen ? null : i)
+                    }
+                  }}
+                  className={cn(
+                    'advantage-card group relative w-full cursor-pointer overflow-hidden border border-white/10 bg-[#141414]',
+                    'transition-all duration-[400ms] ease-out',
+                    'hover:border-green-accent/40 hover:shadow-lg hover:shadow-green-accent/10',
+                    isOpen
+                      ? 'col-span-full z-40 mx-auto aspect-square w-full max-w-[min(100%,28rem)] sm:max-w-[32rem] border-green-accent/40 shadow-lg shadow-green-accent/15'
+                      : 'aspect-square',
+                    isHidden && 'hidden',
+                  )}
+                >
+                  <div className="absolute inset-0">
+                    <Image
+                      src={image}
+                      alt=""
+                      aria-hidden
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={cn(
+                        'object-cover transition-all duration-500 ease-out',
+                        isOpen
+                          ? 'scale-100 blur-none brightness-100'
+                          : 'scale-110 blur-[6px] brightness-75 group-hover:scale-100 group-hover:blur-none group-hover:brightness-100',
+                      )}
+                    />
+                  </div>
+
+                  <div
+                    className={cn(
+                      'absolute inset-0 transition-colors duration-500',
+                      isOpen ? 'bg-black/20' : 'bg-black/55 group-hover:bg-black/25',
+                    )}
                   />
+
+                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
+
+                  <p
+                    className={cn(
+                      'absolute inset-x-0 bottom-0 z-10 p-3.5 font-black uppercase leading-tight tracking-wide text-white sm:p-4',
+                      isOpen ? 'text-sm sm:text-base md:text-lg' : 'text-xs sm:text-sm',
+                    )}
+                  >
+                    {label}
+                  </p>
                 </div>
-
-                <div className="absolute inset-0 bg-navy-900/95 transition-opacity duration-500 group-hover:opacity-0" />
-
-                <div className="absolute inset-0 bg-linear-to-t from-navy-950/90 via-navy-950/35 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                <div className="absolute inset-0 bg-blue-primary/0 mix-blend-multiply transition-all duration-500 group-hover:bg-blue-primary/35" />
-
-                <p className="absolute inset-x-0 bottom-0 z-10 p-3.5 text-xs font-black uppercase leading-tight tracking-wide text-white transition-transform duration-500 group-hover:translate-y-0 sm:p-4 sm:text-sm">
-                  {label}
-                </p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

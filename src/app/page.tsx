@@ -35,9 +35,6 @@ const ContactSection = dynamic(
 const BlogSection = dynamic(
   () => import('@/components/home/BlogSection').then(m => ({ default: m.BlogSection }))
 )
-const CTASection = dynamic(
-  () => import('@/components/home/CTASection').then(m => ({ default: m.CTASection }))
-)
 const FAQSection = dynamic(
   () => import('@/components/home/FAQSection').then(m => ({ default: m.FAQSection }))
 )
@@ -67,7 +64,6 @@ export default function HomePage() {
         <ScholarshipSection />
         <ContactSection />
         <BlogSection blogs={blogs} />
-        <CTASection />
         <FAQSection />
       </Suspense>
     </>

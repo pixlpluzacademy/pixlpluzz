@@ -14,7 +14,7 @@ const ACCORDION_ITEMS = [
   },
   {
     title: 'Scholarship Opportunity for Students',
-    body: 'Pixl Pluz Academy provides a ₹50 Lakh scholarship fund for financially deserving students who pass the entrance test and demonstrate passion for learning.',
+    body: 'Pixl Pluz Academy provides a merit-based scholarship program for financially deserving students who pass the entrance test and demonstrate passion for learning.',
   },
   {
     title: 'Built for Digital Marketing & Online Careers',
@@ -35,8 +35,15 @@ export function PurposeSection() {
   const imageY = useTransform(scrollYProgress, [0, 1], ['-18%', '18%'])
 
   return (
-    <section ref={sectionRef} className="bg-white dark:bg-navy-950 py-16 sm:py-24 px-4">
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-center">
+    <section ref={sectionRef} className="relative bg-[#0a0a0a] py-16 sm:py-24 px-4 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 55% 50% at 20% 50%, rgba(21, 62, 144, 0.1) 0%, transparent 55%)',
+        }}
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-center">
 
         {/* Left image — shown below the text on mobile */}
         <AnimatedSection variant="slideLeft" className="relative overflow-hidden pixel-corner-lg aspect-4/5 order-2 lg:order-1">
@@ -62,11 +69,11 @@ export function PurposeSection() {
           <AnimatedSection variant="fadeIn" delay={0}>
             <SectionLabel className="mb-4">Our Purpose</SectionLabel>
           </AnimatedSection>
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">
+          <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
             Empowering the Next Generation of Creative Professionals.
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.2}>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+            <p className="text-justify text-gray-400 leading-relaxed mb-3">
               Pixl Pluz Academy was created to help students build real creative and digital skills for the
               modern industry. We believe media is not only about learning software or tools. It is about
               using those tools to communicate ideas, tell meaningful stories, solve problems, and create
@@ -74,7 +81,7 @@ export function PurposeSection() {
             </p>
           </AnimatedSection>
           <AnimatedSection variant="fadeUp" delay={0.25}>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+            <p className="text-justify text-gray-400 leading-relaxed mb-8">
               Our goal is to help students move from learning to doing, from ideas to execution, and from
               classroom knowledge to career-ready confidence.
             </p>
@@ -83,13 +90,13 @@ export function PurposeSection() {
           <AnimatedSection variant="fadeUp" delay={0.3}>
             <div className="space-y-3">
               {ACCORDION_ITEMS.map((item, i) => (
-                <div key={item.title} className={`border pixel-corner overflow-hidden transition-colors duration-200 ${openIdx === i ? 'border-blue-primary/40 dark:border-green-accent/40' : 'border-gray-200 dark:border-white/10'}`}>
+                <div key={item.title} className={`border pixel-corner overflow-hidden transition-colors duration-200 ${openIdx === i ? 'border-green-accent/40' : 'border-white/10'}`}>
                   <button
-                    className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:pl-6 transition-all duration-200"
+                    className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-white hover:bg-white/5 hover:pl-6 transition-all duration-200"
                     onClick={() => setOpenIdx(openIdx === i ? -1 : i)}
                   >
                     <span className="flex items-center gap-3">
-                      <span className={`w-1 h-5 shrink-0 transition-colors duration-200 ${openIdx === i ? 'bg-green-accent' : 'bg-blue-primary dark:bg-green-accent'}`} />
+                      <span className={`w-1 h-5 shrink-0 transition-colors duration-200 ${openIdx === i ? 'bg-green-accent' : 'bg-green-accent/40'}`} />
                       {item.title}
                     </span>
                     <motion.span
@@ -98,7 +105,7 @@ export function PurposeSection() {
                       className="shrink-0"
                     >
                       {openIdx === i
-                        ? <Minus size={16} className="text-blue-primary dark:text-green-accent" />
+                        ? <Minus size={16} className="text-green-accent" />
                         : <Plus size={16} className="text-gray-400" />}
                     </motion.span>
                   </button>
@@ -112,7 +119,7 @@ export function PurposeSection() {
                         transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                         style={{ overflow: 'hidden' }}
                       >
-                        <div className="px-5 pb-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-white/5 pt-3">
+                        <div className="px-5 pb-4 text-sm text-justify text-gray-400 leading-relaxed border-t border-white/5 pt-3">
                           {item.body}
                         </div>
                       </motion.div>

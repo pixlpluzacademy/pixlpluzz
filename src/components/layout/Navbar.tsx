@@ -32,7 +32,7 @@ export function Navbar() {
   useEffect(() => { setMenuOpen(false) }, [pathname])
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-navy-900 border-b border-white/5 shadow-sm">
+    <header className="fixed top-0 inset-x-0 z-50 bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
 
@@ -67,7 +67,7 @@ export function Navbar() {
                       coursesOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                     )}
                   >
-                    <div className="bg-navy-800 border border-white/10 shadow-xl pixel-corner-sm overflow-hidden">
+                    <div className="bg-black/95 border border-white/10 shadow-xl pixel-corner-sm overflow-hidden backdrop-blur-md">
                       {link.children.map(child => (
                         <Link
                           key={child.href}
@@ -117,7 +117,7 @@ export function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden bg-navy-800 border-t border-white/10 px-4 py-4 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto">
+        <div className="lg:hidden bg-black/95 border-t border-white/10 px-4 py-4 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto backdrop-blur-md">
           {NAV_LINKS.map(link =>
             link.children ? (
               <div key={link.label}>

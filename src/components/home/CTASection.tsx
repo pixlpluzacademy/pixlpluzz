@@ -14,12 +14,16 @@ const CTA_PIXELS = [
 
 export function CTASection() {
   return (
-    <section className="relative bg-navy-800 py-16 sm:py-24 px-4 overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-20" aria-hidden />
+    <section className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-15" aria-hidden />
       <FloatingPixels pixels={CTA_PIXELS} />
 
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-75 w-150 rounded-full bg-blue-primary/10 blur-[100px]"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 55% at 30% 50%, rgba(21, 62, 144, 0.18) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 70% 50%, rgba(84, 227, 70, 0.12) 0%, transparent 50%)',
+        }}
         aria-hidden
       />
 
@@ -33,7 +37,7 @@ export function CTASection() {
         </h2>
 
         <AnimatedSection variant="fadeUp" delay={0.2}>
-          <p className="mx-auto mb-10 max-w-xl text-gray-400">
+          <p className="mx-auto mb-10 max-w-xl text-justify text-gray-400">
             Your digital career can start this July. Apply for the Pixl Pluz Academy scholarship program and
             take your first step into digital marketing, AI tools, online business skills, and practical
             industry learning.
@@ -45,7 +49,7 @@ export function CTASection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Link
                 href="/scholarship"
-                className="btn-glaze btn-primary-fill inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
+                className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
               >
                 Apply Now &rsaquo;
               </Link>

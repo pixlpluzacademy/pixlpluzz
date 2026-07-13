@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ClipboardList, FlaskConical, FolderOpen, Rocket } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -181,24 +182,35 @@ export function ScholarshipSection() {
         lg:sticky lg:top-0 lg:h-svh  — CSS pin (React-safe, no DOM moves)
         py-24 lg:py-0                   — normal padding on mobile; centered via flex on desktop
       */}
-      <section className="lg:sticky lg:top-0 lg:h-svh bg-gray-50 dark:bg-navy-900 py-16 sm:py-24 lg:py-[clamp(2rem,6vh,4.5rem)] px-4 lg:flex lg:flex-col lg:justify-center overflow-hidden">
-        <div className="mx-auto max-w-7xl w-full text-center">
+      <section className="lg:sticky lg:top-0 lg:h-svh relative bg-black py-16 sm:py-24 lg:py-[clamp(2rem,6vh,4.5rem)] px-4 lg:flex lg:flex-col lg:justify-center overflow-hidden">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <Image
+            src="/images/bg-scholarship.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-black/80" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl w-full text-center">
 
           {/* Heading — always visible; stays fixed while steps animate */}
           <div className="mb-6 mx-auto">
             <SectionLabel className="mx-auto">Scholarship Program</SectionLabel>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            Apply for the ₹50 Lakh
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            Apply for Our Merit
             <br />
             Scholarship Fund
           </h2>
 
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-3">
-            We are launching our first batch this July with a ₹50 Lakh Scholarship Fund for eligible students.
+          <p className="max-w-2xl mx-auto text-justify text-white mb-3">
+            We are launching our first batch this July with a scholarship fund for eligible students.
           </p>
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-10">
+          <p className="max-w-2xl mx-auto text-justify text-white mb-10">
             To apply, register for the scholarship program and complete the entrance test.
             Pass the test. Show us your work. Start your creative career with Pixl Pluz Academy.
           </p>
@@ -207,7 +219,7 @@ export function ScholarshipSection() {
             <div className="inline-block hover:scale-105 active:scale-95 transition-transform duration-150">
               <Link
                 href="/scholarship"
-                className="btn-glaze btn-primary-fill inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
+                className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
               >
                 Apply For Scholarship
               </Link>
@@ -220,7 +232,7 @@ export function ScholarshipSection() {
             {/* Connector line — GSAP drives scaleX 0 → 1 from left (desktop only) */}
             <div
               ref={lineRef}
-              className="hidden lg:block absolute top-10 left-0 right-0 h-px bg-blue-primary/20 dark:bg-green-accent/20"
+              className="hidden lg:block absolute top-10 left-0 right-0 h-px bg-green-accent/20"
               style={{ transformOrigin: 'left center' }}
               aria-hidden
             />
@@ -239,20 +251,20 @@ export function ScholarshipSection() {
                     className="mb-5 flex flex-col items-center lg:items-start gap-3"
                     style={{ opacity: 0 }}
                   >
-                    <span className="font-mono text-xs tracking-[0.22em] text-blue-primary/50 dark:text-green-accent/50 uppercase select-none">
+                    <span className="font-mono text-xs tracking-[0.22em] text-green-accent/50 uppercase select-none">
                       {step.num}
                     </span>
                     <step.icon
                       size={28}
                       strokeWidth={1.5}
-                      className="text-blue-primary dark:text-green-accent"
+                      className="text-green-accent"
                     />
                   </div>
 
-                  <h3 className="font-black text-gray-900 dark:text-white mb-2 leading-snug">
+                  <h3 className="font-black text-white mb-2 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                  <p className="text-sm text-justify text-white leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
