@@ -26,8 +26,6 @@ export function HeroSection() {
 
     mm.add(
       {
-        isDesktop: '(min-width: 768px)',
-        isMobile: '(max-width: 767px)',
         reduceMotion: '(prefers-reduced-motion: reduce)',
       },
       (context) => {
@@ -50,24 +48,7 @@ export function HeroSection() {
         gsap.set(fades, { opacity: 0, y: 20 })
         gsap.set(shade, { opacity: 0 })
 
-        // Mobile: cluster alone → scatter → then clean slide-up text
-        if (conds.isMobile) {
-          const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-          if (shade) tl.to(shade, { opacity: 1, duration: 0.4 }, 1.0)
-          tl.to(
-            lines,
-            { yPercent: 0, duration: 0.65, stagger: 0.09 },
-            1.15,
-          )
-          tl.to(
-            fades,
-            { opacity: 1, y: 0, duration: 0.45, stagger: 0.06 },
-            1.5,
-          )
-          return
-        }
-
-        // Desktop: cluster scatters first on scroll, then text slides up
+        // Same scrub on mobile + desktop: cluster scatters on scroll, then text
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
@@ -99,15 +80,15 @@ export function HeroSection() {
     return () => mm.revert()
   }, [])
 
-  // Capped scrub distance — avoids excessive empty scroll on tall monitors.
+  // Sticky scrub hero on all viewports — cluster scatters as you scroll, then copy reveals.
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-16 min-h-svh md:min-h-svh md:h-[calc(100svh+min(560px,55dvh))] bg-navy-950"
+      className="relative -mt-16 h-[calc(100svh+min(480px,50dvh))] bg-navy-950"
       data-page-hero
     >
       <div
-        className="flex min-h-svh flex-col overflow-hidden md:sticky md:top-0 md:h-svh"
+        className="sticky top-0 flex h-svh flex-col overflow-hidden"
         style={{
           background:
             'radial-gradient(ellipse 140% 95% at 50% 100%, #0d1730 0%, #0a1228 28%, #080d1a 55%, #060b16 80%, #040810 100%)',
@@ -173,7 +154,7 @@ export function HeroSection() {
         </div>
 
         <div
-          className="hero-scroll-hint pointer-events-none absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
+          className="hero-scroll-hint pointer-events-none absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
           aria-hidden
         >
           <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">

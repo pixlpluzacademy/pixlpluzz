@@ -67,19 +67,20 @@ export function HeroPixelField({ className }: { className?: string }) {
     }
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isMobile = window.innerWidth < 768
-    const COUNT = isMobile ? 110 : 230
+    const isMobile = window.matchMedia('(max-width: 767px)').matches
+    const COUNT = isMobile ? 140 : 230
 
     const scene = new THREE.Scene()
-    scene.fog = new THREE.Fog(0x060b16, 16, 34)
+    // Softer near fog on mobile so the closer cluster stays crisp
+    scene.fog = new THREE.Fog(0x060b16, isMobile ? 22 : 16, isMobile ? 42 : 34)
 
     const camera = new THREE.PerspectiveCamera(
-      55,
-      mount.clientWidth / mount.clientHeight,
+      isMobile ? 48 : 55,
+      Math.max(mount.clientWidth, 1) / Math.max(mount.clientHeight, 1),
       0.1,
       100,
     )
-    camera.position.set(0, 0, 16)
+    camera.position.set(0, 0, isMobile ? 14 : 16)
 
     let renderer: THREE.WebGLRenderer
     try {
@@ -130,27 +131,36 @@ export function HeroPixelField({ className }: { className?: string }) {
     // Cluster starts centre-stage, then glides aside as the text reveals
     const clusterStart = new THREE.Vector3()
     const clusterEnd = new THREE.Vector3()
-    const positionCluster = () => {
-      const aspect = mount.clientWidth / Math.max(mount.clientHeight, 1)
+    let framed = false
+    const positionCluster = (resetToStart = false) => {
+      const w = mount.clientWidth
+      const h = mount.clientHeight
+      if (w < 2 || h < 2) return
+
+      const aspect = w / h
       if (aspect < 1) {
-        // Portrait — centre → top
-        clusterStart.set(0.4, -0.6, -3)
-        clusterEnd.set(1.2, 3.8, -3)
-        cluster.scale.setScalar(0.62)
+        // Portrait — centred cluster, drifts slightly up as text reveals on scroll
+        clusterStart.set(0, 0.1, 1.0)
+        clusterEnd.set(0.2, 2.4, 0.2)
+        cluster.scale.setScalar(0.92)
       } else {
         clusterStart.set(0, -0.8, -1)
         clusterEnd.set(Math.min(7.2, aspect * 4.4), 0, -1)
         cluster.scale.setScalar(1)
       }
-      cluster.position.copy(clusterStart)
+      if (resetToStart || !framed) {
+        cluster.position.copy(clusterStart)
+        framed = true
+      }
     }
-    positionCluster()
+    positionCluster(true)
 
     const rng = mulberry32(20260703)
     const dummy = new THREE.Object3D()
     const color = new THREE.Color()
 
-    const MAX_R = 7.5
+    // Tighter radius on mobile so the swarm reads as one solid cluster
+    const MAX_R = isMobile ? 5.2 : 7.5
 
     interface Cube {
       x: number
@@ -243,18 +253,10 @@ export function HeroPixelField({ className }: { className?: string }) {
     }
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
 
-    // 0 at top of hero → 1 when the pinned hero scrub finishes
-    // Mobile: timed scatter so cluster shows first, then breaks apart
+    // 0 at top of hero → 1 when the pinned hero scrub finishes (mobile + desktop)
     let scrollProgress = 0
-    const mobileScatterStart = performance.now()
-    const MOBILE_SCATTER_MS = 1800
 
     const readScroll = () => {
-      if (isMobile) {
-        const t = Math.min((performance.now() - mobileScatterStart) / MOBILE_SCATTER_MS, 1)
-        scrollProgress = t * t * (3 - 2 * t)
-        return
-      }
       const hero = document.querySelector<HTMLElement>('[data-page-hero]')
       const scrub = Math.max(
         (hero?.offsetHeight ?? window.innerHeight + 900) - window.innerHeight,
@@ -263,6 +265,7 @@ export function HeroPixelField({ className }: { className?: string }) {
       scrollProgress = Math.min(Math.max(window.scrollY / scrub, 0), 1)
     }
     readScroll()
+    window.addEventListener('scroll', readScroll, { passive: true })
 
     const writeInstances = (time: number, scatter: number) => {
       // Cubes fly apart as you scroll — edge cubes travel further than core ones
@@ -300,12 +303,19 @@ export function HeroPixelField({ className }: { className?: string }) {
     const onResize = () => {
       const w = mount.clientWidth
       const h = mount.clientHeight
+      if (w < 2 || h < 2) return
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
-      positionCluster()
+      // Update anchors only — don't yank the cluster back to start (mobile URL bar)
+      positionCluster(false)
     }
     window.addEventListener('resize', onResize)
+    const resizeObserver =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(() => onResize())
+        : null
+    resizeObserver?.observe(mount)
 
     const clock = new THREE.Clock()
     let raf = 0
@@ -343,7 +353,7 @@ export function HeroPixelField({ className }: { className?: string }) {
         const glide = Math.min(smoothScatter / 0.55, 1)
         const eased = glide * glide * (3 - 2 * glide)
         cluster.position.lerpVectors(clusterStart, clusterEnd, eased)
-        cluster.position.y += smoothScatter * 3.5
+        cluster.position.y += smoothScatter * (isMobile ? 2.4 : 3.5)
 
         camTarget.x += (pointer.x * 1.0 - camTarget.x) * 0.04
         camTarget.y += (-pointer.y * 0.6 - camTarget.y) * 0.04
@@ -360,6 +370,8 @@ export function HeroPixelField({ className }: { className?: string }) {
       cancelAnimationFrame(raf)
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('resize', onResize)
+      window.removeEventListener('scroll', readScroll)
+      resizeObserver?.disconnect()
       geometry.dispose()
       material.dispose()
       renderer.dispose()
