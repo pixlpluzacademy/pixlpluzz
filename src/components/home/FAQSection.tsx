@@ -47,7 +47,7 @@ export function FAQSection() {
     <section id="faq" className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <Image
-          src="/images/bg2.png"
+          src="/images/bg3.png"
           alt=""
           fill
           sizes="100vw"

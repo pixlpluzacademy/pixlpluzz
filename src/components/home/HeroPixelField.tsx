@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
+
+gsap.registerPlugin(ScrollTrigger)
 
 /**
  * Sparkk-style 3D cube cluster — a dense swarm of large lit cubes
@@ -253,13 +257,27 @@ export function HeroPixelField({ className }: { className?: string }) {
     }
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
 
-    // 0 at top of hero → 1 when the pinned hero scrub finishes (mobile + desktop)
+    // Match the hero section ScrollTrigger scrub (same progress as text reveal)
     let scrollProgress = 0
+    const heroEl = document.querySelector<HTMLElement>('[data-page-hero]')
+    const progressTrigger = heroEl
+      ? ScrollTrigger.create({
+          trigger: heroEl,
+          start: 'top top',
+          end: 'bottom bottom',
+          onUpdate: (self) => {
+            scrollProgress = self.progress
+          },
+        })
+      : null
 
     const readScroll = () => {
-      const hero = document.querySelector<HTMLElement>('[data-page-hero]')
+      if (progressTrigger) {
+        scrollProgress = progressTrigger.progress
+        return
+      }
       const scrub = Math.max(
-        (hero?.offsetHeight ?? window.innerHeight + 900) - window.innerHeight,
+        (heroEl?.offsetHeight ?? window.innerHeight + 900) - window.innerHeight,
         1,
       )
       scrollProgress = Math.min(Math.max(window.scrollY / scrub, 0), 1)
@@ -371,6 +389,7 @@ export function HeroPixelField({ className }: { className?: string }) {
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('resize', onResize)
       window.removeEventListener('scroll', readScroll)
+      progressTrigger?.kill()
       resizeObserver?.disconnect()
       geometry.dispose()
       material.dispose()

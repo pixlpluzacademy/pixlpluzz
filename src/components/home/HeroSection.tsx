@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,71 +17,87 @@ const HeroPixelField = dynamic(
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const siteReady = useSiteReady()
 
   useLayoutEffect(() => {
     const section = sectionRef.current
-    if (!section) return
+    if (!section || !siteReady) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const mm = gsap.matchMedia()
+    const copy = section.querySelector<HTMLElement>('.hero-copy')
+    const lines = section.querySelectorAll<HTMLElement>('.hero-line-inner')
+    const fades = section.querySelectorAll<HTMLElement>('.hero-fade')
+    const shade = section.querySelector<HTMLElement>('.hero-shade')
+    const hint = section.querySelector<HTMLElement>('.hero-scroll-hint')
 
-    mm.add(
-      {
-        reduceMotion: '(prefers-reduced-motion: reduce)',
+    if (reduceMotion) {
+      gsap.set([copy, lines, fades, shade], { clearProps: 'all' })
+      gsap.set(copy, { opacity: 1, visibility: 'visible' })
+      gsap.set(lines, { yPercent: 0, opacity: 1 })
+      gsap.set(fades, { opacity: 1, y: 0 })
+      gsap.set(shade, { opacity: 1 })
+      if (hint) gsap.set(hint, { opacity: 0 })
+      return
+    }
+
+    // Cluster-only start — hide copy with GSAP only (no Tailwind hide classes)
+    gsap.set(copy, { opacity: 0, visibility: 'hidden' })
+    gsap.set(lines, { yPercent: 120, opacity: 0 })
+    gsap.set(fades, { opacity: 0, y: 28 })
+    gsap.set(shade, { opacity: 0 })
+    if (hint) gsap.set(hint, { opacity: 1 })
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.65,
+        invalidateOnRefresh: true,
+        // Keep content visible once revealed (avoids snap-back at scrub end)
+        onUpdate(self) {
+          if (!copy) return
+          if (self.progress >= 0.42) {
+            copy.style.visibility = 'visible'
+          } else {
+            copy.style.visibility = 'hidden'
+          }
+        },
       },
-      (context) => {
-        const conds = (context.conditions ?? {}) as Record<string, boolean>
-        const lines = section.querySelectorAll<HTMLElement>('.hero-line-inner')
-        const fades = section.querySelectorAll<HTMLElement>('.hero-fade')
-        const shade = section.querySelector<HTMLElement>('.hero-shade')
-        const hint = section.querySelector<HTMLElement>('.hero-scroll-hint')
+    })
 
-        if (reduceMotion || conds.reduceMotion) {
-          gsap.set(lines, { yPercent: 0 })
-          gsap.set(fades, { opacity: 1, y: 0 })
-          gsap.set(shade, { opacity: 1 })
-          if (hint) gsap.set(hint, { opacity: 0 })
-          return
-        }
+    // 0 → ~0.4: cluster only
+    if (hint) tl.to(hint, { opacity: 0, duration: 0.12, ease: 'none' }, 0)
 
-        // Hidden until cluster has scattered
-        gsap.set(lines, { yPercent: 115 })
-        gsap.set(fades, { opacity: 0, y: 20 })
-        gsap.set(shade, { opacity: 0 })
+    // Mid scrub: shade + content unlock
+    if (shade) tl.to(shade, { opacity: 1, duration: 0.2, ease: 'none' }, 0.38)
+    tl.to(copy, { opacity: 1, duration: 0.08, ease: 'none' }, 0.42)
 
-        // Same scrub on mobile + desktop: cluster scatters on scroll, then text
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: true,
-            scroller: document.documentElement,
-            invalidateOnRefresh: true,
-          },
-        })
-
-        // 0 → 0.45: cluster only (scatter / drift)
-        if (hint) tl.to(hint, { opacity: 0, duration: 0.08, ease: 'none' }, 0.02)
-        if (shade) tl.to(shade, { opacity: 1, duration: 0.16, ease: 'none' }, 0.44)
-        // Text reveal after scatter is well underway
-        tl.to(
-          lines,
-          { yPercent: 0, duration: 0.28, stagger: 0.07, ease: 'power2.out' },
-          0.48,
-        )
-        tl.to(
-          fades,
-          { opacity: 1, y: 0, duration: 0.2, stagger: 0.05, ease: 'power1.out' },
-          0.62,
-        )
-      },
+    // Content popup with the scatter
+    tl.to(
+      lines,
+      { yPercent: 0, opacity: 1, duration: 0.35, stagger: 0.07, ease: 'power2.out' },
+      0.45,
+    )
+    tl.to(
+      fades,
+      { opacity: 1, y: 0, duration: 0.25, stagger: 0.05, ease: 'power1.out' },
+      0.58,
     )
 
-    return () => mm.revert()
-  }, [])
+    // Ensure end state is fully visible after layout settles
+    const refresh = () => ScrollTrigger.refresh()
+    requestAnimationFrame(refresh)
+    const t = window.setTimeout(refresh, 200)
 
-  // Sticky scrub hero on all viewports — cluster scatters as you scroll, then copy reveals.
+    return () => {
+      window.clearTimeout(t)
+      tl.scrollTrigger?.kill()
+      tl.kill()
+    }
+  }, [siteReady])
+
+  // Sticky scrub hero — cluster first; copy reveals on scroll.
   return (
     <section
       ref={sectionRef}
@@ -106,7 +123,14 @@ export function HeroSection() {
         />
         <div className="pointer-events-none absolute inset-0 z-[1] pixel-grid-bg opacity-10" aria-hidden />
 
-        <div className="relative z-10 flex flex-1 flex-col items-center px-6 pt-28 pb-10 sm:px-12 lg:px-20">
+        {/* Hidden until siteReady; then GSAP owns opacity (no React style prop to overwrite tweens) */}
+        <div
+          className={
+            siteReady
+              ? 'hero-copy relative z-10 flex flex-1 flex-col items-center px-6 pt-28 pb-10 sm:px-12 lg:px-20'
+              : 'hero-copy relative z-10 flex flex-1 flex-col items-center px-6 pt-28 pb-10 opacity-0 invisible sm:px-12 lg:px-20'
+          }
+        >
           <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center text-center">
             <p className="hero-fade mb-6 text-[11px] font-semibold uppercase tracking-[0.4em] text-blue-primary">
               AI Integrated Academy — Kochi
