@@ -4,7 +4,7 @@
 >
 > **Maintenance rule:** Update the **Current copy snapshot** and **Last updated** date in this file **every time** section copy is created or changed in the codebase. Word counts below are targets — the snapshot reflects what is live in components today.
 
-**Last updated:** 2026-07-13  
+**Last updated:** 2026-07-14  
 **Snapshot source:** `src/components/home/*`, `src/app/layout.tsx`, `src/app/page.tsx`
 
 ---
@@ -25,7 +25,7 @@
 
 - Primary location keywords: **Kochi**, **Kerala**, **Thiruvananthapuram**, **Calicut** (use naturally, not stuffed).
 - Brand name: **Pixl Pluz** or **Pixl Pluz Academy** (consistent spelling).
-- Differentiator keywords: AI-integrated, digital marketing, agency-style, practical learning, scholarship-based.
+- Differentiator keywords: AI-integrated academy, Neo Digital Hub Dubai, international exposure, practical learning, scholarship-based.
 - Body text: **justified** in UI (`text-justify`) — write sentences that flow well when justified (avoid very short choppy lines).
 - One primary keyword per section H2; support with long-tail terms in body copy.
 
@@ -61,18 +61,20 @@
 
 ### 2. About (`AboutSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-14) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | 2–3 | 2 — *"About PixlPluz"* | |
-| H2 | 6–10 | 7 — *"Best Digital Marketing Academy in Kochi"* | |
-| Intro paragraph | 40–55 | 47 (para 1) | Justified; white text |
-| Intro paragraph 2 | 35–50 | ~42 | Agency-style learning in Kochi |
-| Intro paragraph 3 | 35–50 | ~40 | Audience + Neo Digital Hub Dubai |
-| Feature card — title | 2–5 | 3–4 each | 4 cards |
-| Feature card — description | 12–30 | 12–29 each | Visible in collapsed state |
-| Feature card — hover extra | 22–40 | ~28–32 each | Shown only when card expands on hover |
+| H2 | 6–10 | 6 — *"Best AI-Integrated Academy in Kochi"* | Academy framing — not "agency" |
+| Intro paragraph | 40–55 | ~48 | Justified; white; AI-integrated academy |
+| Intro paragraph 2 | 35–50 | ~44 | Hands-on AI-integrated courses; no agency language |
+| Intro paragraph 3 | 35–50 | ~42 | Neo Digital Hub Dubai + audience + international exposure |
+| Feature card — title | 2–5 | 2–4 each | 4 cards |
+| Feature card — description | 12–30 | 14–22 each | Visible in collapsed state |
+| Feature card — hover extra | 22–40 | ~28–34 each | Shown only when card expands on hover |
 
-**Current card titles:** Learn by Working · Future-Ready Curriculum · Mentorship by Industry Experts · Placement & Career Support
+**Current card titles:** Learn by Working · AI-Integrated Courses · Mentorship by Industry Experts · International Exposure
+
+**Copy rule:** Do not describe Pixl Pluz as a digital marketing agency in this section. Position as an academy teaching AI-integrated courses, backed by Neo Digital Hub Dubai.
 
 ---
 
@@ -111,13 +113,15 @@
 
 ### 6. Mentors (`MentorsSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-14) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | 2–3 | 2 — *"Our Mentors"* | |
 | H2 | 4–8 | 4 — *"Learn From Industry Experts"* | |
 | Subtitle | 10–18 | 12 | |
-| Mentor card — name | 2–3 | 2 each | Proper names |
-| Mentor card — designation | 2–4 | 2–3 each | Role only, no bio |
+| Mentor — name | 2–3 | 2 each | Open typography — no nameplate box |
+| Mentor — designation | 2–4 | 2–3 each | Role only; 3 rotating layouts for variety |
+
+**UI note:** No bordered/boxed name cards. Name + role use open type with three alternating treatments.
 
 ---
 
@@ -231,9 +235,9 @@ Not on homepage currently; include if re-enabled.
 
 **Primary:** digital marketing course Kochi, AI integrated academy Kerala, Pixl Pluz Academy
 
-**Secondary:** agency-style training, scholarship program, live projects, mentor support, career support, SEO course, social media marketing, Google Ads
+**Secondary:** Neo Digital Hub Dubai, international exposure, scholarship program, live projects, mentor support, career support, AI tools, automation
 
-**Avoid overuse:** "best" (max once per page), "100%", any unverified claim
+**Avoid overuse:** "best" (max once per page), "100%", any unverified claim; do not brand Pixl Pluz as a "digital marketing agency" on the homepage About section
 
 ---
 
@@ -241,6 +245,8 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-14 | Mentors | Removed boxed nameplates; open typography with 3 rotating name/role layouts |
+| 2026-07-14 | About | Reframed as AI-integrated academy backed by Neo Digital Hub Dubai; removed agency language; card 4 → International Exposure |
 | 2026-07-13 | Advantage | Expanded left copy; cards show blurred images that clear on hover |
 | 2026-07-13 | About intro | Expanded left column to 3 white justified paragraphs for card-height balance |
 | 2026-07-13 | About cards | Added hover-only extra copy (~28–32 words) per feature card |

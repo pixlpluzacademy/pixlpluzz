@@ -1,11 +1,11 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
-import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { SectionLabel } from '@/components/ui/SectionLabel'
+import { ExpandableLogoPortrait } from '@/components/home/ExpandableLogoPortrait'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,27 +13,27 @@ const MENTORS = [
   {
     name: 'Ahmed Noor',
     designation: '3D Specialist',
-    image: '/images/Aishh_option_1.png',
+    image: '/images/Hin.png',
   },
   {
     name: 'Aiswarya VP',
     designation: 'SEO Specialist',
-    image: '/images/Aishh_option_2.png',
+    image: '/images/Hin.png',
   },
   {
     name: 'Hina Javaid',
     designation: 'Digital Marketing Expert',
-    image: '/images/Aishh_option_3.png',
+    image: '/images/Hin.png',
   },
   {
     name: 'Hojjat',
     designation: '3D Visualizer',
-    image: '/images/Aishh_option_4.png',
+    image: '/images/Hin.png',
   },
   {
     name: 'Lakshmi',
     designation: 'Web Developer',
-    image: '/images/Aishh_option_5.png',
+    image: '/images/Hin.png',
   },
 ]
 
@@ -73,11 +73,15 @@ export function MentorsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative border-t border-white/8 bg-black py-16 sm:py-24 px-4 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative overflow-x-clip overflow-y-visible border-t border-white/8 bg-black px-4 py-16 sm:py-24"
+    >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 60% 45% at 80% 50%, rgba(84, 227, 70, 0.07) 0%, transparent 55%)',
+          background:
+            'radial-gradient(ellipse 60% 45% at 80% 50%, rgba(84, 227, 70, 0.07) 0%, transparent 55%)',
         }}
         aria-hidden
       />
@@ -91,40 +95,74 @@ export function MentorsSection() {
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
             <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-              Practitioners and specialists who bring real agency experience into every session.
+              Practitioners and specialists who bring real industry experience into every session.
             </p>
           </AnimatedSection>
         </div>
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+          className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-6"
         >
-          {MENTORS.map(({ name, designation, image }) => (
-            <article
-              key={name}
-              className="mentor-card group flex flex-col gap-3 bg-transparent transition-transform duration-300 hover:-translate-y-1.5"
-            >
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
-                <Image
+          {MENTORS.map(({ name, designation, image }, i) => {
+            const variant = i % 3
+
+            return (
+              <article
+                key={name}
+                className="mentor-card group relative flex flex-col overflow-visible bg-transparent"
+              >
+                <ExpandableLogoPortrait
                   src={encodeURI(image)}
                   alt={name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  className="mx-auto max-w-[280px] sm:max-w-none"
                 />
-              </div>
 
-              <div className="border border-white/12 bg-black/55 px-3.5 py-3 backdrop-blur-md transition-all duration-300 group-hover:border-green-accent/40 group-hover:bg-black/70 group-hover:shadow-[0_0_24px_rgba(84,227,70,0.18)]">
-                <h3 className="text-sm font-bold tracking-tight text-white sm:text-base">
-                  {name}
-                </h3>
-                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-green-accent sm:text-[11px]">
-                  {designation}
-                </p>
-              </div>
-            </article>
-          ))}
+                {variant === 0 && (
+                  <div className="mt-5 pl-1">
+                    <h3 className="text-xl font-black tracking-tight text-white">
+                      {name}
+                    </h3>
+                    <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-green-accent">
+                      {designation}
+                    </p>
+                  </div>
+                )}
+
+                {variant === 1 && (
+                  <div className="mt-5 flex items-start gap-3 pl-1">
+                    <span
+                      className="mt-1.5 h-10 w-px shrink-0 bg-green-accent/70"
+                      aria-hidden
+                    />
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-green-accent">
+                        {designation}
+                      </p>
+                      <h3 className="mt-1.5 text-lg font-black leading-snug text-white">
+                        {name}
+                      </h3>
+                    </div>
+                  </div>
+                )}
+
+                {variant === 2 && (
+                  <div className="mt-5 text-center">
+                    <h3 className="text-lg font-black tracking-tight text-white sm:text-xl">
+                      {name}
+                    </h3>
+                    <div className="mt-2 flex items-center justify-center gap-2">
+                      <span className="h-px w-4 bg-blue-primary/60" aria-hidden />
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-green-accent">
+                        {designation}
+                      </p>
+                      <span className="h-px w-4 bg-blue-primary/60" aria-hidden />
+                    </div>
+                  </div>
+                )}
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

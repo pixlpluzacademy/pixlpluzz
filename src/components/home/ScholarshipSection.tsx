@@ -185,14 +185,14 @@ export function ScholarshipSection() {
       <section className="lg:sticky lg:top-0 lg:h-svh relative bg-black py-16 sm:py-24 lg:py-[clamp(2rem,6vh,4.5rem)] px-4 lg:flex lg:flex-col lg:justify-center overflow-hidden">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
-            src="/images/bg-scholarship.png"
+            src="/images/bg-scholarship-2.jpeg"
             alt=""
             fill
             sizes="100vw"
             className="object-cover object-center"
             priority={false}
           />
-          <div className="absolute inset-0 bg-black/80" />
+          <div className="absolute inset-0 bg-black/70" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl w-full text-center">
 

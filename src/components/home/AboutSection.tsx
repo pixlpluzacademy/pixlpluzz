@@ -12,29 +12,29 @@ import type { Course } from '@/lib/data'
 const FEATURES = [
   {
     title: 'Learn by Working',
-    desc: 'Work on practical assignments, campaign ideas, social media plans, SEO tasks, ad strategies, content calendars, and real industry-style projects from the beginning.',
-    more: 'Every task mirrors how a real digital marketing agency works in Kochi — briefs, revisions, deadlines, and presentation. You build confidence by shipping work, not just watching lectures.',
+    desc: 'Work on practical assignments, AI-assisted tasks, content plans, analytics exercises, and real industry-style projects from the beginning.',
+    more: 'Every task is designed like a workplace brief — clear goals, revisions, deadlines, and presentation. You build confidence by shipping work, not just watching lectures.',
     image: '/images/class2.jpg',
     imageAlt: 'Students in a practical training session',
   },
   {
-    title: 'Future-Ready Curriculum',
-    desc: 'Courses updated to reflect what employers actually want — including AI tools and automation workflows.',
-    more: 'Modules stay aligned with hiring trends across Kerala and the Gulf. You learn SEO, ads, content, analytics, and AI automation as one connected workflow used in modern agencies.',
+    title: 'AI-Integrated Courses',
+    desc: 'Curriculum built for what employers want — AI tools, automation workflows, and digital skills that keep you competitive.',
+    more: 'Modules stay aligned with hiring trends across Kerala and the Gulf. You learn AI automation alongside digital skills as one connected workflow used in modern teams.',
     image: '/images/students.jpg',
     imageAlt: 'Students collaborating on digital projects',
   },
   {
     title: 'Mentorship by Industry Experts',
-    desc: 'Learn directly from working professionals in digital marketing, AI, security, and development.',
-    more: 'Mentors share live campaign lessons, portfolio feedback, and career guidance from real client work. You get answers from people who still practice the craft every day.',
+    desc: 'Learn directly from working professionals across AI, digital skills, security, and development.',
+    more: 'Mentors share real project lessons, portfolio feedback, and career guidance shaped by industry practice. You get answers from people who still work in the field every day.',
     image: '/images/student2.jpg',
     imageAlt: 'Mentor guiding a student',
   },
   {
-    title: 'Placement & Career Support',
-    desc: 'Portfolio reviews, resume coaching, LinkedIn optimisation, and mock interviews to get you hired.',
-    more: 'We help you present skills clearly to employers — stronger profiles, sharper interviews, and practical career guidance so you can move into digital roles with confidence.',
+    title: 'International Exposure',
+    desc: 'Backed by Neo Digital Hub Dubai, so your learning connects to global standards and wider career horizons.',
+    more: 'You study in Kochi with international backing — stronger context for portfolios, interviews, and roles that value global awareness alongside practical AI-integrated skills.',
     image: '/images/graduation.jpg',
     imageAlt: 'Graduate ready for career placement',
   },
@@ -48,13 +48,8 @@ const SLOT = [
   'top-[calc(50%+0.625rem)] left-[calc(50%+0.625rem)] right-0 bottom-0',
 ] as const
 
-/** Expanded covers ~3/4 of the grid from its corner — leaves a strip to switch cards */
-const EXPANDED = [
-  'top-0 left-0 right-[25%] bottom-[25%]',
-  'top-0 left-[25%] right-0 bottom-[25%]',
-  'top-[25%] left-0 right-[25%] bottom-0',
-  'top-[25%] left-[25%] right-0 bottom-0',
-] as const
+/** Expanded card fills the entire grid; siblings are fully hidden */
+const EXPANDED = 'inset-0' as const
 
 const cardContainerVariants = {
   hidden: {},
@@ -75,7 +70,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
   const [active, setActive] = useState<number | null>(null)
 
   return (
-    <section className="relative bg-black py-16 sm:py-24 px-4 overflow-x-clip overflow-y-visible">
+    <section className="relative overflow-visible bg-black py-16 sm:py-24 px-4">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -93,21 +88,24 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
             <SectionLabel className="mb-4">About PixlPluz</SectionLabel>
             <div className="w-full max-w-md">
               <h2 className="mb-6 block w-full text-2xl font-black leading-snug text-white lg:text-3xl">
-                Best Digital Marketing Academy in Kochi
+                Best AI-Integrated Academy in Kochi
               </h2>
               <div className="space-y-4">
                 <p className="m-0 block w-full text-justify text-white leading-relaxed">
-                  We combine real-world training, industry mentorship, and career-first thinking to turn ambitious learners into job-ready experts.
+                  Pixl Pluz is an AI-integrated academy in Kochi that prepares ambitious students for modern digital
+                  careers. We teach practical, future-ready programs that blend AI tools with in-demand skills so
+                  learners build confidence, strong portfolios, and job-ready capability from day one.
                 </p>
                 <p className="m-0 block w-full text-justify text-white leading-relaxed">
-                  Our academy in Kochi is built around agency-style learning. Students work on live-style briefs,
-                  campaign planning and AI-assisted workflows that mirror how modern
-                  marketing teams operate every day.
+                  Our academy focuses on hands-on learning across AI-integrated courses — from digital skills and
+                  automation to content, analytics, and career-ready workflows. Students practice on real-style
+                  projects with clear briefs, mentor feedback, and deadlines that mirror how today&apos;s teams
+                  actually work.
                 </p>
                 <p className="m-0 block w-full text-justify text-white leading-relaxed">
-                  Whether you are a fresh graduate, working professional, or career switcher, Pixl Pluz helps you
-                  build a strong portfolio, grow practical skills, and move toward digital careers with clarity and
-                  confidence.
+                  Backed by Neo Digital Hub Dubai, Pixl Pluz brings international exposure and industry insight to
+                  Kerala classrooms. Whether you are a fresh graduate, working professional, or career switcher, you
+                  learn with global standards and build skills that travel with your career.
                 </p>
               </div>
             </div>
@@ -123,7 +121,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
           </div>
 
           <motion.div
-            className="relative lg:col-span-2 min-h-[28rem] sm:min-h-[30rem] lg:min-h-[32rem]"
+            className="relative overflow-visible lg:col-span-2 min-h-[28rem] sm:min-h-[30rem] lg:min-h-[32rem]"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -132,7 +130,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
           >
             {FEATURES.map(({ title, desc, more, image, imageAlt }, i) => {
               const isExpanded = active === i
-              const isDimmed = active !== null && active !== i
+              const isHidden = active !== null && active !== i
 
               return (
                 <motion.div
@@ -140,36 +138,27 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                   variants={cardVariants}
                   transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className={cn(
-                    'absolute overflow-visible isolate will-change-[top,right,bottom,left]',
-                    'transition-[top,right,bottom,left,opacity,filter,transform] duration-[400ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]',
-                    isExpanded ? EXPANDED[i] : SLOT[i],
+                    'absolute overflow-visible will-change-[top,right,bottom,left]',
+                    'transition-[top,right,bottom,left,opacity,transform] duration-[400ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]',
+                    isExpanded ? EXPANDED : SLOT[i],
                     isExpanded && 'z-30',
-                    isDimmed && 'z-10 scale-[0.98] opacity-80 blur-[1px]',
-                    !isDimmed && !isExpanded && 'z-10',
+                    isHidden && 'pointer-events-none z-0 scale-95 opacity-0',
+                    !isHidden && !isExpanded && 'z-10',
                   )}
                   onMouseEnter={() => {
                     if (canHoverExpand()) setActive(i)
                   }}
                 >
-                  {/* Dark shade on non-hovered cards so the active one pops */}
+                  {/* Outer glow — renders behind the card, visible around expanded edges */}
                   <div
                     className={cn(
-                      'pointer-events-none absolute inset-0 z-20 bg-black/45 transition-opacity duration-[400ms]',
-                      isDimmed ? 'opacity-100' : 'opacity-0',
-                    )}
-                    aria-hidden
-                  />
-
-                  {/* Bright blue glow behind card when expanded */}
-                  <div
-                    className={cn(
-                      'pointer-events-none absolute -inset-3 -z-10 rounded-sm transition-opacity duration-[400ms]',
+                      'pointer-events-none absolute -inset-6 z-0 rounded-sm transition-opacity duration-[400ms]',
                       isExpanded ? 'opacity-100' : 'opacity-0',
                     )}
                     style={{
                       background:
-                        'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(96, 165, 250, 0.55) 0%, rgba(59, 130, 246, 0.35) 40%, transparent 72%)',
-                      filter: 'blur(18px)',
+                        'radial-gradient(ellipse 75% 65% at 50% 50%, rgba(96, 165, 250, 0.65) 0%, rgba(59, 130, 246, 0.4) 35%, transparent 70%)',
+                      filter: 'blur(28px)',
                     }}
                     aria-hidden
                   />
@@ -179,7 +168,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                       'relative z-10 grid h-full w-full grid-cols-2 overflow-hidden border border-white/8 bg-[#141414]',
                       'transition-[border-color,box-shadow] duration-500',
                       isExpanded &&
-                        'border-blue-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.45),0_0_40px_rgba(96,165,250,0.5),0_0_80px_rgba(59,130,246,0.35)]',
+                        'border-blue-400/60 shadow-[0_0_0_1px_rgba(96,165,250,0.35),0_0_32px_rgba(96,165,250,0.55),0_0_72px_rgba(59,130,246,0.4),0_24px_48px_rgba(0,0,0,0.5)]',
                     )}
                   >
                     <div className="relative h-full min-h-0 overflow-hidden">
@@ -192,21 +181,36 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                       />
                     </div>
 
-                    {/* Base copy stays fixed; extra copy fades in after expand */}
-                    <div className="flex h-full min-w-0 flex-col justify-center gap-2 overflow-hidden p-4 sm:p-5">
-                      <h3 className="w-full shrink-0 text-base font-bold leading-snug text-white sm:text-lg">
+                    <div
+                      className={cn(
+                        'flex h-full min-w-0 flex-col justify-center gap-2 overflow-hidden',
+                        'transition-[padding] duration-400',
+                        isExpanded ? 'p-6 sm:p-8 lg:p-10' : 'p-4 sm:p-5',
+                      )}
+                    >
+                      <h3
+                        className={cn(
+                          'w-full shrink-0 font-bold leading-snug text-white transition-[font-size] duration-400',
+                          isExpanded ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg',
+                        )}
+                      >
                         {title}
                       </h3>
-                      <p className="w-full shrink-0 text-justify text-xs leading-relaxed text-white sm:text-sm">
+                      <p
+                        className={cn(
+                          'w-full shrink-0 text-justify leading-relaxed text-white transition-[font-size] duration-400',
+                          isExpanded ? 'text-sm sm:text-base' : 'text-xs sm:text-sm',
+                        )}
+                      >
                         {desc}
                       </p>
                       <p
                         className={cn(
-                          'w-full text-justify text-xs leading-relaxed text-white sm:text-sm',
-                          'overflow-hidden transition-[opacity,max-height,margin] duration-300 ease-out',
+                          'w-full text-justify leading-relaxed text-white/90',
+                          'overflow-hidden transition-[opacity,max-height,margin,font-size] duration-300 ease-out',
                           isExpanded
-                            ? 'mt-1 max-h-40 opacity-100 delay-200'
-                            : 'mt-0 max-h-0 opacity-0 delay-0',
+                            ? 'mt-2 max-h-48 text-sm opacity-100 delay-200 sm:text-base'
+                            : 'mt-0 max-h-0 text-xs opacity-0 delay-0 sm:text-sm',
                         )}
                       >
                         {more}
