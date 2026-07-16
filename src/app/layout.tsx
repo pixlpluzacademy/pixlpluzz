@@ -32,18 +32,6 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        {/* Red Hat Display will be loaded from /public/fonts once added */}
-        <style>{`
-          @font-face {
-            font-family: 'Red Hat Display';
-            src: url('/fonts/RedHatDisplay-VariableFont_wght.ttf') format('truetype');
-            font-weight: 100 900;
-            font-style: normal;
-            font-display: swap;
-          }
-        `}</style>
-      </head>
       <body className="font-display antialiased">
         <LenisProvider>
           <ThemeProvider>

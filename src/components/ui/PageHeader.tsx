@@ -22,7 +22,7 @@ export function PageHeader({
   blurOnLoad = false,
 }: PageHeaderProps) {
   return (
-    <section className="relative bg-navy-950 py-20 px-4 overflow-hidden" data-page-hero>
+    <section className="relative overflow-hidden bg-navy-950 px-4 pb-20 pt-28" data-page-hero>
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-15" aria-hidden />
       {noise && <NoiseParticles />}
       <FloatingPixels pixels={[

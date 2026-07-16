@@ -101,7 +101,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-16 h-[calc(100svh+min(480px,50dvh))] bg-navy-950"
+      className="relative h-[calc(100svh+min(480px,50dvh))] bg-navy-950"
       data-page-hero
     >
       <div

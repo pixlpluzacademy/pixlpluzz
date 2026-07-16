@@ -14,15 +14,15 @@ import { cn } from '@/lib/utils'
 gsap.registerPlugin(ScrollTrigger)
 
 const FEATURES = [
-  { label: 'Scholarship Based Courses', image: '/images/graduation.jpg' },
-  { label: 'Live Project & Training', image: '/images/class2.jpg' },
-  { label: 'Industry Expert Mentors', image: '/images/student2.jpg' },
-  { label: 'AI Tools & Automation', image: '/images/students2.jpg' },
-  { label: 'Career & Placement Support', image: '/images/graduation2.jpg' },
-  { label: 'Interview Preparation', image: '/images/students.jpg' },
-  { label: 'Practical Learning', image: '/images/room.jpg' },
-  { label: 'Verified Portfolio', image: '/images/boy.jpg' },
-  { label: 'Industry Certification', image: '/images/student.jpg' },
+  { label: 'Scholarship Based Courses', image: '/images/students/scholarship-based-courses.png' },
+  { label: 'Live Project & Training', image: '/images/students/live-project-training.png' },
+  { label: 'Industry Expert Mentors', image: '/images/students/industry-expert-mentors.png' },
+  { label: 'AI Tools & Automation', image: '/images/students/ai-tools-automation.png' },
+  { label: 'Career & Placement Support', image: '/images/students/career-placement-support.png' },
+  { label: 'Interview Preparation', image: '/images/students/interview-preparation.png' },
+  { label: 'Practical Learning', image: '/images/students/practical-learning.png' },
+  { label: 'Verified Portfolio', image: '/images/students/verified-portfolio.png' },
+  { label: 'Industry Certification', image: '/images/students/industry-certification.png' },
 ]
 
 export function AdvantageSection() {
@@ -80,18 +80,6 @@ export function AdvantageSection() {
 
   return (
     <section ref={sectionRef} className="relative bg-black py-16 sm:py-24 overflow-hidden">
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <Image
-          src="/images/bg-advantage.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-          priority={false}
-        />
-        <div className="absolute inset-0 bg-black/90" />
-      </div>
-
       <div className="relative overflow-hidden">
         <FloatingPixels />
 

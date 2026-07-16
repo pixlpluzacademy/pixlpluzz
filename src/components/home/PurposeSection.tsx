@@ -52,7 +52,7 @@ export function PurposeSection() {
             style={{ y: imageY, position: 'absolute', inset: '-20%' }}
           >
             <Image
-              src="/images/students2.jpg"
+              src="/images/clearing-doubts.jpeg"
               alt="Students"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

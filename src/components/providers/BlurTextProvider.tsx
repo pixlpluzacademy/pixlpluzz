@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger)
 const HEADING_SELECTOR = 'main h2, main h3'
 
 const EXCLUDE_ANCESTOR =
-  '[data-page-hero], [data-no-blur-text], .svc-cloud-track, .sch-intro-stage, .sch-reveal-white, .sch-word-stage'
+  '[data-page-hero], [data-no-blur-text], .svc-cloud-track'
 
 function isPlainTextHeading(el: HTMLElement) {
   for (const node of el.childNodes) {

@@ -17,3 +17,80 @@ export const LEVEL_STYLES: Record<string, string> = {
   Intermediate: 'bg-navy-950/90 text-white/75 border-white/15 backdrop-blur-sm',
   Expert: 'bg-navy-950/90 text-white/75 border-white/15 backdrop-blur-sm',
 }
+
+/** AI tools taught / used per course — at least 10 each for the hero carousel. */
+const COURSE_AI_TOOLS: Record<string, string[]> = {
+  'digital-marketing-course': [
+    'ChatGPT',
+    'Claude',
+    'Gemini',
+    'Perplexity',
+    'Jasper',
+    'Copy.ai',
+    'Midjourney',
+    'Canva Magic Studio',
+    'Surfer SEO AI',
+    'Notion AI',
+    'Zapier',
+    'Make',
+  ],
+  'ai-powered-web-development-course': [
+    'ChatGPT',
+    'Claude',
+    'Cursor',
+    'GitHub Copilot',
+    'Gemini',
+    'v0',
+    'Bolt',
+    'Windsurf',
+    'Replit AI',
+    'Lovable',
+    'Continue',
+    'Tabnine',
+  ],
+  'data-science-ai-course': [
+    'ChatGPT',
+    'Claude',
+    'Gemini',
+    'Cursor',
+    'GitHub Copilot',
+    'Google Colab',
+    'Hugging Face',
+    'LangChain',
+    'Perplexity',
+    'Jupyter AI',
+    'Weights & Biases',
+    'Notion AI',
+  ],
+  'cyber-security-course-with-ai': [
+    'ChatGPT',
+    'Claude',
+    'Gemini',
+    'Cursor',
+    'GitHub Copilot',
+    'Perplexity',
+    'Microsoft Security Copilot',
+    'VirusTotal',
+    'Splunk AI',
+    'CrowdStrike Charlotte AI',
+    'Hugging Face',
+    'Notion AI',
+  ],
+}
+
+const DEFAULT_AI_TOOLS = [
+  'ChatGPT',
+  'Claude',
+  'Gemini',
+  'Cursor',
+  'GitHub Copilot',
+  'Perplexity',
+  'Midjourney',
+  'Notion AI',
+  'Zapier',
+  'Make',
+]
+
+export function getCourseAiTools(slug: string): string[] {
+  return COURSE_AI_TOOLS[slug] ?? DEFAULT_AI_TOOLS
+}

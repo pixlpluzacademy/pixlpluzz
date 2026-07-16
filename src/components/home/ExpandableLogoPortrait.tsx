@@ -12,6 +12,7 @@ const VIEW_W = 950
 const CX = VIEW_W / 2
 const CY = 300
 const DURATION = 800
+const LIFT_SCALE = 1.14 // peak portrait scale (bottom-anchored)
 const BLUE = '#153e90'
 const GREEN = '#54e346'
 const HIT_W_SMALL = W_SMALL + 2 * U
@@ -69,6 +70,8 @@ const CUTOUT = {
   w: PORTRAIT.w * 0.95, // a bit larger
   h: CUTOUT_H,
 }
+const CUTOUT_OX = CUTOUT.x + CUTOUT.w / 2
+const CUTOUT_OY = CUTOUT.y + CUTOUT.h
 
 /** Fixed vertical span for viewBox (cutout top → logo hit bottom) */
 const VIEW_TOP = Math.min(CUTOUT.y, GEO_SMALL.hit.y)
@@ -101,10 +104,12 @@ export function ExpandableLogoPortrait({
   const rafRef = useRef<number | null>(null)
   const lastTRef = useRef(0)
   const [geo, setGeo] = useState(() => geometry(W_SMALL))
+  const [lift, setLift] = useState(1)
   const [expanded, setExpanded] = useState(false)
 
-  const draw = useCallback((W: number) => {
+  const draw = useCallback((W: number, liftScale: number) => {
     setGeo(geometry(W))
+    setLift(liftScale)
   }, [])
 
   const tick = useCallback(
@@ -116,7 +121,11 @@ export function ExpandableLogoPortrait({
       let p = progressRef.current
       p = target > p ? Math.min(p + dt, target) : Math.max(p - dt, target)
       progressRef.current = p
-      draw(W_SMALL + (W_BIG - W_SMALL) * easeInOutCubic(p))
+      const eased = easeInOutCubic(p)
+      draw(
+        W_SMALL + (W_BIG - W_SMALL) * eased,
+        1 + (LIFT_SCALE - 1) * eased,
+      )
       if (p !== target) {
         rafRef.current = requestAnimationFrame(tick)
       } else {
@@ -202,7 +211,7 @@ export function ExpandableLogoPortrait({
             fill={BLUE}
           />
 
-          {/* Cutout stays fixed — placement unchanged */}
+          {/* Cutout lift shares logo progress + ease (bottom pivot) */}
           <image
             href={src}
             x={CUTOUT.x}
@@ -210,6 +219,7 @@ export function ExpandableLogoPortrait({
             width={CUTOUT.w}
             height={CUTOUT.h}
             preserveAspectRatio="xMidYMax meet"
+            transform={`translate(${CUTOUT_OX} ${CUTOUT_OY}) scale(${lift}) translate(${-CUTOUT_OX} ${-CUTOUT_OY})`}
           />
         </svg>
       </div>

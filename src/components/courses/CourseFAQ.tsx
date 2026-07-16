@@ -2,33 +2,73 @@
 
 import { useState } from 'react'
 import { Plus, Minus } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { cn } from '@/lib/utils'
 
-interface FAQ { q: string; a: string }
+interface FAQ {
+  q: string
+  a: string
+}
 
 export function CourseFAQ({ faqs }: { faqs: FAQ[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {faqs.map((faq, i) => (
-        <div key={faq.q} className="overflow-hidden border border-white/10 bg-navy-900/30">
+        <div
+          key={faq.q}
+          className={cn(
+            'overflow-hidden border bg-black/75 backdrop-blur-sm transition-colors duration-200',
+            openIdx === i ? 'border-green-accent/50' : 'border-white/20',
+          )}
+        >
           <button
             type="button"
-            className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-white/5"
+            className="flex w-full items-start justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-white/5"
             onClick={() => setOpenIdx(openIdx === i ? null : i)}
+            aria-expanded={openIdx === i}
           >
-            <span className="text-sm font-semibold text-white">{faq.q}</span>
-            {openIdx === i ? (
-              <Minus size={14} className="mt-0.5 shrink-0 text-green-accent" />
-            ) : (
-              <Plus size={14} className="mt-0.5 shrink-0 text-white/40" />
-            )}
+            <span className="flex items-start gap-3">
+              <span
+                className={cn(
+                  'mt-1.5 h-4 w-1 shrink-0 transition-colors duration-200',
+                  openIdx === i ? 'bg-green-accent' : 'bg-green-accent/50',
+                )}
+              />
+              <span className="text-base font-bold leading-snug text-white">
+                {faq.q}
+              </span>
+            </span>
+            <motion.span
+              animate={{ rotate: openIdx === i ? 45 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="mt-1 shrink-0"
+            >
+              {openIdx === i ? (
+                <Minus size={18} className="text-green-accent" />
+              ) : (
+                <Plus size={18} className="text-white" />
+              )}
+            </motion.span>
           </button>
-          {openIdx === i && (
-            <div className="border-t border-white/8 px-5 pb-4 pt-3 text-sm leading-relaxed text-white/55">
-              {faq.a}
-            </div>
-          )}
+
+          <AnimatePresence initial={false}>
+            {openIdx === i && (
+              <motion.div
+                key="faq-body"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+                style={{ overflow: 'hidden' }}
+              >
+                <div className="border-t border-white/10 px-6 pb-5 pt-4 text-base font-semibold leading-relaxed text-justify text-white">
+                  {faq.a}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       ))}
     </div>

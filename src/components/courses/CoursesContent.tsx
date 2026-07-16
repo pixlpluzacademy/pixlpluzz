@@ -70,7 +70,7 @@ export function CoursesContent({ courses }: CoursesContentProps) {
       <section
         ref={heroRef}
         data-page-hero
-        className="relative min-h-[220px] md:min-h-[280px] overflow-hidden border-b border-white/10 px-4 py-14 md:py-20"
+        className="relative min-h-[220px] overflow-hidden border-b border-white/10 px-4 pb-14 pt-28 md:min-h-[280px] md:pb-20 md:pt-32"
       >
         <div
           ref={parallaxRef}

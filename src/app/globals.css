@@ -23,7 +23,7 @@
   --color-navy-500:  #223580;
 
   /* Typography */
-  --font-display: 'Red Hat Display', system-ui, sans-serif;
+  --font-display: Arial, Helvetica, sans-serif;
 
   /* Animations */
   --animate-float:        float 3s ease-in-out infinite;
@@ -102,6 +102,15 @@
 .about-body {
   color: rgba(176, 196, 230, 0.65);
   line-height: 1.75;
+}
+
+/* Narrow justified cards — hyphenation cuts large word gaps */
+.about-card-copy {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-wrap: pretty;
 }
 
 .about-link {
@@ -194,9 +203,9 @@
   transform: translateY(20px);
 }
 
-/* Scholarship — expanding hero word */
+/* Scholarship page */
 .scholarship-page {
-  background-color: #060b16;
+  background-color: #000000;
   color: #f0f4ff;
 }
 
@@ -205,43 +214,10 @@
   font-weight: 600;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(21, 62, 144, 0.55);
-}
-
-.scholarship-page .sch-mega-word {
-  /* Oversized layout — the wrapper scales it down at rest (WORD_BASE_SCALE).
-     Text rasterizes at layout size, so the zoom stretches a high-resolution
-     bitmap and stays sharp instead of blurring. */
-  font-size: clamp(12.5rem, 56vw, 36rem);
-}
-
-.scholarship-page .sch-letter-l {
-  /* Must be white — the zoom flies through this stroke and it becomes the white background */
-  color: #ffffff;
-}
-
-.sch-intro-stage {
-  isolation: isolate;
-  /* The word scales 100x+ during the fly-through — keep the paint inside the viewport */
-  overflow: hidden;
-}
-
-.sch-word-stage {
-  overflow: visible;
-  pointer-events: none;
-}
-
-.sch-word-zoom {
-  transform-origin: center center;
-  backface-visibility: hidden;
-}
-
-.sch-reveal-white {
-  pointer-events: none;
 }
 
 main:has(.scholarship-page) {
-  background-color: #060b16;
+  background-color: #000000;
 }
 
 /* Services — word cloud hero */
@@ -252,7 +228,7 @@ main:has(.scholarship-page) {
 
 .services-page .svc-word {
   white-space: nowrap;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -334,6 +310,11 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-display);
+}
+
+/* Hero pages: no main top pad — fixed navbar floats over [data-page-hero] */
+main:has([data-page-hero]) {
+  padding-top: 0;
 }
 
 /* ─── Pixel Corner Utility (disabled — all elements use sharp rectangle corners) */

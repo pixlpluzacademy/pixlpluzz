@@ -204,7 +204,7 @@ export function ScholarshipSection() {
           <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
             Apply for Our Merit
             <br />
-            Scholarship Fund
+            Scholarship
           </h2>
 
           <p className="max-w-2xl mx-auto text-justify text-white mb-3">

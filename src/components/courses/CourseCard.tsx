@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { BookOpen } from 'lucide-react'
 import type { Course } from '@/lib/data'
-import { getCourseImage, LEVEL_STYLES } from '@/lib/course-assets'
+import { getCourseImage } from '@/lib/course-assets'
 import { cn } from '@/lib/utils'
 
 export function CourseCard({ course }: { course: Course }) {
@@ -26,14 +26,6 @@ export function CourseCard({ course }: { course: Course }) {
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
-        <span
-          className={cn(
-            'absolute top-3 left-3 rounded-sm border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide backdrop-blur-sm',
-            LEVEL_STYLES[course.level] ?? LEVEL_STYLES.Beginner,
-          )}
-        >
-          {course.level}
-        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5">

@@ -12,30 +12,30 @@ import type { Course } from '@/lib/data'
 const FEATURES = [
   {
     title: 'Learn by Working',
-    desc: 'Work on practical assignments, AI-assisted tasks, content plans, analytics exercises, and real industry-style projects from the beginning.',
-    more: 'Every task is designed like a workplace brief — clear goals, revisions, deadlines, and presentation. You build confidence by shipping work, not just watching lectures.',
-    image: '/images/class2.jpg',
+    desc: 'From day one you handle practical assignments, AI-assisted tasks, content plans, analytics drills, and real industry-style projects.',
+    more: 'Every brief mirrors workplace practice with clear goals, revisions, deadlines, and presentation. You grow confidence by shipping work instead of only watching lectures.',
+    image: '/images/students/group-discussion.png',
     imageAlt: 'Students in a practical training session',
   },
   {
     title: 'AI-Integrated Courses',
-    desc: 'Curriculum built for what employers want — AI tools, automation workflows, and digital skills that keep you competitive.',
-    more: 'Modules stay aligned with hiring trends across Kerala and the Gulf. You learn AI automation alongside digital skills as one connected workflow used in modern teams.',
-    image: '/images/students.jpg',
+    desc: 'A curriculum shaped around hiring needs: AI tools, automation workflows, and digital skills that keep you competitive in the market.',
+    more: 'Modules stay aligned with hiring trends across Kerala and the Gulf. You learn AI automation with digital skills as one connected workflow used by modern teams.',
+    image: '/images/students/clearing-doubts.jpeg',
     imageAlt: 'Students collaborating on digital projects',
   },
   {
     title: 'Mentorship by Industry Experts',
-    desc: 'Learn directly from working professionals across AI, digital skills, security, and development.',
-    more: 'Mentors share real project lessons, portfolio feedback, and career guidance shaped by industry practice. You get answers from people who still work in the field every day.',
-    image: '/images/student2.jpg',
+    desc: 'Train directly with working professionals across AI, digital skills, security, and development fields.',
+    more: 'Mentors share project lessons, portfolio feedback, and career guidance drawn from daily industry practice. You get answers from people who still work in the field.',
+    image: '/images/students/student.jpeg',
     imageAlt: 'Mentor guiding a student',
   },
   {
     title: 'International Exposure',
-    desc: 'Backed by Neo Digital Hub Dubai, so your learning connects to global standards and wider career horizons.',
-    more: 'You study in Kochi with international backing — stronger context for portfolios, interviews, and roles that value global awareness alongside practical AI-integrated skills.',
-    image: '/images/graduation.jpg',
+    desc: 'Backed by Neo Digital Hub Dubai, your training connects to global standards and wider career paths beyond Kerala.',
+    more: 'You study in Kochi with international backing that strengthens portfolios, interviews, and roles that value global awareness with practical AI-integrated skills.',
+    image: '/images/students/graduation.png',
     imageAlt: 'Graduate ready for career placement',
   },
 ]
@@ -87,25 +87,22 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
           >
             <SectionLabel className="mb-4">About PixlPluz</SectionLabel>
             <div className="w-full max-w-md">
-              <h2 className="mb-6 block w-full text-2xl font-black leading-snug text-white lg:text-3xl">
+              <h2 className="mb-6 block w-full text-2xl font-black leading-snug text-green-accent lg:text-3xl">
                 Best AI-Integrated Academy in Kochi
               </h2>
               <div className="space-y-4">
-                <p className="m-0 block w-full text-justify text-white leading-relaxed">
+                <p className="m-0 block w-full text-justify text-white/65 leading-relaxed">
                   Pixl Pluz is an AI-integrated academy in Kochi that prepares ambitious students for modern digital
                   careers. We teach practical, future-ready programs that blend AI tools with in-demand skills so
                   learners build confidence, strong portfolios, and job-ready capability from day one.
                 </p>
-                <p className="m-0 block w-full text-justify text-white leading-relaxed">
+                <p className="m-0 block w-full text-justify text-white/65 leading-relaxed">
                   Our academy focuses on hands-on learning across AI-integrated courses — from digital skills and
-                  automation to content, analytics, and career-ready workflows. Students practice on real-style
-                  projects with clear briefs, mentor feedback, and deadlines that mirror how today&apos;s teams
-                  actually work.
+                  automation to content, analytics, and career-ready workflows.
                 </p>
-                <p className="m-0 block w-full text-justify text-white leading-relaxed">
+                <p className="m-0 block w-full text-justify text-white/65 leading-relaxed">
                   Backed by Neo Digital Hub Dubai, Pixl Pluz brings international exposure and industry insight to
-                  Kerala classrooms. Whether you are a fresh graduate, working professional, or career switcher, you
-                  learn with global standards and build skills that travel with your career.
+                  Kerala classrooms. 
                 </p>
               </div>
             </div>
@@ -190,7 +187,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                     >
                       <h3
                         className={cn(
-                          'w-full shrink-0 font-bold leading-snug text-white transition-[font-size] duration-400',
+                          'w-full shrink-0 font-black leading-snug text-green-accent transition-[font-size] duration-400',
                           isExpanded ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg',
                         )}
                       >
@@ -198,7 +195,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                       </h3>
                       <p
                         className={cn(
-                          'w-full shrink-0 text-justify leading-relaxed text-white transition-[font-size] duration-400',
+                          'about-card-copy w-full shrink-0 text-justify leading-relaxed text-white/80 transition-[font-size] duration-400',
                           isExpanded ? 'text-sm sm:text-base' : 'text-xs sm:text-sm',
                         )}
                       >
@@ -206,7 +203,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                       </p>
                       <p
                         className={cn(
-                          'w-full text-justify leading-relaxed text-white/90',
+                          'about-card-copy w-full text-justify leading-relaxed text-white/75',
                           'overflow-hidden transition-[opacity,max-height,margin,font-size] duration-300 ease-out',
                           isExpanded
                             ? 'mt-2 max-h-48 text-sm opacity-100 delay-200 sm:text-base'

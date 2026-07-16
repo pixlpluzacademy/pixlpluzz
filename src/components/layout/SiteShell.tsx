@@ -18,7 +18,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <BlurTextProvider />
       <Navbar />
-      <main className="pt-16">{children}</main>
+      <main className="pt-16 has-[[data-page-hero]]:pt-0">{children}</main>
       <Footer />
       <WhatsAppFloat />
     </>

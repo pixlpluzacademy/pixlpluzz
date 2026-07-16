@@ -4,8 +4,8 @@
 >
 > **Maintenance rule:** Update the **Current copy snapshot** and **Last updated** date in this file **every time** section copy is created or changed in the codebase. Word counts below are targets — the snapshot reflects what is live in components today.
 
-**Last updated:** 2026-07-14  
-**Snapshot source:** `src/components/home/*`, `src/app/layout.tsx`, `src/app/page.tsx`
+**Last updated:** 2026-07-16  
+**Snapshot source:** `src/components/home/*`, `src/components/courses/*`, `src/app/layout.tsx`, `src/app/page.tsx`
 
 ---
 
@@ -216,7 +216,7 @@ Not on homepage currently; include if re-enabled.
 |------|-----------|------------------|---------------|
 | `/about` | 4–8 words | 120–160 chars | Stats row: **no ₹ or 100% labels** |
 | `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
-| `/courses/[slug]` | 4–12 words | 120–160 chars | Overview 80–120 words; modules list |
+| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; AI tools marquee (10+ per course); Curriculum (3-col gradient cards); Who it’s for; Included; FAQ — no fake stats |
 | `/scholarship` | 4–10 words | 120–160 chars | Steps, eligibility — **no amounts** |
 | `/placement` | 4–8 words | 120–160 chars | **No "100% Placement Assistance" stat** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
@@ -245,6 +245,13 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-16 | Scholarship hero | Removed scroll-zoom text mask; simple full-bleed photo hero with Scholarship Fund copy |
+| 2026-07-16 | Course detail hero | Replaced mentor/portfolio/career points with AI tools marquee (10+ tools per course) |
+| 2026-07-16 | Course detail curriculum | CDA-style modules: 3-col gradient cards with topic pills + brief (no accordion/expand) |
+| 2026-07-15 | About cards | Tightened justified copy + hyphenation to reduce large word gaps in narrow columns |
+| 2026-07-15 | Scholarship page | Removed ₹50 Lakh from hero reveal + meta; H2 is *"Scholarship Fund"* only |
+| 2026-07-15 | Course detail FAQ | Matched homepage FAQ accordion styles (no bg image); H2 → *"Questions & Answers"* |
+| 2026-07-15 | Course detail | CDA-inspired modern layout: hero + enroll card, curriculum accordion, tools, audience, FAQ |
 | 2026-07-14 | Mentors | Removed boxed nameplates; open typography with 3 rotating name/role layouts |
 | 2026-07-14 | About | Reframed as AI-integrated academy backed by Neo Digital Hub Dubai; removed agency language; card 4 → International Exposure |
 | 2026-07-13 | Advantage | Expanded left copy; cards show blurred images that clear on hover |
