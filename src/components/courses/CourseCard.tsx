@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { BookOpen } from 'lucide-react'
 import type { Course } from '@/lib/data'
 import { getCourseImage } from '@/lib/course-assets'
 import { cn } from '@/lib/utils'
@@ -29,16 +28,13 @@ export function CourseCard({ course }: { course: Course }) {
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <h2 className="mb-2 text-base font-bold leading-snug text-white group-hover:text-green-accent transition-colors line-clamp-2">
+        <h2 className="mb-2 text-lg font-black leading-snug text-white transition-colors line-clamp-3 group-hover:text-green-accent sm:text-xl">
           {course.title}
         </h2>
         <p className="mb-5 flex-1 text-justify text-sm leading-relaxed text-white/60 line-clamp-3">
           {course.shortDescription}
         </p>
-        <div className="flex items-center gap-1.5 text-xs text-white/50">
-          <BookOpen size={14} className="shrink-0 text-white/55" />
-          <span>{course.lessons} Lessons</span>
-        </div>
+        <p className="text-xs text-white/50">{course.lessons} Lessons</p>
       </div>
     </Link>
   )

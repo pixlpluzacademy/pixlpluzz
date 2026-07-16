@@ -72,7 +72,7 @@
 | Feature card — description | 12–30 | 14–22 each | Visible in collapsed state |
 | Feature card — hover extra | 22–40 | ~28–34 each | Shown only when card expands on hover |
 
-**Current card titles:** Learn by Working · AI-Integrated Courses · Mentorship by Industry Experts · International Exposure
+**Current card titles:** Learn by Working · AI-Integrated Courses · Industry Expert Mentorship · International Exposure
 
 **Copy rule:** Do not describe Pixl Pluz as a digital marketing agency in this section. Position as an academy teaching AI-integrated courses, backed by Neo Digital Hub Dubai.
 
@@ -93,7 +93,7 @@
 | Section label | 2–3 | 2 — *"Our Courses"* | |
 | H2 | 4–8 | 4 — *"AI-Integrated Career Programs"* | |
 | Section subtitle | 12–20 | 14 | No "100% placement" |
-| Course card — title | 4–10 | from `course.title` | `line-clamp-2` |
+| Course card — title | 4–12 | from `course.title` | Larger type (`text-lg`/`sm:text-xl`); AI-integrated naming |
 | Course card — shortDescription | 18–28 | from `course.shortDescription` | `line-clamp-3`, justified |
 | Course card — meta (lessons) | 2–3 | 2 — *"N Lessons"* | Numeric lesson count is OK |
 
@@ -154,11 +154,12 @@
 
 ### 9. Contact (`ContactSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-16) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"Contact Us"* | |
-| H3 | 5–10 | 6 — *"Ready to Build Your Digital Career?"* | |
-| Intro paragraph | 18–30 | 22 | Justified |
+| Left panel | — | image only | No overlay copy; photo fills the panel |
+| Form label | 2–3 | 2 — *"Get In Touch"* | Right panel |
+| Form H3 | 8–14 | 8 — *"Get The Best Course Guidance For Your Future"* | |
+| Form intro | 12–22 | 14 | |
 | Form placeholders | 1–3 each | — | Short, action-oriented |
 
 ---
@@ -245,6 +246,8 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-16 | Courses | First course → *"Digital Marketing Course with AI"*; bigger card titles; AI naming across all four |
+| 2026-07-16 | Contact | Left panel is image-only — removed Contact Us heading, body, and phone/location/email overlay |
 | 2026-07-16 | Scholarship hero | Removed scroll-zoom text mask; simple full-bleed photo hero with Scholarship Fund copy |
 | 2026-07-16 | Course detail hero | Replaced mentor/portfolio/career points with AI tools marquee (10+ tools per course) |
 | 2026-07-16 | Course detail curriculum | CDA-style modules: 3-col gradient cards with topic pills + brief (no accordion/expand) |

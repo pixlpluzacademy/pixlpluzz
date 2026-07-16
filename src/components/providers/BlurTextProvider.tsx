@@ -111,7 +111,7 @@ export function BlurTextProvider() {
   const isSiteReady = useSiteReady()
 
   useLayoutEffect(() => {
-    if (!isSiteReady || pathname.startsWith('/admin')) return
+    if (!isSiteReady || pathname.startsWith('/admin') || pathname === '/') return
 
     const main = document.querySelector('main')
     if (!main) return

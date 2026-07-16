@@ -25,17 +25,17 @@ const FEATURES = [
     imageAlt: 'Students collaborating on digital projects',
   },
   {
-    title: 'Mentorship by Industry Experts',
+    title: 'Industry Expert Mentorship',
     desc: 'Train directly with working professionals across AI, digital skills, security, and development fields.',
     more: 'Mentors share project lessons, portfolio feedback, and career guidance drawn from daily industry practice. You get answers from people who still work in the field.',
-    image: '/images/students/student.jpeg',
+    image: '/images/students/live-project-training.png',
     imageAlt: 'Mentor guiding a student',
   },
   {
     title: 'International Exposure',
     desc: 'Backed by Neo Digital Hub Dubai, your training connects to global standards and wider career paths beyond Kerala.',
     more: 'You study in Kochi with international backing that strengthens portfolios, interviews, and roles that value global awareness with practical AI-integrated skills.',
-    image: '/images/students/graduation.png',
+    image: '/images/students/career-placement-support.png',
     imageAlt: 'Graduate ready for career placement',
   },
 ]

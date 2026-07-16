@@ -1,5 +1,8 @@
 'use client'
 
+import { useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+
 /** Update this to the live WhatsApp business number (country code, digits only). */
 const WHATSAPP_NUMBER = '919999900000'
 const WHATSAPP_MESSAGE = 'Hi Pixl Pluz! I would like to know more about your courses.'
@@ -18,24 +21,64 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 export function WhatsAppFloat() {
+  const rootRef = useRef<HTMLAnchorElement>(null)
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+
+  useLayoutEffect(() => {
+    const el = rootRef.current
+    if (!el) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(el, { opacity: 1, y: 0, scale: 1 })
+      return
+    }
+
+    gsap.set(el, { opacity: 0, y: 72, scale: 0.72 })
+
+    const ctx = gsap.context(() => {
+      // First entrance: pop up from bottom and stay
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.75,
+        delay: 1.4,
+        ease: 'back.out(1.7)',
+      })
+
+      // Occasional attention pop from below
+      gsap.to(el, {
+        keyframes: [
+          { y: 18, scale: 0.92, duration: 0.22, ease: 'power2.in' },
+          { y: 0, scale: 1.08, duration: 0.38, ease: 'back.out(2.2)' },
+          { scale: 1, duration: 0.28, ease: 'power2.out' },
+        ],
+        delay: 5.5,
+        repeat: -1,
+        repeatDelay: 7 + Math.random() * 4,
+      })
+    }, el)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
     <a
+      ref={rootRef}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex items-center gap-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      className="group fixed bottom-5 right-5 z-50 flex items-center gap-0 will-change-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-green-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
     >
       <span
-        className="pointer-events-none mr-0 max-w-0 overflow-hidden whitespace-nowrap pixel-corner-sm bg-black/90 px-0 py-2 text-xs font-semibold text-white opacity-0 shadow-lg border border-white/10 transition-all duration-300 group-hover:mr-3 group-hover:max-w-[12rem] group-hover:px-4 group-hover:opacity-100 group-focus-visible:mr-3 group-focus-visible:max-w-[12rem] group-focus-visible:px-4 group-focus-visible:opacity-100"
+        className="pointer-events-none mr-0 max-w-0 overflow-hidden whitespace-nowrap pixel-corner-sm border border-white/10 bg-black/90 px-0 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:mr-2.5 group-hover:max-w-[12rem] group-hover:px-3 group-hover:opacity-100 group-focus-visible:mr-2.5 group-focus-visible:max-w-[12rem] group-focus-visible:px-3 group-focus-visible:opacity-100"
       >
         Chat on WhatsApp
       </span>
 
-      <span className="flex h-14 w-14 items-center justify-center pixel-corner-sm bg-[#25D366] text-white shadow-[0_4px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
-        <WhatsAppIcon className="h-7 w-7" />
+      <span className="flex h-11 w-11 items-center justify-center pixel-corner-sm bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-transform duration-200 group-hover:scale-110 group-active:scale-95 sm:h-12 sm:w-12">
+        <WhatsAppIcon className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" />
       </span>
     </a>
   )

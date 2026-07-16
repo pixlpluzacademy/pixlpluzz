@@ -102,7 +102,7 @@ export function MentorsSection() {
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-6"
+          className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 lg:gap-x-10 xl:grid-cols-5 xl:gap-x-8"
         >
           {MENTORS.map(({ name, designation, image }, i) => {
             const variant = i % 3
@@ -115,7 +115,7 @@ export function MentorsSection() {
                 <ExpandableLogoPortrait
                   src={encodeURI(image)}
                   alt={name}
-                  className="mx-auto max-w-[280px] sm:max-w-none"
+                  className="mx-auto w-full max-w-[340px] sm:max-w-[300px] lg:max-w-none"
                 />
 
                 {variant === 0 && (

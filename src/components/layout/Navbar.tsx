@@ -8,10 +8,10 @@ import { PixlLogo } from '@/components/ui/PixlLogo'
 import { cn } from '@/lib/utils'
 
 const COURSE_LINKS = [
-  { label: 'Digital Marketing', href: '/courses/digital-marketing-course' },
-  { label: 'Web Development', href: '/courses/ai-powered-web-development-course' },
+  { label: 'Digital Marketing with AI', href: '/courses/digital-marketing-course' },
+  { label: 'AI Web Development', href: '/courses/ai-powered-web-development-course' },
   { label: 'Data Science & AI', href: '/courses/data-science-ai-course' },
-  { label: 'Cyber Security', href: '/courses/cyber-security-course-with-ai' },
+  { label: 'Cyber Security with AI', href: '/courses/cyber-security-course-with-ai' },
 ]
 
 const NAV_LINKS = [

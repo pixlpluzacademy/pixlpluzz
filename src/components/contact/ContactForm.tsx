@@ -6,10 +6,10 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 import { PixelButton } from '@/components/ui/PixelButton'
 
 const COURSES = [
-  'Digital Marketing Course',
+  'Digital Marketing Course with AI',
   'AI Powered Web Development Course',
   'Data Science & AI Course',
-  'Cyber Security Course With AI',
+  'Cyber Security Course with AI',
   'Not sure yet',
 ]
 

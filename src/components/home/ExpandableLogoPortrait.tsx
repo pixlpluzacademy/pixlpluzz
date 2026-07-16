@@ -12,7 +12,7 @@ const VIEW_W = 950
 const CX = VIEW_W / 2
 const CY = 300
 const DURATION = 800
-const LIFT_SCALE = 1.14 // peak portrait scale (bottom-anchored)
+const LIFT_SCALE = 1.18 // peak portrait scale (bottom-anchored)
 const BLUE = '#153e90'
 const GREEN = '#54e346'
 const HIT_W_SMALL = W_SMALL + 2 * U
@@ -63,11 +63,11 @@ const PORTRAIT = GEO_SMALL.portrait
  * Full cutout at logo width — bottom on logo, head free above.
  * Placement stays fixed while only the logo frame animates.
  */
-const CUTOUT_H = PORTRAIT.h * 2.05
+const CUTOUT_H = PORTRAIT.h * 2.45
 const CUTOUT = {
-  x: PORTRAIT.x + PORTRAIT.w * 0.22, // further right in the logo
-  y: PORTRAIT.y + PORTRAIT.h - CUTOUT_H,
-  w: PORTRAIT.w * 0.95, // a bit larger
+  x: PORTRAIT.x - PORTRAIT.w * 0.08,
+  y: PORTRAIT.y + PORTRAIT.h - CUTOUT_H + U * 0.22,
+  w: PORTRAIT.w * 1.28,
   h: CUTOUT_H,
 }
 const CUTOUT_OX = CUTOUT.x + CUTOUT.w / 2

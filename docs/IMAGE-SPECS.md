@@ -49,7 +49,7 @@ All sizes below are **export / deliverable** targets (width × height in px). Pr
 |-------|--------------|--------|
 | Learn by Working | `class2.jpg` | **800 × 800** |
 | Future-Ready Curriculum | `students.jpg` | **800 × 800** |
-| Mentorship by Industry Experts | `student2.jpg` | **800 × 800** |
+| Industry Expert Mentorship | `student2.jpg` | **800 × 800** |
 | Placement & Career Support | `graduation.jpg` | **800 × 800** |
 
 ### Mentors section — portraits (3:4)

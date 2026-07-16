@@ -2,7 +2,7 @@
 
 import { useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
-import { Phone, MapPin, Mail, CheckCircle } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import gsap from 'gsap'
@@ -67,52 +67,19 @@ export function ContactSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-0 overflow-hidden pixel-corner-lg border border-white/5 lg:min-h-[38rem]">
 
-        {/* Left panel — student image + contact info */}
+        {/* Left panel — image only */}
         <div
           ref={leftRef}
-          className="relative min-h-[26rem] sm:min-h-[28rem] lg:min-h-full flex flex-col justify-end overflow-hidden"
+          className="relative min-h-[26rem] sm:min-h-[28rem] lg:min-h-full overflow-hidden"
         >
           <Image
             src="/images/getintouch.png"
-            alt="Pixl Pluz student"
+            alt=""
             fill
             className="object-cover object-center"
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority={false}
           />
-          <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/45 to-black/10" />
-
-          <div className="relative z-10 p-6 sm:p-10" data-no-blur-text>
-            <SectionLabel className="mb-4 self-start w-fit">Contact Us</SectionLabel>
-            <h3 className="text-3xl font-black text-white mb-3">
-              Ready to Build Your Digital Career?
-            </h3>
-            <p className="text-justify text-gray-300 text-sm leading-relaxed mb-6">
-              Have questions about courses, scholarship, entrance test, batch timing, or career support?
-              Our team is here to guide you.
-            </p>
-
-            <div className="space-y-3">
-              {[
-                { icon: Phone, label: 'Call Center',   value: '(+91) XXXXX-XXXXX' },
-                { icon: MapPin, label: 'Our Location', value: 'Kochi, Kerala' },
-                { icon: Mail,  label: 'Email',         value: 'info@pixlpluz.com' },
-              ].map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <motion.div
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    className="w-10 h-10 bg-white/10 flex items-center justify-center pixel-corner-sm shrink-0"
-                  >
-                    <Icon size={16} className="text-green-accent" />
-                  </motion.div>
-                  <div>
-                    <p className="text-xs text-gray-500">{label}</p>
-                    <p className="text-sm font-semibold text-white">{value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Right panel — enquiry form */}

@@ -40,10 +40,10 @@ const QUICK_LINKS = [
 ]
 
 const COURSES = [
-  { label: 'Digital Marketing',  href: '/courses/digital-marketing-course' },
-  { label: 'Web Development',    href: '/courses/ai-powered-web-development-course' },
-  { label: 'Data Science & AI',  href: '/courses/data-science-ai-course' },
-  { label: 'Cyber Security',     href: '/courses/cyber-security-course-with-ai' },
+  { label: 'Digital Marketing with AI', href: '/courses/digital-marketing-course' },
+  { label: 'AI Web Development', href: '/courses/ai-powered-web-development-course' },
+  { label: 'Data Science & AI', href: '/courses/data-science-ai-course' },
+  { label: 'Cyber Security with AI', href: '/courses/cyber-security-course-with-ai' },
 ]
 
 export function Footer() {

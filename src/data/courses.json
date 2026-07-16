@@ -2,9 +2,9 @@
   {
     "id": "1",
     "slug": "digital-marketing-course",
-    "title": "Digital Marketing Course",
-    "shortDescription": "Learn digital marketing with real campaigns, tools, and portfolio projects",
-    "description": "The Digital Marketing Course at Pixl Pluz Academy is a comprehensive, agency-style training program designed to build job-ready skills in SEO, social media marketing, Google Ads, content strategy, email marketing, analytics, and AI-powered workflows. You will work on live projects, build a verified portfolio, and get career support from industry mentors.",
+    "title": "Digital Marketing Course with AI",
+    "shortDescription": "Learn digital marketing with AI tools, real campaigns, and portfolio projects",
+    "description": "The Digital Marketing Course with AI at Pixl Pluz Academy is a comprehensive, agency-style training program designed to build job-ready skills in SEO, social media marketing, Google Ads, content strategy, email marketing, analytics, and AI-powered workflows. You will work on live projects, build a verified portfolio, and get career support from industry mentors.",
     "level": "Beginner",
     "duration": "2 months",
     "durationHours": "200 hours",
@@ -162,7 +162,7 @@
   {
     "id": "4",
     "slug": "cyber-security-course-with-ai",
-    "title": "Cyber Security Course With AI",
+    "title": "Cyber Security Course with AI",
     "shortDescription": "Learn how to protect digital systems, networks, and data",
     "description": "The Cybersecurity Course at Pixl Pluz Academy introduces learners to the fundamentals of digital security, network protection, ethical hacking basics, security awareness, and practical cyber defence methods. The course is designed for students and IT learners who want to build a strong foundation in cybersecurity.",
     "level": "Intermediate",
