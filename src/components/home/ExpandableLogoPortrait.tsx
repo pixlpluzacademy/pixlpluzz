@@ -77,6 +77,10 @@ const CUTOUT_OY = CUTOUT.y + CUTOUT.h
 const VIEW_TOP = Math.min(CUTOUT.y, GEO_SMALL.hit.y)
 const VIEW_BOTTOM = Math.max(CUTOUT.y + CUTOUT.h, GEO_SMALL.hit.y + GEO_SMALL.hit.h)
 const VIEW_H = VIEW_BOTTOM - VIEW_TOP
+/** Layout height ignores empty head space above the logo — heads overflow upward. */
+const LAYOUT_TOP = GEO_SMALL.hit.y
+const LAYOUT_H = VIEW_BOTTOM - LAYOUT_TOP
+const SVG_HEIGHT_PCT = (VIEW_H / LAYOUT_H) * 100
 
 function canHoverFine() {
   if (typeof window === 'undefined') return false
@@ -171,13 +175,13 @@ export function ExpandableLogoPortrait({
   return (
     <div
       className={cn('relative w-full overflow-visible', expanded && 'z-30', className)}
-      style={{ aspectRatio: `${HIT_W_SMALL} / ${VIEW_H}` }}
+      style={{ aspectRatio: `${HIT_W_SMALL} / ${LAYOUT_H}` }}
     >
       <div
-        className="absolute left-1/2 top-0 origin-top cursor-pointer select-none overflow-visible"
+        className="absolute bottom-0 left-1/2 origin-bottom cursor-pointer select-none overflow-visible"
         style={{
           width: `${widthPct}%`,
-          aspectRatio: `${geo.hit.w} / ${VIEW_H}`,
+          height: `${SVG_HEIGHT_PCT}%`,
           transform: 'translateX(-50%)',
         }}
         onPointerEnter={onPointerEnter}

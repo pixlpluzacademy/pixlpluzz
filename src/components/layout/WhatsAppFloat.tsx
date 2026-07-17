@@ -6,6 +6,9 @@ import gsap from 'gsap'
 /** Update this to the live WhatsApp business number (country code, digits only). */
 const WHATSAPP_NUMBER = '919999900000'
 const WHATSAPP_MESSAGE = 'Hi Pixl Pluz! I would like to know more about your courses.'
+const POP_INTERVAL_MS = 8000
+/** Start below the viewport edge so it feels like it rises onto the page. */
+const OFFSCREEN_Y = 160
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -20,9 +23,13 @@ function WhatsAppIcon({ className }: { className?: string }) {
   )
 }
 
+function openWhatsApp() {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
+
 export function WhatsAppFloat() {
-  const rootRef = useRef<HTMLAnchorElement>(null)
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+  const rootRef = useRef<HTMLButtonElement>(null)
 
   useLayoutEffect(() => {
     const el = rootRef.current
@@ -33,43 +40,57 @@ export function WhatsAppFloat() {
       return
     }
 
-    gsap.set(el, { opacity: 0, y: 72, scale: 0.72 })
+    const playPopFromBottom = () => {
+      const tl = gsap.timeline({ overwrite: true })
+      // Drop fully below the viewport edge
+      tl.to(el, {
+        y: OFFSCREEN_Y,
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power2.in',
+      })
+      // Rise back onto the page from off-screen
+      tl.fromTo(
+        el,
+        { y: OFFSCREEN_Y, scale: 0.85, opacity: 0 },
+        {
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.85,
+          ease: 'back.out(1.6)',
+        },
+      )
+    }
 
-    const ctx = gsap.context(() => {
-      // First entrance: pop up from bottom and stay
+    // Start hidden below the screen, then pop in and repeat
+    gsap.set(el, { opacity: 0, y: OFFSCREEN_Y, scale: 0.85 })
+    const startDelay = window.setTimeout(() => {
       gsap.to(el, {
-        opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.75,
-        delay: 1.4,
-        ease: 'back.out(1.7)',
+        opacity: 1,
+        duration: 0.85,
+        ease: 'back.out(1.6)',
       })
+    }, 1200)
+    const interval = window.setInterval(playPopFromBottom, POP_INTERVAL_MS)
 
-      // Occasional attention pop from below
-      gsap.to(el, {
-        keyframes: [
-          { y: 18, scale: 0.92, duration: 0.22, ease: 'power2.in' },
-          { y: 0, scale: 1.08, duration: 0.38, ease: 'back.out(2.2)' },
-          { scale: 1, duration: 0.28, ease: 'power2.out' },
-        ],
-        delay: 5.5,
-        repeat: -1,
-        repeatDelay: 7 + Math.random() * 4,
-      })
-    }, el)
-
-    return () => ctx.revert()
+    return () => {
+      window.clearTimeout(startDelay)
+      window.clearInterval(interval)
+      gsap.killTweensOf(el)
+    }
   }, [])
 
   return (
-    <a
+    <button
       ref={rootRef}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      type="button"
+      onClick={openWhatsApp}
       aria-label="Chat on WhatsApp"
-      className="group fixed bottom-5 right-5 z-50 flex items-center gap-0 will-change-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-green-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      className="group fixed bottom-5 right-5 z-50 flex cursor-pointer items-center gap-0 border-0 bg-transparent p-0 will-change-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-green-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
     >
       <span
         className="pointer-events-none mr-0 max-w-0 overflow-hidden whitespace-nowrap pixel-corner-sm border border-white/10 bg-black/90 px-0 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:mr-2.5 group-hover:max-w-[12rem] group-hover:px-3 group-hover:opacity-100 group-focus-visible:mr-2.5 group-focus-visible:max-w-[12rem] group-focus-visible:px-3 group-focus-visible:opacity-100"
@@ -80,6 +101,6 @@ export function WhatsAppFloat() {
       <span className="flex h-11 w-11 items-center justify-center pixel-corner-sm bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-transform duration-200 group-hover:scale-110 group-active:scale-95 sm:h-12 sm:w-12">
         <WhatsAppIcon className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" />
       </span>
-    </a>
+    </button>
   )
 }

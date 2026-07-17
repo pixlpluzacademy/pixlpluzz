@@ -1,19 +1,110 @@
 'use client'
 
+import { useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
 import { BlurText } from '@/components/ui/BlurText'
 
-const STATS = [
-  { value: '100%', label: 'Placement Assistance' },
-  { value: '20+', label: 'Hiring Partners' },
-  { value: '₹3L+', label: 'Avg Starting Package' },
-  { value: '< 60', label: 'Days to Placement' },
-]
+const COMPANIES = [
+  'Copernicus',
+  'Neo Digital Hub',
+  'Lathief Production',
+  'Black White viz',
+] as const
+
+/** How many fall into the pile (repeats company names so it feels collected). */
+const DROP_COUNT = 14
+
+function pileSpot(i: number) {
+  // Messy collected pile — slight overlap like mustard settling
+  const col = i % 5
+  const row = Math.floor(i / 5)
+  return {
+    x: -110 + col * 58 + (i % 3) * 10,
+    y: -row * 22 - (i % 2) * 6,
+    rotate: -12 + (i % 7) * 4,
+  }
+}
 
 export function PlacementHero() {
+  const heroRef = useRef<HTMLElement>(null)
+  const pileRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const hero = heroRef.current
+    const pile = pileRef.current
+    if (!hero || !pile) return
+
+    const boxes = Array.from(pile.querySelectorAll<HTMLElement>('[data-fall-box]'))
+    if (!boxes.length) return
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduceMotion) {
+      boxes.forEach((box, i) => {
+        const spot = pileSpot(i)
+        gsap.set(box, {
+          x: spot.x,
+          y: spot.y,
+          rotation: spot.rotate,
+          opacity: 1,
+        })
+      })
+      return
+    }
+
+    const fallDistance = Math.max(hero.offsetHeight * 0.55, 280)
+
+    const ctx = gsap.context(() => {
+      boxes.forEach((box, i) => {
+        const spot = pileSpot(i)
+        const startX = -40 + (i % 6) * 36 + Math.sin(i) * 24
+
+        gsap.set(box, {
+          x: startX,
+          y: -fallDistance - 40 - (i % 4) * 30,
+          rotation: -18 + (i % 5) * 8,
+          opacity: 0,
+          scale: 0.92,
+        })
+
+        gsap
+          .timeline({ delay: 0.35 + i * 0.28 })
+          .to(box, {
+            opacity: 1,
+            duration: 0.15,
+            ease: 'power1.out',
+          })
+          .to(
+            box,
+            {
+              y: spot.y,
+              x: spot.x,
+              rotation: spot.rotate,
+              scale: 1,
+              duration: 1.05 + (i % 3) * 0.12,
+              ease: 'bounce.out',
+            },
+            '<',
+          )
+      })
+    }, hero)
+
+    return () => ctx.revert()
+  }, [])
+
+  const drops = Array.from({ length: DROP_COUNT }, (_, i) => ({
+    name: COMPANIES[i % COMPANIES.length],
+    key: `${COMPANIES[i % COMPANIES.length]}-${i}`,
+  }))
+
   return (
-    <section className="bg-navy-950 px-4 pt-24 pb-16 sm:px-6 lg:px-12" data-page-hero>
-      <div className="mx-auto max-w-7xl">
-        <p className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent">
+    <section
+      ref={heroRef}
+      className="relative overflow-hidden bg-navy-950 pt-32 pb-36 sm:pt-36 sm:pb-40 lg:pt-40 lg:pb-44"
+      data-page-hero
+    >
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
+        <p className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-10">
           Placement
         </p>
         <BlurText
@@ -25,18 +116,26 @@ export function PlacementHero() {
         <BlurText
           as="p"
           onLoad
-          className="mt-6 max-w-xl text-lg text-gray-400"
+          className="mt-8 max-w-xl text-lg text-gray-400 sm:mt-10"
           text="Real careers, real companies — across India and beyond."
         />
+      </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-8 sm:mt-20 sm:gap-x-8 sm:gap-y-10 sm:pt-10 lg:grid-cols-4">
-          {STATS.map((s) => (
-            <div key={s.label}>
-              <p className="text-3xl font-black text-white sm:text-4xl lg:text-5xl">{s.value}</p>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-gray-500">
-                {s.label}
-              </p>
-            </div>
+      {/* Collection pile — boxes fall from above the hero and settle here */}
+      <div
+        ref={pileRef}
+        className="pointer-events-none absolute inset-x-0 bottom-10 z-0 flex justify-center sm:bottom-12 lg:bottom-14"
+        aria-label="Hiring partners"
+      >
+        <div className="relative h-28 w-[min(100%,520px)] sm:h-32">
+          {drops.map((item) => (
+            <span
+              key={item.key}
+              data-fall-box
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap bg-green-accent px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.12em] text-black shadow-[0_6px_16px_rgba(0,0,0,0.35)] sm:px-5 sm:py-3 sm:text-xs"
+            >
+              {item.name}
+            </span>
           ))}
         </div>
       </div>

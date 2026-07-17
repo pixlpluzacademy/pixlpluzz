@@ -86,7 +86,7 @@ export function MentorsSection() {
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mb-12 text-center sm:mb-14">
+        <div className="mb-4 text-center sm:mb-5">
           <AnimatedSection variant="fadeUp">
             <SectionLabel className="mb-4 mx-auto">Our Mentors</SectionLabel>
           </AnimatedSection>
@@ -102,7 +102,7 @@ export function MentorsSection() {
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3 lg:gap-x-10 xl:grid-cols-5 xl:gap-x-8"
+          className="grid grid-cols-1 gap-10 pt-16 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 sm:pt-20 lg:grid-cols-3 lg:gap-x-10 lg:pt-24 xl:grid-cols-5 xl:gap-x-8"
         >
           {MENTORS.map(({ name, designation, image }, i) => {
             const variant = i % 3

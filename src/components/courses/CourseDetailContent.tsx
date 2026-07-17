@@ -7,8 +7,9 @@ import { ArrowLeft, ArrowRight, Download } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { Course } from '@/lib/data'
-import { getCourseImage, getCourseAiTools, LEVEL_STYLES } from '@/lib/course-assets'
+import { getCourseImage, getCourseAiTools } from '@/lib/course-assets'
 import { CourseFAQ } from '@/components/courses/CourseFAQ'
+import { CertificateStack } from '@/components/courses/CertificateStack'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { formatPrice, cn } from '@/lib/utils'
 
@@ -195,7 +196,6 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
   const isSiteReady = useSiteReady()
   const image = getCourseImage(course.slug)
   const aiTools = getCourseAiTools(course.slug)
-  const accentWord = course.tags[0] ?? 'AI'
 
   useLayoutEffect(() => {
     if (!isSiteReady) return
@@ -270,19 +270,14 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-0 bg-linear-to-r from-black via-black/85 to-black/35" />
-          <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/50" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 50% 60% at 20% 50%, rgba(21,62,144,0.4) 0%, transparent 55%), radial-gradient(ellipse 40% 45% at 90% 15%, rgba(84,227,70,0.18) 0%, transparent 50%)',
-            }}
-          />
+          <div className="absolute inset-0 bg-black/85" />
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[min(92svh,920px)] max-w-7xl flex-col justify-end px-4 pb-8 pt-28 sm:px-6 lg:px-8 lg:pb-10 lg:pt-32">
+          <div className="course-hero-fade absolute right-4 top-28 z-20 sm:right-6 lg:right-8 lg:top-32">
+            <CertificateStack />
+          </div>
+
           <Link
             href="/courses"
             className="course-hero-fade mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/55 transition-colors hover:text-green-accent"
@@ -291,26 +286,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             All courses
           </Link>
 
-          <div className="course-hero-fade mb-6 flex flex-wrap items-center gap-2">
-            <span
-              className={cn(
-                'pixel-corner-sm border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide',
-                LEVEL_STYLES[course.level] ?? LEVEL_STYLES.Beginner,
-              )}
-            >
-              {course.level}
-            </span>
-            {course.featured && (
-              <span className="pixel-corner-sm border border-green-accent/40 bg-green-accent px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-black">
-                Featured
-              </span>
-            )}
-            <span className="pixel-corner-sm border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white/70 backdrop-blur-sm">
-              {accentWord}
-            </span>
-          </div>
-
-          <h1 className="course-hero-fade max-w-4xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
+          <h1 className="course-hero-fade max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
             {course.title}
           </h1>
 
@@ -361,8 +337,6 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             </a>
           </div>
         </div>
-
-        <AiToolsCarousel tools={aiTools} />
       </section>
 
       {/* ── Curriculum ── */}
@@ -388,6 +362,8 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
           </div>
         </div>
       </section>
+
+      <AiToolsCarousel tools={aiTools} />
 
       {/* ── Audience ── */}
       <section className="relative border-t border-white/8 bg-[#050505] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">

@@ -217,9 +217,9 @@ Not on homepage currently; include if re-enabled.
 |------|-----------|------------------|---------------|
 | `/about` | 4–8 words | 120–160 chars | Stats row: **no ₹ or 100% labels** |
 | `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
-| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; AI tools marquee (10+ per course); Curriculum (3-col gradient cards); Who it’s for; Included; FAQ — no fake stats |
+| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs + compact certificate stack; Curriculum (3-col gradient cards); AI tools marquee below modules; Who it’s for; FAQ — no fake stats |
 | `/scholarship` | 4–10 words | 120–160 chars | Steps, eligibility — **no amounts** |
-| `/placement` | 4–8 words | 120–160 chars | **No "100% Placement Assistance" stat** |
+| `/placement` | 4–8 words | 120–160 chars | Hero + company marquee (Copernicus, Neo Digital Hub, Lathief Production, Black White viz) + wall — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
 | `/blog/[slug]` | 6–14 words | 120–160 chars | Article 600–1200 words (editorial) |
 
@@ -246,6 +246,9 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-16 | Placement hero | Green company boxes fall from hero and collect in a bottom pile |
+| 2026-07-16 | Course detail AI tools | Moved AI tools marquee below curriculum modules |
+| 2026-07-16 | Course detail certificate | Compact stacked certificates in hero (right), using `/images/certificates/*` |
 | 2026-07-16 | Courses | First course → *"Digital Marketing Course with AI"*; bigger card titles; AI naming across all four |
 | 2026-07-16 | Contact | Left panel is image-only — removed Contact Us heading, body, and phone/location/email overlay |
 | 2026-07-16 | Scholarship hero | Removed scroll-zoom text mask; simple full-bleed photo hero with Scholarship Fund copy |

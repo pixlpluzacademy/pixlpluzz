@@ -79,8 +79,8 @@ export function AdvantageSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative bg-black py-16 sm:py-24 overflow-hidden">
-      <div className="relative overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-black py-16 sm:py-24">
+      <div className="relative overflow-visible">
         <FloatingPixels />
 
         <div className="relative z-10 mx-auto grid max-w-7xl items-start gap-10 px-4 sm:gap-12 lg:grid-cols-2 lg:gap-16">
@@ -128,7 +128,7 @@ export function AdvantageSection() {
 
           <div
             ref={gridRef}
-            className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5 lg:grid-cols-3 lg:ml-auto lg:max-w-[34rem] xl:max-w-[36rem]"
+            className="grid w-full grid-cols-1 gap-3 p-2 sm:grid-cols-2 sm:gap-3.5 lg:ml-auto lg:max-w-[34rem] lg:grid-cols-3 xl:max-w-[36rem]"
           >
             {FEATURES.map(({ label, image }, i) => {
               const isOpen = openIdx === i
@@ -150,16 +150,17 @@ export function AdvantageSection() {
                     }
                   }}
                   className={cn(
-                    'advantage-card group relative w-full cursor-pointer overflow-hidden border border-white/10 bg-[#141414]',
-                    'transition-all duration-[400ms] ease-out',
-                    'hover:border-green-accent/40 hover:shadow-lg hover:shadow-green-accent/10',
+                    'advantage-card group relative w-full cursor-pointer border border-white/10 bg-[#141414]',
+                    'transition-[border-color,box-shadow] duration-[400ms] ease-out',
+                    'hover:border-white/18',
                     isOpen
-                      ? 'col-span-full z-40 mx-auto aspect-square w-full max-w-[min(100%,28rem)] sm:max-w-[32rem] border-green-accent/40 shadow-lg shadow-green-accent/15'
+                      ? 'col-span-full z-40 mx-auto aspect-square w-full max-w-[min(100%,28rem)] sm:max-w-[32rem] border-white/15 shadow-[0_0_32px_rgba(84,227,70,0.35),0_0_64px_rgba(84,227,70,0.2)]'
                       : 'aspect-square',
                     isHidden && 'hidden',
                   )}
                 >
-                  <div className="absolute inset-0">
+                  {/* Clip media inside so outer glow is not cut off */}
+                  <div className="absolute inset-0 overflow-hidden">
                     <Image
                       src={image}
                       alt=""
@@ -173,25 +174,22 @@ export function AdvantageSection() {
                           : 'scale-110 blur-[6px] brightness-75 group-hover:scale-100 group-hover:blur-none group-hover:brightness-100',
                       )}
                     />
+                    <div
+                      className={cn(
+                        'absolute inset-0 transition-colors duration-500',
+                        isOpen ? 'bg-black/20' : 'bg-black/55 group-hover:bg-black/25',
+                      )}
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
+                    <p
+                      className={cn(
+                        'absolute inset-x-0 bottom-0 z-10 p-3.5 font-black uppercase leading-tight tracking-wide text-white sm:p-4',
+                        isOpen ? 'text-sm sm:text-base md:text-lg' : 'text-xs sm:text-sm',
+                      )}
+                    >
+                      {label}
+                    </p>
                   </div>
-
-                  <div
-                    className={cn(
-                      'absolute inset-0 transition-colors duration-500',
-                      isOpen ? 'bg-black/20' : 'bg-black/55 group-hover:bg-black/25',
-                    )}
-                  />
-
-                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
-
-                  <p
-                    className={cn(
-                      'absolute inset-x-0 bottom-0 z-10 p-3.5 font-black uppercase leading-tight tracking-wide text-white sm:p-4',
-                      isOpen ? 'text-sm sm:text-base md:text-lg' : 'text-xs sm:text-sm',
-                    )}
-                  >
-                    {label}
-                  </p>
                 </div>
               )
             })}

@@ -46,15 +46,17 @@ export function FAQSection() {
   return (
     <section id="faq" className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <Image
-          src="/images/bg3.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-          priority={false}
-        />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-y-0 right-4 w-[min(72%,40rem)] sm:right-8 sm:w-[min(65%,44rem)] lg:right-12 lg:w-[min(58%,48rem)]">
+          <Image
+            src="/images/bg-faq3.png"
+            alt=""
+            fill
+            sizes="(max-width: 640px) 72vw, (max-width: 1024px) 65vw, 48rem"
+            className="object-contain object-right object-center opacity-95"
+            priority={false}
+          />
+        </div>
+        <div className="absolute inset-0 bg-linear-to-l from-black/20 via-black/55 to-black" />
       </div>
       <div className="relative z-10 mx-auto max-w-3xl">
         <div className="text-center mb-12">
@@ -81,14 +83,14 @@ export function FAQSection() {
               variants={faqItemVariants}
               transition={{ duration: 0.4, ease: 'easeOut' as const }}
               className={cn(
-                'overflow-hidden border bg-black/75 backdrop-blur-sm transition-colors duration-200',
+                'overflow-hidden border backdrop-blur-md transition-colors duration-200',
                 openIdx === i
-                  ? 'border-green-accent/50'
-                  : 'border-white/20'
+                  ? 'border-green-accent/50 bg-white/10'
+                  : 'border-white/20 bg-white/5 hover:bg-white/[0.07]',
               )}
             >
               <button
-                className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left hover:bg-white/5 transition-colors"
+                className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-white/5"
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}
               >
                 <span className="flex items-start gap-3">

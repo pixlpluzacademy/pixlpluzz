@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { Course } from '@/lib/data'
 import { CourseCard } from '@/components/courses/CourseCard'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
+import { COURSES_PAGE_HERO_IMAGE } from '@/lib/course-assets'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -78,7 +79,7 @@ export function CoursesContent({ courses }: CoursesContentProps) {
           aria-hidden
         >
           <Image
-            src="/images/bg.jpg"
+            src={COURSES_PAGE_HERO_IMAGE}
             alt=""
             fill
             priority
@@ -86,11 +87,10 @@ export function CoursesContent({ courses }: CoursesContentProps) {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-blue-primary/75 mix-blend-multiply" aria-hidden />
-        <div className="absolute inset-0 bg-linear-to-r from-navy-950/90 via-blue-dark/70 to-navy-950/50" aria-hidden />
+        <div className="absolute inset-0 bg-black/65" aria-hidden />
 
         <div className="relative z-10 mx-auto max-w-7xl">
-          <p className="text-xs font-medium uppercase tracking-widest text-blue-light/80 mb-3">
+          <p className="text-xs font-medium uppercase tracking-widest text-green-accent mb-3">
             Home / Courses
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">

@@ -9,19 +9,21 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * Custom-designed placement cards — image only, no names on the page.
- * Upload at 900 × 1200 px (3:4 portrait). Drop files in public/images/placement/
- * and update this list (or wire from admin once real assets exist).
+ * Placement wall — student photos from public/images/students/
  */
 const WALL_IMAGES = [
-  '/images/student.jpg',
-  '/images/students.jpg',
-  '/images/graduation.jpg',
-  '/images/student2.jpg',
-  '/images/class2.jpg',
-  '/images/graduation2.jpg',
-  '/images/students2.jpg',
-  '/images/boy.jpg',
+  '/images/students/offer-letter.png',
+  '/images/students/career-placement-support.png',
+  '/images/students/group-discussion.png',
+  '/images/students/interview-preparation.png',
+  '/images/students/practical-learning.png',
+  '/images/students/live-project-training.png',
+  '/images/students/verified-portfolio.png',
+  '/images/students/industry-certification.png',
+  '/images/students/industry-expert-mentors.png',
+  '/images/students/clearing-doubts.jpeg',
+  '/images/students/scholarship-based-courses.png',
+  '/images/students/ai-tools-automation.png',
 ]
 
 export function PlacementWall() {

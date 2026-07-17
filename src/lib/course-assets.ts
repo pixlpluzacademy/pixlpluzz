@@ -1,11 +1,14 @@
 export const COURSE_IMAGES: Record<string, string> = {
-  'digital-marketing-course': '/images/students2.jpg',
-  'ai-powered-web-development-course': '/images/class2.jpg',
-  'data-science-ai-course': '/images/student2.jpg',
-  'cyber-security-course-with-ai': '/images/graduation2.jpg',
+  'digital-marketing-course': '/images/courses/digital-marketing.png',
+  'ai-powered-web-development-course': '/images/courses/web-development.png',
+  'data-science-ai-course': '/images/courses/data-science.png',
+  'cyber-security-course-with-ai': '/images/courses/cyber-security.png',
 }
 
-export const DEFAULT_COURSE_IMAGE = '/images/class2.jpg'
+export const DEFAULT_COURSE_IMAGE = '/images/courses/digital-marketing.png'
+
+/** Courses page hero background (student photo). */
+export const COURSES_PAGE_HERO_IMAGE = '/images/students/group-discussion.png'
 
 /** Resolves a course hero/card image — slug map first, then fallback. */
 export function getCourseImage(slug: string): string {

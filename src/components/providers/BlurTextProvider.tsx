@@ -111,7 +111,15 @@ export function BlurTextProvider() {
   const isSiteReady = useSiteReady()
 
   useLayoutEffect(() => {
-    if (!isSiteReady || pathname.startsWith('/admin') || pathname === '/') return
+    const isCourseDetail = /^\/courses\/[^/]+/.test(pathname)
+    if (
+      !isSiteReady ||
+      pathname.startsWith('/admin') ||
+      pathname === '/' ||
+      isCourseDetail
+    ) {
+      return
+    }
 
     const main = document.querySelector('main')
     if (!main) return
