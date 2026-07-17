@@ -12,6 +12,8 @@ interface PageHeaderProps {
   noise?: boolean
   /** Word-by-word blur reveal on load (about/placement-style hero) */
   blurOnLoad?: boolean
+  /** Use Electric Verdant for the main heading */
+  greenTitle?: boolean
 }
 
 export function PageHeader({
@@ -20,9 +22,11 @@ export function PageHeader({
   subtitle,
   noise = false,
   blurOnLoad = false,
+  greenTitle = false,
 }: PageHeaderProps) {
+  const titleColor = greenTitle ? 'text-green-accent' : 'text-white'
   return (
-    <section className="relative overflow-hidden bg-navy-950 px-4 pb-20 pt-28" data-page-hero>
+    <section className="relative overflow-hidden bg-black px-4 pb-10 pt-28 sm:pb-12" data-page-hero>
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-15" aria-hidden />
       {noise && <NoiseParticles />}
       <FloatingPixels pixels={[
@@ -39,32 +43,27 @@ export function PageHeader({
             <BlurText
               as="h1"
               onLoad
-              className="text-5xl sm:text-6xl font-black text-white"
+              className={`text-5xl sm:text-6xl font-black ${titleColor}`}
               text={title}
             />
             {subtitle && (
               <BlurText
                 as="p"
                 onLoad
-                className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg"
+                className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg text-justify sm:text-center"
                 text={subtitle}
               />
             )}
           </>
         ) : (
           <>
-            <h1 className="text-5xl sm:text-6xl font-black text-white">{title}</h1>
+            <h1 className={`text-5xl sm:text-6xl font-black ${titleColor}`}>{title}</h1>
             {subtitle && (
-              <p className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg">{subtitle}</p>
+              <p className="mt-4 max-w-2xl mx-auto text-gray-400 text-lg text-justify sm:text-center">{subtitle}</p>
             )}
           </>
         )}
       </div>
-      {/* Curved bottom */}
-      <div
-        className="absolute -bottom-1 inset-x-0 h-12 bg-navy-950"
-        style={{ clipPath: 'ellipse(55% 100% at 50% 100%)' }}
-      />
     </section>
   )
 }

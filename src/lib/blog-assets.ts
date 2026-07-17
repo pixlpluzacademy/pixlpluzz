@@ -1,16 +1,21 @@
-// Blog thumbnails in blogs.json point to files that don't exist —
-// assign each post a distinct photo from /public/images by its position.
+// Blog thumbnails — photos from /public/images/students/
 
 const BLOG_IMAGES = [
-  '/images/students.jpg',
-  '/images/class2.jpg',
-  '/images/graduation.jpg',
-  '/images/student2.jpg',
-  '/images/students2.jpg',
-  '/images/graduation2.jpg',
+  '/images/students/group-discussion.png',
+  '/images/students/live-project-training.png',
+  '/images/students/clearing-doubts.jpeg',
+  '/images/students/practical-learning.png',
+  '/images/students/career-placement-support.png',
+  '/images/students/interview-preparation.png',
+  '/images/students/ai-tools-automation.png',
+  '/images/students/verified-portfolio.png',
+  '/images/students/industry-expert-mentors.png',
+  '/images/students/industry-certification.png',
+  '/images/students/scholarship-based-courses.png',
+  '/images/students/offer-letter.png',
 ]
 
 /** Stable, distinct image per post index. */
 export function getBlogImage(index: number): string {
-  return BLOG_IMAGES[index % BLOG_IMAGES.length]
+  return BLOG_IMAGES[index % BLOG_IMAGES.length]!
 }

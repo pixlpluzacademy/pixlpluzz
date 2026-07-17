@@ -28,7 +28,6 @@ export function EventContent({ events }: { events: Event[] }) {
     if (reduceMotion) return
 
     const ctx = gsap.context(() => {
-      // Keep the hero hidden until the site loader clears
       if (!siteReady) {
         gsap.set('.evt-hero-pop', { opacity: 0 })
         return
@@ -41,25 +40,42 @@ export function EventContent({ events }: { events: Event[] }) {
         { opacity: 1, duration: 0.05, stagger: 0.18, ease: 'none', delay: 0.2 },
       )
 
-      // Chapter sections — headline rises, spec rows stagger in
+      // Chapter titles — clip uncover + blur on scroll
       gsap.utils.toArray<HTMLElement>('.evt-chapter', root).forEach((section) => {
+        const titleLine = section.querySelectorAll<HTMLElement>('.evt-chapter-line')
+        const reveal = section.querySelectorAll<HTMLElement>('.evt-reveal')
+        const specs = section.querySelectorAll<HTMLElement>('.evt-spec-row')
+
+        gsap.set(titleLine, {
+          clipPath: 'inset(0 100% -0.45em 0)',
+          filter: 'blur(8px)',
+          scale: 0.985,
+        })
+
         const tl = gsap.timeline({
           scrollTrigger: { trigger: section, start: 'top 75%', once: true },
         })
+        tl.to(titleLine, {
+          clipPath: 'inset(0 0% -0.45em 0)',
+          filter: 'blur(0px)',
+          scale: 1,
+          duration: 0.55,
+          ease: 'power3.out',
+        })
         tl.fromTo(
-          section.querySelectorAll('.evt-reveal'),
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.75, stagger: 0.1, ease: 'power3.out' },
+          reveal,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power2.out' },
+          0.2,
         )
         tl.fromTo(
-          section.querySelectorAll('.evt-spec-row'),
-          { opacity: 0, x: -24 },
-          { opacity: 1, x: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
-          0.35,
+          specs,
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' },
+          0.3,
         )
       })
 
-      // Ghost chapter numbers drift slower than the page (parallax)
       gsap.utils.toArray<HTMLElement>('.evt-ghost-num', root).forEach((el) => {
         gsap.fromTo(
           el,
@@ -77,20 +93,31 @@ export function EventContent({ events }: { events: Event[] }) {
         )
       })
 
-      // Outro reveal
-      gsap.utils.toArray<HTMLElement>('.evt-outro-reveal', root).forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-          },
-        )
+      // Outro heading + fades
+      const outroLines = root.querySelectorAll<HTMLElement>('.evt-outro-line')
+      const outroFades = root.querySelectorAll<HTMLElement>('.evt-outro-reveal')
+      gsap.set(outroLines, {
+        clipPath: 'inset(0 100% -0.45em 0)',
+        filter: 'blur(8px)',
+        scale: 0.985,
       })
+      gsap
+        .timeline({
+          scrollTrigger: { trigger: outroLines[0] ?? root, start: 'top 85%', once: true },
+        })
+        .to(outroLines, {
+          clipPath: 'inset(0 0% -0.45em 0)',
+          filter: 'blur(0px)',
+          scale: 1,
+          duration: 0.55,
+          ease: 'power3.out',
+        })
+        .fromTo(
+          outroFades,
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out' },
+          0.2,
+        )
     }, root)
 
     requestAnimationFrame(() => ScrollTrigger.refresh())
@@ -98,54 +125,48 @@ export function EventContent({ events }: { events: Event[] }) {
   }, [siteReady])
 
   return (
-    <div ref={rootRef} className="bg-navy-950 text-white">
-      {/* ── Hero — terminal-style opener ──────────────────────── */}
+    <div ref={rootRef} className="bg-black text-gray-400">
+      {/* ── Hero ── */}
       <section className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden px-4 pt-24 pb-12 sm:px-6 lg:px-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-        {/* Top status bar */}
-        <div className="evt-hero-pop relative z-10 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-gray-500">
-          <span>[status:<span className="text-green-accent">active</span>]</span>
+        <div className="evt-hero-pop relative z-10 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-sky-400">
+          <span>[status:<span className="text-sky-400">active</span>]</span>
           <span>© PIXLPLUZ — {new Date().getFullYear()}</span>
           <span className="hidden sm:inline">{'//'} events.upcoming</span>
         </div>
 
-        {/* Giant heading */}
         <div className="relative z-10">
-          <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-blue-primary">
+          <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-sky-400">
             chapter index
           </p>
-          {/* z-10 creates the stacking context that keeps the trail cubes behind the letters */}
           <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
             <PixelTrail />
-            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word">What&apos;s</span>
-            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-white">Happening</span>
+            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word evt-outline-muted">What&apos;s</span>
+            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-gray-400">Happening</span>
           </h1>
         </div>
 
-        {/* Bottom row — fake script block + count */}
         <div className="relative z-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-          <div className="evt-hero-pop font-mono text-xs leading-relaxed text-gray-500">
-            <p className="text-gray-400">[f] initEvents() {'{'}</p>
-            <p className="pl-5">loadWorkshops();</p>
-            <p className="pl-5">openScholarshipTest();</p>
-            <p className="pl-5">reserveSeats();</p>
-            <p className="text-gray-400">{'}'}</p>
+          <div className="evt-hero-pop font-mono text-xs leading-relaxed text-sky-400/80">
+            <p className="text-sky-400">[f] initEvents() {'{'}</p>
+            <p className="pl-5 text-sky-400/70">loadWorkshops();</p>
+            <p className="pl-5 text-sky-400/70">openScholarshipTest();</p>
+            <p className="pl-5 text-sky-400/70">reserveSeats();</p>
+            <p className="text-sky-400">{'}'}</p>
           </div>
           <div className="evt-hero-pop text-left sm:text-right">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-gray-500">upcoming</p>
-            <p className="text-6xl font-black text-white sm:text-7xl">{chapterNo(events.length - 1)}</p>
+            <p className="font-mono text-[11px] uppercase tracking-widest text-sky-400">upcoming</p>
+            <p className="text-6xl font-black text-gray-400 sm:text-7xl">{chapterNo(events.length - 1)}</p>
           </div>
         </div>
       </section>
 
-      {/* ── Chapters — one per event ──────────────────────────── */}
       {events.map((event, i) => (
         <section
           key={event.id}
           className="evt-chapter relative overflow-hidden border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12"
         >
-          {/* Ghost number */}
           <span
             className="evt-ghost-num pointer-events-none absolute -right-4 top-1/2 -translate-y-1/2 select-none font-black leading-none text-white/[0.04] text-[clamp(12rem,32vw,26rem)]"
             aria-hidden
@@ -154,17 +175,16 @@ export function EventContent({ events }: { events: Event[] }) {
           </span>
 
           <div className="relative z-10 mx-auto max-w-7xl">
-            <p className="evt-reveal mb-10 font-mono text-xs uppercase tracking-[0.35em] text-green-accent">
+            <p className="evt-reveal mb-10 font-mono text-xs uppercase tracking-[0.35em] text-sky-400">
               chapter {chapterNo(i)}: {event.type === 'Online' ? 'online session' : 'on campus'}
             </p>
 
             <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
-              {/* Left — title + description + CTA */}
               <div>
-                <h2 className="mb-6 text-4xl font-black leading-[1.02] sm:text-5xl lg:text-6xl">
-                  {event.title}
+                <h2 className="mb-6 text-4xl font-black leading-[1.02] text-gray-400 sm:text-5xl lg:text-6xl">
+                  <span className="evt-chapter-line block pb-[0.12em]">{event.title}</span>
                 </h2>
-                <p className="evt-reveal mb-10 max-w-xl text-base leading-relaxed text-gray-400 sm:text-lg">
+                <p className="evt-reveal mb-10 max-w-xl text-base leading-relaxed text-gray-500 sm:text-lg">
                   {event.description}
                 </p>
                 <div className="evt-reveal flex flex-wrap items-center gap-5">
@@ -176,16 +196,15 @@ export function EventContent({ events }: { events: Event[] }) {
                     <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:rotate-45" />
                   </Link>
                   {event.isFree && (
-                    <span className="font-mono text-xs uppercase tracking-widest text-green-accent">
+                    <span className="font-mono text-xs uppercase tracking-widest text-sky-400">
                       [price: free]
                     </span>
                   )}
                 </div>
               </div>
 
-              {/* Right — spec table */}
               <div>
-                <p className="evt-reveal mb-4 font-mono text-[11px] uppercase tracking-widest text-gray-500">
+                <p className="evt-reveal mb-4 font-mono text-[11px] uppercase tracking-widest text-sky-400">
                   #current event specs
                 </p>
                 <dl className="border-t border-white/10">
@@ -200,8 +219,8 @@ export function EventContent({ events }: { events: Event[] }) {
                       key={label}
                       className="evt-spec-row flex items-baseline justify-between gap-6 border-b border-white/10 py-4"
                     >
-                      <dt className="font-mono text-xs uppercase tracking-widest text-gray-500">{label}</dt>
-                      <dd className="text-right text-sm font-bold text-white sm:text-base">{value}</dd>
+                      <dt className="font-mono text-xs uppercase tracking-widest text-sky-400">{label}</dt>
+                      <dd className="text-right text-sm font-bold text-gray-400 sm:text-base">{value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -213,19 +232,20 @@ export function EventContent({ events }: { events: Event[] }) {
 
       {events.length === 0 && (
         <section className="border-t border-white/8 px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-12">
-          <p className="font-mono text-sm text-gray-500">[status: no upcoming events — check back soon]</p>
+          <p className="font-mono text-sm text-sky-400">[status: no upcoming events — check back soon]</p>
         </section>
       )}
 
-      {/* ── Final word ────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-t border-white/8 px-4 py-20 sm:px-6 sm:py-28 lg:px-12">
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
         <div className="relative z-10 mx-auto max-w-7xl">
-          <p className="evt-outro-reveal mb-8 font-mono text-xs uppercase tracking-[0.35em] text-green-accent">
+          <p className="evt-outro-reveal mb-8 font-mono text-xs uppercase tracking-[0.35em] text-sky-400">
             final word
           </p>
-          <h2 className="mb-10 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
-            Seats fill fast. Don&apos;t just scroll past — show up and build something.
+          <h2 className="mb-10 max-w-4xl text-3xl font-black leading-tight text-gray-400 sm:text-5xl">
+            <span className="evt-outro-line block pb-[0.12em]">
+              Seats fill fast. Don&apos;t just scroll past — show up and build something.
+            </span>
           </h2>
           <div className="evt-outro-reveal">
             <Link

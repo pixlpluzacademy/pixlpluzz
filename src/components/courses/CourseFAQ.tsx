@@ -19,8 +19,10 @@ export function CourseFAQ({ faqs }: { faqs: FAQ[] }) {
         <div
           key={faq.q}
           className={cn(
-            'overflow-hidden border bg-black/75 backdrop-blur-sm transition-colors duration-200',
-            openIdx === i ? 'border-green-accent/50' : 'border-white/20',
+            'overflow-hidden border backdrop-blur-sm transition-colors duration-200',
+            openIdx === i
+              ? 'border-[color:var(--accent)]/50 bg-[color:var(--card-bg)]'
+              : 'border-[color:var(--card-border)] bg-[color:var(--card-bg)]',
           )}
         >
           <button
@@ -33,10 +35,10 @@ export function CourseFAQ({ faqs }: { faqs: FAQ[] }) {
               <span
                 className={cn(
                   'mt-1.5 h-4 w-1 shrink-0 transition-colors duration-200',
-                  openIdx === i ? 'bg-green-accent' : 'bg-green-accent/50',
+                  openIdx === i ? 'bg-[color:var(--accent)]' : 'bg-[color:var(--accent)]/50',
                 )}
               />
-              <span className="text-base font-bold leading-snug text-white">
+              <span className="text-base font-bold leading-snug text-[color:var(--heading,#fff)]">
                 {faq.q}
               </span>
             </span>
@@ -46,9 +48,9 @@ export function CourseFAQ({ faqs }: { faqs: FAQ[] }) {
               className="mt-1 shrink-0"
             >
               {openIdx === i ? (
-                <Minus size={18} className="text-green-accent" />
+                <Minus size={18} className="text-[color:var(--accent)]" />
               ) : (
-                <Plus size={18} className="text-white" />
+                <Plus size={18} className="text-[color:var(--body)]" />
               )}
             </motion.span>
           </button>
@@ -63,7 +65,7 @@ export function CourseFAQ({ faqs }: { faqs: FAQ[] }) {
                 transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
                 style={{ overflow: 'hidden' }}
               >
-                <div className="border-t border-white/10 px-6 pb-5 pt-4 text-base font-semibold leading-relaxed text-justify text-white">
+                <div className="border-t border-[color:var(--card-border)] px-6 pb-5 pt-4 text-base font-semibold leading-relaxed text-justify text-[color:var(--body)]">
                   {faq.a}
                 </div>
               </motion.div>

@@ -10,12 +10,6 @@ import { formatDate } from '@/lib/utils'
 import { getBlogImage } from '@/lib/blog-assets'
 import type { Blog } from '@/lib/data'
 
-const CATEGORY_COLORS: Record<string, string> = {
-  Education:  'bg-blue-primary/20 text-blue-primary border border-blue-primary/35',
-  Marketing:  'bg-butter-glow/15 text-butter-glow border border-butter-glow/30',
-  Technology: 'bg-[#1a1a1a] text-white border border-white/10',
-}
-
 const blogContainerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.15 } },
@@ -63,7 +57,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
             <motion.div key={blog.id} variants={blogCardVariants} transition={{ duration: 0.55, ease: 'easeOut' as const }}>
               <Link
                 href={`/blog/${blog.slug}`}
-                className="group flex flex-col overflow-hidden border border-white/8 bg-[#141414] hover:border-green-accent/40 hover:shadow-lg hover:shadow-green-accent/10 hover:-translate-y-1 transition-all duration-300 pixel-corner"
+                className="group flex flex-col overflow-hidden border border-white/8 bg-[#141414] hover:shadow-[0_0_28px_rgba(84,227,69,0.35)] hover:-translate-y-1 transition-all duration-300 pixel-corner"
               >
                 {/* Thumbnail */}
                 <div className="relative h-48 overflow-hidden">
@@ -75,15 +69,6 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                    <span
-                      className={`text-xs font-bold px-2 py-0.5 ${
-                        CATEGORY_COLORS[blog.category] ?? 'bg-gray-700 text-white'
-                      }`}
-                    >
-                      {blog.category}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Content */}
@@ -91,7 +76,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
                   <p className="text-xs text-gray-400 mb-2">
                     {formatDate(blog.date)} &bull; {blog.author}
                   </p>
-                  <h3 className="font-black text-green-accent leading-tight mb-2">
+                  <h3 className="font-black text-green-accent leading-tight mb-2 line-clamp-2">
                     {blog.title}
                   </h3>
                   <p className="text-sm text-justify text-gray-400 line-clamp-2 flex-1">

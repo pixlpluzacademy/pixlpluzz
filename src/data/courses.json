@@ -8,7 +8,7 @@
     "level": "Beginner",
     "duration": "2 months",
     "durationHours": "200 hours",
-    "lessons": 20,
+    "lessons": 40,
     "price": 50000,
     "instructor": "Pixl Pluz Team",
     "instructorEmail": "info@pixlpluz.com",
@@ -27,28 +27,94 @@
     "curriculum": [
       {
         "title": "Module 1: Digital Marketing Fundamentals",
+        "description": "Build a clear map of how modern marketing works online. You will learn channels, funnels, buyer journeys, and how brands plan campaigns end to end. Set up a practical workspace and define audience personas so every later module connects to real business goals in Kochi and beyond.",
         "lessons": [
           { "title": "What is Digital Marketing?", "locked": false },
           { "title": "Digital Marketing Channels Overview", "locked": false },
+          { "title": "Customer Journey & Funnel Basics", "locked": false },
           { "title": "Setting Up Your Digital Workspace", "locked": true },
-          { "title": "Understanding Your Target Audience", "locked": true }
+          { "title": "Understanding Your Target Audience", "locked": true },
+          { "title": "Brand Positioning for Campaigns", "locked": true }
         ]
       },
       {
         "title": "Module 2: SEO & Content Strategy",
+        "description": "Learn how search visibility and content work together. Practice keyword research with AI support, on-page optimisation, content calendars, and ethical link-building habits. Leave with a content plan you can defend in client or interview conversations.",
         "lessons": [
           { "title": "On-Page SEO Fundamentals", "locked": true },
           { "title": "Keyword Research with AI Tools", "locked": true },
+          { "title": "Technical SEO Essentials", "locked": true },
           { "title": "Content Calendar Planning", "locked": true },
+          { "title": "Brief Writing for Writers & Designers", "locked": true },
           { "title": "Link Building Strategies", "locked": true }
         ]
       },
       {
         "title": "Module 3: Social Media Marketing",
+        "description": "Plan and run social presence that earns attention and converts. Cover organic posting systems, community habits, paid social structure, and short-form video that fits Instagram, Facebook, LinkedIn, and emerging formats used by growth teams.",
         "lessons": [
+          { "title": "Platform Strategy & Content Pillars", "locked": true },
           { "title": "Instagram & Facebook Ads", "locked": true },
           { "title": "LinkedIn for B2B Marketing", "locked": true },
-          { "title": "Short-form Video Strategy", "locked": true }
+          { "title": "Short-form Video Strategy", "locked": true },
+          { "title": "Community & Engagement Playbooks", "locked": true },
+          { "title": "Social Reporting Basics", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 4: Google Ads & Paid Media",
+        "description": "Build paid campaigns with clear structure, budgets, and measurement. Practise search, display, and remarketing setups, write stronger ad copy with AI assist, and learn how to read performance without guessing.",
+        "lessons": [
+          { "title": "Search Campaign Setup", "locked": true },
+          { "title": "Display & Remarketing Ads", "locked": true },
+          { "title": "Budgeting & Bid Strategies", "locked": true },
+          { "title": "Ad Copy with AI Assist", "locked": true },
+          { "title": "Quality Score & Optimisation Loops", "locked": true },
+          { "title": "Paid Media Reporting", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 5: Email & CRM Marketing",
+        "description": "Design lifecycle emails that nurture leads and retain customers. Segment lists, map CRM automations, and write sequences that feel personal while staying measurable for small teams and growing brands.",
+        "lessons": [
+          { "title": "Email Sequence Design", "locked": true },
+          { "title": "List Building & Segmentation", "locked": true },
+          { "title": "CRM Automation Workflows", "locked": true },
+          { "title": "Deliverability & Compliance Basics", "locked": true },
+          { "title": "A/B Testing Email Campaigns", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 6: Analytics & Reporting",
+        "description": "Turn numbers into decisions. Configure GA4, set conversion tracking, build simple dashboards, and use AI to surface insights you can present to mentors, clients, or hiring managers with confidence.",
+        "lessons": [
+          { "title": "Google Analytics 4 Basics", "locked": true },
+          { "title": "Conversion Tracking Setup", "locked": true },
+          { "title": "Dashboards & Client Reports", "locked": true },
+          { "title": "AI Insights from Data", "locked": true },
+          { "title": "KPI Frameworks for Marketers", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 7: AI Tools for Marketers",
+        "description": "Use AI as a daily marketing teammate — not a shortcut that lowers quality. Build prompt systems for research, copy, creatives, and automation so you ship faster while keeping brand voice and review habits intact.",
+        "lessons": [
+          { "title": "Content Generation Workflows", "locked": true },
+          { "title": "Creative Production with AI", "locked": true },
+          { "title": "Automation & Prompt Systems", "locked": true },
+          { "title": "Research & Competitor Scans with AI", "locked": true },
+          { "title": "Quality Control for AI Outputs", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 8: Capstone Campaign Project",
+        "description": "Ship a full-funnel campaign from brief to presentation. Combine strategy, creatives, channels, and reporting into a portfolio piece, then practise how to explain your work in interviews and counselling sessions.",
+        "lessons": [
+          { "title": "Brief & Strategy Planning", "locked": true },
+          { "title": "Full-Funnel Campaign Build", "locked": true },
+          { "title": "Creative & Channel Execution", "locked": true },
+          { "title": "Portfolio Presentation", "locked": true },
+          { "title": "Career & Interview Prep", "locked": true }
         ]
       }
     ],
@@ -68,7 +134,7 @@
     "level": "Beginner",
     "duration": "3 months",
     "durationHours": "300 hours",
-    "lessons": 20,
+    "lessons": 40,
     "price": 60000,
     "instructor": "Pixl Pluz Team",
     "instructorEmail": "info@pixlpluz.com",
@@ -87,19 +153,92 @@
     "curriculum": [
       {
         "title": "Module 1: HTML & CSS Foundations",
+        "description": "Start with clean structure and layout. Learn semantic HTML, Flexbox and Grid, responsive breakpoints, and small motion that feels polished — the base every modern product UI still needs.",
         "lessons": [
           { "title": "HTML Structure & Semantics", "locked": false },
           { "title": "CSS Layouts & Flexbox", "locked": false },
+          { "title": "CSS Grid & Page Sections", "locked": false },
           { "title": "Responsive Design", "locked": true },
-          { "title": "CSS Animations", "locked": true }
+          { "title": "CSS Animations", "locked": true },
+          { "title": "Accessibility Markup Habits", "locked": true }
         ]
       },
       {
-        "title": "Module 2: JavaScript & React",
+        "title": "Module 2: JavaScript Essentials",
+        "description": "Make pages interactive with modern JavaScript. Cover ES6+ syntax, DOM work, events, and async patterns so you can fetch data and wire product behaviour without guessing.",
         "lessons": [
           { "title": "JavaScript ES6+", "locked": true },
-          { "title": "React Components & Hooks", "locked": true },
-          { "title": "State Management", "locked": true }
+          { "title": "DOM & Events", "locked": true },
+          { "title": "Async JS & Fetch API", "locked": true },
+          { "title": "Modules & Project Structure", "locked": true },
+          { "title": "Debugging in the Browser", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 3: React Fundamentals",
+        "description": "Build interfaces with components, state, and routing. Practise hooks, forms, and navigation patterns used in real React apps so you can move from static pages to application UI.",
+        "lessons": [
+          { "title": "Components & JSX", "locked": true },
+          { "title": "Props, State & Hooks", "locked": true },
+          { "title": "Routing & Navigation", "locked": true },
+          { "title": "Forms & Controlled Inputs", "locked": true },
+          { "title": "Lists, Keys & Conditional UI", "locked": true },
+          { "title": "Component Composition Patterns", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 4: UI Systems & Design",
+        "description": "Ship interfaces that look intentional. Work with tokens, typography, reusable patterns, and accessibility so your projects feel product-ready rather than tutorial-only.",
+        "lessons": [
+          { "title": "Design Tokens & Typography", "locked": true },
+          { "title": "Reusable UI Patterns", "locked": true },
+          { "title": "Accessibility Basics", "locked": true },
+          { "title": "Dark UI & Contrast Checks", "locked": true },
+          { "title": "Responsive Component Behaviour", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 5: APIs & Backend Basics",
+        "description": "Connect frontends to real data. Learn REST, JSON, auth ideas, and simple database concepts, then deploy a small API so your apps talk to a backend with confidence.",
+        "lessons": [
+          { "title": "REST APIs & JSON", "locked": true },
+          { "title": "Auth & Protected Routes", "locked": true },
+          { "title": "Database Concepts", "locked": true },
+          { "title": "Error Handling & Loading States", "locked": true },
+          { "title": "Deploying a Simple API", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 6: AI-Assisted Development",
+        "description": "Use AI pair-programming the way strong teams do — for scaffolding, tests, and refactors — while you stay responsible for architecture, review, and shipping quality.",
+        "lessons": [
+          { "title": "Prompting for Code Quality", "locked": true },
+          { "title": "AI Pair Programming Workflows", "locked": true },
+          { "title": "Generating UI & Tests with AI", "locked": true },
+          { "title": "Refactoring with AI Assist", "locked": true },
+          { "title": "Review Checklists for AI Code", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 7: Full-Stack Project Build",
+        "description": "Assemble a complete product slice: architecture, features, performance, and deployment. Practise debugging under time pressure so your portfolio shows real delivery, not isolated demos.",
+        "lessons": [
+          { "title": "Project Architecture", "locked": true },
+          { "title": "Feature Implementation", "locked": true },
+          { "title": "Performance & Debugging", "locked": true },
+          { "title": "Hosting & Deployment", "locked": true },
+          { "title": "Release Notes & Handoff", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 8: Portfolio & Career Ready",
+        "description": "Package your work for hiring. Polish a portfolio site, write case studies on GitHub, and rehearse interview-style project walkthroughs with mentor feedback.",
+        "lessons": [
+          { "title": "Portfolio Site Polish", "locked": true },
+          { "title": "GitHub & Case Studies", "locked": true },
+          { "title": "Interview Practice Projects", "locked": true },
+          { "title": "Resume Project Storytelling", "locked": true },
+          { "title": "Live Demo Preparation", "locked": true }
         ]
       }
     ],
@@ -117,7 +256,7 @@
     "level": "Expert",
     "duration": "3 months",
     "durationHours": "350 hours",
-    "lessons": 19,
+    "lessons": 40,
     "price": 75000,
     "instructor": "Pixl Pluz Team",
     "instructorEmail": "info@pixlpluz.com",
@@ -135,20 +274,93 @@
     ],
     "curriculum": [
       {
-        "title": "Introduction to Data Science",
+        "title": "Module 1: Introduction to Data Science",
+        "description": "See how data science teams solve problems. Set up your environment, write first analysis scripts, and learn how questions, data, and decisions connect before you dive into heavier tooling.",
         "lessons": [
           { "title": "What is Data Science?", "locked": false },
           { "title": "Setting up your Data Science environment", "locked": false },
           { "title": "Writing your first Data Science program", "locked": true },
-          { "title": "Understanding Data Science syntax and structure", "locked": true }
+          { "title": "Understanding Data Science syntax and structure", "locked": true },
+          { "title": "Problem Framing for Business Questions", "locked": true },
+          { "title": "Notebook Habits & Project Folders", "locked": true }
         ]
       },
       {
-        "title": "Python for Data Analysis",
+        "title": "Module 2: Python for Data Analysis",
+        "description": "Use Python as your analysis workbench. Practise Pandas and NumPy, clean messy tables, and visualise findings so stakeholders can read your story without opening raw files.",
         "lessons": [
           { "title": "Pandas & NumPy fundamentals", "locked": true },
           { "title": "Data Cleaning & Preprocessing", "locked": true },
-          { "title": "Data Visualization with Matplotlib", "locked": true }
+          { "title": "Data Visualization with Matplotlib", "locked": true },
+          { "title": "Joins, Aggregations & Pivots", "locked": true },
+          { "title": "Exporting Analysis Outputs", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 3: Statistics for Data Science",
+        "description": "Ground your insights in statistics that hiring teams expect. Cover descriptive stats, probability, sampling, and intro hypothesis testing so model results are not just black-box scores.",
+        "lessons": [
+          { "title": "Descriptive Statistics", "locked": true },
+          { "title": "Probability Basics", "locked": true },
+          { "title": "Hypothesis Testing Intro", "locked": true },
+          { "title": "Sampling & Bias", "locked": true },
+          { "title": "Correlation vs Causation Checks", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 4: Exploratory Data Analysis",
+        "description": "Explore datasets the way analysts do on real briefs. Build EDA workflows, understand features, and turn charts into narratives that support product or marketing decisions.",
+        "lessons": [
+          { "title": "EDA Workflows", "locked": true },
+          { "title": "Feature Understanding", "locked": true },
+          { "title": "Storytelling with Charts", "locked": true },
+          { "title": "Outliers & Missing Data Patterns", "locked": true },
+          { "title": "EDA Report Templates", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 5: Machine Learning Foundations",
+        "description": "Train and evaluate classic ML models with clear metrics. Compare supervised approaches, practise regression and classification, and learn when a simple model beats a complex one.",
+        "lessons": [
+          { "title": "Supervised vs Unsupervised Learning", "locked": true },
+          { "title": "Regression Models", "locked": true },
+          { "title": "Classification Models", "locked": true },
+          { "title": "Model Evaluation Metrics", "locked": true },
+          { "title": "Train/Test Splits & Leakage Risks", "locked": true },
+          { "title": "Baseline Models Before Complexity", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 6: Applied AI & Generative Tools",
+        "description": "Connect classical ML to practical generative AI. Touch neural network ideas, work with LLMs for analysis support, and design prompt systems that stay useful under review.",
+        "lessons": [
+          { "title": "Intro to Neural Networks", "locked": true },
+          { "title": "Working with LLMs Practically", "locked": true },
+          { "title": "Prompt Systems for Analysis", "locked": true },
+          { "title": "Embeddings for Search & Similarity", "locked": true },
+          { "title": "Responsible AI Checklist", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 7: Model Deployment",
+        "description": "Move models from notebook to something others can call. Version artefacts, wrap a simple prediction API, monitor outputs, and practise basic cloud deployment steps.",
+        "lessons": [
+          { "title": "Saving & Versioning Models", "locked": true },
+          { "title": "Building a Simple Prediction API", "locked": true },
+          { "title": "Monitoring Model Output", "locked": true },
+          { "title": "Cloud Deployment Basics", "locked": true },
+          { "title": "Rollback & Experiment Notes", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 8: Capstone & Portfolio",
+        "description": "Complete an end-to-end case study with documentation and a portfolio presentation. Show mentors how you framed the problem, chose methods, and explained results clearly.",
+        "lessons": [
+          { "title": "End-to-End Case Study", "locked": true },
+          { "title": "Project Documentation", "locked": true },
+          { "title": "Portfolio Presentation", "locked": true },
+          { "title": "Stakeholder Q&A Practice", "locked": true },
+          { "title": "Career Narrative for Data Roles", "locked": true }
         ]
       }
     ],
@@ -168,7 +380,7 @@
     "level": "Intermediate",
     "duration": "2 months",
     "durationHours": "240 hours",
-    "lessons": 16,
+    "lessons": 40,
     "price": 50000,
     "instructor": "Pixl Pluz Team",
     "instructorEmail": "info@pixlpluz.com",
@@ -186,20 +398,93 @@
     ],
     "curriculum": [
       {
-        "title": "Introduction to Cybersecurity",
+        "title": "Module 1: Introduction to Cybersecurity",
+        "description": "Learn why security matters and how threats show up in real systems. Cover core principles, common attack types, and network basics so later labs sit on a solid mental model.",
         "lessons": [
           { "title": "What is Cybersecurity?", "locked": false },
           { "title": "Types of Cyber Threats", "locked": false },
           { "title": "Network Fundamentals", "locked": true },
-          { "title": "Security Principles & CIA Triad", "locked": true }
+          { "title": "Security Principles & CIA Triad", "locked": true },
+          { "title": "Threat Actors & Motivations", "locked": true },
+          { "title": "Security Careers Overview", "locked": true }
         ]
       },
       {
-        "title": "Ethical Hacking Basics",
+        "title": "Module 2: Ethical Hacking Basics",
+        "description": "Practise ethical reconnaissance and scanning in controlled labs. Understand scope, permission, and how attackers gather information — so you can defend with the same clarity.",
         "lessons": [
           { "title": "Introduction to Ethical Hacking", "locked": true },
           { "title": "Reconnaissance & Footprinting", "locked": true },
-          { "title": "Vulnerability Scanning", "locked": true }
+          { "title": "Vulnerability Scanning", "locked": true },
+          { "title": "Lab Safety & Rules of Engagement", "locked": true },
+          { "title": "Reporting Findings Clearly", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 3: Network Security",
+        "description": "Protect traffic and access paths. Work with firewalls, VPNs, wireless risks, and monitoring tools so you can explain how networks are segmented and observed in practice.",
+        "lessons": [
+          { "title": "Firewalls & Access Control", "locked": true },
+          { "title": "VPN & Secure Protocols", "locked": true },
+          { "title": "Wireless Security Basics", "locked": true },
+          { "title": "Network Monitoring Tools", "locked": true },
+          { "title": "Segmentation & Zero Trust Ideas", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 4: System & Endpoint Defence",
+        "description": "Harden endpoints and reduce easy wins for attackers. Cover OS hardening, malware awareness, patches, and privilege habits that keep workstations and servers safer day to day.",
+        "lessons": [
+          { "title": "OS Hardening Essentials", "locked": true },
+          { "title": "Malware Awareness", "locked": true },
+          { "title": "Patch & Privilege Management", "locked": true },
+          { "title": "Endpoint Detection Basics", "locked": true },
+          { "title": "Backup & Recovery Habits", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 5: Web Application Security",
+        "description": "See how web apps get broken — and how teams prevent it. Review OWASP-style risks, injection and XSS patterns, secure coding habits, and small pentest labs you can document.",
+        "lessons": [
+          { "title": "OWASP Top Risks Overview", "locked": true },
+          { "title": "Injection & XSS Basics", "locked": true },
+          { "title": "Secure Coding Habits", "locked": true },
+          { "title": "Basic Web Pentest Labs", "locked": true },
+          { "title": "Auth & Session Pitfalls", "locked": true },
+          { "title": "Writing a Mini Finding Report", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 6: AI for Cyber Defence",
+        "description": "Use AI to speed detection and triage without blind trust. Practise log analysis, assisted threat spotting, and automation habits that help security ops move faster with review built in.",
+        "lessons": [
+          { "title": "AI-Assisted Threat Detection", "locked": true },
+          { "title": "Log Analysis with AI Tools", "locked": true },
+          { "title": "Automation for Security Ops", "locked": true },
+          { "title": "Prompt Patterns for Triage Notes", "locked": true },
+          { "title": "Limits & False Positive Awareness", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 7: Incident Response",
+        "description": "Respond when something goes wrong. Walk the incident lifecycle, containment and recovery steps, documentation, and a tabletop drill so you practise calm, structured defence.",
+        "lessons": [
+          { "title": "Incident Lifecycle", "locked": true },
+          { "title": "Containment & Recovery Steps", "locked": true },
+          { "title": "Documentation & Reporting", "locked": true },
+          { "title": "Tabletop Response Drill", "locked": true },
+          { "title": "Lessons Learned Reviews", "locked": true }
+        ]
+      },
+      {
+        "title": "Module 8: Capstone Security Lab",
+        "description": "Run a capped defence project from scenario to portfolio. Plan threats, practise hands-on defence, and present your process for career conversations and mentoring feedback.",
+        "lessons": [
+          { "title": "Threat Scenario Planning", "locked": true },
+          { "title": "Hands-on Defence Project", "locked": true },
+          { "title": "Portfolio & Career Prep", "locked": true },
+          { "title": "Lab Write-up & Evidence Pack", "locked": true },
+          { "title": "Interview Defence Walkthrough", "locked": true }
         ]
       }
     ],

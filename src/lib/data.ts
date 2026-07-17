@@ -33,7 +33,11 @@ export interface Course {
   featured: boolean
   tags: string[]
   features: string[]
-  curriculum: { title: string; lessons: { title: string; locked: boolean }[] }[]
+  curriculum: {
+    title: string
+    description: string
+    lessons: { title: string; locked: boolean }[]
+  }[]
   faqs: { q: string; a: string }[]
 }
 

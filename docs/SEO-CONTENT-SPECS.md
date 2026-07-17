@@ -217,7 +217,7 @@ Not on homepage currently; include if re-enabled.
 |------|-----------|------------------|---------------|
 | `/about` | 4–8 words | 120–160 chars | Stats row: **no ₹ or 100% labels** |
 | `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
-| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs + compact certificate stack; Curriculum (3-col gradient cards); AI tools marquee below modules; Who it’s for; FAQ — no fake stats |
+| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Blue/white curriculum module switcher; AI tools carousel below; Who it’s for; FAQ — no fake stats |
 | `/scholarship` | 4–10 words | 120–160 chars | Steps, eligibility — **no amounts** |
 | `/placement` | 4–8 words | 120–160 chars | Hero + wall — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
@@ -246,6 +246,10 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-17 | Course detail curriculum | Expanded each module with description (~50–70 words) + more topic pills |
+| 2026-07-17 | Course detail curriculum | Blue/white module switcher; AI tools moved to horizontal carousel below |
+| 2026-07-17 | Course detail curriculum | Left “Modules” nav + right detail (title, topic pills, brief); click swaps content |
+| 2026-07-17 | Course detail AI tools | Restored AI tool popups; removed only the “AI Tools” heading |
 | 2026-07-17 | Homepage copy | Hero, About, Courses, Advantage, Purpose sections updated to client copy |
 | 2026-07-17 | Homepage brand colours | Applied Command Blue / Verdant / White / Butter Glow roles across home |
 | 2026-07-17 | Course detail certificates | Reverted 3D looping stack; restored simple front/back cycle |

@@ -1,15 +1,17 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight, Download } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { Course } from '@/lib/data'
 import { getCourseImage, getCourseAiTools } from '@/lib/course-assets'
 import { CourseFAQ } from '@/components/courses/CourseFAQ'
 import { CertificateStack } from '@/components/courses/CertificateStack'
+import { SectionLabel } from '@/components/ui/SectionLabel'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { formatPrice, cn } from '@/lib/utils'
 
@@ -41,32 +43,25 @@ const AUDIENCES = [
     desc: 'Learning workflows that help grow brands, products, and campaigns.',
     icon: '/icons/dark-mode/analytics.svg',
   },
-  // {
-  //   title: 'Beginners',
-  //   desc: 'Starting from zero with mentorship, clear structure, and real projects.',
-  //   icon: '/icons/dark-mode/admission.svg',
-  // },
 ]
 
 function AiToolsCarousel({ tools }: { tools: string[] }) {
   const track = [...tools, ...tools]
+
   return (
-    <div
-      className="course-hero-fade relative overflow-hidden border-y border-white/8 py-4 sm:py-5"
-      aria-label="AI tools used in this course"
-    >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-black to-transparent sm:w-20" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-black to-transparent sm:w-20" />
+    <div className="ai-tools-carousel course-reveal" aria-label="AI tools used in this course">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-[color:var(--page-bg)] to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-[color:var(--page-bg)] to-transparent sm:w-24" />
       <div className="flex w-max animate-marquee-fast items-center">
         {track.map((name, i) => (
           <div
             key={`${name}-${i}`}
-            className="mx-3 flex shrink-0 items-center gap-3 sm:mx-5"
+            className="mx-4 flex shrink-0 items-center gap-3 sm:mx-6"
           >
-            <span className="whitespace-nowrap text-sm font-bold text-white/85 sm:text-base">
+            <span className="whitespace-nowrap text-sm font-bold text-green-accent sm:text-base">
               {name}
             </span>
-            <span className="h-1 w-1 rounded-full bg-blue-primary/70" aria-hidden />
+            <span className="h-1.5 w-1.5 rounded-full bg-green-accent/70" aria-hidden />
           </div>
         ))}
       </div>
@@ -89,21 +84,21 @@ function SectionHeader({
 }) {
   const centered = align === 'center'
   return (
-    <div className={cn('mb-10 max-w-3xl', centered && 'mx-auto text-center', className)}>
-      <div className={cn('mb-4 flex items-center gap-3', centered && 'justify-center')}>
-        <span className="h-px w-8 bg-green-accent" aria-hidden />
-        <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-green-accent">
-          {kicker}
-        </p>
-        {centered && <span className="h-px w-8 bg-green-accent" aria-hidden />}
-      </div>
-      <h2 className="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+    <div
+      className={cn(
+        'mb-10 max-w-3xl',
+        centered && 'mx-auto flex flex-col items-center text-center',
+        className,
+      )}
+    >
+      <SectionLabel className="mb-4">{kicker}</SectionLabel>
+      <h2 className="text-3xl font-black leading-tight tracking-tight text-green-accent sm:text-4xl lg:text-[2.75rem]">
         {title}
       </h2>
       {body && (
         <p
           className={cn(
-            'mt-4 text-base leading-relaxed text-white/55',
+            'course-body mt-4 text-base leading-relaxed text-white/65',
             centered ? 'text-center' : 'text-justify',
           )}
         >
@@ -114,7 +109,6 @@ function SectionHeader({
   )
 }
 
-/** Static Pixl mark frame — blue L + green corner block (matches mentor logo proportions). */
 function moduleBrief(
   title: string,
   lessons: Course['curriculum'][number]['lessons'],
@@ -134,55 +128,71 @@ function moduleBrief(
   } — built for hands-on practice and portfolio work.`
 }
 
-function CurriculumGrid({ course }: { course: Course }) {
+function cleanModuleTitle(title: string) {
+  return title.replace(/^Module\s*\d+:\s*/i, '')
+}
+
+function CurriculumModules({ course }: { course: Course }) {
+  const [activeIdx, setActiveIdx] = useState(0)
+  const active = course.curriculum[activeIdx] ?? course.curriculum[0]
+  if (!active) return null
+
+  const fullTitle = cleanModuleTitle(active.title)
+  const brief =
+    active.description?.trim() ||
+    moduleBrief(fullTitle, active.lessons)
+
   return (
-    <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
-      {course.curriculum.map((module, mi) => {
-        const title = module.title.replace(/^Module\s*\d+:\s*/i, '')
-        const brief = moduleBrief(title, module.lessons)
-        return (
-          <li key={module.title} className="flex">
-            <article
-              className="group relative flex w-full flex-col overflow-hidden border border-white/10 px-5 py-7 transition-colors duration-300 hover:border-green-accent/35 sm:px-6 sm:py-8"
-              style={{
-                background:
-                  'linear-gradient(160deg, rgba(21,62,144,0.5) 0%, #0a0a0a 42%, rgba(84,227,70,0.1) 100%)',
-              }}
-            >
-              <div
-                className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-300 group-hover:opacity-100"
-                style={{
-                  background:
-                    'radial-gradient(ellipse 80% 55% at 15% 0%, rgba(21,62,144,0.4) 0%, transparent 55%), radial-gradient(ellipse 60% 45% at 100% 100%, rgba(84,227,70,0.14) 0%, transparent 50%)',
-                }}
-                aria-hidden
-              />
-              <div className="relative z-10 flex flex-1 flex-col items-center text-center">
-                <span className="font-mono text-[11px] font-bold tabular-nums tracking-[0.28em] text-green-accent">
-                  MODULE {String(mi + 1).padStart(2, '0')}
-                </span>
-                <h3 className="mt-3 text-lg font-black leading-snug tracking-tight text-white sm:text-xl">
-                  {title}
-                </h3>
-                <ul className="mt-5 flex flex-wrap justify-center gap-2">
-                  {module.lessons.map((lesson) => (
-                    <li
-                      key={lesson.title}
-                      className="border border-white/12 bg-black/35 px-2.5 py-1 text-[11px] leading-snug text-white/70 backdrop-blur-sm"
-                    >
-                      {lesson.title}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-sm leading-relaxed text-white/55">
-                  {brief}
-                </p>
-              </div>
-            </article>
-          </li>
-        )
-      })}
-    </ul>
+    <div className="module-switch">
+      <nav className="module-switch-nav" aria-label="Course modules">
+        <p className="module-switch-nav-label">Modules</p>
+        <ul className="module-switch-nav-list">
+          {course.curriculum.map((module, i) => {
+            const selected = activeIdx === i
+            return (
+              <li key={module.title}>
+                <button
+                  type="button"
+                  className={cn('module-switch-tab', selected && 'is-active')}
+                  aria-current={selected ? 'true' : undefined}
+                  onClick={() => setActiveIdx(i)}
+                >
+                  Module {String(i + 1).padStart(2, '0')}
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+
+      <div className="module-switch-panel" role="tabpanel">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active.title}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <p className="module-switch-eyebrow">
+              Module {String(activeIdx + 1).padStart(2, '0')}
+            </p>
+            <h3 className="module-switch-title">{fullTitle}</h3>
+            <p className="course-body module-switch-brief text-justify">
+              {brief}
+            </p>
+            <p className="module-switch-topics-label">Topics you will cover</p>
+            <ul className="module-switch-pills">
+              {active.lessons.map((lesson) => (
+                <li key={lesson.title}>
+                  <span className="module-switch-pill">{lesson.title}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
   )
 }
 
@@ -251,7 +261,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
   }, [isSiteReady])
 
   return (
-    <div ref={containerRef} className="course-detail-page min-h-screen bg-black text-white">
+    <div ref={containerRef} className="course-detail-page min-h-screen">
       {/* ── Hero: full-bleed visual + composition ── */}
       <section
         data-page-hero
@@ -270,7 +280,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/85" />
+          <div className="absolute inset-0" style={{ background: 'rgba(0, 0, 0, 0.88)' }} />
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[min(92svh,920px)] max-w-7xl flex-col justify-end px-4 pb-8 pt-28 sm:px-6 lg:px-8 lg:pb-10 lg:pt-32">
@@ -280,13 +290,13 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
 
           <Link
             href="/courses"
-            className="course-hero-fade mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/55 transition-colors hover:text-green-accent"
+            className="course-hero-fade course-body mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] transition-colors hover:text-green-accent"
           >
             <ArrowLeft size={14} />
             All courses
           </Link>
 
-          <h1 className="course-hero-fade max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
+          <h1 className="course-hero-fade max-w-3xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
             {course.title}
           </h1>
 
@@ -294,22 +304,29 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             {[
               { label: 'Fee', value: formatPrice(course.price) },
               { label: 'Duration', value: course.duration },
-              { label: 'Modules', value: String(course.lessons) },
+              { label: 'Modules', value: String(course.curriculum.length) },
               { label: 'Hours', value: course.durationHours },
             ].map((item) => (
               <div
                 key={item.label}
-                className="pixel-corner-sm border border-white/12 bg-black/45 px-4 py-3 backdrop-blur-md"
+                className="course-card-surface pixel-corner-sm border px-4 py-3 backdrop-blur-md"
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] course-body opacity-70">
                   {item.label}
                 </p>
-                <p className="mt-1 text-sm font-black text-green-accent">{item.value}</p>
+                <p
+                  className={cn(
+                    'mt-1 text-sm font-black',
+                    item.label === 'Fee' ? 'course-soft' : 'text-green-accent',
+                  )}
+                >
+                  {item.value}
+                </p>
               </div>
             ))}
           </div>
 
-          <p className="course-hero-fade mt-6 max-w-2xl text-justify text-sm leading-relaxed text-white/60 sm:text-base">
+          <p className="course-hero-fade course-body mt-6 max-w-2xl text-justify text-sm leading-relaxed sm:text-base">
             {course.description}
           </p>
 
@@ -340,34 +357,29 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       </section>
 
       {/* ── Curriculum ── */}
-      <section className="relative bg-[#050505] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 40% 50% at 50% 0%, rgba(21,62,144,0.18) 0%, transparent 55%), radial-gradient(ellipse 35% 40% at 80% 80%, rgba(84,227,70,0.08) 0%, transparent 50%)',
-          }}
-          aria-hidden
-        />
-        <div className="relative z-10 mx-auto max-w-7xl">
+      <section className="course-section-surface relative py-20 lg:py-24">
+        <div className="course-section-glow pointer-events-none absolute inset-0" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            className="course-reveal mb-10"
+            align="center"
+            kicker="Curriculum"
+            title="What you will learn"
+            body="A structured path from foundations to portfolio work — select a module to explore topics and outcomes."
+          />
           <div className="course-reveal">
-            <SectionHeader
-              align="center"
-              className="mb-12"
-              kicker="Curriculum"
-              title="What you will learn"
-              body="A structured path from foundations to portfolio work. Each module lists the topics you will practice, with a short overview of what you will build."
-            />
-            <CurriculumGrid course={course} />
+            <CurriculumModules course={course} />
           </div>
+        </div>
+
+        <div className="relative z-10 mt-10 sm:mt-12">
+          <AiToolsCarousel tools={aiTools} />
         </div>
       </section>
 
-      <AiToolsCarousel tools={aiTools} />
-
       {/* ── Audience ── */}
-      <section className="relative border-t border-white/8 bg-[#050505] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-7xl">
+      <section className="course-section-surface relative border-t border-[color:var(--card-border)] py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             className="course-reveal"
             kicker="Audience"
@@ -379,19 +391,11 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
               <article
                 key={title}
                 className={cn(
-                  'group relative overflow-hidden border border-white/8 bg-[#0a0a0a] p-6 transition-all duration-300 pixel-corner hover:border-green-accent/35 hover:bg-[#121212]',
+                  'audience-card group relative overflow-hidden p-6 transition-all duration-300',
                   i === 0 && 'sm:col-span-2 lg:col-span-1 lg:row-span-2 lg:min-h-[22rem] lg:flex lg:flex-col lg:justify-end',
                 )}
               >
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      'radial-gradient(ellipse 80% 60% at 100% 0%, rgba(84,227,70,0.14) 0%, transparent 55%)',
-                  }}
-                  aria-hidden
-                />
-                <span className="relative mb-5 inline-flex h-11 w-11 items-center justify-center border border-green-accent/35 bg-green-accent/10">
+                <span className="audience-card-icon relative mb-5 inline-flex h-11 w-11 items-center justify-center">
                   <Image src={icon} alt="" width={22} height={22} className="object-contain" />
                 </span>
                 <h3
@@ -402,7 +406,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
                 >
                   {title}
                 </h3>
-                <p className="relative mt-3 text-sm leading-relaxed text-justify text-white/55">
+                <p className="audience-card-body relative mt-3 text-sm leading-relaxed text-justify">
                   {desc}
                 </p>
               </article>
@@ -411,40 +415,14 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
         </div>
       </section>
 
-      {/* ── Included ── */}
-      {/* <section className="relative border-t border-white/8 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeader
-            className="course-reveal"
-            kicker="Included"
-            title="What you'll get"
-          />
-          <div className="course-stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {course.features.map((feature, i) => (
-              <div
-                key={feature}
-                className="flex items-start gap-4 border border-white/8 bg-[#141414] p-5 transition-colors duration-300 pixel-corner-sm hover:border-green-accent/30"
-              >
-                <span className="font-mono text-xs font-bold text-green-accent/70">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className="text-sm font-medium leading-relaxed text-white/85">
-                  {feature}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* ── FAQ ── */}
-      <section className="relative overflow-hidden border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="relative z-10 mx-auto max-w-3xl">
+      <section className="course-section-surface relative overflow-hidden border-t border-[color:var(--card-border)] py-16 sm:py-24">
+        <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="course-reveal mb-12 text-center">
-            <h2 className="mb-3 text-3xl font-black text-white sm:text-4xl">
+            <h2 className="mb-3 text-3xl font-black sm:text-4xl">
               Questions &amp; Answers
             </h2>
-            <p className="text-base font-semibold text-white/80">
+            <p className="course-body text-base font-semibold">
               Quick answers about the program, access, and support before you apply.
             </p>
           </div>
@@ -455,7 +433,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section className="course-reveal relative overflow-hidden border-t border-white/8 px-4 py-20 sm:px-6 lg:px-8">
+      <section className="course-reveal relative overflow-hidden border-t border-[color:var(--card-border)] py-20">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src="/images/bgg.jpeg"
@@ -464,34 +442,36 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0" style={{ background: 'rgba(0, 0, 0, 0.72)' }} />
         </div>
-        <div className="relative z-10 mx-auto max-w-7xl overflow-hidden border border-white/10 bg-black/50 p-8 backdrop-blur-md pixel-corner sm:p-12 lg:p-14">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-green-accent">
-            Start your learning journey
-          </p>
-          <h2 className="whitespace-nowrap text-2xl font-black leading-tight text-white sm:text-3xl lg:text-4xl">
-            Ready to build real skills with{' '}
-            <span className="text-green-accent">Pixl Pluz Academy ?</span>
-          </h2>
-          <p className="mt-4 max-w-none whitespace-nowrap text-sm leading-relaxed text-white/55">
-            Talk to admissions, explore scholarship support, or download the
-            brochure to see the full course plan.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
-            >
-              Talk to Admissions
-              <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="/scholarship"
-              className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-7 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
-            >
-              Apply for Scholarship
-            </Link>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="course-card-surface overflow-hidden border p-8 backdrop-blur-md pixel-corner sm:p-12 lg:p-14">
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-green-accent">
+              Start your learning journey
+            </p>
+            <h2 className="whitespace-nowrap text-2xl font-black leading-tight sm:text-3xl lg:text-4xl">
+              Ready to build real skills with{' '}
+              <span className="text-green-accent">Pixl Pluz Academy ?</span>
+            </h2>
+            <p className="course-body mt-4 max-w-none whitespace-nowrap text-sm leading-relaxed">
+              Talk to admissions, explore scholarship support, or download the
+              brochure to see the full course plan.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
+              >
+                Talk to Admissions
+                <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/scholarship"
+                className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-7 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
+              >
+                Apply for Scholarship
+              </Link>
+            </div>
           </div>
         </div>
       </section>
