@@ -107,7 +107,6 @@ export function CertificateStack({ className }: { className?: string }) {
         ease: 'power2.in',
       })
 
-      // Only animate the card that becomes the new front
       const nextFront = cards[order[1]]
       tl.to(
         nextFront,
@@ -123,7 +122,6 @@ export function CertificateStack({ className }: { className?: string }) {
         0.1,
       )
 
-      // Next-in-line slides into the back slot
       if (order[2] !== undefined) {
         tl.to(
           cards[order[2]],

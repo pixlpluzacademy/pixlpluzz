@@ -5,14 +5,15 @@
 
 /* ─── Brand Theme ─────────────────────────────────────────── */
 @theme {
-  /* Brand colours — strict palette */
-  --color-blue-primary:  #153e90;
+  /* Brand colours — Pixel Pluz branding PDF */
+  --color-blue-primary:  #143d8f;
   --color-blue-dark:     #0d2660;
-  --color-blue-mid:      #153e90;
-  --color-blue-light:    #153e90;
-  --color-green-accent:  #54e346;
-  --color-green-dark:    #54e346;
-  --color-green-light:   #54e346;
+  --color-blue-mid:      #143d8f;
+  --color-blue-light:    #143d8f;
+  --color-green-accent:  #54e345;
+  --color-green-dark:    #54e345;
+  --color-green-light:   #54e345;
+  --color-butter-glow:   #fffaa4;
 
   /* Dark surfaces */
   --color-navy-950:  #060b16;
@@ -324,7 +325,7 @@ main:has([data-page-hero]) {
 
 /* ─── Pixel Grid Background ───────────────────────────────── */
 .pixel-grid-bg {
-  background-image: radial-gradient(circle, rgba(83,227,70,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(20,61,143,0.18) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -341,12 +342,12 @@ main:has([data-page-hero]) {
 
 /* ─── Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #080d1a; }
-::-webkit-scrollbar-thumb { background: #153e90; }
-::-webkit-scrollbar-thumb:hover { background: #54e346; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: #143d8f; }
+::-webkit-scrollbar-thumb:hover { background: #54e345; }
 
 /* ─── Selection ───────────────────────────────────────────── */
-::selection { background: #54e346; color: #080d1a; }
+::selection { background: #54e345; color: #000000; }
 
 /* ─── Float delay helpers ─────────────────────────────────── */
 .float-delay-1 { animation-delay: 0.3s; }
@@ -411,7 +412,7 @@ main:has([data-page-hero]) {
 
 /* Primary CTA — green fill (homepage + dark sections) */
 .btn-cta-green {
-  background: linear-gradient(135deg, #54e346 0%, #6ef05c 55%, #54e346 100%) !important;
+  background: linear-gradient(135deg, #54e345 0%, #6ef05c 55%, #54e345 100%) !important;
   color: #000000 !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.35),

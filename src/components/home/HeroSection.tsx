@@ -33,7 +33,7 @@ export function HeroSection() {
     if (reduceMotion) {
       gsap.set([copy, lines, fades, shade], { clearProps: 'all' })
       gsap.set(copy, { opacity: 1, visibility: 'visible' })
-      gsap.set(lines, { yPercent: 0, opacity: 1 })
+      gsap.set(lines, { clearProps: 'clipPath,filter,scale' })
       gsap.set(fades, { opacity: 1, y: 0 })
       gsap.set(shade, { opacity: 1 })
       if (hint) gsap.set(hint, { opacity: 0 })
@@ -42,7 +42,12 @@ export function HeroSection() {
 
     // Cluster-only start — hide copy with GSAP only (no Tailwind hide classes)
     gsap.set(copy, { opacity: 0, visibility: 'hidden' })
-    gsap.set(lines, { yPercent: 120, opacity: 0 })
+    // Negative bottom inset keeps glyph descenders (g, y, p) inside the clip box
+    gsap.set(lines, {
+      clipPath: 'inset(0 100% -0.45em 0)',
+      filter: 'blur(8px)',
+      scale: 0.985,
+    })
     gsap.set(fades, { opacity: 0, y: 28 })
     gsap.set(shade, { opacity: 0 })
     if (hint) gsap.set(hint, { opacity: 1 })
@@ -54,7 +59,6 @@ export function HeroSection() {
         end: 'bottom bottom',
         scrub: 0.65,
         invalidateOnRefresh: true,
-        // Keep content visible once revealed (avoids snap-back at scrub end)
         onUpdate(self) {
           if (!copy) return
           if (self.progress >= 0.42) {
@@ -73,10 +77,17 @@ export function HeroSection() {
     if (shade) tl.to(shade, { opacity: 1, duration: 0.2, ease: 'none' }, 0.38)
     tl.to(copy, { opacity: 1, duration: 0.08, ease: 'none' }, 0.42)
 
-    // Content popup with the scatter
+    // Heading: clip-path uncover + blur-to-sharp (stays in place)
     tl.to(
       lines,
-      { yPercent: 0, opacity: 1, duration: 0.35, stagger: 0.07, ease: 'power2.out' },
+      {
+        clipPath: 'inset(0 0% -0.45em 0)',
+        filter: 'blur(0px)',
+        scale: 1,
+        duration: 0.4,
+        stagger: 0.08,
+        ease: 'power3.out',
+      },
       0.45,
     )
     tl.to(
@@ -101,14 +112,14 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[calc(100svh+min(480px,50dvh))] bg-navy-950"
+      className="relative h-[calc(100svh+min(480px,50dvh))] bg-black"
       data-page-hero
     >
       <div
         className="sticky top-0 flex h-svh flex-col overflow-hidden"
         style={{
           background:
-            'radial-gradient(ellipse 140% 95% at 50% 100%, #0d1730 0%, #0a1228 28%, #080d1a 55%, #060b16 80%, #040810 100%)',
+            'radial-gradient(ellipse 90% 70% at 50% 100%, rgba(20,61,143,0.28) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 78% 35%, rgba(84,227,69,0.1) 0%, transparent 50%), #000000',
         }}
       >
         <HeroPixelField className="absolute inset-0 z-0" />
@@ -117,7 +128,7 @@ export function HeroSection() {
           className="hero-shade pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
-              'radial-gradient(ellipse 70% 55% at 50% 48%, rgba(6,11,22,0.72) 0%, rgba(6,11,22,0.35) 45%, rgba(6,11,22,0) 75%)',
+              'radial-gradient(ellipse 70% 55% at 50% 48%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0) 75%)',
           }}
           aria-hidden
         />
@@ -132,38 +143,42 @@ export function HeroSection() {
           }
         >
           <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center text-center">
-            <p className="hero-fade mb-6 text-[11px] font-semibold uppercase tracking-[0.4em] text-blue-primary">
-              AI Integrated Academy — Kochi
-            </p>
-
-            <h1 className="font-black leading-[1.05] tracking-tight">
-              <span className="block overflow-hidden pb-[0.28em]">
-                <span className="hero-line-inner block text-[clamp(2.75rem,7.5vw,6.5rem)] leading-[1.08] text-white">
-                  Kerala&apos;s Best
+            <h1 className="font-black tracking-[-0.03em]">
+              <span className="block pb-[0.08em]">
+                <span className="hero-line-inner block pb-[0.2em] text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.2]">
+                  <span className="text-white/90">Your </span>
+                  <span
+                    className="text-green-accent"
+                    style={{
+                      textShadow:
+                        '0 0 28px rgba(84,227,69,0.35), 0 0 56px rgba(84,227,69,0.15)',
+                    }}
+                  >
+                    AI-Integrated
+                  </span>
                 </span>
               </span>
-              <span className="block overflow-hidden pb-[0.28em]">
-                <span className="hero-line-inner block text-[clamp(2.75rem,7.5vw,6.5rem)] leading-[1.08] text-green-accent">
-                  AI Integrated
-                </span>
-              </span>
-              <span className="block overflow-hidden pb-[0.28em]">
-                <span className="hero-line-inner block text-[clamp(2.75rem,7.5vw,6.5rem)] leading-[1.08] text-white">
-                  Courses
+              <span className="block pb-[0.08em]">
+                <span className="hero-line-inner block pb-[0.2em] text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.2]">
+                  <span className="text-white">Gateway</span>{' '}
+                  <span className="text-white">in Kochi</span>
                 </span>
               </span>
             </h1>
 
-            <p className="hero-fade mt-6 max-w-md text-base leading-relaxed text-gray-300 sm:text-lg">
-              Our first batch starts this July with a{' '}
-              <span className="font-semibold text-white">Scholarship Fund</span>{' '}
-              for eligible candidates.
+            <p className="hero-fade mt-6 max-w-none text-base leading-relaxed text-white/70 sm:text-lg">
+              <span className="whitespace-nowrap">
+                Your career launchpad in Kochi practical AI-integrated training, real projects, and
+              </span>
+              <br />
+              <span className="font-semibold text-butter-glow">placement support</span>{' '}
+              that sets this academy apart.
             </p>
 
             <div className="hero-fade mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/scholarship"
-                className="btn-glaze btn-primary-fill inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
+                className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
               >
                 Apply For Scholarship <ChevronRight size={15} />
               </Link>

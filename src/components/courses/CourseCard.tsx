@@ -28,7 +28,7 @@ export function CourseCard({ course }: { course: Course }) {
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <h2 className="mb-2 text-lg font-black leading-snug text-white transition-colors line-clamp-3 group-hover:text-green-accent sm:text-xl">
+        <h2 className="mb-2 text-lg font-black leading-snug text-green-accent transition-colors line-clamp-3 sm:text-xl">
           {course.title}
         </h2>
         <p className="mb-5 flex-1 text-justify text-sm leading-relaxed text-white/60 line-clamp-3">

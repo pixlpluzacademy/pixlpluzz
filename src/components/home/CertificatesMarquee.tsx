@@ -3,24 +3,18 @@
 import { Award } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-/** Demo certificate names — replace with real list when ready */
+/** Academy credentials / certifications */
 const CERTIFICATES = [
-  'Google Ads Certification',
-  'Meta Blueprint Certificate',
-  'HubSpot Inbound Marketing',
-  'Google Analytics GA4',
-  'SEO Specialist Certificate',
-  'AI Tools & Automation',
-  'Digital Marketing Certificate',
-  'Web Development Certificate',
-  'Data Science & AI Certificate',
-  'Cyber Security Fundamentals',
-  'Content Strategy Certificate',
-  'Pixl Pluz Academy Certificate',
+  'ISO 9001 - 2015',
+  'ISO 29993:2017',
+  'MSME',
+  'Startup India',
+  'National Skill Development Corporation (NSDC)',
 ]
 
 export function CertificatesMarquee({ className }: { className?: string }) {
-  const track = [...CERTIFICATES, ...CERTIFICATES]
+  // Repeat enough times for a seamless marquee with a short list
+  const track = [...CERTIFICATES, ...CERTIFICATES, ...CERTIFICATES, ...CERTIFICATES]
 
   return (
     <section
@@ -39,7 +33,7 @@ export function CertificatesMarquee({ className }: { className?: string }) {
             key={`${name}-${i}`}
             className="mx-4 flex shrink-0 items-center gap-3 sm:mx-6"
           >
-            <span className="flex h-8 w-8 items-center justify-center border border-green-accent/40 bg-green-accent/10 text-green-accent">
+            <span className="flex h-8 w-8 items-center justify-center border border-blue-primary/40 bg-blue-primary/10 text-blue-primary">
               <Award size={16} strokeWidth={1.75} />
             </span>
             <span className="whitespace-nowrap text-sm font-bold uppercase tracking-[0.18em] text-white/85 sm:text-base">

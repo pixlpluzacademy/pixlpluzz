@@ -11,8 +11,8 @@ import { getBlogImage } from '@/lib/blog-assets'
 import type { Blog } from '@/lib/data'
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Education: 'bg-blue-primary text-white',
-  Marketing:  'bg-green-accent text-navy-900',
+  Education:  'bg-blue-primary/20 text-blue-primary border border-blue-primary/35',
+  Marketing:  'bg-butter-glow/15 text-butter-glow border border-butter-glow/30',
   Technology: 'bg-[#1a1a1a] text-white border border-white/10',
 }
 
@@ -41,11 +41,11 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
           <AnimatedSection variant="fadeUp">
             <SectionLabel className="mb-4 mx-auto">Our Latest Posts</SectionLabel>
           </AnimatedSection>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
+          <h2 className="text-4xl sm:text-4xl font-black text-green-accent mb-4">
             Learn More About Digital<br />Marketing & Career Growth
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="max-w-2xl mx-auto text-justify text-gray-400">
+            <p className="max-w-2xl mx-auto text-center text-gray-400">
               Read our latest articles, student guides, career tips, course updates, and industry insights
               to understand the skills needed for the future of digital marketing and online business.
             </p>
@@ -91,7 +91,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
                   <p className="text-xs text-gray-400 mb-2">
                     {formatDate(blog.date)} &bull; {blog.author}
                   </p>
-                  <h3 className="font-black text-white leading-tight group-hover:text-green-accent transition-colors mb-2">
+                  <h3 className="font-black text-green-accent leading-tight mb-2">
                     {blog.title}
                   </h3>
                   <p className="text-sm text-justify text-gray-400 line-clamp-2 flex-1">

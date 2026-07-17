@@ -81,7 +81,7 @@ export function MentorsSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 60% 45% at 80% 50%, rgba(84, 227, 70, 0.07) 0%, transparent 55%)',
+            'radial-gradient(ellipse 60% 45% at 80% 50%, rgba(20, 61, 143, 0.14) 0%, transparent 55%)',
         }}
         aria-hidden
       />
@@ -90,7 +90,7 @@ export function MentorsSection() {
           <AnimatedSection variant="fadeUp">
             <SectionLabel className="mb-4 mx-auto">Our Mentors</SectionLabel>
           </AnimatedSection>
-          <h2 className="text-4xl font-black text-white sm:text-5xl">
+          <h2 className="text-4xl font-black text-green-accent sm:text-4xl">
             Learn From Industry Experts
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
@@ -104,10 +104,7 @@ export function MentorsSection() {
           ref={gridRef}
           className="grid grid-cols-1 gap-10 pt-16 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 sm:pt-20 lg:grid-cols-3 lg:gap-x-10 lg:pt-24 xl:grid-cols-5 xl:gap-x-8"
         >
-          {MENTORS.map(({ name, designation, image }, i) => {
-            const variant = i % 3
-
-            return (
+          {MENTORS.map(({ name, designation, image }) => (
               <article
                 key={name}
                 className="mentor-card group relative flex flex-col overflow-visible bg-transparent"
@@ -118,51 +115,16 @@ export function MentorsSection() {
                   className="mx-auto w-full max-w-[340px] sm:max-w-[300px] lg:max-w-none"
                 />
 
-                {variant === 0 && (
-                  <div className="mt-5 pl-1">
-                    <h3 className="text-xl font-black tracking-tight text-white">
-                      {name}
-                    </h3>
-                    <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-green-accent">
-                      {designation}
-                    </p>
-                  </div>
-                )}
-
-                {variant === 1 && (
-                  <div className="mt-5 flex items-start gap-3 pl-1">
-                    <span
-                      className="mt-1.5 h-10 w-px shrink-0 bg-green-accent/70"
-                      aria-hidden
-                    />
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-green-accent">
-                        {designation}
-                      </p>
-                      <h3 className="mt-1.5 text-lg font-black leading-snug text-white">
-                        {name}
-                      </h3>
-                    </div>
-                  </div>
-                )}
-
-                {variant === 2 && (
-                  <div className="mt-5 text-center">
-                    <h3 className="text-lg font-black tracking-tight text-white sm:text-xl">
-                      {name}
-                    </h3>
-                    <div className="mt-2 flex items-center justify-center gap-2">
-                      <span className="h-px w-4 bg-blue-primary/60" aria-hidden />
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-green-accent">
-                        {designation}
-                      </p>
-                      <span className="h-px w-4 bg-blue-primary/60" aria-hidden />
-                    </div>
-                  </div>
-                )}
+                <div className="mt-5 text-center">
+                  <h3 className="text-lg font-black tracking-tight text-white sm:text-xl">
+                    {name}
+                  </h3>
+                  <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-400">
+                    {designation}
+                  </p>
+                </div>
               </article>
-            )
-          })}
+            ))}
         </div>
       </div>
     </section>

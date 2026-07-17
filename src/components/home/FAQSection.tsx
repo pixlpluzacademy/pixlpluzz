@@ -41,7 +41,7 @@ const faqItemVariants = {
 }
 
 export function FAQSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0)
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
 
   return (
     <section id="faq" className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
@@ -60,11 +60,11 @@ export function FAQSection() {
       </div>
       <div className="relative z-10 mx-auto max-w-3xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+          <h2 className="text-3xl sm:text-4xl font-black text-green-accent mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             Questions &amp; Answers
           </h2>
           <AnimatedSection variant="fadeUp">
-            <p className="text-base font-semibold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
+            <p className="text-base font-semibold text-gray-400 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
               What skills will I gain from the digital marketing course at Pixl Pluz Academy?
             </p>
           </AnimatedSection>
@@ -96,7 +96,7 @@ export function FAQSection() {
                 <span className="flex items-start gap-3">
                   <span className={cn(
                     'mt-1.5 w-1 h-4 shrink-0 transition-colors duration-200',
-                    openIdx === i ? 'bg-green-accent' : 'bg-green-accent/50'
+                    openIdx === i ? 'bg-green-accent' : 'bg-white/25'
                   )} />
                   <span className="text-base font-bold leading-snug text-white">
                     {faq.q}
@@ -123,7 +123,7 @@ export function FAQSection() {
                     transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
                     style={{ overflow: 'hidden' }}
                   >
-                    <div className="border-t border-white/10 px-6 pb-5 pt-4 text-base font-semibold leading-relaxed text-justify text-white">
+                    <div className="border-t border-white/10 px-6 pb-5 pt-4 text-base font-semibold leading-relaxed text-justify text-gray-400">
                       {faq.a}
                     </div>
                   </motion.div>

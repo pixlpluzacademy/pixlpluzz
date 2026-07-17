@@ -4,7 +4,7 @@
 >
 > **Maintenance rule:** Update the **Current copy snapshot** and **Last updated** date in this file **every time** section copy is created or changed in the codebase. Word counts below are targets — the snapshot reflects what is live in components today.
 
-**Last updated:** 2026-07-16  
+**Last updated:** 2026-07-17  
 **Snapshot source:** `src/components/home/*`, `src/components/courses/*`, `src/app/layout.tsx`, `src/app/page.tsx`
 
 ---
@@ -47,11 +47,11 @@
 
 ### 1. Hero (`HeroSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
-| Kicker / eyebrow | 3–6 | 4 — *"AI Integrated Academy — Kochi"* | Uppercase, location optional |
-| H1 (full, all lines) | 6–12 | 7 — *"Kerala's Best / AI Integrated / Courses"* | Line 2 may use green accent word |
-| Subtitle paragraph | 14–24 | 16 | Mention scholarship without amounts |
+| Kicker / eyebrow | 3–6 | — | Removed from hero |
+| H1 (full, all lines) | 6–12 | 6 — *"Your AI-Integrated / Gateway / in Kochi"* | Line 2 green accent |
+| Subtitle paragraph | 14–24 | 22 | Career launchpad + placement support |
 | Primary CTA label | 2–4 | 4 — *"Apply For Scholarship"* | |
 | Secondary CTA label | 2–3 | 2 — *"Explore Courses"* | |
 
@@ -61,18 +61,18 @@
 
 ### 2. About (`AboutSection.tsx`)
 
-| Field | Word target | Current (2026-07-14) | Notes |
+| Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | 2–3 | 2 — *"About PixlPluz"* | |
-| H2 | 6–10 | 6 — *"Best AI-Integrated Academy in Kochi"* | Academy framing — not "agency" |
-| Intro paragraph | 40–55 | ~48 | Justified; white; AI-integrated academy |
-| Intro paragraph 2 | 35–50 | ~44 | Hands-on AI-integrated courses; no agency language |
-| Intro paragraph 3 | 35–50 | ~42 | Neo Digital Hub Dubai + audience + international exposure |
+| H2 | 6–10 | 8 — *"Redefining Education with AI-Integrated Courses in Kochi"* | Academy framing |
+| Intro paragraph | 40–55 | ~52 | Career launchpad; AI tools; Kochi |
+| Intro paragraph 2 | 35–50 | ~48 | Hands-on projects; portfolio |
+| Intro paragraph 3 | 35–50 | ~38 | Neo Digital Hub Dubai; career switchers |
 | Feature card — title | 2–5 | 2–4 each | 4 cards |
-| Feature card — description | 12–30 | 14–22 each | Visible in collapsed state |
+| Feature card — description | 12–30 | 18–28 each | Visible in collapsed state |
 | Feature card — hover extra | 22–40 | ~28–34 each | Shown only when card expands on hover |
 
-**Current card titles:** Learn by Working · AI-Integrated Courses · Industry Expert Mentorship · International Exposure
+**Current card titles:** Learn by Doing · AI-Integrated Curriculum · Mentorship from Industry Experts · Global Exposure
 
 **Copy rule:** Do not describe Pixl Pluz as a digital marketing agency in this section. Position as an academy teaching AI-integrated courses, backed by Neo Digital Hub Dubai.
 
@@ -82,17 +82,17 @@
 
 | Field | Word target | Notes |
 |-------|-------------|-------|
-| Marquee items | 1–3 each | Certification / partner names only, not sentences |
+| Marquee items | 1–6 each | Live credentials: ISO 9001-2015, ISO 29993:2017, MSME, Startup India, NSDC |
 
 ---
 
 ### 4. Courses (`CoursesSection.tsx` + `CourseCard.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | 2–3 | 2 — *"Our Courses"* | |
-| H2 | 4–8 | 4 — *"AI-Integrated Career Programs"* | |
-| Section subtitle | 12–20 | 14 | No "100% placement" |
+| H2 | 4–8 | 7 — *"Real campaigns. Real mentors. Real placement support."* | |
+| Section subtitle | 12–20 | ~42 | AI-integrated course list; real-world AI skills |
 | Course card — title | 4–12 | from `course.title` | Larger type (`text-lg`/`sm:text-xl`); AI-integrated naming |
 | Course card — shortDescription | 18–28 | from `course.shortDescription` | `line-clamp-3`, justified |
 | Course card — meta (lessons) | 2–3 | 2 — *"N Lessons"* | Numeric lesson count is OK |
@@ -101,12 +101,12 @@
 
 ### 5. Advantage (`AdvantageSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | 3–5 | 3 — *"The PixlPluz Advantage"* | |
-| H2 | 5–10 | 6 — *"Digital marketing agency in kerala"* | Title case optional |
-| Intro paragraph | 55–80 | split into 4 paras | Justified; white; balances card grid height |
-| Intro para 2–4 | 35–55 each | ~40–48 | Career paths, modules, scholarship/support |
+| H2 | 5–10 | 5 — *"Your career, powered by AI."* | |
+| Intro paragraph | 55–80 | split into 4 paras | Job-ready skills; course list; launchpad |
+| Intro para 2–4 | 35–55 each | ~35–42 | Live projects; scholarships; mentorship |
 | Grid feature label | 2–5 | 2–4 each | 9 tiles; use "Career & Placement Support" not "100% Placement Assistance" |
 
 ---
@@ -127,14 +127,14 @@
 
 ### 7. Purpose (`PurposeSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | 2–3 | 2 — *"Our Purpose"* | |
-| H2 | 6–12 | 7 | |
-| Intro paragraph 1 | 45–60 | 55 | Justified |
-| Intro paragraph 2 | 18–30 | 22 | Justified |
-| Accordion — title | 4–8 | 5–7 each | 3 items |
-| Accordion — body | 18–35 | 22–28 each | **No ₹ amounts in scholarship item** |
+| H2 | 6–12 | 6 — *"Turning Learners Into Job-Ready Tech Professionals"* | |
+| Intro paragraph 1 | 45–60 | ~48 | AI-driven industry; real projects |
+| Intro paragraph 2 | 18–30 | 22 | Learning to doing |
+| Accordion — title | 4–8 | 4–5 each | 4 items |
+| Accordion — body | 18–35 | 18–24 each | **No ₹ amounts in scholarship item** |
 
 ---
 
@@ -219,7 +219,7 @@ Not on homepage currently; include if re-enabled.
 | `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
 | `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs + compact certificate stack; Curriculum (3-col gradient cards); AI tools marquee below modules; Who it’s for; FAQ — no fake stats |
 | `/scholarship` | 4–10 words | 120–160 chars | Steps, eligibility — **no amounts** |
-| `/placement` | 4–8 words | 120–160 chars | Hero + company marquee (Copernicus, Neo Digital Hub, Lathief Production, Black White viz) + wall — **no placement % / package / days stats** |
+| `/placement` | 4–8 words | 120–160 chars | Hero + wall — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
 | `/blog/[slug]` | 6–14 words | 120–160 chars | Article 600–1200 words (editorial) |
 
@@ -246,6 +246,10 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-17 | Homepage copy | Hero, About, Courses, Advantage, Purpose sections updated to client copy |
+| 2026-07-17 | Homepage brand colours | Applied Command Blue / Verdant / White / Butter Glow roles across home |
+| 2026-07-17 | Course detail certificates | Reverted 3D looping stack; restored simple front/back cycle |
+| 2026-07-17 | Placement hero | Rolling SplitText heading (GSAP demo style); removed BlurText fade-in |
 | 2026-07-16 | Placement hero | Green company boxes fall from hero and collect in a bottom pile |
 | 2026-07-16 | Course detail AI tools | Moved AI tools marquee below curriculum modules |
 | 2026-07-16 | Course detail certificate | Compact stacked certificates in hero (right), using `/images/certificates/*` |

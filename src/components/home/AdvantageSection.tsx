@@ -14,15 +14,15 @@ import { cn } from '@/lib/utils'
 gsap.registerPlugin(ScrollTrigger)
 
 const FEATURES = [
-  { label: 'Scholarship Based Courses', image: '/images/students/scholarship-based-courses.png' },
-  { label: 'Live Project & Training', image: '/images/students/live-project-training.png' },
-  { label: 'Industry Expert Mentors', image: '/images/students/industry-expert-mentors.png' },
-  { label: 'AI Tools & Automation', image: '/images/students/ai-tools-automation.png' },
-  { label: 'Career & Placement Support', image: '/images/students/career-placement-support.png' },
-  { label: 'Interview Preparation', image: '/images/students/interview-preparation.png' },
-  { label: 'Practical Learning', image: '/images/students/practical-learning.png' },
-  { label: 'Verified Portfolio', image: '/images/students/verified-portfolio.png' },
-  { label: 'Industry Certification', image: '/images/students/industry-certification.png' },
+  { labelLines: ['Scholarship', 'Based Courses'], image: '/images/students/scholarship-based-courses.png' },
+  { labelLines: ['Live Project &', 'Training'], image: '/images/students/live-project-training.png' },
+  { labelLines: ['Industry Expert', 'Mentors'], image: '/images/students/industry-expert-mentors.png' },
+  { labelLines: ['AI Tools &', 'Automation'], image: '/images/students/ai-tools-automation.png' },
+  { labelLines: ['Career &', 'Placement Support'], image: '/images/students/career-placement-support.png' },
+  { labelLines: ['Interview', 'Preparation'], image: '/images/students/interview-preparation.png' },
+  { labelLines: ['Practical', 'Learning'], image: '/images/students/practical-learning.png' },
+  { labelLines: ['Verified', 'Portfolio'], image: '/images/students/verified-portfolio.png' },
+  { labelLines: ['Industry', 'Certification'], image: '/images/students/industry-certification.png' },
 ]
 
 export function AdvantageSection() {
@@ -89,31 +89,31 @@ export function AdvantageSection() {
               The PixlPluz Advantage
             </SectionLabel>
 
-            <h2 className="mb-6 text-4xl font-black leading-tight text-white lg:text-6xl">
-              Digital marketing agency in kerala
+            <h2 className="mb-6 text-4xl font-black leading-tight text-green-accent lg:text-4xl">
+              Your Career Powered by  AI
             </h2>
 
             <div className="mb-10 max-w-xl space-y-4">
-              <p className="m-0 text-justify text-white leading-relaxed">
-                Pixl Pluz offers an agency-based digital marketing course in Kochi,
-                Thiruvananthapuram, and Calicut. Learners can choose between our
-                Live Online Program or offline classes at our institutes, with
-                weekend batches available at all centres.
+              <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                Job-ready skills, real AI training, and career support built for how industries
+                actually hire today. Courses include AI-Integrated Digital Marketing,
+                AI-Integrated Web Development, Data Science &amp; AI, and Cybersecurity — each
+                designed around how AI is reshaping these fields right now.
               </p>
-              <p className="m-0 text-justify text-white leading-relaxed">
-                Whether you&apos;re a fresh graduate, working professional, homemaker,
-                or business owner, Pixl Pluz Academy builds job-ready digital marketing
-                careers through hands-on, agency-style training — backed by Neo Digital Hub, Dubai.
+              <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                Fresh graduate, working professional, or career switcher — it doesn&apos;t matter
+                where you&apos;re starting from. Pixl Pluz builds job-ready skills through live
+                projects, mentor feedback, and real portfolio work, backed by Neo Digital Hub, Dubai.
               </p>
-              <p className="m-0 text-justify text-white leading-relaxed">
-                Every module is designed around real campaigns, mentor feedback, and
-                portfolio work so you leave with skills employers recognise. From SEO and
-                paid ads to AI tools and content systems, you train the way modern agencies work.
+              <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                This isn&apos;t theory-heavy classroom learning. It&apos;s a launchpad with
+                scholarships, interview prep, and placement support built in, so every step comes
+                with real backing.
               </p>
-              <p className="m-0 text-justify text-white leading-relaxed">
-                Join a learning environment built for clarity, practice, and career growth —
-                with scholarship pathways, interview preparation, and placement support to
-                help you take the next step confidently.
+              <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                Whether you are a graduate or switching careers, we meet you where you are. Through
+                AI-integrated live projects and expert mentorship, we bridge the gap between learning
+                and doing — with the backing of Neo Digital Hub to help you excel.
               </p>
             </div>
 
@@ -130,7 +130,8 @@ export function AdvantageSection() {
             ref={gridRef}
             className="grid w-full grid-cols-1 gap-3 p-2 sm:grid-cols-2 sm:gap-3.5 lg:ml-auto lg:max-w-[34rem] lg:grid-cols-3 xl:max-w-[36rem]"
           >
-            {FEATURES.map(({ label, image }, i) => {
+            {FEATURES.map(({ labelLines, image }, i) => {
+              const label = labelLines.join(' ')
               const isOpen = openIdx === i
               const isHidden = openIdx !== null && !isOpen
 
@@ -183,11 +184,12 @@ export function AdvantageSection() {
                     <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
                     <p
                       className={cn(
-                        'absolute inset-x-0 bottom-0 z-10 p-3.5 font-black uppercase leading-tight tracking-wide text-white sm:p-4',
-                        isOpen ? 'text-sm sm:text-base md:text-lg' : 'text-xs sm:text-sm',
+                        'absolute inset-x-0 bottom-0 z-10 p-3.5 font-black uppercase leading-[1.2] tracking-wide text-white sm:p-4',
+                        isOpen ? 'text-sm sm:text-base md:text-lg' : 'text-[10px] sm:text-[11px]',
                       )}
                     >
-                      {label}
+                      <span className="block whitespace-nowrap">{labelLines[0]}</span>
+                      <span className="block whitespace-nowrap">{labelLines[1]}</span>
                     </p>
                   </div>
                 </div>

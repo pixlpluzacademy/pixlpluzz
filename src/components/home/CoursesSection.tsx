@@ -59,12 +59,15 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
           <AnimatedSection variant="fadeUp">
             <SectionLabel className="mb-4 mx-auto">Our Courses</SectionLabel>
           </AnimatedSection>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
-            AI-Integrated Career Programs
+          <h2 className="text-4xl sm:text-3xl font-black text-green-accent mb-4">
+            Real campaigns. Real mentors. Real placement support.
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="max-w-2xl mx-auto text-justify text-gray-400">
-              Live projects, mentor support, and career guidance — choose the path that fits your career goals.
+            <p className="max-w-3xl mx-auto text-center text-gray-400">
+              We teach skills that matter, focusing on AI-integrated training in Digital Marketing,
+              Web Development, Data Science &amp; AI, and Cybersecurity. Our programs match how top
+              companies hire today — you won&apos;t just learn theory; you will learn how to use AI
+              tools to solve real-world problems.
             </p>
           </AnimatedSection>
         </div>

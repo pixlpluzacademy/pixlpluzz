@@ -2,7 +2,7 @@
 
 > **Purpose:** Persistent design rules for agents and developers. The customer site is **dark-mode first**. Follow this file whenever building or editing UI — no need to re-explain design intent in every chat.
 
-**Last updated:** 2026-07-13
+**Last updated:** 2026-07-17
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Element | Rule |
 |---------|------|
-| **Primary palette** | Blue + green only. No extra accent colours. |
+| **Primary palette** | Command Blue, Electric Verdant, Pure White, Butter Glow (from branding PDF). |
 | **Mode** | Dark mode is the default experience. Light sections are secondary. |
 | **Mood** | Modern, tech-forward, agency-grade — not corporate or flat. |
 | **Pixel motif** | Keep pixel corners, dot/grid backgrounds, and floating pixels as brand texture. |
@@ -19,52 +19,66 @@
 
 ## 2. Colour system
 
-### Move away from navy
+### Surfaces — black canvas
 
-The current navy-heavy surfaces (`navy-950`, `navy-900`, `navy-800`) feel too cold and muddy. **Replace with true black-based surfaces** and use blue/green only for accents, glow, and gradients.
+Use true black-based surfaces. Blue/green/butter are accents only — never large solid colour fills for sections.
 
-| Role | Current (deprecate) | Target |
-|------|---------------------|--------|
-| Page background | `#060b16` / `bg-navy-950` | `#000000` / `bg-black` |
-| Section background | `#080d1a` / `bg-navy-900` | `#0a0a0a` – `#111111` |
-| Elevated cards | `#0d1730` / `bg-navy-800` | `#141414` with `border-white/8` |
-| Hero gradient | Navy radial stack | Black base + blue/green neon radial glow |
+| Role | Target |
+|------|--------|
+| Page background | `#000000` / `bg-black` |
+| Section background | `#0a0a0a` – `#111111` |
+| Elevated cards | `#141414` with `border-white/8` |
+| Hero | Black base + blue atmosphere glow (+ soft green spark on the warm side) |
 
-### Brand tokens (keep)
+### Brand tokens
 
 ```css
---color-blue-primary:  #153e90;
---color-green-accent:  #54e346;
+--color-blue-primary:  #143d8f;  /* Command Blue */
+--color-green-accent:  #54e345;  /* Electric Verdant */
+--color-butter-glow:   #fffaa4;  /* Butter Glow */
+/* Pure White = #ffffff */
 ```
 
-Use blue for: labels, links, secondary buttons, headings highlights, ambient glow (left/cool side).
+| Colour | Role |
+|--------|------|
+| **Electric Verdant `#54E345`** | **Section headings (H2), card titles, primary buttons** — main highlight on dark |
+| **Pure White** | Body copy, nav, secondary text |
+| **Command Blue `#143D8F`** | Atmosphere (radials, grids), secondary chrome, header Contact |
+| **Butter Glow `#FFFAA4`** | Rare accents only (e.g. “Scholarship Fund”, badges) — never headings or buttons |
 
-Use green for: **primary CTAs**, hover states on interactive cards, active accordion indicators, success states, neon glow (right/warm side).
+### Headings & buttons (locked)
+
+On dark backgrounds, highlight must read clearly:
+
+| Element | Colour |
+|---------|--------|
+| Section H2 / card titles | `text-green-accent` |
+| Hero H1 | White lines + one green key line (e.g. “AI Integrated”) |
+| Primary CTA | `btn-cta-green` (green fill, dark text) |
+| Secondary CTA | White outline → green on hover |
+| Butter Glow | Accents only — not headings or buttons |
 
 ### Neon / glow effects
 
-Apply subtle glow on dark backgrounds — never flat solid fills alone.
+- **Hero / sections:** blue radial `rgba(20, 61, 143, 0.14–0.28)` on black; soft green spark optional.
+- **Cards on hover:** `border-green-accent/40`, soft green shadow.
+- **Butter:** tiny sparks — not continuous chrome.
 
-- **Hero / CTA sections:** radial gradients mixing `rgba(21, 62, 144, 0.25)` (blue) and `rgba(84, 227, 70, 0.15)` (green) on `#000`.
-- **Cards on hover:** `border-green-accent/40`, soft `shadow-green-accent/10`, optional `box-shadow: 0 0 24px rgba(84, 227, 70, 0.2)`.
-- **Ambient blobs:** blurred circles (`blur-[80px–120px]`) at low opacity behind content.
-- **Text highlights:** key words in `text-green-accent` on white headings (see Hero pattern).
-
-Avoid: heavy navy overlays, pure grey sections without glow, rainbow gradients.
+Avoid: navy section fills, blue primary CTAs, butter on headings/buttons.
 
 ---
 
 ## 3. Buttons & CTAs
 
-**Rule: Primary CTAs must be green** so they stand out against the blue-heavy UI.
+**Rule: Primary CTAs and section headings use Electric Verdant** so they pop on black.
 
 | Type | Style | Example labels |
 |------|-------|----------------|
-| **Primary CTA** | Green fill (`bg-green-accent`, dark text `text-black` or `text-navy-950`) | Apply For Scholarship, Apply Now, Enrol Now |
+| **Primary CTA** | Green fill (`btn-cta-green`, dark text) | Apply For Scholarship, Apply Now, Enrol Now |
 | **Secondary CTA** | Outline — white border, green border + text on hover | Explore Courses, Learn More, View All |
 | **Tertiary / text link** | `text-green-accent` with underline on hover | join our counselling session |
 
-**Do not** use blue gradient fills (`btn-primary-fill`) for primary actions anymore. Reserve blue for secondary/outline or decorative elements.
+**Do not** use blue gradient fills (`btn-primary-fill`) for primary actions. Reserve blue for atmosphere and header Contact.
 
 Hover: slight brightness increase + soft green glow. Active: `scale(0.98)`.
 

@@ -10,20 +10,24 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 const ACCORDION_ITEMS = [
   {
     title: 'Practical Learning for Real Careers',
-    body: 'Our training is designed to help students understand how creative work happens in the real world, from planning and storytelling to execution and presentation.',
+    body: 'Training is built around how work actually happens in the industry — from planning and execution to real client-style delivery, not just theory.',
   },
   {
-    title: 'Scholarship Opportunity for Students',
-    body: 'Pixl Pluz Academy provides a merit-based scholarship program for financially deserving students who pass the entrance test and demonstrate passion for learning.',
+    title: 'Scholarship Opportunities for Students',
+    body: 'Merit-based scholarships make quality, AI-integrated education accessible to more students, regardless of where they\'re starting from.',
   },
   {
-    title: 'Built for Digital Marketing & Online Careers',
-    body: 'Every module is designed around what employers actually want in 2026 and beyond — AI tools, portfolio work, agency workflows, and measurable results.',
+    title: 'Built for AI-Integrated Careers',
+    body: 'Courses in Digital Marketing, Web Development, Data Science & AI, and Cybersecurity are all designed around how AI is reshaping these fields today.',
+  },
+  {
+    title: 'Career & Placement Support',
+    body: 'Interview preparation, mentor guidance, and placement support help you take the final step from training to a real job.',
   },
 ]
 
 export function PurposeSection() {
-  const [openIdx, setOpenIdx] = useState(0)
+  const [openIdx, setOpenIdx] = useState(-1)
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -69,21 +73,21 @@ export function PurposeSection() {
           <AnimatedSection variant="fadeIn" delay={0}>
             <SectionLabel className="mb-4">Our Purpose</SectionLabel>
           </AnimatedSection>
-          <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
-            Empowering the Next Generation of Creative Professionals.
+          <h2 className="text-4xl lg:text-4xl font-black text-green-accent leading-tight mb-6">
+            Turning Learners Into Job Ready Tech Professionals
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.2}>
             <p className="text-justify text-gray-400 leading-relaxed mb-3">
-              Pixl Pluz Academy was created to help students build real creative and digital skills for the
-              modern industry. We believe media is not only about learning software or tools. It is about
-              using those tools to communicate ideas, tell meaningful stories, solve problems, and create
-              work that connects with people.
+              Pixl Pluz Academy was created to help students build real, in-demand skills for
+              today&apos;s AI-driven industry. Learning here isn&apos;t just about tools or software.
+              It&apos;s about knowing how to use AI to solve real problems, build real projects, and
+              deliver work that actually gets you hired.
             </p>
           </AnimatedSection>
           <AnimatedSection variant="fadeUp" delay={0.25}>
             <p className="text-justify text-gray-400 leading-relaxed mb-8">
-              Our goal is to help students move from learning to doing, from ideas to execution, and from
-              classroom knowledge to career-ready confidence.
+              The goal is simple: move students from learning to doing, from theory to execution,
+              and from classroom knowledge to career-ready confidence.
             </p>
           </AnimatedSection>
 
@@ -96,7 +100,7 @@ export function PurposeSection() {
                     onClick={() => setOpenIdx(openIdx === i ? -1 : i)}
                   >
                     <span className="flex items-center gap-3">
-                      <span className={`w-1 h-5 shrink-0 transition-colors duration-200 ${openIdx === i ? 'bg-green-accent' : 'bg-green-accent/40'}`} />
+                      <span className={`w-1 h-5 shrink-0 transition-colors duration-200 ${openIdx === i ? 'bg-green-accent' : 'bg-white/25'}`} />
                       {item.title}
                     </span>
                     <motion.span

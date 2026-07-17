@@ -73,7 +73,8 @@ export function ScholarshipSection() {
           // while the inner section is stuck at top:0.
           // ScrollTrigger watches the wrapper; scrub drives the timeline.
           if (isDesktop) {
-            const SCROLL_DIST = Math.min(560, Math.round(window.innerHeight * 0.45))
+            // Stick only while the 4 steps reveal — release as soon as the last appears
+            const SCROLL_DIST = Math.round(window.innerHeight * 1.05)
 
             const setHeight = () => {
               if (wrapperRef.current) {
@@ -87,41 +88,51 @@ export function ScholarshipSection() {
               scrollTrigger: {
                 trigger: wrapperRef.current,
                 start:   'top top',
-                end:     'bottom bottom', // = SCROLL_DIST px of scrub
-                scrub:   0.5,
+                end:     'bottom bottom',
+                scrub:   0.4,
               },
             })
 
-            // Connector line grows left → right
+            // Connector line grows across the reveal phase
             if (lineRef.current) {
               tl.fromTo(
                 lineRef.current,
                 { scaleX: 0 },
-                { scaleX: 1, duration: 2.2, ease: 'none' },
-                0
+                { scaleX: 1, duration: 2.4, ease: 'none' },
+                0,
               )
             }
 
-            // Sequential step + icon reveals
+            // Sequential step + icon reveals (one by one while section stays stuck)
             steps.forEach((step, i) => {
+              const at = i * 0.6
               tl.fromTo(
                 step,
-                { autoAlpha: 0, y: 50, scale: 0.92 },
-                { autoAlpha: 1, y: 0,  scale: 1,
-                  duration: 0.55, ease: 'power2.out' },
-                i === 0 ? 0 : '>-0.15'
+                { autoAlpha: 0, y: 36, scale: 0.94 },
+                {
+                  autoAlpha: 1,
+                  y: 0,
+                  scale: 1,
+                  duration: 0.5,
+                  ease: 'power2.out',
+                },
+                at,
               )
               if (icons[i]) {
                 tl.fromTo(
                   icons[i],
-                  { autoAlpha: 0, y: 12 },
-                  { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' },
-                  '<0.1'
+                  { autoAlpha: 0, y: 10 },
+                  {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.35,
+                    ease: 'power2.out',
+                  },
+                  at + 0.06,
                 )
               }
             })
 
-            // Cleanup: remove resize listener + reset wrapper height
             return () => {
               window.removeEventListener('resize', setHeight)
               if (wrapperRef.current) wrapperRef.current.style.height = ''
@@ -189,10 +200,10 @@ export function ScholarshipSection() {
             alt=""
             fill
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-center opacity-40"
             priority={false}
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-black/75" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl w-full text-center">
 
@@ -201,16 +212,16 @@ export function ScholarshipSection() {
             <SectionLabel className="mx-auto">Scholarship Program</SectionLabel>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
+          <h2 className="text-4xl sm:text-4xl font-black text-green-accent mb-4">
             Apply for Our Merit
             <br />
             Scholarship
           </h2>
 
-          <p className="max-w-2xl mx-auto text-justify text-white mb-3">
+          <p className="max-w-2xl mx-auto text-center text-gray-400 mb-3">
             We are launching our first batch this July with a scholarship fund for eligible students.
           </p>
-          <p className="max-w-2xl mx-auto text-justify text-white mb-10">
+          <p className="max-w-2xl mx-auto text-center text-gray-400 mb-10">
             To apply, register for the scholarship program and complete the entrance test.
             Pass the test. Show us your work. Start your creative career with Pixl Pluz Academy.
           </p>
@@ -232,7 +243,7 @@ export function ScholarshipSection() {
             {/* Connector line — GSAP drives scaleX 0 → 1 from left (desktop only) */}
             <div
               ref={lineRef}
-              className="hidden lg:block absolute top-10 left-0 right-0 h-px bg-green-accent/20"
+              className="hidden lg:block absolute top-10 left-0 right-0 h-px bg-blue-primary/25"
               style={{ transformOrigin: 'left center' }}
               aria-hidden
             />
@@ -251,20 +262,20 @@ export function ScholarshipSection() {
                     className="mb-5 flex flex-col items-center lg:items-start gap-3"
                     style={{ opacity: 0 }}
                   >
-                    <span className="font-mono text-xs tracking-[0.22em] text-green-accent/50 uppercase select-none">
+                    <span className="font-mono text-xs tracking-[0.22em] text-white/40 uppercase select-none">
                       {step.num}
                     </span>
                     <step.icon
                       size={28}
                       strokeWidth={1.5}
-                      className="text-green-accent"
+                      className="text-blue-primary"
                     />
                   </div>
 
                   <h3 className="font-black text-white mb-2 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-justify text-white leading-relaxed">
+                  <p className="text-sm text-justify text-gray-400 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>

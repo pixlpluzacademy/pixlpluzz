@@ -32,7 +32,7 @@ export function CTASection() {
           <SectionLabel className="mx-auto">The Steps</SectionLabel>
         </AnimatedSection>
 
-        <h2 className="mb-6 text-4xl font-black leading-tight text-white sm:text-5xl">
+        <h2 className="mb-6 text-4xl font-black leading-tight text-green-accent sm:text-5xl">
           Pass the Test. Show Your Work.<br />Start Your Career.
         </h2>
 

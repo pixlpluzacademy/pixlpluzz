@@ -61,13 +61,14 @@ const PORTRAIT = GEO_SMALL.portrait
 
 /**
  * Full cutout at logo width — bottom on logo, head free above.
- * Placement stays fixed while only the logo frame animates.
+ * Horizontally centered on the logo frame.
  */
 const CUTOUT_H = PORTRAIT.h * 2.45
+const CUTOUT_W = PORTRAIT.w * 1.2
 const CUTOUT = {
-  x: PORTRAIT.x - PORTRAIT.w * 0.08,
+  x: CX - CUTOUT_W / 2,
   y: PORTRAIT.y + PORTRAIT.h - CUTOUT_H + U * 0.22,
-  w: PORTRAIT.w * 1.28,
+  w: CUTOUT_W,
   h: CUTOUT_H,
 }
 const CUTOUT_OX = CUTOUT.x + CUTOUT.w / 2

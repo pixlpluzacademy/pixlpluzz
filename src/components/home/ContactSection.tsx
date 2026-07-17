@@ -59,7 +59,7 @@ export function ContactSection() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 50% 40% at 30% 50%, rgba(84, 227, 70, 0.06) 0%, transparent 55%)',
+          background: 'radial-gradient(ellipse 50% 40% at 30% 50%, rgba(20, 61, 143, 0.14) 0%, transparent 55%)',
         }}
         aria-hidden
       />
@@ -85,7 +85,7 @@ export function ContactSection() {
         {/* Right panel — enquiry form */}
         <div ref={rightRef} className="bg-[#141414] p-6 sm:p-8 lg:p-10 flex flex-col justify-center min-h-[26rem] sm:min-h-[28rem] lg:min-h-full" data-no-blur-text>
           <SectionLabel className="mb-3 self-start w-fit">Get In Touch</SectionLabel>
-          <h3 className="text-2xl font-black text-white mb-2">
+          <h3 className="text-2xl font-black text-green-accent mb-2">
             Get The Best Course Guidance For Your Future
           </h3>
           <p className="text-justify text-gray-400 text-sm mb-6">
