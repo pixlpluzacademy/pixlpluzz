@@ -41,7 +41,8 @@ export function formatCurriculumForForm(curriculum: Course['curriculum']): strin
   return curriculum
     .map(mod => {
       const lessons = mod.lessons.map(l => `- ${l.title}`).join('\n')
-      return `${mod.title}\n${lessons}`
+      const desc = mod.description?.trim()
+      return desc ? `${mod.title}\n${desc}\n${lessons}` : `${mod.title}\n${lessons}`
     })
     .join('\n\n')
 }
@@ -53,17 +54,27 @@ export function parseCurriculumFromForm(text: string): Course['curriculum'] {
   return blocks.map(block => {
     const lines = block.split('\n').map(l => l.trim()).filter(Boolean)
     const title = lines[0] ?? 'Module'
-    const lessons = lines
-      .slice(1)
-      .map(line => line.replace(/^-\s*/, '').trim())
-      .filter(Boolean)
-      .map((lessonTitle, i) => ({
-        title: lessonTitle,
-        locked: i > 0,
-      }))
+    const rest = lines.slice(1)
+
+    const descLines: string[] = []
+    const lessonLines: string[] = []
+    for (const line of rest) {
+      if (lessonLines.length > 0 || line.startsWith('-')) {
+        const lessonTitle = line.replace(/^-\s*/, '').trim()
+        if (lessonTitle) lessonLines.push(lessonTitle)
+      } else {
+        descLines.push(line)
+      }
+    }
+
+    const lessons = lessonLines.map((lessonTitle, i) => ({
+      title: lessonTitle,
+      locked: i > 0,
+    }))
 
     return {
       title,
+      description: descLines.join(' '),
       lessons: lessons.length ? lessons : [{ title: 'Introduction', locked: false }],
     }
   })

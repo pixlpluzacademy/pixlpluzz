@@ -166,7 +166,7 @@ export function CourseForm({ course, mode }: Props) {
           value={curriculumText}
           onChange={e => setCurriculumText(e.target.value)}
           className={ADMIN_INPUT + ' resize-y font-mono text-xs'}
-          placeholder={'Module 1: Fundamentals\n- Introduction\n- Core concepts\n\nModule 2: Advanced'}
+          placeholder={'Module 1: Fundamentals\nShort module description\n- Introduction\n- Core concepts\n\nModule 2: Advanced'}
         />
       </AdminField>
 
