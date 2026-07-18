@@ -33,7 +33,7 @@ const STEPS = [
     icon: '/icons/dark-mode/career.svg',
     step: '04',
     title: 'Start Learning',
-    desc: 'Selected candidates receive up to 100% fee waiver and begin their course journey.',
+    desc: 'Selected candidates receive scholarship support and begin their course journey.',
   },
 ]
 
@@ -46,7 +46,8 @@ const ELIGIBILITY = [
   'Must commit to completing the full course',
 ]
 
-const SCHOLARSHIP_IMAGE = '/images/bg-scholarship5.png'
+const SCHOLARSHIP_VIDEO = '/video/scholarship-bg-video.mp4'
+const SCHOLARSHIP_POSTER = '/images/bg-scholarship5.png'
 
 export function ScholarshipContent() {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -82,38 +83,24 @@ export function ScholarshipContent() {
   return (
     <div ref={rootRef} className="scholarship-page min-h-screen">
       <section
-        className="relative flex min-h-svh items-center justify-center overflow-hidden bg-black px-4 pt-28 pb-16 sm:px-6"
+        className="relative min-h-svh overflow-hidden bg-black"
         data-page-hero
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <Image
-            src={SCHOLARSHIP_IMAGE}
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 55% 60% at 20% 40%, rgba(21,62,144,0.35) 0%, transparent 55%), radial-gradient(ellipse 40% 45% at 85% 70%, rgba(84,227,70,0.15) 0%, transparent 50%)',
-            }}
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            src={SCHOLARSHIP_VIDEO}
+            poster={SCHOLARSHIP_POSTER}
+            autoPlay
+            muted
+            loop
+            playsInline
           />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <p className="sch-kicker mb-5 text-green-accent">Pixl Pluz Academy</p>
-          <h1 className="text-[clamp(2.25rem,7vw,4.5rem)] font-black leading-[1.05] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.85)]">
-            Scholarship
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-            Education shouldn&apos;t have a price tag. Pass the test, prove your
-            commitment, and start your digital career — for free.
-          </p>
-        </div>
+        <h1 className="absolute bottom-6 left-4 z-10 text-[clamp(2.75rem,10vw,6.5rem)] font-black leading-[0.95] tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.85)] sm:bottom-8 sm:left-6 lg:bottom-10 lg:left-12">
+          Scholarship
+        </h1>
       </section>
 
       <section className="border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-24 lg:px-8">

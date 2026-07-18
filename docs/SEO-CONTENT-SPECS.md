@@ -4,8 +4,8 @@
 >
 > **Maintenance rule:** Update the **Current copy snapshot** and **Last updated** date in this file **every time** section copy is created or changed in the codebase. Word counts below are targets — the snapshot reflects what is live in components today.
 
-**Last updated:** 2026-07-17  
-**Snapshot source:** `src/components/home/*`, `src/components/courses/*`, `src/app/layout.tsx`, `src/app/page.tsx`
+**Last updated:** 2026-07-18  
+**Snapshot source:** `src/components/home/*`, `src/components/courses/*`, `src/components/scholarship/*`, `src/app/layout.tsx`, `src/app/page.tsx`
 
 ---
 
@@ -218,7 +218,7 @@ Not on homepage currently; include if re-enabled.
 | `/about` | 4–8 words | 120–160 chars | Stats row: **no ₹ or 100% labels** |
 | `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
 | `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Blue/white curriculum module switcher; AI tools carousel below; Who it’s for; FAQ — no fake stats |
-| `/scholarship` | 4–10 words | 120–160 chars | Steps, eligibility — **no amounts** |
+| `/scholarship` | 1 word — *"Scholarship"* | 120–160 chars | Video hero (left H1 only); steps, eligibility — **no amounts** |
 | `/placement` | 4–8 words | 120–160 chars | Hero + wall — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
 | `/blog/[slug]` | 6–14 words | 120–160 chars | Article 600–1200 words (editorial) |
@@ -247,6 +247,7 @@ Not on homepage currently; include if re-enabled.
 | Date | Section | Change |
 |------|---------|--------|
 | 2026-07-17 | Course detail curriculum | Expanded each module with description (~50–70 words) + more topic pills |
+| 2026-07-18 | Scholarship page hero | Full-bleed `scholarship-bg-video.mp4`; left-aligned H1 only — *"Scholarship"* (removed kicker + subtitle) |
 | 2026-07-17 | Course detail curriculum | Blue/white module switcher; AI tools moved to horizontal carousel below |
 | 2026-07-17 | Course detail curriculum | Left “Modules” nav + right detail (title, topic pills, brief); click swaps content |
 | 2026-07-17 | Course detail AI tools | Restored AI tool popups; removed only the “AI Tools” heading |
