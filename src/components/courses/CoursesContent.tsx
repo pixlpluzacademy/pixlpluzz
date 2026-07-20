@@ -90,9 +90,6 @@ export function CoursesContent({ courses }: CoursesContentProps) {
         <div className="absolute inset-0 bg-black/65" aria-hidden />
 
         <div className="relative z-10 mx-auto max-w-7xl">
-          <p className="text-xs font-medium uppercase tracking-widest text-green-accent mb-3">
-            Home / Courses
-          </p>
           <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             Our Courses
           </h1>

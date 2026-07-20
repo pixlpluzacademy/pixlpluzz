@@ -23,8 +23,8 @@ const AdvantageSection = dynamic(
 const MentorsSection = dynamic(
   () => import('@/components/home/MentorsSection').then(m => ({ default: m.MentorsSection }))
 )
-const PurposeSection = dynamic(
-  () => import('@/components/home/PurposeSection').then(m => ({ default: m.PurposeSection }))
+const AiToolsSection = dynamic(
+  () => import('@/components/home/AiToolsSection').then(m => ({ default: m.AiToolsSection }))
 )
 const ScholarshipSection = dynamic(
   () => import('@/components/home/ScholarshipSection').then(m => ({ default: m.ScholarshipSection }))
@@ -60,8 +60,9 @@ export default function HomePage() {
         <CoursesSection courses={courses} />
         <AdvantageSection />
         <MentorsSection />
-        <PurposeSection />
+        <AiToolsSection />
         <ScholarshipSection />
+        <div className="h-10 bg-black sm:h-14" aria-hidden />
         <ContactSection />
         <BlogSection blogs={blogs} />
         <FAQSection />

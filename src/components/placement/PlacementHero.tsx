@@ -1,93 +1,61 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
-import { SplitText } from 'gsap/SplitText'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
-
-gsap.registerPlugin(SplitText)
-
-const HEADING = 'Our graduates work at top companies.'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 
 export function PlacementHero() {
-  const headingRef = useRef<HTMLHeadingElement>(null)
-  const isSiteReady = useSiteReady()
+  const rootRef = useRef<HTMLElement>(null)
+  const siteReady = useSiteReady()
 
   useLayoutEffect(() => {
-    if (!isSiteReady) return
-    const heading = headingRef.current
-    if (!heading) return
+    const root = rootRef.current
+    if (!root) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduceMotion) return
 
-    let split: SplitText | null = null
-    let cancelled = false
-
     const ctx = gsap.context(() => {
-      const run = () => {
-        if (cancelled || !headingRef.current) return
-
-        split = SplitText.create(heading, {
-          type: 'chars',
-          charsClass: 'placement-roll-char',
-        })
-
-        // 3D rolling reveal — adapted from https://demos.gsap.com/demo/rolling-text/
-        const depth = -Math.min(heading.offsetWidth, 720) / 10
-        const transformOrigin = `50% 50% ${depth}`
-
-        gsap.set(heading, { perspective: 700, transformStyle: 'preserve-3d' })
-        gsap.set(split.chars, {
-          transformOrigin,
-          transformStyle: 'preserve-3d',
-          display: 'inline-block',
-        })
-
-        gsap.fromTo(
-          split.chars,
-          { rotationX: -90, opacity: 0 },
-          {
-            rotationX: 0,
-            opacity: 1,
-            duration: 0.85,
-            stagger: 0.035,
-            ease: 'power2.out',
-            transformOrigin,
-            delay: 0.12,
-          },
-        )
+      if (!siteReady) {
+        gsap.set('.plc-hero-pop', { opacity: 0 })
+        return
       }
 
-      if (document.fonts?.ready) {
-        document.fonts.ready.then(run)
-      } else {
-        run()
-      }
-    }, heading)
+      gsap.fromTo(
+        '.plc-hero-pop',
+        { opacity: 0 },
+        { opacity: 1, duration: 0.05, stagger: 0.18, ease: 'none', delay: 0.2 },
+      )
+    }, root)
 
-    return () => {
-      cancelled = true
-      ctx.revert()
-      split?.revert()
-    }
-  }, [isSiteReady])
+    return () => ctx.revert()
+  }, [siteReady])
 
   return (
-    <section className="bg-navy-950 pt-32 pb-24 sm:pt-36 sm:pb-28 lg:pt-40 lg:pb-32" data-page-hero>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
-        <p className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-10">
-          Placement
-        </p>
-        <h1
-          ref={headingRef}
-          className="max-w-4xl text-5xl font-black leading-[1.02] text-white sm:text-6xl lg:text-7xl"
-          style={{ fontKerning: 'none', textRendering: 'optimizeSpeed' }}
-        >
-          {HEADING}
+    <section
+      ref={rootRef}
+      className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden bg-black px-4 pt-24 pb-12 sm:px-6 lg:px-12"
+      data-page-hero
+    >
+      <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
+
+      <div className="relative z-10 mt-auto">
+        <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
+          <PixelTrail />
+          <span className="plc-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word evt-outline-muted">
+            Our
+          </span>
+          <span className="plc-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-gray-400">
+            Graduates
+          </span>
         </h1>
-        <p className="mt-8 max-w-xl text-lg text-gray-400 sm:mt-10">
-          Real careers, real companies — across India and beyond.
+      </div>
+
+      <div className="plc-hero-pop relative z-10 mt-10 max-w-md self-end text-left sm:text-right">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-sky-400">across india & beyond</p>
+        <p className="mt-2 text-base text-gray-400 sm:text-lg">
+          Real Careers, Real Companies - No Shortcuts,<br></br> Just Work That Shows.
         </p>
       </div>
     </section>

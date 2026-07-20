@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FloatingPixels } from '@/components/ui/FloatingPixels'
 
 const CTA_PIXELS = [
@@ -28,10 +27,6 @@ export function CTASection() {
       />
 
       <div className="relative z-10 mx-auto max-w-3xl text-center" data-no-blur-text>
-        <AnimatedSection variant="fadeIn" delay={0} className="mb-6">
-          <SectionLabel className="mx-auto">The Steps</SectionLabel>
-        </AnimatedSection>
-
         <h2 className="mb-6 text-4xl font-black leading-tight text-green-accent sm:text-5xl">
           Pass the Test. Show Your Work.<br />Start Your Career.
         </h2>

@@ -5,7 +5,7 @@ import { NoiseParticles } from '@/components/ui/NoiseParticles'
 import { BlurText } from '@/components/ui/BlurText'
 
 interface PageHeaderProps {
-  breadcrumb: string
+  breadcrumb?: string
   title: string
   subtitle?: string
   /** Adds a subtle flickering dot layer behind the title */
@@ -35,9 +35,11 @@ export function PageHeader({
         { size: 10, top: '20%', right: '15%',delay: '0.4s', color: 'white', speed: 'fast' },
       ]} />
       <div className="relative z-10 mx-auto max-w-7xl text-center">
-        <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">
-          Home / {breadcrumb}
-        </p>
+        {breadcrumb && (
+          <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">
+            Home / {breadcrumb}
+          </p>
+        )}
         {blurOnLoad ? (
           <>
             <BlurText

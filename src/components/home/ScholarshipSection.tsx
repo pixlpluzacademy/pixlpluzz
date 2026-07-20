@@ -3,35 +3,33 @@
 import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ClipboardList, FlaskConical, FolderOpen, Rocket } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 
 const STEPS = [
   {
     num: '01',
-    title: 'Register Online',
+    title: 'REGISTER ONLINE',
     desc: 'Fill out the scholarship application form with your basic details.',
-    icon: ClipboardList,
+    icon: '/icons/register-online.svg',
   },
   {
     num: '02',
-    title: 'Attend the Test',
+    title: 'ENTRANCE TEST',
     desc: 'Complete the entrance test and show us your interest, effort, and learning potential.',
-    icon: FlaskConical,
+    icon: '/icons/attend-the-test.svg',
   },
   {
     num: '03',
-    title: 'Submit Your Work',
+    title: 'INTERVIEW',
     desc: 'Share your ideas, portfolio or assignment based on the program requirement.',
-    icon: FolderOpen,
+    icon: '/icons/interview.svg',
   },
   {
     num: '04',
-    title: 'Start Your Career',
+    title: 'START YOUR CAREER',
     desc: 'Selected students join the first batch with scholarship support and practical training.',
-    icon: Rocket,
+    icon: '/icons/start-your-career.svg',
   },
 ]
 
@@ -39,7 +37,6 @@ export function ScholarshipSection() {
   // Outer div — gets dynamic height injected on desktop so there is
   // enough scroll room for the sticky section to animate through.
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const lineRef    = useRef<HTMLDivElement>(null)
   const stepRefs   = useRef<(HTMLDivElement | null)[]>([])
   const iconRefs   = useRef<(HTMLDivElement | null)[]>([])
 
@@ -93,19 +90,10 @@ export function ScholarshipSection() {
               },
             })
 
-            // Connector line grows across the reveal phase
-            if (lineRef.current) {
-              tl.fromTo(
-                lineRef.current,
-                { scaleX: 0 },
-                { scaleX: 1, duration: 2.4, ease: 'none' },
-                0,
-              )
-            }
-
             // Sequential step + icon reveals (one by one while section stays stuck)
             steps.forEach((step, i) => {
               const at = i * 0.6
+
               tl.fromTo(
                 step,
                 { autoAlpha: 0, y: 36, scale: 0.94 },
@@ -208,22 +196,16 @@ export function ScholarshipSection() {
         <div className="relative z-10 mx-auto max-w-7xl w-full text-center">
 
           {/* Heading — always visible; stays fixed while steps animate */}
-          <div className="mb-6 mx-auto">
-            <SectionLabel className="mx-auto">Scholarship Program</SectionLabel>
-          </div>
-
-          <h2 className="text-4xl sm:text-4xl font-black text-green-accent mb-4">
-            Apply for Our Merit
-            <br />
-            Scholarship
+          <h2 className="mb-6 font-black uppercase leading-[0.92] tracking-tight sm:mb-8 text-[clamp(2.25rem,7vw,4.75rem)]">
+            <span className="text-white">Merit Based</span>{' '}
+            <span className="text-green-accent">Scholarship</span>
           </h2>
 
           <p className="max-w-2xl mx-auto text-center text-gray-400 mb-3">
-            We are launching our first batch this July with a scholarship fund for eligible students.
+          As we begin, we're opening doors not just to a new batch, but to opportunity. Our scholarship fund is here to make sure talent, not tuition, decides who gets to build a career in AI. 
           </p>
           <p className="max-w-2xl mx-auto text-center text-gray-400 mb-10">
-            To apply, register for the scholarship program and complete the entrance test.
-            Pass the test. Show us your work. Start your creative career with Pixl Pluz Academy.
+          Limited seats. Limited time. Unlimited potential.
           </p>
 
           <div className="mb-16">
@@ -239,15 +221,6 @@ export function ScholarshipSection() {
 
           {/* Steps */}
           <div className="relative">
-
-            {/* Connector line — GSAP drives scaleX 0 → 1 from left (desktop only) */}
-            <div
-              ref={lineRef}
-              className="hidden lg:block absolute top-10 left-0 right-0 h-px bg-blue-primary/25"
-              style={{ transformOrigin: 'left center' }}
-              aria-hidden
-            />
-
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {STEPS.map((step, i) => (
                 <div
@@ -265,14 +238,16 @@ export function ScholarshipSection() {
                     <span className="font-mono text-xs tracking-[0.22em] text-white/40 uppercase select-none">
                       {step.num}
                     </span>
-                    <step.icon
-                      size={28}
-                      strokeWidth={1.5}
-                      className="text-blue-primary"
+                    <Image
+                      src={step.icon}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="h-7 w-7 object-contain"
                     />
                   </div>
 
-                  <h3 className="font-black text-white mb-2 leading-snug">
+                  <h3 className="mb-2 font-black leading-snug text-green-accent">
                     {step.title}
                   </h3>
                   <p className="text-sm text-justify text-gray-400 leading-relaxed">

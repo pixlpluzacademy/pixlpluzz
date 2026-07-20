@@ -12,76 +12,96 @@ gsap.registerPlugin(ScrollTrigger)
 
 const STEPS = [
   {
-    icon: '/icons/dark-mode/submissions.svg',
-    step: '01',
-    title: 'Fill the Form',
-    desc: 'Complete the scholarship application with your personal details, educational background, and motivation.',
+    num: '01',
+    title: 'REGISTER ONLINE',
+    desc: 'Fill out the scholarship application form with your basic details.',
+    icon: '/icons/register-online.svg',
   },
   {
-    icon: '/icons/dark-mode/tasks.svg',
-    step: '02',
-    title: 'Take the Test',
-    desc: 'Attend our online scholarship aptitude test covering logical thinking, digital awareness, and basic skills.',
+    num: '02',
+    title: 'ENTRANCE TEST',
+    desc: 'Complete the entrance test and show us your interest, effort, and learning potential.',
+    icon: '/icons/attend-the-test.svg',
   },
   {
-    icon: '/icons/dark-mode/21-Approved dark.svg',
-    step: '03',
-    title: 'Get Evaluated',
-    desc: 'Top scorers are shortlisted. Our panel evaluates financial eligibility and commitment.',
+    num: '03',
+    title: 'INTERVIEW',
+    desc: 'Share your ideas, portfolio or assignment based on the program requirement.',
+    icon: '/icons/interview.svg',
   },
   {
-    icon: '/icons/dark-mode/career.svg',
-    step: '04',
-    title: 'Start Learning',
-    desc: 'Selected candidates receive scholarship support and begin their course journey.',
+    num: '04',
+    title: 'START YOUR CAREER',
+    desc: 'Selected students can join the first batch with scholarship support.',
+    icon: '/icons/start-your-career.svg',
   },
-]
-
-const ELIGIBILITY = [
-  'You must be a resident of Kerala or a neighbouring state',
-  'Annual family income below ₹4,00,000',
-  'You must pass the scholarship entrance test',
-  'Aged between 17 and 30 years',
-  'Genuine financial need and strong motivation to learn',
-  'Must commit to completing the full course',
 ]
 
 const SCHOLARSHIP_VIDEO = '/video/scholarship-bg-video.mp4'
 const SCHOLARSHIP_POSTER = '/images/bg-scholarship5.png'
+const HERO_WORD = 'SCHOLARSHIP'
+const APPLY_WORDS = ['How', 'To', 'Apply'] as const
 
 export function ScholarshipContent() {
   const rootRef = useRef<HTMLDivElement>(null)
-  const isSiteReady = useSiteReady()
+  const siteReady = useSiteReady()
 
   useLayoutEffect(() => {
-    if (!isSiteReady || !rootRef.current) return
+    const root = rootRef.current
+    if (!root) return
 
-    const reduceMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const ctx = gsap.context(() => {
-      if (reduceMotion) return
+      // Same pop-in as career hero — abrupt opacity, no pixel trail
+      if (!siteReady) {
+        gsap.set('.sch-hero-letter', { opacity: 0 })
+        gsap.set('.sch-apply-word', { opacity: 0 })
+        return
+      }
 
-      gsap.utils
-        .toArray<HTMLElement>('.sch-fade-in', rootRef.current!)
-        .forEach((el) => {
-          gsap.from(el, {
-            scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-            opacity: 0,
-            y: 40,
-            duration: 0.85,
-            ease: 'power3.out',
-          })
-        })
-    }, rootRef)
+      gsap.fromTo(
+        '.sch-hero-letter',
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.05,
+          stagger: 0.08,
+          ease: 'none',
+          delay: 0.2,
+        },
+      )
+
+      gsap.set('.sch-apply-word', { opacity: 0 })
+      ScrollTrigger.create({
+        trigger: '.sch-apply-heading',
+        start: 'top 82%',
+        once: true,
+        onEnter: () => {
+          gsap.fromTo(
+            '.sch-apply-word',
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.05,
+              stagger: 0.35,
+              ease: 'none',
+            },
+          )
+        },
+      })
+    }, root)
 
     requestAnimationFrame(() => ScrollTrigger.refresh())
     return () => ctx.revert()
-  }, [isSiteReady])
+  }, [siteReady])
 
   return (
-    <div ref={rootRef} className="scholarship-page min-h-screen">
+    <div
+      ref={rootRef}
+      className="scholarship-page min-h-screen"
+      data-no-blur-text
+    >
       <section
         className="relative min-h-svh overflow-hidden bg-black"
         data-page-hero
@@ -98,59 +118,57 @@ export function ScholarshipContent() {
           />
         </div>
 
-        <h1 className="absolute bottom-6 left-4 z-10 text-[clamp(2.75rem,10vw,6.5rem)] font-black leading-[0.95] tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.85)] sm:bottom-8 sm:left-6 lg:bottom-10 lg:left-12">
-          Scholarship
+        <h1 className="absolute top-20 right-4 z-10 text-right text-[clamp(2.25rem,8vw,5rem)] font-black uppercase leading-[0.95] tracking-tight drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)] sm:top-24 sm:right-6 lg:top-28 lg:right-12">
+          {HERO_WORD.split('').map((ch, i) => (
+            <span
+              key={`${ch}-${i}`}
+              className="sch-hero-letter career-outline-word inline-block"
+              style={{ opacity: 0 }}
+            >
+              {ch}
+            </span>
+          ))}
         </h1>
       </section>
 
-      <section className="border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="mx-auto max-w-5xl">
-          <p className="sch-fade-in sch-kicker mb-4 text-green-accent/70">How it works</p>
-          <h2 className="mb-10 text-3xl font-black text-white sm:mb-14 sm:text-4xl">
-            Four simple steps
-          </h2>
-          <div className="sch-fade-in grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s) => (
-              <div
-                key={s.step}
-                className="border border-white/8 bg-[#141414] p-6"
+      <section className="border-t border-white/8 bg-black px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="sch-apply-heading mb-12 text-[clamp(2.75rem,8vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-green-accent sm:mb-16">
+            {APPLY_WORDS.map((word) => (
+              <span
+                key={word}
+                className="sch-apply-word mr-[0.28em] inline-block last:mr-0"
+                style={{ opacity: 0 }}
               >
-                <span className="mb-4 block font-mono text-xs tracking-[0.3em] text-green-accent/60">
-                  {s.step}
+                {word}
+              </span>
+            ))}
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            {STEPS.map((step) => (
+              <div
+                key={step.num}
+                className="flex min-h-[22rem] flex-col border border-white/8 bg-[#141414] p-8 sm:min-h-[24rem] sm:p-9 lg:p-10"
+              >
+                <span className="mb-5 block font-mono text-sm tracking-[0.3em] text-green-accent/60">
+                  {step.num}
                 </span>
-                <img
-                  src={s.icon}
+                <Image
+                  src={step.icon}
                   alt=""
-                  className="mb-4 h-7 w-7 object-contain"
+                  width={44}
+                  height={44}
+                  className="mb-6 h-11 w-11 object-contain"
                 />
-                <h3 className="mb-2 font-bold text-white">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-white/55">{s.desc}</p>
+                <h3 className="mb-3 text-xl font-black leading-snug text-green-accent sm:text-2xl">
+                  {step.title}
+                </h3>
+                <p className="text-base leading-relaxed text-white/55">
+                  {step.desc}
+                </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="mx-auto max-w-2xl">
-          <p className="sch-fade-in sch-kicker mb-4 text-green-accent/70">Who can apply</p>
-          <h2 className="mb-10 text-3xl font-black text-white">
-            Eligibility criteria
-          </h2>
-          <ul className="sch-fade-in space-y-3">
-            {ELIGIBILITY.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 border border-white/8 bg-[#141414] p-4"
-              >
-                <span
-                  className="mt-1.5 h-3.5 w-3.5 shrink-0 border border-green-accent/70 bg-green-accent/15"
-                  aria-hidden
-                />
-                <span className="text-sm text-white/70">{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -169,19 +187,16 @@ export function ScholarshipContent() {
           <div className="absolute inset-0 bg-black/55" />
         </div>
         <div className="relative z-10 mx-auto max-w-5xl overflow-hidden border border-white/10 bg-black/50 px-8 py-12 text-center backdrop-blur-md pixel-corner sm:px-12 sm:py-14 lg:max-w-7xl lg:px-14">
-          <p className="sch-fade-in sch-kicker mb-5 text-white">
-            Ready to apply?
-          </p>
           <h2 className="mb-4 text-3xl font-black text-white sm:text-4xl">
-            Your career shouldn&apos;t wait for permission.
+            Your Future Shouldn't Wait for Permission.
           </h2>
-          <p className="sch-fade-in mb-10 text-white/80">
+          <p className="mb-10 text-white/80">
             Fill out the form and we will contact you with the scholarship test
             schedule.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <PixelButton href="/contact" variant="green" size="lg">
-              Apply Now — It&apos;s Free
+              Apply Now
             </PixelButton>
             <Link
               href="/courses"

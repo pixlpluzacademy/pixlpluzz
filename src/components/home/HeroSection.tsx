@@ -7,6 +7,7 @@ import { ArrowRight, ChevronRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -143,37 +144,23 @@ export function HeroSection() {
           }
         >
           <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center text-center">
-            <h1 className="font-black tracking-[-0.03em]">
-              <span className="block pb-[0.08em]">
-                <span className="hero-line-inner block pb-[0.2em] text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.2]">
-                  <span className="text-white/90">Your </span>
-                  <span
-                    className="text-green-accent"
-                    style={{
-                      textShadow:
-                        '0 0 28px rgba(84,227,69,0.35), 0 0 56px rgba(84,227,69,0.15)',
-                    }}
-                  >
-                    AI-Integrated
-                  </span>
+            <h1 className="font-heading font-black tracking-[-0.03em]">
+              <span className="block">
+                <span className="hero-line-inner block py-[0.12em] text-[clamp(2.25rem,5.5vw,5.5rem)] leading-[1.15] text-white/90">
+                  Kerala&apos;s Best
                 </span>
               </span>
-              <span className="block pb-[0.08em]">
-                <span className="hero-line-inner block pb-[0.2em] text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.2]">
-                  <span className="text-white">Gateway</span>{' '}
-                  <span className="text-white">in Kochi</span>
+              <span className="block">
+                <span className="hero-line-inner block py-[0.12em] text-[clamp(2.25rem,5.5vw,5.5rem)] leading-[1.15] text-green-accent">
+                  AI-Integrated
+                </span>
+              </span>
+              <span className="block">
+                <span className="hero-line-inner block py-[0.12em] text-[clamp(2.25rem,5.5vw,5.5rem)] leading-[1.15] text-white">
+                  Courses
                 </span>
               </span>
             </h1>
-
-            <p className="hero-fade mt-6 max-w-none text-base leading-relaxed text-white/70 sm:text-lg">
-              <span className="whitespace-nowrap">
-                Your career launchpad in Kochi practical AI-integrated training, real projects, and
-              </span>
-              <br />
-              <span className="font-semibold text-butter-glow">placement support</span>{' '}
-              that sets this academy apart.
-            </p>
 
             <div className="hero-fade mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
@@ -182,12 +169,14 @@ export function HeroSection() {
               >
                 Apply For Scholarship <ChevronRight size={15} />
               </Link>
-              <Link
-                href="/courses"
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-7 py-3 text-sm font-bold uppercase tracking-widest transition-colors pixel-corner-sm"
               >
-                Explore Courses <ArrowRight size={15} />
-              </Link>
+                Free Consultation <ArrowRight size={15} />
+              </a>
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ interface PixelButtonProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-display font-semibold tracking-wide uppercase text-sm transition-[filter,background-color,color,transform,box-shadow,border-color] duration-200 cursor-pointer select-none'
+  'inline-flex items-center justify-center gap-2 font-semibold tracking-wide uppercase text-sm transition-[filter,background-color,color,transform,box-shadow,border-color] duration-200 cursor-pointer select-none'
 
 const variants = {
   primary:

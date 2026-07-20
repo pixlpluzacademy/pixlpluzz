@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import Image from 'next/image'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FloatingPixels } from '@/components/ui/FloatingPixels'
 import { ContactForm } from '@/components/contact/ContactForm'
 
@@ -12,22 +11,22 @@ export const metadata: Metadata = {
 
 const CONTACT_ITEMS = [
   {
-    icon: MapPin,
+    icon: '/icons/map.svg',
     label: 'Address',
     value: 'Pixl Pluz Academy, Kochi, Kerala, India',
   },
   {
-    icon: Phone,
+    icon: '/icons/phone.svg',
     label: 'Phone',
     value: '+91 98765 43210',
   },
   {
-    icon: Mail,
+    icon: '/icons/mail.svg',
     label: 'Email',
     value: 'info@pixlpluz.com',
   },
   {
-    icon: Clock,
+    icon: '/icons/clock.svg',
     label: 'Office Hours',
     value: 'Mon – Sat, 9:00 AM – 6:00 PM',
   },
@@ -37,13 +36,11 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        breadcrumb="Contact"
-        title="Get in Touch"
+        title="Get In Touch"
         subtitle="Have questions about courses, scholarship, or admissions? We're here to help."
-        noise
       />
 
-      <section className="relative overflow-hidden bg-white dark:bg-navy-950 py-14 sm:py-20 px-4">
+      <section className="relative overflow-hidden bg-white pt-14 dark:bg-navy-950 sm:pt-20">
         {/* Drifting brand pixels — kept near the edges so they never sit under the form */}
         <FloatingPixels pixels={[
           { size: 10, top: '6%',  left: '4%',   delay: '0s',   color: 'green', speed: 'slow'   },
@@ -57,46 +54,65 @@ export default function ContactPage() {
           { size: 8,  top: '94%', left: '48%',  delay: '0.7s', color: 'green', speed: 'normal' },
         ]} />
 
-        <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left: info */}
+            <div data-no-blur-text>
+              <h2 className="mb-4 text-3xl font-black text-gray-900 dark:text-white">
+                Contact Us
+              </h2>
+              <p className="mb-10 leading-relaxed text-gray-500 dark:text-gray-400">
+                Whether you want to enrol, apply for a scholarship, or just want more information,
+                reach out and we will get back to you within one business day.
+              </p>
 
-          {/* Left: info */}
-          <div data-no-blur-text>
-            <SectionLabel className="mb-4">Contact Information</SectionLabel>
-            <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">
-              We&apos;d love to hear from you.
-            </h2>
-            <p className="text-gray-500 dark:text-gray-400 mb-10 leading-relaxed">
-              Whether you want to enrol, apply for a scholarship, or just want more information,
-              reach out and we will get back to you within one business day.
-            </p>
-
-            <div className="space-y-5">
-              {CONTACT_ITEMS.map((item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-primary/10 dark:bg-green-accent/10 flex items-center justify-center pixel-corner-sm shrink-0">
-                    <item.icon size={18} className="text-blue-primary dark:text-green-accent" />
+              <div className="space-y-5">
+                {CONTACT_ITEMS.map((item) => (
+                  <div key={item.label} className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-blue-primary/10 pixel-corner-sm dark:bg-green-accent/10">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={18}
+                        height={18}
+                        className="h-[18px] w-[18px]"
+                      />
+                    </div>
+                    <div>
+                      <p className="mb-0.5 text-xs font-bold uppercase tracking-widest text-gray-400">{item.label}</p>
+                      <p className="font-medium text-gray-800 dark:text-gray-200">{item.value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">{item.label}</p>
-                    <p className="text-gray-800 dark:text-gray-200 font-medium">{item.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Map placeholder */}
-            <div className="mt-10 h-56 bg-gray-100 dark:bg-navy-800 pixel-corner flex items-center justify-center text-gray-400 dark:text-gray-600">
-              <div className="text-center">
-                <MapPin size={32} className="mx-auto mb-2 opacity-30" />
-                <p className="text-sm">Map coming soon</p>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Right: form */}
-          <div>
-            <ContactForm />
+            {/* Right: form */}
+            <div>
+              <ContactForm />
+            </div>
           </div>
+        </div>
+
+        {/* Full-bleed map — edge to edge, flush with footer */}
+        <div className="relative z-10 mt-12 h-72 w-full overflow-hidden sm:mt-16 sm:h-96 lg:h-[28rem]">
+          <iframe
+            title="Pixl Pluz Academy location — Kochi, Kerala"
+            src="https://www.google.com/maps?q=Pixl+Pluz+Academy,+Kochi,+Kerala,+India&z=15&hl=en&output=embed"
+            className="absolute inset-0 h-full w-full border-0 contrast-[1.05] saturate-[0.85]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          {/* Brand green shade */}
+          <div
+            className="pointer-events-none absolute inset-0 bg-green-accent/25 mix-blend-color"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-green-accent/10 mix-blend-multiply"
+            aria-hidden
+          />
         </div>
       </section>
     </>

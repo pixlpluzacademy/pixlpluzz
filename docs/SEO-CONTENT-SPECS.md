@@ -39,7 +39,7 @@
 
 ## Homepage — section order
 
-`Hero → About → CertificatesMarquee → Courses → Advantage → Mentors → Purpose → Scholarship → Contact → Blog → CTA → FAQ`
+`Hero → About → CertificatesMarquee → Courses → Advantage → Mentors → AI Tools → Scholarship → Contact → Blog → CTA → FAQ`
 
 ---
 
@@ -50,10 +50,10 @@
 | Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
 | Kicker / eyebrow | 3–6 | — | Removed from hero |
-| H1 (full, all lines) | 6–12 | 6 — *"Your AI-Integrated / Gateway / in Kochi"* | Line 2 green accent |
-| Subtitle paragraph | 14–24 | 22 | Career launchpad + placement support |
+| H1 (full, all lines) | 6–12 | 5 — *"Kerala's Best / AI-Integrated / Courses"* | Equal line spacing; line 2 green accent |
+| Subtitle paragraph | 14–24 | — | Removed from hero |
 | Primary CTA label | 2–4 | 4 — *"Apply For Scholarship"* | |
-| Secondary CTA label | 2–3 | 2 — *"Explore Courses"* | |
+| Secondary CTA label | 2–3 | 2 — *"Free Consultation"* | Opens WhatsApp; float button hidden over hero |
 
 **SEO title pattern (page meta):** `Pixl Pluz Academy | AI-Integrated Digital Marketing Courses in Kochi`
 
@@ -63,16 +63,14 @@
 
 | Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"About PixlPluz"* | |
-| H2 | 6–10 | 8 — *"Redefining Education with AI-Integrated Courses in Kochi"* | Academy framing |
-| Intro paragraph | 40–55 | ~52 | Career launchpad; AI tools; Kochi |
-| Intro paragraph 2 | 35–50 | ~48 | Hands-on projects; portfolio |
-| Intro paragraph 3 | 35–50 | ~38 | Neo Digital Hub Dubai; career switchers |
+| Section label | — | — | Removed |
+| H2 | 3 | 3 — *"About / Pixl Pluz"* | Line 1 white About; line 2 green Pixl + outline Pluz |
+| Intro paragraph | 70–100 | ~90 | Single full-column paragraph; Neo Digital Hub Dubai; Kochi; AI-integrated skills |
 | Feature card — title | 2–5 | 2–4 each | 4 cards |
 | Feature card — description | 12–30 | 18–28 each | Visible in collapsed state |
 | Feature card — hover extra | 22–40 | ~28–34 each | Shown only when card expands on hover |
 
-**Current card titles:** Learn by Doing · AI-Integrated Curriculum · Mentorship from Industry Experts · Global Exposure
+**Current card titles:** PRACTICAL LEARNING · AI COURSES · INTERNATIONAL MENTORS · GLOBAL EXPERIENCE
 
 **Copy rule:** Do not describe Pixl Pluz as a digital marketing agency in this section. Position as an academy teaching AI-integrated courses, backed by Neo Digital Hub Dubai.
 
@@ -90,8 +88,8 @@
 
 | Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"Our Courses"* | |
-| H2 | 4–8 | 7 — *"Real campaigns. Real mentors. Real placement support."* | |
+| Section label | — | — | Removed |
+| H2 | 4 | 4 — *"Our AI Integrated Courses"* | One line; Our + Courses white, AI Integrated green |
 | Section subtitle | 12–20 | ~42 | AI-integrated course list; real-world AI skills |
 | Course card — title | 4–12 | from `course.title` | Larger type (`text-lg`/`sm:text-xl`); AI-integrated naming |
 | Course card — shortDescription | 18–28 | from `course.shortDescription` | `line-clamp-3`, justified |
@@ -103,38 +101,38 @@
 
 | Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 3–5 | 3 — *"The PixlPluz Advantage"* | |
-| H2 | 5–10 | 5 — *"Your career, powered by AI."* | |
-| Intro paragraph | 55–80 | split into 4 paras | Job-ready skills; course list; launchpad |
-| Intro para 2–4 | 35–55 each | ~35–42 | Live projects; scholarships; mentorship |
-| Grid feature label | 2–5 | 2–4 each | 9 tiles; use "Career & Placement Support" not "100% Placement Assistance" |
+| Section label | — | — | Removed |
+| H2 | 3–5 | 3 — *"Why AI / Courses?"* | White + green mix; same size as About heading |
+| Intro paragraph 1 | 35–50 | ~42 | AI changing industry; course list |
+| Intro paragraph 2 | 35–50 | ~40 | Graduates/professionals; Neo Digital Hub Dubai |
+| Intro paragraph 3 | 15–25 | ~18 | Job-ready skills; learning to doing |
+| Grid feature label | 2–4 | 2–4 each | 9 tiles; PLACEMENT SUPPORT (no % claims) |
 
 ---
 
 ### 6. Mentors (`MentorsSection.tsx`)
 
-| Field | Word target | Current (2026-07-14) | Notes |
+| Field | Word target | Current (2026-07-18) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"Our Mentors"* | |
-| H2 | 4–8 | 4 — *"Learn From Industry Experts"* | |
-| Subtitle | 10–18 | 12 | |
+| Section label | — | — | Removed |
+| H2 | 3–5 | 3 — *"OUR AI EXPERTS"* | Green outline; same size as subtitle; moves left→right on scroll only |
+| Subtitle | 10–18 | 6 — *"YOUR MENTORS, FROM ACROSS THE WORLD"* | White outline; same size; moves right→left on scroll only |
 | Mentor — name | 2–3 | 2 each | Open typography — no nameplate box |
-| Mentor — designation | 2–4 | 2–3 each | Role only; 3 rotating layouts for variety |
+| Mentor — designation | 2–4 | 2–3 each | Role only |
 
-**UI note:** No bordered/boxed name cards. Name + role use open type with three alternating treatments.
+**UI note:** No bordered/boxed name cards. Title is a full-bleed green marquee tied to scroll.
 
 ---
 
-### 7. Purpose (`PurposeSection.tsx`)
+### 7. AI Tools (`AiToolsSection.tsx`)
 
-| Field | Word target | Current (2026-07-17) | Notes |
+| Field | Word target | Current (2026-07-18) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"Our Purpose"* | |
-| H2 | 6–12 | 6 — *"Turning Learners Into Job-Ready Tech Professionals"* | |
-| Intro paragraph 1 | 45–60 | ~48 | AI-driven industry; real projects |
-| Intro paragraph 2 | 18–30 | 22 | Learning to doing |
-| Accordion — title | 4–8 | 4–5 each | 4 items |
-| Accordion — body | 18–35 | 18–24 each | **No ₹ amounts in scholarship item** |
+| H2 (sr-only) | 2–4 | 2 — *"AI Tools"* | Visual hero word in cloud |
+| Cloud hero word | 2 | *"AI TOOLS"* | Mid-size green label |
+| Tool labels | 1–3 each | ~30 famous tools (ChatGPT, Claude, Cursor, Midjourney, etc.) | Green / blue / butter / white |
+
+**UI note:** Sticky word-cloud hero on black background.
 
 ---
 
@@ -142,8 +140,8 @@
 
 | Field | Word target | Current (2026-07-13) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"Scholarship Program"* | |
-| H2 | 6–12 | 7 — *"Apply for Our Merit / Scholarship Fund"* | **No rupee amounts** |
+| Section label | — | — | Removed |
+| H2 | 3–5 | 3 — *"Merit Based Scholarship"* | One line; Merit Based white, Scholarship green; large type |
 | Intro paragraph 1 | 14–22 | 14 — *"We are launching our first batch this July with a scholarship fund for eligible students."* | No amounts |
 | Intro paragraph 2 | 18–30 | 22 | |
 | Step — title | 2–4 | 2–3 each | 4 steps |
@@ -154,23 +152,24 @@
 
 ### 9. Contact (`ContactSection.tsx`)
 
-| Field | Word target | Current (2026-07-16) | Notes |
+| Field | Word target | Current (2026-07-20) | Notes |
 |-------|-------------|----------------------|-------|
-| Left panel | — | image only | No overlay copy; photo fills the panel |
-| Form label | 2–3 | 2 — *"Get In Touch"* | Right panel |
-| Form H3 | 8–14 | 8 — *"Get The Best Course Guidance For Your Future"* | |
-| Form intro | 12–22 | 14 | |
-| Form placeholders | 1–3 each | — | Short, action-oriented |
+| Left copy | — | — | Removed — photo only on left |
+| Form H2 | 4–6 | 5 — *"Your AI Future Is Waiting"* | One line; white + green |
+| Form intro | 8–16 | ~12 | |
+| Inquiry chips | 1–2 each | Digital Marketing, Web Development, etc. | Square chips, not pills |
+
+**UI note:** Framed photo (About-width paddings, no overlay). Form card square-edged (`#141414`) on the right — no rounded corners.
 
 ---
 
 ### 10. Blog (`BlogSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-20) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 3–4 | 3 — *"Our Latest Posts"* | |
-| H2 | 6–12 | 8 | |
-| Section subtitle | 22–35 | 28 | |
+| Section label | — | — | Removed |
+| H2 | 3–5 | 3 — *"AI Latest Updates"* | One line; green + white; large clamp type |
+| Section subtitle | 22–35 | ~28 | Tied to heading — latest AI tools, course news, digital skills |
 | Blog card — title | 6–14 | from `blog.title` | |
 | Blog card — excerpt | 20–40 | from `blog.excerpt` | 2–3 lines |
 
@@ -180,7 +179,7 @@
 
 | Field | Word target | Current (2026-07-13) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | 2–3 | 2 — *"The Steps"* | |
+| Section label | — | — | Removed |
 | H2 | 6–12 | 8 | |
 | Body paragraph | 28–42 | 35 | Centered in layout; still write balanced sentences |
 | Primary CTA | 2–4 | 3 — *"Apply Now"* | |
@@ -190,10 +189,10 @@
 
 ### 12. FAQ (`FAQSection.tsx`)
 
-| Field | Word target | Current (2026-07-13) | Notes |
+| Field | Word target | Current (2026-07-20) | Notes |
 |-------|-------------|----------------------|-------|
-| H2 | 2–4 | 3 — *"Questions & Answers"* | |
-| Subtitle (optional) | 10–18 | 14 | Can mirror top FAQ topic |
+| H2 | 1–3 | 1 — *"FAQ's"* | Same size as Blog: `clamp(2rem,7vw,3.75rem)`; green + white |
+| Subtitle | 18–30 | ~26 | Tied to heading — courses, AI tools, scholarship, placement |
 | Question | 10–22 | 12–18 each | 5 items; include location/skill keywords |
 | Answer | 22–45 | 25–35 each | Use "comprehensive placement support" — no "100%" |
 
@@ -217,10 +216,11 @@ Not on homepage currently; include if re-enabled.
 |------|-----------|------------------|---------------|
 | `/about` | 4–8 words | 120–160 chars | Stats row: **no ₹ or 100% labels** |
 | `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
-| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Blue/white curriculum module switcher; AI tools carousel below; Who it’s for; FAQ — no fake stats |
-| `/scholarship` | 1 word — *"Scholarship"* | 120–160 chars | Video hero (left H1 only); steps, eligibility — **no amounts** |
+| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Blue/white curriculum modules (left) + AI tools falling-stack (right); Who it’s for — no fake stats |
+| `/scholarship` | 1 word — *"Scholarship"* | 120–160 chars | Video hero (top-right outlined H1); steps + apply CTA — **no amounts** |
 | `/placement` | 4–8 words | 120–160 chars | Hero + wall — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
+| `/blog` | 2–4 — *"Blog & Insights"* | 120–160 chars | Nova magazine layout: editorial hero, featured lead, latest grid |
 | `/blog/[slug]` | 6–14 words | 120–160 chars | Article 600–1200 words (editorial) |
 
 ### Site-wide meta (`layout.tsx`)
@@ -246,6 +246,11 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-07-20 | Blog listing | Nova-style magazine layout (hero + featured lead + latest grid); dark brand |
+| 2026-07-20 | Homepage Courses | H2 → *"Our AI Integrated Courses"* |
+| 2026-07-20 | Scholarship page steps | H2 → *"How it works"* (large); removed *"Four simple steps"* |
+| 2026-07-20 | Course detail | Removed Questions & Answers / FAQ section |
+| 2026-07-20 | Course detail curriculum | Modules left + AI tools falling-stack right (GSAP bounce pile); removed tools marquee |
 | 2026-07-17 | Course detail curriculum | Expanded each module with description (~50–70 words) + more topic pills |
 | 2026-07-18 | Scholarship page hero | Full-bleed `scholarship-bg-video.mp4`; left-aligned H1 only — *"Scholarship"* (removed kicker + subtitle) |
 | 2026-07-17 | Course detail curriculum | Blue/white module switcher; AI tools moved to horizontal carousel below |
@@ -253,8 +258,11 @@ Not on homepage currently; include if re-enabled.
 | 2026-07-17 | Course detail AI tools | Restored AI tool popups; removed only the “AI Tools” heading |
 | 2026-07-17 | Homepage copy | Hero, About, Courses, Advantage, Purpose sections updated to client copy |
 | 2026-07-17 | Homepage brand colours | Applied Command Blue / Verdant / White / Butter Glow roles across home |
+| 2026-07-18 | Scholarship | H2 → *"Merit Based Scholarship"* large type |
+| 2026-07-18 | Homepage | Replaced Purpose accordion with AI Tools word-cloud (black + green/blue/butter/white) |
+| 2026-07-18 | Mentors | H2 → *"OUR AI EXPERTS"* large scroll-scrub marquee (moves left on scroll) |
 | 2026-07-17 | Course detail certificates | Reverted 3D looping stack; restored simple front/back cycle |
-| 2026-07-17 | Placement hero | Rolling SplitText heading (GSAP demo style); removed BlurText fade-in |
+| 2026-07-20 | Placement hero | Matched event-page hero layout (stacked type, pixel trail, mono status, pop-in) |
 | 2026-07-16 | Placement hero | Green company boxes fall from hero and collect in a bottom pile |
 | 2026-07-16 | Course detail AI tools | Moved AI tools marquee below curriculum modules |
 | 2026-07-16 | Course detail certificate | Compact stacked certificates in hero (right), using `/images/certificates/*` |

@@ -1,12 +1,11 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
-import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { AboutMarquee } from '@/components/about/AboutMarquee'
 import { AboutBlurText } from '@/components/about/AboutBlurText'
-import { AboutServicesTeaser } from '@/components/about/AboutServicesTeaser'
+import { AboutOfficeGallery } from '@/components/about/AboutOfficeGallery'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { PixelButton } from '@/components/ui/PixelButton'
 
@@ -17,54 +16,29 @@ const MARQUEE_B = ['Learn', 'Build', 'Launch', 'Grow', 'Pixl Pluz Academy']
 
 const VALUES = [
   {
-    title: 'Driven by excellence',
+    title: 'DRIVEN BY EXCELLENCE',
     desc: 'Our programs are shaped by high standards, continuous curriculum updates, and deep respect for craft — pushing every student beyond the expected.',
   },
   {
-    title: 'Honesty and authenticity',
+    title: 'HONESTY AND AUTHENTICITY',
     desc: 'In an industry full of noise and inflated promises, we focus on clarity, transparency, and outcomes we are proud to stand behind.',
   },
   {
-    title: 'Skills that last',
+    title: 'SKILLS THAT LAST',
     desc: 'We teach systems, tools, and workflows built to endure — balancing creativity, technology, and purpose for long-term career impact.',
   },
   {
-    title: 'Purposeful learning',
+    title: 'PURPOSEFUL LEARNING',
     desc: 'We are an academy of practitioners and mentors, prioritizing real capability and emotional confidence, even when it takes more time.',
   },
   {
-    title: 'AI with impact',
+    title: 'AI WITH IMPACT',
     desc: 'We do not chase trends. We integrate AI where it adds real value — creativity matters only when it serves purpose and endures over time.',
   },
   {
-    title: 'Experience and attitude',
+    title: 'EXPERIENCE AND ATTITUDE',
     desc: 'Our edge comes from years of exploration, teaching, and solving complex industry challenges — evolving with every batch we train.',
   },
-]
-
-const PROCESS = [
-  {
-    step: 'Step — 1',
-    title: 'Learn',
-    desc: 'We begin by understanding your goals. Structured fundamentals, mentor guidance, and AI tools help you define the right path before you build.',
-  },
-  {
-    step: 'Step — 2',
-    title: 'Build',
-    desc: 'We translate insight into output — live projects, portfolio work, campaign assignments, and real industry-style deliverables with care and precision.',
-  },
-  {
-    step: 'Step — 3',
-    title: 'Launch',
-    desc: 'Through placement support, interview prep, and portfolio refinement, we help you step into the market with purpose and confidence.',
-  },
-]
-
-const STATS = [
-  { value: '2026', label: 'Founded' },
-  { value: '₹50L', label: 'Scholarship Fund' },
-  { value: '5+', label: 'Career Courses' },
-  { value: '100%', label: 'Placement Support' },
 ]
 
 export function AboutContent() {
@@ -131,7 +105,7 @@ export function AboutContent() {
             <div>
               <p className="about-kicker mb-3">Est. 2026</p>
               <p className="about-muted text-sm md:text-base font-medium tracking-tight">
-                Kerala&apos;s AI-integrated<br className="hidden sm:block" /> digital academy.
+                Kerala&apos;s Best AI-Integrated<br className="hidden sm:block" /> Digital Academy.
               </p>
             </div>
             {/* <div className="text-right">
@@ -140,12 +114,20 @@ export function AboutContent() {
             </div> */}
           </div>
 
-          <AboutBlurText
-            as="h1"
-            onLoad
-            className="about-display text-[clamp(2rem,5.5vw,4.5rem)] text-white max-w-[1200px] mb-10"
-            text="We are an AI-integrated academy built on practical training, thoughtful craft, and careers earned through real work."
-          />
+          <div className="mb-10 max-w-[1200px]">
+            <AboutBlurText
+              as="h1"
+              onLoad
+              className="about-display mb-[0.3em] text-[clamp(2rem,5.5vw,4.5rem)] font-black uppercase leading-[1.28] tracking-tight text-white"
+              text="Work smarter not harder"
+            />
+            <AboutBlurText
+              as="p"
+              onLoad
+              className="about-display whitespace-nowrap text-[clamp(2rem,5.5vw,4.5rem)] font-black uppercase leading-[1.28] tracking-tight text-white"
+              text="You can be anything with AI"
+            />
+          </div>
 
           <p className="ab-fade about-body text-base md:text-lg max-w-xl mb-4">
             At the intersection of skills, technology, and opportunity.
@@ -166,42 +148,20 @@ export function AboutContent() {
 
       <AboutMarquee items={MARQUEE_B} />
 
-      {/* ── Story ────────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
-        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-24 items-start">
-          <p className="ab-reveal about-kicker about-kicker-accent">At Pixl Pluz,</p>
-
-          <div>
-            <AboutBlurText
-              as="h2"
-              className="about-display text-3xl sm:text-4xl lg:text-[2.75rem] text-white mb-8 max-w-3xl"
-              text="We build careers around capability. Every program is led by mentors, practitioners, and specialists chosen for the skills you need today."
-            />
-            <p className="ab-reveal about-body text-base md:text-lg max-w-2xl mb-6">
-              We&apos;ve grown through experimentation, learning, and refinement — shaping a
-              practice focused on clarity, craft, and long-term impact. Today, we partner with
-              ambitious learners to build portfolios, platforms, and careers that scale with
-              purpose and endure.
-            </p>
-            <Link href="/contact" className="ab-reveal about-link">
-              let&apos;s connect <span aria-hidden>→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <AboutOfficeGallery />
 
       {/* ── Values ───────────────────────────────────────────────── */}
       <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
         <div className="max-w-[1400px] mx-auto">
-          <div className="mb-10 md:mb-20 max-w-2xl">
+          <div className="mb-10 md:mb-20">
             <p className="ab-reveal about-kicker mb-5">Our values</p>
             <AboutBlurText
               as="h2"
-              className="about-display text-3xl sm:text-4xl text-white mb-5"
-              text="What we believe shapes better learning."
+              className="about-display mb-5 whitespace-nowrap text-[clamp(1.75rem,4.8vw,3.25rem)] uppercase text-white"
+              text="What we believe shapes better learning"
             />
-            <p className="ab-reveal about-body text-base">
-              Kerala&apos;s most career-focused AI academy — driven by purpose, craft, and bold ideas.
+            <p className="ab-reveal about-body max-w-2xl text-base">
+              Kerala&apos;s most career-focused AI academy. Driven by purpose, craft, and bold ideas.
             </p>
           </div>
 
@@ -218,141 +178,9 @@ export function AboutContent() {
             ))}
           </div>
 
-          <p className="ab-reveal mt-12 about-kicker text-blue-light/30">
-            ✦ What we believe shapes better work.
-          </p>
         </div>
       </section>
 
-      {/* ── Process ──────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="mb-10 md:mb-20">
-            <p className="ab-reveal about-kicker mb-5">Our process</p>
-            <AboutBlurText
-              as="h2"
-              className="about-display text-3xl sm:text-4xl text-white mb-4"
-              text="How we work"
-            />
-            <p className="ab-reveal about-body text-base max-w-lg">
-              A repeatable method applied across every course and cohort.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-px bg-blue-primary/20">
-            {PROCESS.map((p) => (
-              <article key={p.title} className="about-surface p-8 md:p-10 lg:p-12">
-                <p className="ab-reveal about-process-num mb-8">{p.step}</p>
-                <AboutBlurText
-                  as="h3"
-                  className="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight"
-                  text={p.title}
-                />
-                <p className="ab-reveal about-body text-sm md:text-base">{p.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Quote ────────────────────────────────────────────────── */}
-      <section className="ab-split px-6 md:px-16 lg:px-20 py-16 sm:py-20 md:py-28 border-b border-blue-primary/20 overflow-hidden">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <p className="about-quote-mark mb-6" aria-hidden>&ldquo;</p>
-          <blockquote className="max-w-4xl mx-auto">
-            <AboutBlurText
-              as="p"
-              className="about-display text-2xl sm:text-4xl lg:text-5xl text-white leading-tight mb-8"
-              text="True growth is not about adding more courses —"
-            />
-            <AboutBlurText
-              as="p"
-              className="about-display text-2xl sm:text-4xl lg:text-5xl about-quote-dim leading-tight"
-              text="but about becoming more capable."
-            />
-          </blockquote>
-          <p className="ab-reveal about-body text-sm mt-10 max-w-md mx-auto">
-            Recognized by industry mentors and trusted by learners building careers across Kerala.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Stats ────────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="mb-12">
-            <p className="ab-reveal about-kicker mb-4">By the numbers</p>
-            <AboutBlurText
-              as="h2"
-              className="about-display text-2xl sm:text-3xl text-white"
-              text="Different paths. One standard."
-            />
-          </div>
-
-          <div className="ab-reveal-stagger grid grid-cols-2 lg:grid-cols-4 gap-px bg-blue-primary/20">
-            {STATS.map((s) => (
-              <div key={s.label} className="about-surface p-8 md:p-10">
-                <p className="text-3xl md:text-4xl font-black text-blue-light tracking-tight mb-3">{s.value}</p>
-                <p className="about-kicker !tracking-[0.25em]">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Who we're for ────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
-        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-8 lg:gap-24">
-          <div>
-            <p className="ab-reveal about-kicker mb-5">Who we&apos;re for</p>
-            <AboutBlurText
-              as="h2"
-              className="about-display text-3xl sm:text-4xl text-white leading-tight"
-              text="We're not the right fit for everyone — and that's intentional."
-            />
-          </div>
-          <div className="ab-reveal space-y-6 about-body text-base">
-            <p>
-              We don&apos;t do surface-level training, endless theory without direction,
-              or courses that exist only to &ldquo;look good&rdquo; on paper.
-            </p>
-            <p>
-              We&apos;re not for learners driven by shortcuts over understanding,
-              or decisions made without purpose.
-            </p>
-            <p className="text-blue-light/80">
-              We partner with students who care about outcomes, trust the process,
-              and are committed to building something meaningful together.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <AboutServicesTeaser />
-
-      {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="pp-cta-section px-6 md:px-16 lg:px-20 py-16 sm:py-24 md:py-28">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <p className="ab-reveal about-kicker about-kicker-accent mb-8">Start today</p>
-          <AboutBlurText
-            as="h2"
-            className="about-display text-4xl sm:text-5xl lg:text-6xl text-white mb-8 max-w-4xl mx-auto leading-tight"
-            text="Your career does not need to wait for the future."
-          />
-          <p className="ab-reveal about-body text-base md:text-lg mb-12 max-w-lg mx-auto">
-            Join Pixl Pluz Academy and transform your skills into a career with practical
-            training, mentorship, and real opportunities.
-          </p>
-          <div className="ab-reveal flex flex-col sm:flex-row gap-4 justify-center">
-            <PixelButton href="/courses" variant="primary" size="lg">
-              Explore Courses
-            </PixelButton>
-            <PixelButton href="/scholarship" variant="outline" size="lg">
-              Apply for Scholarship
-            </PixelButton>
-          </div>
-        </div>
-      </section>
 
     </div>
   )

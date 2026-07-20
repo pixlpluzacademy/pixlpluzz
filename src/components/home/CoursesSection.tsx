@@ -7,7 +7,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CourseCard } from '@/components/courses/CourseCard'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 import type { Course } from '@/lib/data'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -55,21 +55,15 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="text-center mb-12 sm:mb-14">
-          <AnimatedSection variant="fadeUp">
-            <SectionLabel className="mb-4 mx-auto">Our Courses</SectionLabel>
-          </AnimatedSection>
-          <h2 className="text-4xl sm:text-3xl font-black text-green-accent mb-4">
-            Real campaigns. Real mentors. Real placement support.
+        <div className="mb-12 text-center sm:mb-14">
+          <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight">
+            <PixelTrail />
+            <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.5rem)]">
+              <span className="text-white">Our</span>{' '}
+              <span className="text-green-accent">AI Integrated</span>{' '}
+              <span className="text-white">Courses</span>
+            </span>
           </h2>
-          <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="max-w-3xl mx-auto text-center text-gray-400">
-              We teach skills that matter, focusing on AI-integrated training in Digital Marketing,
-              Web Development, Data Science &amp; AI, and Cybersecurity. Our programs match how top
-              companies hire today — you won&apos;t just learn theory; you will learn how to use AI
-              tools to solve real-world problems.
-            </p>
-          </AnimatedSection>
         </div>
 
         <div

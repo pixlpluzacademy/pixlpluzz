@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
-import { Caveat } from 'next/font/google'
+import { Caveat, Red_Hat_Display } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider }  from '@/components/ThemeProvider'
 import { SiteShell }      from '@/components/layout/SiteShell'
 import { SiteLoaderProvider } from '@/components/providers/SiteLoaderProvider'
 import { SiteLoader }     from '@/components/layout/SiteLoader'
 import { LenisProvider }  from '@/components/providers/LenisProvider'
+
+const redHatDisplay = Red_Hat_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-red-hat',
+  display: 'swap',
+})
 
 const caveat = Caveat({
   subsets: ['latin'],
@@ -39,8 +46,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`dark ${caveat.variable}`} suppressHydrationWarning>
-      <body className="font-display antialiased">
+    <html
+      lang="en"
+      className={`dark ${redHatDisplay.variable} ${caveat.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="antialiased">
         <LenisProvider>
           <ThemeProvider>
             <SiteLoaderProvider>

@@ -2,7 +2,7 @@
 
 > **Purpose:** Persistent design rules for agents and developers. The customer site is **dark-mode first**. Follow this file whenever building or editing UI — no need to re-explain design intent in every chat.
 
-**Last updated:** 2026-07-17
+**Last updated:** 2026-07-18
 
 ---
 
@@ -88,10 +88,10 @@ Hover: slight brightness increase + soft green glow. Active: `scale(0.98)`.
 
 | Element | Font | Weight | Notes |
 |---------|------|--------|-------|
-| Display / H1 | Red Hat Display | 800–900 (black) | Large, tight leading |
-| H2 / H3 | Red Hat Display | 700–900 | Section titles |
-| Body | Red Hat Display | 400 | `leading-relaxed` |
-| Labels / kickers | Red Hat Display | 600 | Uppercase, `tracking-[0.35em]`, small size |
+| Display / H1–H4 | Red Hat Display | 700–900 (black) | All main headings |
+| Body / paragraphs | Arial | 400–600 | `leading-relaxed`; justified where required |
+| Labels / kickers / UI chrome | Arial | 600 | Uppercase labels, buttons, nav |
+| Mono / terminal | System mono | — | Event/career script blocks only |
 
 ### Text alignment — **justify body copy**
 

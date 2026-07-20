@@ -4,44 +4,59 @@ import { useState, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import { CheckCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const INTERESTS = [
+  'Digital Marketing',
+  'Web Development',
+  'Data Science',
+  'Cybersecurity',
+  'Scholarship',
+  'General',
+] as const
+
+const FIELD =
+  'w-full border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-green-accent focus:bg-black/55'
+
 export function ContactSection() {
   const [sent, setSent] = useState(false)
+  const [interest, setInterest] = useState<string>('General')
   const [form, setForm] = useState({
-    name: '', email: '', phone: '', course: '', message: '', terms: false,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: '',
+    updates: false,
   })
 
   const sectionRef = useRef<HTMLElement>(null)
-  const leftRef  = useRef<HTMLDivElement>(null)
-  const rightRef = useRef<HTMLDivElement>(null)
+  const formRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     const section = sectionRef.current
-    const left    = leftRef.current
-    const right   = rightRef.current
-    if (!section || !left || !right) return
+    const formCard = formRef.current
+    if (!section || !formCard) return
 
     const ctx = gsap.context(() => {
-      gsap.set(left,  { opacity: 0, x: -50 })
-      gsap.set(right, { opacity: 0, x:  50 })
+      gsap.set(formCard, { opacity: 0, x: 40 })
 
-      const tl = gsap.timeline({
+      gsap.to(formCard, {
+        opacity: 1,
+        x: 0,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
           start: 'top 80%',
-          end: 'top 25%',
+          end: 'top 30%',
           scrub: 1,
           invalidateOnRefresh: true,
         },
       })
-
-      tl.to(left,  { opacity: 1, x: 0, ease: 'power2.out', duration: 1 }, 0)
-      tl.to(right, { opacity: 1, x: 0, ease: 'power2.out', duration: 1 }, 0.15)
 
       requestAnimationFrame(() => ScrollTrigger.refresh())
     })
@@ -55,123 +70,146 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={sectionRef} className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 50% 40% at 30% 50%, rgba(20, 61, 143, 0.14) 0%, transparent 55%)',
-        }}
-        aria-hidden
-      />
-      <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
-
-      <div className="relative z-10 mx-auto max-w-7xl grid lg:grid-cols-2 gap-0 overflow-hidden pixel-corner-lg border border-white/5 lg:min-h-[38rem]">
-
-        {/* Left panel — image only */}
-        <div
-          ref={leftRef}
-          className="relative min-h-[26rem] sm:min-h-[28rem] lg:min-h-full overflow-hidden"
-        >
+    <section
+      ref={sectionRef}
+      className="relative bg-black px-4 py-16 sm:px-6 sm:py-20 lg:px-12 lg:py-24"
+    >
+      {/* Image framed to About-style content width — black margins separate it from the body */}
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src="/images/getintouch.png"
             alt=""
             fill
             className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(min-width: 1024px) calc(100vw - 6rem), (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
             priority={false}
           />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
-        {/* Right panel — enquiry form */}
-        <div ref={rightRef} className="bg-[#141414] p-6 sm:p-8 lg:p-10 flex flex-col justify-center min-h-[26rem] sm:min-h-[28rem] lg:min-h-full" data-no-blur-text>
-          <SectionLabel className="mb-3 self-start w-fit">Get In Touch</SectionLabel>
-          <h3 className="text-2xl font-black text-green-accent mb-2">
-            Get The Best Course Guidance For Your Future
-          </h3>
-          <p className="text-justify text-gray-400 text-sm mb-6">
-            Tell us your interest and our team will help you choose the right course.
-          </p>
+        <div className="relative z-10 grid items-stretch gap-10 p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10 xl:gap-16">
+          {/* Left — image only (empty column for balance) */}
+          <div className="hidden min-h-[22rem] lg:block" aria-hidden />
 
-          {sent ? (
-            <div className="flex flex-col items-center justify-center py-12 gap-4">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 200 }}
-              >
-                <CheckCircle size={48} className="text-green-accent" />
-              </motion.div>
-              <p className="text-white font-bold text-lg">Message Sent!</p>
-              <p className="text-gray-400 text-sm text-center">
-                We&apos;ll get back to you within 24 hours.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <input
-                  type="text"
-                  placeholder="Name *"
-                  required
-                  value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  className="w-full bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200"
-                />
-                <input
-                  type="email"
-                  placeholder="Email *"
-                  required
-                  value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  className="w-full bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200"
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone number"
-                  value={form.phone}
-                  onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                  className="w-full bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200"
-                />
-                <input
-                  type="text"
-                  placeholder="Interested Course"
-                  value={form.course}
-                  onChange={e => setForm(f => ({ ...f, course: e.target.value }))}
-                  className="w-full bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200"
-                />
+          {/* Right — sharp pixel form card (no radius) */}
+          <div
+            ref={formRef}
+            className="@container border border-white/10 bg-[#141414] p-6 sm:p-8 lg:p-9"
+            data-no-blur-text
+          >
+            {sent ? (
+              <div className="flex min-h-[22rem] flex-col items-center justify-center gap-4 py-10">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 200 }}
+                >
+                  <CheckCircle size={48} className="text-green-accent" />
+                </motion.div>
+                <p className="text-lg font-bold text-white">Message Sent!</p>
+                <p className="text-center text-sm text-gray-400">
+                  We&apos;ll get back to you within 24 hours.
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <div className="min-w-0 overflow-visible">
+                  <h2 className="mb-1.5 w-full whitespace-nowrap font-black uppercase leading-[0.88] tracking-tight text-[clamp(1.1rem,6.8cqi,3.75rem)]">
+                    <span className="text-white">Your </span>
+                    <span
+                      className="career-outline-word"
+                      style={{ WebkitTextStroke: '2px #54e345' }}
+                    >
+                      AI
+                    </span>
+                    <span className="text-white"> Future </span>
+                    <span className="text-green-accent">Is Waiting</span>
+                  </h2>
+                  <p className="text-sm text-gray-400">
+                    Share a few details and we&apos;ll guide you to the right course.
+                  </p>
+                </div>
 
-              <textarea
-                placeholder="Message"
-                rows={4}
-                value={form.message}
-                onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                className="w-full min-h-[6rem] bg-white/5 border border-white/10 text-white placeholder:text-gray-600 px-4 py-3 text-sm outline-none focus:border-green-accent focus:bg-white/8 transition-all duration-200 resize-none"
-              />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="First Name *"
+                    required
+                    value={form.firstName}
+                    onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))}
+                    className={FIELD}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Last Name *"
+                    required
+                    value={form.lastName}
+                    onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))}
+                    className={FIELD}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={form.phone}
+                    onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                    className={FIELD}
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email Address *"
+                    required
+                    value={form.email}
+                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                    className={FIELD}
+                  />
+                </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  required
-                  checked={form.terms}
-                  onChange={e => setForm(f => ({ ...f, terms: e.target.checked }))}
-                  className="mt-0.5 accent-green-accent"
+                <div>
+                  <p className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                    Type of Inquiry
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {INTERESTS.map(item => {
+                      const active = interest === item
+                      return (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => setInterest(item)}
+                          className={cn(
+                            'border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide transition-colors',
+                            active
+                              ? 'border-green-accent bg-green-accent text-black'
+                              : 'border-white/15 bg-transparent text-gray-300 hover:border-white/35 hover:text-white',
+                          )}
+                        >
+                          {item}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                <textarea
+                  placeholder="Message"
+                  rows={4}
+                  value={form.message}
+                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  className={cn(FIELD, 'min-h-[7rem] resize-none')}
                 />
-                <span className="text-xs text-gray-500">
-                  I accept the privacy policy and terms.
-                </span>
-              </label>
 
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-glaze btn-cta-green w-full py-4 font-bold uppercase tracking-widest text-sm pixel-corner-sm"
-              >
-                Send Message
-              </motion.button>
-            </form>
-          )}
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-glaze btn-cta-green w-full py-3.5 text-sm font-bold uppercase tracking-widest"
+                >
+                  Send Message
+                </motion.button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Plus, Minus } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 import { cn } from '@/lib/utils'
 
 const FAQS = [
@@ -59,13 +60,16 @@ export function FAQSection() {
         <div className="absolute inset-0 bg-linear-to-l from-black/20 via-black/55 to-black" />
       </div>
       <div className="relative z-10 mx-auto max-w-3xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black text-green-accent mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
-            Questions &amp; Answers
+        <div className="mb-12 text-center sm:mb-14">
+          <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+            <PixelTrail />
+            <span className="text-green-accent">FAQ</span>
+            <span className="text-white">&apos;s</span>
           </h2>
-          <AnimatedSection variant="fadeUp">
-            <p className="text-base font-semibold text-gray-400 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
-              What skills will I gain from the digital marketing course at Pixl Pluz Academy?
+          <AnimatedSection variant="fadeUp" delay={0.1}>
+            <p className="mx-auto max-w-2xl text-justify text-gray-400 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] sm:text-center">
+              Quick answers on courses, AI tools, scholarships, and placement support so you know
+              what to expect before you enrol at Pixl Pluz.
             </p>
           </AnimatedSection>
         </div>

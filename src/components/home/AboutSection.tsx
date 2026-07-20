@@ -1,38 +1,43 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 import { cn } from '@/lib/utils'
 import type { Course } from '@/lib/data'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const FEATURES = [
   {
-    titleLines: ['Learn by', 'Doing'],
+    titleLines: ['PRACTICAL', 'LEARNING'],
     desc: 'Real projects, not just theory. Work on AI-assisted tasks, content plans, analytics exercises, and industry-style assignments designed to mirror actual job workflows.',
     more: 'Every brief mirrors workplace practice with clear goals, revisions, deadlines, and presentation. You grow confidence by shipping work instead of only watching lectures.',
     image: '/images/students/group-discussion.png',
     imageAlt: 'Students in a practical training session',
   },
   {
-    titleLines: ['AI-Integrated', 'Curriculum'],
+    titleLines: ['AI', 'COURSES'],
     desc: 'Built for what employers are hiring for right now. Master AI tools, automation workflows, and digital skills that keep you ahead in a fast-changing job market.',
     more: 'Modules stay aligned with hiring trends across Kerala and the Gulf. You learn AI automation with digital skills as one connected workflow used by modern teams.',
     image: '/images/students/clearing-doubts.jpeg',
     imageAlt: 'Students collaborating on digital projects',
   },
   {
-    titleLines: ['Mentorship', 'from Industry Experts'],
+    titleLines: ['INTERNATIONAL', 'MENTORS'],
     desc: 'Learn directly from professionals working in the field. Get hands-on guidance across AI, digital skills, security, and development from people who do this every day.',
     more: 'Mentors share project lessons, portfolio feedback, and career guidance drawn from daily industry practice. You get answers from people who still work in the field.',
     image: '/images/students/live-project-training.png',
     imageAlt: 'Mentor guiding a student',
   },
   {
-    titleLines: ['Global', 'Exposure'],
+    titleLines: ['GLOBAL', 'EXPERIENCE'],
     desc: 'Backed by Neo Digital Hub Dubai, training here is benchmarked to international standards, giving you skills and exposure that open doors beyond Kerala.',
     more: 'You study in Kochi with international backing that strengthens portfolios, interviews, and roles that value global awareness with practical AI-integrated skills.',
     image: '/images/students/career-placement-support.png',
@@ -68,9 +73,49 @@ function canHoverExpand() {
 
 export function AboutSection({ courses: _courses }: { courses: Course[] }) {
   const [active, setActive] = useState<number | null>(null)
+  const rootRef = useRef<HTMLElement>(null)
+  const siteReady = useSiteReady()
+
+  useLayoutEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion) return
+
+    const ctx = gsap.context(() => {
+      gsap.set('.about-hero-pop', { opacity: 0 })
+      gsap.set('.about-reveal', { opacity: 0, y: 28 })
+
+      if (!siteReady) return
+
+      gsap.to('.about-hero-pop', {
+        opacity: 1,
+        duration: 0.05,
+        stagger: 0.18,
+        ease: 'none',
+        scrollTrigger: { trigger: root, start: 'top 75%', once: true },
+      })
+
+      gsap.to('.about-reveal', {
+        opacity: 1,
+        y: 0,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: root, start: 'top 70%', once: true },
+      })
+    }, root)
+
+    requestAnimationFrame(() => ScrollTrigger.refresh())
+    return () => ctx.revert()
+  }, [siteReady])
 
   return (
-    <section className="relative overflow-visible bg-black py-16 sm:py-24 px-4">
+    <section
+      ref={rootRef}
+      className="relative overflow-visible bg-black px-4 py-16 text-gray-400 sm:px-6 sm:py-24 lg:px-12"
+    >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -79,39 +124,40 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 items-stretch lg:items-center">
+      <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
+
+      <div className="relative z-10">
+        <div className="grid items-stretch gap-4 lg:grid-cols-[0.75fr_1.25fr] lg:gap-5 xl:gap-6">
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 flex-col items-start justify-center lg:col-span-1 lg:py-2"
+            className="flex min-h-[28rem] w-full min-w-0 flex-col justify-between sm:min-h-[30rem] lg:min-h-[32rem]"
           >
-            <SectionLabel className="mb-4">About PixlPluz</SectionLabel>
-            <div className="w-full max-w-md">
-              <h2 className="mb-6 text-xl font-black leading-[1.3] text-green-accent sm:text-2xl">
-                <span className="block">Redefining Education with AI Integrated Courses in Kochi</span>
-                
+            <div className="w-full max-w-sm lg:max-w-md">
+              <h2 className="relative mb-6 font-black uppercase leading-[0.88] tracking-tight sm:mb-8">
+                <PixelTrail />
+                <span className="about-hero-pop block text-[clamp(2rem,7vw,4.75rem)] text-white">
+                  About
+                </span>
+                <span className="about-hero-pop block text-[clamp(2rem,7vw,4.75rem)]">
+                  <span className="text-green-accent">Pixl</span>{' '}
+                  <span
+                    className="career-outline-word"
+                    style={{ WebkitTextStroke: '2px #54e345' }}
+                  >
+                    Pluz
+                  </span>
+                </span>
               </h2>
-              <div className="space-y-4">
-                <p className="m-0 block w-full text-justify text-white/65 leading-relaxed">
-                  Learning should be as fresh and fast-paced as the world we live in. Based in Kochi,
-                  Pixl Pluz Academy is your career launchpad, bridging the gap between theory and
-                  real-world success. By combining in-demand digital skills with the latest AI tools,
-                  we ensure you always stay ahead of the curve.
-                </p>
-                <p className="m-0 block w-full text-justify text-white/65 leading-relaxed">
-                  Our training is entirely hands-on. You will work on real projects with professional
-                  briefs and expert mentorship that mirrors how top-tier teams actually function. This
-                  practical approach builds the confidence and high-quality portfolio you need to stand
-                  out and land your dream job.
-                </p>
-                <p className="m-0 block w-full text-justify text-white/65 leading-relaxed">
-                  Backed by Neo Digital Hub in Dubai, we bring international expertise directly to our
-                  classrooms. Whether you are a fresh graduate or a professional looking to switch
-                  careers, our dedicated support helps you make the leap.
-                </p>
-              </div>
+              <p className="about-reveal m-0 w-full text-justify text-base leading-relaxed text-gray-400 sm:text-lg">
+                At Pixl Pluz Academy, we believe learning should move as fast as the modern industry.
+                We bring international standards from Neo Digital Hub in Dubai directly to our Kochi
+                campus, focusing on the AI-integrated skills that top companies are hiring for today.
+                By ditching outdated theory in favor of real projects and expert mentorship, we give
+                you the tools to stand out in a competitive job market. We are here to help you bridge
+                the gap between where you are now and the career you are aiming for.
+              </p>
             </div>
-            <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="mt-8 inline-block">
+            <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="about-reveal mt-8 inline-block">
               <Link
                 href="/about"
                 className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-7 py-3 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
@@ -123,7 +169,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
           </div>
 
           <motion.div
-            className="relative overflow-visible lg:col-span-2 min-h-[28rem] sm:min-h-[30rem] lg:min-h-[32rem]"
+            className="relative min-h-[28rem] w-full overflow-visible sm:min-h-[30rem] lg:min-h-[32rem]"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -152,7 +198,6 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                     if (canHoverExpand()) setActive(i)
                   }}
                 >
-                  {/* Outer glow — renders behind the card, visible around expanded edges */}
                   <div
                     className={cn(
                       'pointer-events-none absolute -inset-6 z-0 rounded-sm transition-opacity duration-[400ms]',
@@ -195,8 +240,8 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                         className={cn(
                           'w-full shrink-0 font-black text-green-accent transition-[font-size] duration-400',
                           isExpanded
-                            ? 'text-xl leading-[1.3] sm:text-2xl'
-                            : 'text-[13px] leading-[1.2] sm:text-sm',
+                            ? 'text-2xl leading-[1.2] sm:text-3xl lg:text-4xl'
+                            : 'text-base leading-[1.15] sm:text-lg lg:text-xl',
                         )}
                       >
                         <span className="block">{titleLines[0]}</span>

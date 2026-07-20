@@ -60,14 +60,15 @@ const GEO_SMALL = geometry(W_SMALL)
 const PORTRAIT = GEO_SMALL.portrait
 
 /**
- * Full cutout at logo width — bottom on logo, head free above.
- * Horizontally centered on the logo frame.
+ * Portrait cutout — bottom flush with logo frame, head free above.
+ * Sized smaller than the logo so the mark stays dominant.
  */
-const CUTOUT_H = PORTRAIT.h * 2.45
-const CUTOUT_W = PORTRAIT.w * 1.2
+const CUTOUT_H = PORTRAIT.h * 1.75
+const CUTOUT_W = PORTRAIT.w * 0.92
 const CUTOUT = {
   x: CX - CUTOUT_W / 2,
-  y: PORTRAIT.y + PORTRAIT.h - CUTOUT_H + U * 0.22,
+  // Bottom edge sits on the logo frame bottom (y2) — not below it
+  y: PORTRAIT.y + PORTRAIT.h - CUTOUT_H,
   w: CUTOUT_W,
   h: CUTOUT_H,
 }
@@ -223,7 +224,7 @@ export function ExpandableLogoPortrait({
             y={CUTOUT.y}
             width={CUTOUT.w}
             height={CUTOUT.h}
-            preserveAspectRatio="xMidYMax meet"
+            preserveAspectRatio="xMidYMax slice"
             transform={`translate(${CUTOUT_OX} ${CUTOUT_OY}) scale(${lift}) translate(${-CUTOUT_OX} ${-CUTOUT_OY})`}
           />
         </svg>

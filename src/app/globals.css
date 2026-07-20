@@ -23,8 +23,11 @@
   --color-navy-600:  #1a2a60;
   --color-navy-500:  #223580;
 
-  /* Typography */
-  --font-display: Arial, Helvetica, sans-serif;
+  /* Typography — headings: Red Hat Display; body: Arial */
+  --font-heading: var(--font-red-hat), "Red Hat Display", Arial, Helvetica, sans-serif;
+  --font-display: var(--font-red-hat), "Red Hat Display", Arial, Helvetica, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-sans: Arial, Helvetica, sans-serif;
 
   /* Animations */
   --animate-float:        float 3s ease-in-out infinite;
@@ -79,6 +82,10 @@
 
 .animate-marquee-fast {
   animation: marquee 45s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 45s linear infinite reverse;
 }
 
 .animate-marquee-y {
@@ -265,8 +272,8 @@
 .course-detail-page .module-switch {
   display: grid;
   width: 100%;
-  max-width: 56rem;
-  margin-inline: auto;
+  max-width: none;
+  margin-inline: 0;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #143d8f;
@@ -412,17 +419,162 @@
   }
 }
 
-/* AI tools carousel (below curriculum) */
-.course-detail-page .ai-tools-carousel {
-  position: relative;
-  overflow: hidden;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
-  padding-block: 1.15rem;
+/* Curriculum left + AI tools falling stack right */
+.course-detail-page .curriculum-with-tools {
+  display: grid;
+  gap: 2.5rem;
+  align-items: stretch;
 }
 
-@media (min-width: 640px) {
-  .course-detail-page .ai-tools-carousel {
-    padding-block: 1.35rem;
+.course-detail-page .curriculum-with-tools-modules {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+}
+
+.course-detail-page .curriculum-with-tools-modules .module-switch {
+  flex: 1;
+  height: 100%;
+  min-height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .course-detail-page .curriculum-with-tools {
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+    gap: 2rem 2.75rem;
+  }
+
+  .course-detail-page .curriculum-with-tools-modules .module-switch {
+    min-height: 32rem;
+  }
+}
+
+.course-detail-page .ai-tools-stack {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  flex-direction: column;
+}
+
+.course-detail-page .ai-tools-stack-label {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 auto;
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: 0.15rem 0 1rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #54e345;
+  text-align: center;
+}
+
+.course-detail-page .ai-tools-stack-stage {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 26rem;
+  height: 100%;
+  padding: 1.15rem 0.75rem 2.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(20, 61, 143, 0.28), transparent 70%),
+    #050505;
+}
+
+@media (min-width: 1024px) {
+  .course-detail-page .ai-tools-stack-stage {
+    min-height: 32rem;
+    padding: 1.5rem 1rem 2.5rem;
+  }
+}
+
+.course-detail-page .ai-tools-stack-pile {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  max-width: 18rem;
+  margin-inline: auto;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.course-detail-page .ai-tools-stack-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+  will-change: transform, opacity;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.course-detail-page .ai-tools-stack-block span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.course-detail-page .ai-tools-stack-block.is-green {
+  background: #54e345;
+  color: #041208;
+}
+
+.course-detail-page .ai-tools-stack-block.is-blue {
+  background: #143d8f;
+  color: #ffffff;
+}
+
+.course-detail-page .ai-tools-stack-block.is-white {
+  background: #ffffff;
+  color: #143d8f;
+}
+
+.course-detail-page .ai-tools-stack-block.is-outline {
+  background: rgba(84, 227, 69, 0.08);
+  color: #54e345;
+  border: 1px solid rgba(84, 227, 69, 0.55);
+}
+
+.course-detail-page .ai-tools-stack-shadow {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 0.85rem;
+  width: min(70%, 14rem);
+  height: 3.5rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.55) 0%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-detail-page .ai-tools-stack-block {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -463,13 +615,8 @@ main:has(.scholarship-page) {
   background-color: #000000;
 }
 
-/* Services — word cloud hero */
-.services-page {
-  background-color: #ffffff;
-  color: #060b16;
-}
-
-.services-page .svc-word {
+/* Homepage — AI tools word cloud */
+.ai-tools-section .ai-word {
   white-space: nowrap;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
@@ -479,36 +626,50 @@ main:has(.scholarship-page) {
   will-change: transform, opacity;
 }
 
-.services-page .svc-word-hero {
-  font-size: clamp(3.5rem, 11vw, 8.5rem);
-  letter-spacing: 6px;
-  color: #153e90;
-  text-shadow: 0 0 60px rgba(21, 62, 144, 0.2);
+.ai-tools-section .ai-word-hero {
+  font-family: var(--font-heading), "Red Hat Display", Arial, Helvetica, sans-serif;
+  font-size: clamp(3rem, 9vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: transparent;
+  -webkit-text-stroke: 3.5px #54e345;
+  paint-order: stroke fill;
+  text-shadow: none;
 }
 
-.services-page .svc-word-blue {
-  color: #153e90;
+@media (min-width: 768px) {
+  .ai-tools-section .ai-word-hero {
+    -webkit-text-stroke-width: 4.5px;
+  }
 }
 
-.services-page .svc-word-green {
-  color: #54e346;
+.ai-tools-section .ai-word-green {
+  color: #54e345;
+  text-shadow: 0 0 24px rgba(84, 227, 69, 0.35);
 }
 
-.services-page .svc-word-dim {
-  color: #7a8ba8;
+.ai-tools-section .ai-word-blue {
+  color: #5b8eff;
+  text-shadow: 0 0 24px rgba(20, 61, 143, 0.55);
 }
 
-.services-page .svc-scroll-hint {
-  animation: svc-hint-bob 2s ease-in-out infinite;
+.ai-tools-section .ai-word-butter {
+  color: #fffaa4;
+  text-shadow: 0 0 22px rgba(255, 250, 164, 0.4);
 }
 
-@keyframes svc-hint-bob {
+.ai-tools-section .ai-word-white {
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
+}
+
+.ai-tools-section .ai-tools-scroll-hint {
+  animation: ai-tools-hint-bob 2s ease-in-out infinite;
+}
+
+@keyframes ai-tools-hint-bob {
   0%, 100% { transform: translate(-50%, 0); }
   50% { transform: translate(-50%, 8px); }
-}
-
-main:has(.services-page) {
-  background-color: #ffffff;
 }
 
 .ab-word {
@@ -552,7 +713,15 @@ html.lenis body {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: var(--font-red-hat), "Red Hat Display", Arial, Helvetica, sans-serif;
 }
 
 /* Hero pages: no main top pad — fixed navbar floats over [data-page-hero] */

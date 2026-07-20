@@ -7,22 +7,21 @@ import { useLenis } from 'lenis/react'
 import { ArrowRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FloatingPixels } from '@/components/ui/FloatingPixels'
 import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const FEATURES = [
-  { labelLines: ['Scholarship', 'Based Courses'], image: '/images/students/scholarship-based-courses.png' },
-  { labelLines: ['Live Project &', 'Training'], image: '/images/students/live-project-training.png' },
-  { labelLines: ['Industry Expert', 'Mentors'], image: '/images/students/industry-expert-mentors.png' },
-  { labelLines: ['AI Tools &', 'Automation'], image: '/images/students/ai-tools-automation.png' },
-  { labelLines: ['Career &', 'Placement Support'], image: '/images/students/career-placement-support.png' },
-  { labelLines: ['Interview', 'Preparation'], image: '/images/students/interview-preparation.png' },
-  { labelLines: ['Practical', 'Learning'], image: '/images/students/practical-learning.png' },
-  { labelLines: ['Verified', 'Portfolio'], image: '/images/students/verified-portfolio.png' },
-  { labelLines: ['Industry', 'Certification'], image: '/images/students/industry-certification.png' },
+  { label: 'AI LEARNING', image: '/images/students/practical-learning.png' },
+  { label: 'LIVE PROJECT AND TRAINING', image: '/images/students/live-project-training.png' },
+  { label: 'INDUSTRY EXPERTS', image: '/images/students/industry-expert-mentors.png' },
+  { label: 'PLACEMENT SUPPORT', image: '/images/students/career-placement-support.png' },
+  { label: 'SCHOLARSHIP COURSES', image: '/images/students/scholarship-based-courses.png' },
+  { label: 'INDUSTRY CERTIFICATION', image: '/images/students/industry-certification.png' },
+  { label: 'PAID AI TOOLS', image: '/images/students/ai-tools-automation.png' },
+  { label: 'INTERVIEW PREPARATION', image: '/images/students/interview-preparation.png' },
+  { label: 'VERIFIED PORTFOLIO', image: '/images/students/verified-portfolio.png' },
 ]
 
 export function AdvantageSection() {
@@ -79,59 +78,62 @@ export function AdvantageSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-black py-16 sm:py-24">
+    <section
+      ref={sectionRef}
+      className="relative overflow-x-clip overflow-y-visible bg-black px-4 py-16 sm:px-6 sm:py-24 lg:px-12"
+    >
       <div className="relative overflow-visible">
         <FloatingPixels />
 
-        <div className="relative z-10 mx-auto grid max-w-7xl items-start gap-10 px-4 sm:gap-12 lg:grid-cols-2 lg:gap-16">
-          <div data-no-blur-text className="lg:sticky lg:top-28 lg:self-start">
-            <SectionLabel className="mb-4">
-              The PixlPluz Advantage
-            </SectionLabel>
+        <div className="relative z-10 grid items-stretch gap-4 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-5">
+          <div
+            data-no-blur-text
+            className="flex h-full w-full min-w-0 flex-col justify-between"
+          >
+            <div className="w-full max-w-sm lg:max-w-md">
+              <h2 className="relative mb-6 font-black uppercase leading-[0.88] tracking-tight sm:mb-8">
+                <span className="mb-[0.2em] block text-[clamp(2rem,7vw,4.75rem)] text-green-accent">
+                  Why AI
+                </span>
+                <span className="block text-[clamp(2rem,7vw,4.75rem)] text-white">
+                  Courses?
+                </span>
+              </h2>
 
-            <h2 className="mb-6 text-4xl font-black leading-tight text-green-accent lg:text-4xl">
-              Your Career Powered by  AI
-            </h2>
-
-            <div className="mb-10 max-w-xl space-y-4">
-              <p className="m-0 text-justify text-gray-400 leading-relaxed">
-                Job-ready skills, real AI training, and career support built for how industries
-                actually hire today. Courses include AI-Integrated Digital Marketing,
-                AI-Integrated Web Development, Data Science &amp; AI, and Cybersecurity — each
-                designed around how AI is reshaping these fields right now.
-              </p>
-              <p className="m-0 text-justify text-gray-400 leading-relaxed">
-                Fresh graduate, working professional, or career switcher — it doesn&apos;t matter
-                where you&apos;re starting from. Pixl Pluz builds job-ready skills through live
-                projects, mentor feedback, and real portfolio work, backed by Neo Digital Hub, Dubai.
-              </p>
-              <p className="m-0 text-justify text-gray-400 leading-relaxed">
-                This isn&apos;t theory-heavy classroom learning. It&apos;s a launchpad with
-                scholarships, interview prep, and placement support built in, so every step comes
-                with real backing.
-              </p>
-              <p className="m-0 text-justify text-gray-400 leading-relaxed">
-                Whether you are a graduate or switching careers, we meet you where you are. Through
-                AI-integrated live projects and expert mentorship, we bridge the gap between learning
-                and doing — with the backing of Neo Digital Hub to help you excel.
-              </p>
+              <div className="space-y-4">
+                <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                  AI is changing every industry and the way we learn needs to change too. Our courses in
+                  Digital Marketing, Web Development, Data Science, and Cybersecurity are built around
+                  real AI skills employers want today.
+                </p>
+                <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                  Whether you&apos;re a fresh graduate, a working professional, or switching careers, we
+                  meet you where you are. You&apos;ll learn by doing live projects, mentor feedback, and
+                  real portfolio work backed by Neo Digital Hub, Dubai.
+                </p>
+                <p className="m-0 text-justify text-gray-400 leading-relaxed">
+                  No heavy theory. Just job-ready skills, career support, and a clear path from learning
+                  to doing.
+                </p>
+              </div>
             </div>
 
-            <Link
-              href="/courses"
-              className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all pixel-corner-sm"
-            >
-              Become a Student
-              <ArrowRight size={14} />
-            </Link>
+            <div className="mt-8 w-full max-w-sm lg:mt-0 lg:max-w-md">
+              <Link
+                href="/courses"
+                className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-widest transition-all pixel-corner-sm"
+              >
+                Become a Student
+                <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
 
           <div
             ref={gridRef}
-            className="grid w-full grid-cols-1 gap-3 p-2 sm:grid-cols-2 sm:gap-3.5 lg:ml-auto lg:max-w-[34rem] lg:grid-cols-3 xl:max-w-[36rem]"
+            className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-5"
           >
-            {FEATURES.map(({ labelLines, image }, i) => {
-              const label = labelLines.join(' ')
+            {FEATURES.map(({ label, image }, i) => {
               const isOpen = openIdx === i
               const isHidden = openIdx !== null && !isOpen
 
@@ -152,11 +154,11 @@ export function AdvantageSection() {
                   }}
                   className={cn(
                     'advantage-card group relative w-full cursor-pointer border border-white/10 bg-[#141414]',
-                    'transition-[border-color,box-shadow] duration-[400ms] ease-out',
+                    'transition-[border-color,box-shadow,width,height] duration-[400ms] ease-out',
                     'hover:border-white/18',
                     isOpen
-                      ? 'col-span-full z-40 mx-auto aspect-square w-full max-w-[min(100%,28rem)] sm:max-w-[32rem] border-white/15 shadow-[0_0_32px_rgba(84,227,70,0.35),0_0_64px_rgba(84,227,70,0.2)]'
-                      : 'aspect-square',
+                      ? 'col-span-full z-40 mx-auto aspect-[5/3] w-full max-w-[min(100%,36rem)] border-white/15 shadow-[0_0_32px_rgba(84,227,70,0.35),0_0_64px_rgba(84,227,70,0.2)]'
+                      : 'h-36 sm:h-40 lg:h-44',
                     isHidden && 'hidden',
                   )}
                 >
@@ -171,25 +173,24 @@ export function AdvantageSection() {
                       className={cn(
                         'object-cover transition-all duration-500 ease-out',
                         isOpen
-                          ? 'scale-100 blur-none brightness-100'
-                          : 'scale-110 blur-[6px] brightness-75 group-hover:scale-100 group-hover:blur-none group-hover:brightness-100',
+                          ? 'scale-100 grayscale-0 brightness-100'
+                          : 'scale-110 grayscale brightness-90 group-hover:scale-100 group-hover:grayscale-0 group-hover:brightness-100',
                       )}
                     />
                     <div
                       className={cn(
                         'absolute inset-0 transition-colors duration-500',
-                        isOpen ? 'bg-black/20' : 'bg-black/55 group-hover:bg-black/25',
+                        isOpen ? 'bg-black/20' : 'bg-black/40 group-hover:bg-black/20',
                       )}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
                     <p
                       className={cn(
-                        'absolute inset-x-0 bottom-0 z-10 p-3.5 font-black uppercase leading-[1.2] tracking-wide text-white sm:p-4',
-                        isOpen ? 'text-sm sm:text-base md:text-lg' : 'text-[10px] sm:text-[11px]',
+                        'absolute inset-x-0 bottom-0 z-10 truncate p-3.5 font-black uppercase leading-none tracking-wide text-white whitespace-nowrap sm:p-4',
+                        isOpen ? 'text-base sm:text-lg md:text-xl' : 'text-[11px] sm:text-xs lg:text-[13px]',
                       )}
                     >
-                      <span className="block whitespace-nowrap">{labelLines[0]}</span>
-                      <span className="block whitespace-nowrap">{labelLines[1]}</span>
+                      {label}
                     </p>
                   </div>
                 </div>

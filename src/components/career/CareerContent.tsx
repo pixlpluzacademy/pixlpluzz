@@ -12,17 +12,6 @@ import { formatDate } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const BELIEFS = [
-  {
-    title: 'Teach by doing.',
-    copy: "We don't lecture from slides. Our team builds real campaigns, live projects, and AI-powered workflows alongside students — because that's how skills actually stick.",
-  },
-  {
-    title: 'Growth through craft.',
-    copy: "The better we get at what we do, the better our students become. It's that simple.",
-  },
-]
-
 export function CareerContent({ careers }: { careers: Career[] }) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [openId, setOpenId] = useState<string | null>(null)
@@ -108,7 +97,7 @@ export function CareerContent({ careers }: { careers: Career[] }) {
             <br />
             <span className="text-white">Come build it with us.</span>
           </p>
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-primary">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-butter-glow">
             {careers.length} open position{careers.length !== 1 ? 's' : ''} — Kochi
           </p>
         </div>
@@ -116,22 +105,18 @@ export function CareerContent({ careers }: { careers: Career[] }) {
 
       {/* ── What we believe ───────────────────────────────────── */}
       <section className="border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
-        <div className="mx-auto max-w-7xl">
-          <p className="career-reveal mb-10 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-16">
+        <div className="mx-auto max-w-4xl">
+          <p className="career-reveal mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-10">
             What we believe
           </p>
-          <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
-            {BELIEFS.map((b) => (
-              <div key={b.title}>
-                <h2 className="mb-5 text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
-                  {b.title}
-                </h2>
-                <p className="career-reveal max-w-lg text-base leading-relaxed text-gray-400 sm:text-lg">
-                  {b.copy}
-                </p>
-              </div>
-            ))}
-          </div>
+          <p className="career-reveal text-justify text-lg leading-relaxed text-white/75 sm:text-xl sm:leading-relaxed lg:text-2xl lg:leading-relaxed">
+            Great careers aren&apos;t built on textbooks they&apos;re built on
+            doing. We believe in real projects over passive lessons, mentors who
+            guide over lectures that just inform, and skills that keep up with
+            how the world actually works. For us, opportunity should never be
+            locked behind tuition fees it should be earned through talent and
+            effort.
+          </p>
         </div>
       </section>
 

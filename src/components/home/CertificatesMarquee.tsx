@@ -9,7 +9,7 @@ const CERTIFICATES = [
   'ISO 29993:2017',
   'MSME',
   'Startup India',
-  'National Skill Development Corporation (NSDC)',
+  'NSDC',
 ]
 
 export function CertificatesMarquee({ className }: { className?: string }) {

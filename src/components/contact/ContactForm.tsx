@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { CheckCircle } from 'lucide-react'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { PixelButton } from '@/components/ui/PixelButton'
 
 const COURSES = [
@@ -37,8 +36,7 @@ export function ContactForm() {
 
   return (
     <div>
-      <SectionLabel className="mb-4">Send a Message</SectionLabel>
-      <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-6">Fill out the form below</h2>
+      <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
@@ -90,12 +88,6 @@ export function ContactForm() {
           />
         </div>
 
-        <div className="flex items-start gap-2">
-          <input type="checkbox" id="consent" required className="mt-1" />
-          <label htmlFor="consent" className="text-xs text-gray-500 dark:text-gray-400">
-            I agree to be contacted by Pixl Pluz Academy regarding my enquiry and understand that my data will be handled according to the privacy policy.
-          </label>
-        </div>
 
         <PixelButton type="submit" disabled={loading} className="w-full justify-center">
           {loading ? 'Sending...' : 'Send Message'}

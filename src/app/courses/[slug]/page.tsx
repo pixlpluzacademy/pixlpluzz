@@ -13,7 +13,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const course = getCourse(slug)
   if (!course) return { title: 'Course Not Found' }
-  return { title: course.title, description: course.shortDescription }
+  return {
+    title: /\bCOURSE\b$/i.test(course.title.trim())
+      ? course.title
+      : `${course.title} COURSE`,
+    description: course.shortDescription,
+  }
 }
 
 export default async function CourseDetailPage({ params }: Props) {

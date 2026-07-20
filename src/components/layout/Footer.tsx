@@ -34,16 +34,15 @@ const QUICK_LINKS = [
   { label: 'Home',        href: '/' },
   { label: 'About Us',    href: '/about' },
   { label: 'Careers',     href: '/career' },
-  { label: 'Services',    href: '/services' },
   { label: 'Scholarship', href: '/scholarship' },
   { label: 'Placements',  href: '/placement' },
 ]
 
 const COURSES = [
-  { label: 'Digital Marketing with AI', href: '/courses/digital-marketing-course' },
+  { label: 'AI Digital Marketing', href: '/courses/digital-marketing-course' },
   { label: 'AI Web Development', href: '/courses/ai-powered-web-development-course' },
-  { label: 'Data Science & AI', href: '/courses/data-science-ai-course' },
-  { label: 'Cyber Security with AI', href: '/courses/cyber-security-course-with-ai' },
+  { label: 'AI Data Science', href: '/courses/data-science-ai-course' },
+  { label: 'AI Cybersecurity', href: '/courses/cyber-security-course-with-ai' },
 ]
 
 export function Footer() {

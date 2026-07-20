@@ -1,17 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { useLenis } from 'lenis/react'
+import { Menu, X } from 'lucide-react'
 import { PixlLogo } from '@/components/ui/PixlLogo'
 import { cn } from '@/lib/utils'
 
 const COURSE_LINKS = [
-  { label: 'Digital Marketing with AI', href: '/courses/digital-marketing-course' },
+  { label: 'AI Digital Marketing', href: '/courses/digital-marketing-course' },
   { label: 'AI Web Development', href: '/courses/ai-powered-web-development-course' },
-  { label: 'Data Science & AI', href: '/courses/data-science-ai-course' },
-  { label: 'Cyber Security with AI', href: '/courses/cyber-security-course-with-ai' },
+  { label: 'AI Data Science', href: '/courses/data-science-ai-course' },
+  { label: 'AI Cybersecurity', href: '/courses/cyber-security-course-with-ai' },
 ]
 
 const NAV_LINKS = [
@@ -24,20 +25,68 @@ const NAV_LINKS = [
   { label: 'Event',       href: '/event' },
 ]
 
+const NAV_OFFSET = 72
+
 export function Navbar() {
   const pathname = usePathname()
+  const lenis = useLenis()
   const [menuOpen, setMenuOpen]       = useState(false)
   const [coursesOpen, setCoursesOpen] = useState(false)
+  /** Transparent over hero; light-gray glass once scrolled past (or on pages without a hero). */
+  const [glass, setGlass] = useState(true)
 
   useEffect(() => { setMenuOpen(false) }, [pathname])
 
+  useLayoutEffect(() => {
+    const update = () => {
+      const hero = document.querySelector<HTMLElement>('[data-page-hero]')
+      if (!hero) {
+        setGlass(true)
+        return
+      }
+      // Stay clear while the hero still covers the nav strip; glass after it scrolls away
+      setGlass(hero.getBoundingClientRect().bottom <= NAV_OFFSET)
+    }
+
+    update()
+
+    if (lenis) {
+      lenis.on('scroll', update)
+      return () => { lenis.off('scroll', update) }
+    }
+
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [pathname, lenis])
+
+  const showBar = glass || menuOpen
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-transparent">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+    <header className="fixed top-0 inset-x-0 z-50 px-3 pt-3 sm:px-4 sm:pt-3.5">
+      <div
+        className={cn(
+          'mx-auto max-w-7xl px-4 transition-[background,box-shadow,border-color,backdrop-filter] duration-300 sm:px-6 lg:px-8',
+          showBar
+            ? 'border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.45)] backdrop-blur-md'
+            : 'border border-transparent bg-transparent shadow-none',
+        )}
+        style={
+          showBar
+            ? {
+                background:
+                  'linear-gradient(105deg, rgba(6,10,18,0.94) 0%, rgba(20,61,143,0.28) 42%, rgba(10,16,14,0.92) 68%, rgba(84,227,69,0.14) 100%)',
+              }
+            : undefined
+        }
+      >
+        <div className="flex h-[4.5rem] items-center justify-between">
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <PixlLogo variant="white" className="h-8 w-[108px]" />
+            <PixlLogo variant="white" className="h-11 w-[148px] sm:h-12 sm:w-[162px]" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6">
@@ -52,14 +101,13 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(
-                      'flex items-center gap-1 text-sm font-medium transition-colors',
+                      'text-sm font-medium transition-colors',
                       pathname.startsWith(link.href)
                         ? 'text-green-accent'
                         : 'text-gray-300 hover:text-green-accent'
                     )}
                   >
                     {link.label}
-                    <ChevronDown size={14} className={cn('transition-transform', coursesOpen && 'rotate-180')} />
                   </Link>
                   <div
                     className={cn(
@@ -102,7 +150,7 @@ export function Navbar() {
               href="/contact"
               className="btn-glaze btn-primary-fill hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
             >
-              Contact Us
+              Let's Talk
             </Link>
 
             <button
@@ -114,59 +162,59 @@ export function Navbar() {
             </button>
           </div>
         </div>
-      </div>
 
-      {menuOpen && (
-        <div className="lg:hidden bg-black/95 border-t border-white/10 px-4 py-4 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto backdrop-blur-md">
-          {NAV_LINKS.map(link =>
-            link.children ? (
-              <div key={link.label}>
+        {menuOpen && (
+          <div className="lg:hidden max-h-[calc(100dvh-5.5rem)] space-y-1 overflow-y-auto border-t border-white/10 px-0 py-4">
+            {NAV_LINKS.map(link =>
+              link.children ? (
+                <div key={link.label}>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      'block px-3 py-2.5 text-sm font-medium',
+                      pathname === link.href || pathname.startsWith(`${link.href}/`)
+                        ? 'text-green-accent'
+                        : 'text-gray-300'
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                  {link.children.map(child => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      className="block px-6 py-2 text-sm text-gray-300 hover:text-green-accent"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
                 <Link
+                  key={link.href}
                   href={link.href}
                   className={cn(
                     'block px-3 py-2.5 text-sm font-medium',
-                    pathname === link.href || pathname.startsWith(`${link.href}/`)
+                    pathname === link.href
                       ? 'text-green-accent'
                       : 'text-gray-300'
                   )}
                 >
                   {link.label}
                 </Link>
-                {link.children.map(child => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    className="block px-6 py-2 text-sm text-gray-300 hover:text-green-accent"
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
+              )
+            )}
+            <div className="pt-2">
               <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  'block px-3 py-2.5 text-sm font-medium',
-                  pathname === link.href
-                    ? 'text-green-accent'
-                    : 'text-gray-300'
-                )}
+                href="/contact"
+                className="btn-glaze btn-primary-fill block text-center px-5 py-3 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
               >
-                {link.label}
+                Let's Talk
               </Link>
-            )
-          )}
-          <div className="pt-2">
-            <Link
-              href="/contact"
-              className="btn-glaze btn-primary-fill block text-center px-5 py-3 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
-            >
-              Contact Us
-            </Link>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   )
 }

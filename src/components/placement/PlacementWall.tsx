@@ -4,7 +4,6 @@ import { useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -59,12 +58,11 @@ export function PlacementWall() {
   }, [])
 
   return (
-    <section ref={rootRef} className="border-t border-white/8 bg-navy-950 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
+    <section ref={rootRef} className="border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center sm:mb-14">
-          <SectionLabel className="mb-4 mx-auto">Our Alumni</SectionLabel>
-          <h2 className="text-4xl font-black text-white sm:text-5xl">
-            Where Ambition Meets Achievement
+          <h2 className="text-4xl font-black text-green-accent sm:text-5xl">
+           PLACEMENT SUCCESS STORIES
           </h2>
         </div>
 

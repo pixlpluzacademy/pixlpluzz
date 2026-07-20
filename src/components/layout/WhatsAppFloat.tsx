@@ -1,11 +1,9 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
 
-/** Update this to the live WhatsApp business number (country code, digits only). */
-const WHATSAPP_NUMBER = '919999900000'
-const WHATSAPP_MESSAGE = 'Hi Pixl Pluz! I would like to know more about your courses.'
 const POP_INTERVAL_MS = 8000
 /** Start below the viewport edge so it feels like it rises onto the page. */
 const OFFSCREEN_Y = 160
@@ -24,25 +22,54 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 function openWhatsApp() {
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
-  window.open(url, '_blank', 'noopener,noreferrer')
+  window.open(getWhatsAppUrl(), '_blank', 'noopener,noreferrer')
 }
 
 export function WhatsAppFloat() {
   const rootRef = useRef<HTMLButtonElement>(null)
+  const [hiddenByHero, setHiddenByHero] = useState(true)
+
+  // Hide while any page hero is in view (hero already has Free Consultation → WhatsApp)
+  useLayoutEffect(() => {
+    const heroes = document.querySelectorAll('[data-page-hero]')
+    if (heroes.length === 0) {
+      setHiddenByHero(false)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setHiddenByHero(entries.some((entry) => entry.isIntersecting))
+      },
+      { threshold: 0.15 },
+    )
+
+    heroes.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   useLayoutEffect(() => {
     const el = rootRef.current
     if (!el) return
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (hiddenByHero) {
+      gsap.killTweensOf(el)
+      gsap.set(el, { opacity: 0, y: OFFSCREEN_Y, scale: 0.85 })
+      return
+    }
+
+    if (reduceMotion) {
       gsap.set(el, { opacity: 1, y: 0, scale: 1 })
       return
     }
 
     const playPopFromBottom = () => {
+      if (document.querySelector('[data-page-hero]') && rootRef.current?.getAttribute('data-hero-hidden') === 'true') {
+        return
+      }
       const tl = gsap.timeline({ overwrite: true })
-      // Drop fully below the viewport edge
       tl.to(el, {
         y: OFFSCREEN_Y,
         scale: 0.9,
@@ -50,7 +77,6 @@ export function WhatsAppFloat() {
         duration: 0.35,
         ease: 'power2.in',
       })
-      // Rise back onto the page from off-screen
       tl.fromTo(
         el,
         { y: OFFSCREEN_Y, scale: 0.85, opacity: 0 },
@@ -64,25 +90,26 @@ export function WhatsAppFloat() {
       )
     }
 
-    // Start hidden below the screen, then pop in and repeat
-    gsap.set(el, { opacity: 0, y: OFFSCREEN_Y, scale: 0.85 })
-    const startDelay = window.setTimeout(() => {
-      gsap.to(el, {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: OFFSCREEN_Y, scale: 0.85 },
+      {
+        opacity: 1,
         y: 0,
         scale: 1,
-        opacity: 1,
         duration: 0.85,
         ease: 'back.out(1.6)',
-      })
-    }, 1200)
+        overwrite: true,
+      },
+    )
+
     const interval = window.setInterval(playPopFromBottom, POP_INTERVAL_MS)
 
     return () => {
-      window.clearTimeout(startDelay)
       window.clearInterval(interval)
       gsap.killTweensOf(el)
     }
-  }, [])
+  }, [hiddenByHero])
 
   return (
     <button
@@ -90,7 +117,12 @@ export function WhatsAppFloat() {
       type="button"
       onClick={openWhatsApp}
       aria-label="Chat on WhatsApp"
-      className="group fixed bottom-5 right-5 z-50 flex cursor-pointer items-center gap-0 border-0 bg-transparent p-0 will-change-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-green-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      aria-hidden={hiddenByHero}
+      tabIndex={hiddenByHero ? -1 : 0}
+      data-hero-hidden={hiddenByHero ? 'true' : 'false'}
+      className={`group fixed bottom-5 right-5 z-50 flex cursor-pointer items-center gap-0 border-0 bg-transparent p-0 will-change-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-green-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+        hiddenByHero ? 'pointer-events-none' : ''
+      }`}
     >
       <span
         className="pointer-events-none mr-0 max-w-0 overflow-hidden whitespace-nowrap pixel-corner-sm border border-white/10 bg-black/90 px-0 py-1.5 text-[11px] font-semibold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:mr-2.5 group-hover:max-w-[12rem] group-hover:px-3 group-hover:opacity-100 group-focus-visible:mr-2.5 group-focus-visible:max-w-[12rem] group-focus-visible:px-3 group-focus-visible:opacity-100"

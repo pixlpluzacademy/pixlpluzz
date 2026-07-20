@@ -1,54 +1,143 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
+import { useLenis } from 'lenis/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { ExpandableLogoPortrait } from '@/components/home/ExpandableLogoPortrait'
+import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const TITLE = 'OUR AI EXPERTS'
+const SUBTITLE = 'MENTORS FROM ACROSS THE WORLD'
+/** Phrases per loop segment — keep each segment wider than the viewport */
+const PHRASES_PER_SEGMENT = 4
+/** Identical segments for seamless wrap (no blank gaps) */
+const LOOP_SEGMENTS = 3
 
 const MENTORS = [
   {
     name: 'Ahmed Noor',
-    designation: '3D Specialist',
-    image: '/images/Hin.png',
+    designation: 'Sr 3D Specialist',
+    image: '/images/mentors/ahmed_noor.png',
   },
   {
     name: 'Aiswarya VP',
     designation: 'SEO Specialist',
-    image: '/images/Hin.png',
+    image: '/images/mentors/aiswarya_vp.png',
   },
   {
     name: 'Hina Javaid',
     designation: 'Digital Marketing Expert',
-    image: '/images/Hin.png',
+    image: '/images/mentors/hina_javaid.png',
   },
   {
     name: 'Hojjat',
-    designation: '3D Visualizer',
-    image: '/images/Hin.png',
+    designation: 'Sr 3D Visualizer',
+    image: '/images/mentors/hojat_penhan.png',
   },
   {
     name: 'Lakshmi',
     designation: 'Web Developer',
-    image: '/images/Hin.png',
+    image: '/images/mentors/lakshmi.png',
   },
 ]
 
+const MARQUEE_TEXT =
+  'text-[clamp(2.75rem,9vw,6.5rem)] font-black uppercase leading-none tracking-tight'
+
+function MarqueeTrack({
+  trackRef,
+  text,
+  stroke,
+}: {
+  trackRef: React.RefObject<HTMLDivElement | null>
+  text: string
+  stroke: string
+}) {
+  return (
+    <div className="overflow-hidden" aria-hidden>
+      <div
+        ref={trackRef}
+        className="flex w-max select-none will-change-transform"
+      >
+        {Array.from({ length: LOOP_SEGMENTS }, (_, seg) => (
+          <div key={seg} className="flex shrink-0">
+            {Array.from({ length: PHRASES_PER_SEGMENT }, (_, i) => (
+              <span
+                key={`${seg}-${i}`}
+                className={cn(
+                  'career-outline-word shrink-0 px-5 sm:px-8 lg:px-10',
+                  MARQUEE_TEXT,
+                )}
+                style={{ WebkitTextStroke: stroke }}
+              >
+                {text}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function MentorsSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const topMarqueeRef = useRef<HTMLDivElement>(null)
+  const bottomMarqueeRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
+  const lenis = useLenis()
+
   useLayoutEffect(() => {
+    if (!lenis) return
+    const onScroll = () => ScrollTrigger.update()
+    lenis.on('scroll', onScroll)
+    return () => {
+      lenis.off('scroll', onScroll)
+    }
+  }, [lenis])
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current
+    const top = topMarqueeRef.current
+    const bottom = bottomMarqueeRef.current
     const grid = gridRef.current
-    if (!grid) return
+    if (!section || !top || !bottom || !grid) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduceMotion) return
 
     const ctx = gsap.context(() => {
+      if (!reduceMotion) {
+        const loopWidthTop = top.scrollWidth / LOOP_SEGMENTS
+        const loopWidthBottom = bottom.scrollWidth / LOOP_SEGMENTS
+
+        // Start on the middle segment so both sides are filled
+        gsap.set(top, { x: -loopWidthTop })
+        gsap.set(bottom, { x: -loopWidthBottom })
+
+        const travel = () => Math.min(window.innerWidth * 1.1, 960)
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 85%',
+          end: 'bottom top',
+          scrub: 0.55,
+          onUpdate: (self) => {
+            const d = self.progress * travel()
+            // Top: left → right; bottom: right → left — same |d|, seamless wrap
+            gsap.set(top, {
+              x: gsap.utils.wrap(-loopWidthTop, 0, -loopWidthTop + d),
+            })
+            gsap.set(bottom, {
+              x: gsap.utils.wrap(-loopWidthBottom, 0, -loopWidthBottom - d),
+            })
+          },
+        })
+      }
+
       const cards = grid.querySelectorAll<HTMLElement>('.mentor-card')
       gsap.fromTo(
         cards,
@@ -66,7 +155,7 @@ export function MentorsSection() {
           },
         },
       )
-    }, sectionRef)
+    }, section)
 
     requestAnimationFrame(() => ScrollTrigger.refresh())
     return () => ctx.revert()
@@ -75,7 +164,7 @@ export function MentorsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-x-clip overflow-y-visible border-t border-white/8 bg-black px-4 py-16 sm:py-24"
+      className="relative overflow-x-clip overflow-y-visible border-t border-white/8 bg-black pb-16 pt-4 sm:pb-24 sm:pt-5"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -85,46 +174,47 @@ export function MentorsSection() {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mb-4 text-center sm:mb-5">
-          <AnimatedSection variant="fadeUp">
-            <SectionLabel className="mb-4 mx-auto">Our Mentors</SectionLabel>
-          </AnimatedSection>
-          <h2 className="text-4xl font-black text-green-accent sm:text-4xl">
-            Learn From Industry Experts
-          </h2>
-          <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-              Practitioners and specialists who bring real industry experience into every session.
-            </p>
-          </AnimatedSection>
-        </div>
 
+      <div className="relative z-10 space-y-1.5 sm:space-y-2">
+        <h2 className="sr-only">{TITLE}</h2>
+        <MarqueeTrack
+          trackRef={topMarqueeRef}
+          text={TITLE}
+          stroke="2.5px #54e345"
+        />
+        <MarqueeTrack
+          trackRef={bottomMarqueeRef}
+          text={SUBTITLE}
+          stroke="2.5px rgba(255, 255, 255, 0.9)"
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-10 pt-16 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 sm:pt-20 lg:grid-cols-3 lg:gap-x-10 lg:pt-24 xl:grid-cols-5 xl:gap-x-8"
+          className="grid grid-cols-1 gap-10 pt-28 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 sm:pt-32 lg:grid-cols-3 lg:gap-x-10 lg:pt-36 xl:grid-cols-5 xl:gap-x-8"
         >
           {MENTORS.map(({ name, designation, image }) => (
-              <article
-                key={name}
-                className="mentor-card group relative flex flex-col overflow-visible bg-transparent"
-              >
-                <ExpandableLogoPortrait
-                  src={encodeURI(image)}
-                  alt={name}
-                  className="mx-auto w-full max-w-[340px] sm:max-w-[300px] lg:max-w-none"
-                />
+            <article
+              key={name}
+              className="mentor-card group relative flex flex-col overflow-visible bg-transparent"
+            >
+              <ExpandableLogoPortrait
+                src={image}
+                alt={name}
+                className="mx-auto w-full max-w-[340px] sm:max-w-[300px] lg:max-w-none"
+              />
 
-                <div className="mt-5 text-center">
-                  <h3 className="text-lg font-black tracking-tight text-white sm:text-xl">
-                    {name}
-                  </h3>
-                  <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-400">
-                    {designation}
-                  </p>
-                </div>
-              </article>
-            ))}
+              <div className="mt-5 text-center">
+                <h3 className="text-lg font-black tracking-tight text-white sm:text-xl">
+                  {name}
+                </h3>
+                <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-400">
+                  {designation}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

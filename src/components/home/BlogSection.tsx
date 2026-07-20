@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 import { formatDate } from '@/lib/utils'
 import { getBlogImage } from '@/lib/blog-assets'
 import type { Blog } from '@/lib/data'
@@ -31,17 +31,16 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="text-center mb-14">
-          <AnimatedSection variant="fadeUp">
-            <SectionLabel className="mb-4 mx-auto">Our Latest Posts</SectionLabel>
-          </AnimatedSection>
-          <h2 className="text-4xl sm:text-4xl font-black text-green-accent mb-4">
-            Learn More About Digital<br />Marketing & Career Growth
+        <div className="mb-12 text-center sm:mb-14">
+          <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
+            <PixelTrail />
+            <span className="text-green-accent">AI Latest </span>
+            <span className="text-white">Updates</span>
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="max-w-2xl mx-auto text-center text-gray-400">
-              Read our latest articles, student guides, career tips, course updates, and industry insights
-              to understand the skills needed for the future of digital marketing and online business.
+            <p className="mx-auto max-w-2xl text-justify text-gray-400 sm:text-center">
+              New articles on AI tools, course news, and digital skills fresh guidance from Pixl Pluz
+              so you stay current with what the industry is using now.
             </p>
           </AnimatedSection>
         </div>
@@ -54,21 +53,27 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
           viewport={{ once: true, margin: '-60px' }}
         >
           {blogs.map((blog, i) => (
-            <motion.div key={blog.id} variants={blogCardVariants} transition={{ duration: 0.55, ease: 'easeOut' as const }}>
+            <motion.div
+              key={blog.id}
+              variants={blogCardVariants}
+              transition={{ duration: 0.55, ease: 'easeOut' as const }}
+              className="transition-shadow duration-300 hover:shadow-[0_0_28px_rgba(84,227,69,0.35)]"
+            >
               <Link
                 href={`/blog/${blog.slug}`}
-                className="group flex flex-col overflow-hidden border border-white/8 bg-[#141414] hover:shadow-[0_0_28px_rgba(84,227,69,0.35)] hover:-translate-y-1 transition-all duration-300 pixel-corner"
+                className="group flex flex-col overflow-hidden border border-white/8 bg-[#141414] pixel-corner"
               >
-                {/* Thumbnail */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={getBlogImage(i)}
-                    alt={blog.title}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
+                {/* Thumbnail — no hover scale (avoids bottom-edge flicker) */}
+                <div className="p-4 pb-0">
+                  <div className="relative h-44 overflow-hidden sm:h-48">
+                    <Image
+                      src={getBlogImage(i)}
+                      alt={blog.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}

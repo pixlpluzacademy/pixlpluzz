@@ -9,8 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Course } from '@/lib/data'
 import { getCourseImage, getCourseAiTools } from '@/lib/course-assets'
-import { CourseFAQ } from '@/components/courses/CourseFAQ'
-import { CertificateStack } from '@/components/courses/CertificateStack'
+import { AiToolsFallingStack } from '@/components/courses/AiToolsFallingStack'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { formatPrice, cn } from '@/lib/utils'
@@ -43,43 +42,26 @@ const AUDIENCES = [
     desc: 'Learning workflows that help grow brands, products, and campaigns.',
     icon: '/icons/dark-mode/analytics.svg',
   },
+  {
+    title: 'Beginners',
+    desc: 'Starting from the basics with clear steps, mentors, and hands-on practice.',
+    icon: '/icons/dark-mode/admission.svg',
+  },
 ]
-
-function AiToolsCarousel({ tools }: { tools: string[] }) {
-  const track = [...tools, ...tools]
-
-  return (
-    <div className="ai-tools-carousel course-reveal" aria-label="AI tools used in this course">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-[color:var(--page-bg)] to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-[color:var(--page-bg)] to-transparent sm:w-24" />
-      <div className="flex w-max animate-marquee-fast items-center">
-        {track.map((name, i) => (
-          <div
-            key={`${name}-${i}`}
-            className="mx-4 flex shrink-0 items-center gap-3 sm:mx-6"
-          >
-            <span className="whitespace-nowrap text-sm font-bold text-green-accent sm:text-base">
-              {name}
-            </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-green-accent/70" aria-hidden />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 function SectionHeader({
   kicker,
   title,
   body,
   className,
+  titleClassName,
   align = 'left',
 }: {
-  kicker: string
+  kicker?: string
   title: string
   body?: string
   className?: string
+  titleClassName?: string
   align?: 'left' | 'center'
 }) {
   const centered = align === 'center'
@@ -91,8 +73,13 @@ function SectionHeader({
         className,
       )}
     >
-      <SectionLabel className="mb-4">{kicker}</SectionLabel>
-      <h2 className="text-3xl font-black leading-tight tracking-tight text-green-accent sm:text-4xl lg:text-[2.75rem]">
+      {kicker ? <SectionLabel className="mb-4">{kicker}</SectionLabel> : null}
+      <h2
+        className={cn(
+          'text-3xl font-black leading-tight tracking-tight text-green-accent sm:text-4xl lg:text-[2.75rem]',
+          titleClassName,
+        )}
+      >
         {title}
       </h2>
       {body && (
@@ -284,10 +271,6 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[min(92svh,920px)] max-w-7xl flex-col justify-end px-4 pb-8 pt-28 sm:px-6 lg:px-8 lg:pb-10 lg:pt-32">
-          <div className="course-hero-fade absolute right-4 top-28 z-20 sm:right-6 lg:right-8 lg:top-32">
-            <CertificateStack />
-          </div>
-
           <Link
             href="/courses"
             className="course-hero-fade course-body mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] transition-colors hover:text-green-accent"
@@ -296,8 +279,10 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
             All courses
           </Link>
 
-          <h1 className="course-hero-fade max-w-3xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
-            {course.title}
+          <h1 className="course-hero-fade whitespace-nowrap font-black uppercase leading-[1.05] tracking-tight text-[clamp(1.35rem,4.8vw,4.25rem)]">
+            {/\bCOURSE\b$/i.test(course.title.trim())
+              ? course.title
+              : `${course.title} COURSE`}
           </h1>
 
           <div className="course-hero-fade mt-6 flex flex-wrap gap-2.5">
@@ -314,12 +299,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] course-body opacity-70">
                   {item.label}
                 </p>
-                <p
-                  className={cn(
-                    'mt-1 text-sm font-black',
-                    item.label === 'Fee' ? 'course-soft' : 'text-green-accent',
-                  )}
-                >
+                <p className="mt-1 text-sm font-black text-white">
                   {item.value}
                 </p>
               </div>
@@ -338,12 +318,6 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
               Enrol Now
               <ArrowRight size={16} />
             </Link>
-            <Link
-              href="/scholarship"
-              className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-7 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
-            >
-              Apply for Scholarship
-            </Link>
             <a
               href={`/brochures/${course.slug}.pdf`}
               download
@@ -356,24 +330,23 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
         </div>
       </section>
 
-      {/* ── Curriculum ── */}
+      {/* ── Curriculum + AI tools falling stack ── */}
       <section className="course-section-surface relative py-20 lg:py-24">
         <div className="course-section-glow pointer-events-none absolute inset-0" aria-hidden />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             className="course-reveal mb-10"
             align="center"
-            kicker="Curriculum"
-            title="What you will learn"
-            body="A structured path from foundations to portfolio work — select a module to explore topics and outcomes."
+            title="CURRICULUM"
+            titleClassName="text-[clamp(2rem,5vw,3.75rem)] uppercase"
+            body="A structured path from foundations to portfolio work select a module to explore topics and outcomes."
           />
-          <div className="course-reveal">
-            <CurriculumModules course={course} />
+          <div className="curriculum-with-tools">
+            <div className="course-reveal curriculum-with-tools-modules">
+              <CurriculumModules course={course} />
+            </div>
+            <AiToolsFallingStack tools={aiTools} />
           </div>
-        </div>
-
-        <div className="relative z-10 mt-10 sm:mt-12">
-          <AiToolsCarousel tools={aiTools} />
         </div>
       </section>
 
@@ -382,28 +355,19 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             className="course-reveal"
-            kicker="Audience"
-            title="Who this course is for"
+            title="WHO THIS COURSE IS FOR ?"
             body="Built for learners who want practical skills, mentorship, and a clearer path into digital careers."
           />
           <div className="course-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {AUDIENCES.map(({ title, desc, icon }, i) => (
+            {AUDIENCES.map(({ title, desc, icon }) => (
               <article
                 key={title}
-                className={cn(
-                  'audience-card group relative overflow-hidden p-6 transition-all duration-300',
-                  i === 0 && 'sm:col-span-2 lg:col-span-1 lg:row-span-2 lg:min-h-[22rem] lg:flex lg:flex-col lg:justify-end',
-                )}
+                className="audience-card group relative overflow-hidden p-6 transition-all duration-300"
               >
                 <span className="audience-card-icon relative mb-5 inline-flex h-11 w-11 items-center justify-center">
                   <Image src={icon} alt="" width={22} height={22} className="object-contain" />
                 </span>
-                <h3
-                  className={cn(
-                    'relative font-black text-white',
-                    i === 0 ? 'text-2xl lg:text-3xl' : 'text-lg',
-                  )}
-                >
+                <h3 className="relative text-lg font-black text-white">
                   {title}
                 </h3>
                 <p className="audience-card-body relative mt-3 text-sm leading-relaxed text-justify">
@@ -411,23 +375,6 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
                 </p>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ ── */}
-      <section className="course-section-surface relative overflow-hidden border-t border-[color:var(--card-border)] py-16 sm:py-24">
-        <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="course-reveal mb-12 text-center">
-            <h2 className="mb-3 text-3xl font-black sm:text-4xl">
-              Questions &amp; Answers
-            </h2>
-            <p className="course-body text-base font-semibold">
-              Quick answers about the program, access, and support before you apply.
-            </p>
-          </div>
-          <div className="course-reveal">
-            <CourseFAQ faqs={course.faqs} />
           </div>
         </div>
       </section>
@@ -464,12 +411,6 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
               >
                 Talk to Admissions
                 <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/scholarship"
-                className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-7 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
-              >
-                Apply for Scholarship
               </Link>
             </div>
           </div>
