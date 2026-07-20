@@ -1,11 +1,11 @@
 export const COURSE_IMAGES: Record<string, string> = {
-  'digital-marketing-course': '/images/courses/digital-marketing.png',
-  'ai-powered-web-development-course': '/images/courses/web-development.png',
-  'data-science-ai-course': '/images/courses/data-science.png',
-  'cyber-security-course-with-ai': '/images/courses/cyber-security.png',
+  'digital-marketing-course': '/images/courses/digital-marketing.jpeg',
+  'ai-powered-web-development-course': '/images/courses/web-development.jpeg',
+  'data-science-ai-course': '/images/courses/data-science.jpeg',
+  'cyber-security-course-with-ai': '/images/courses/cyber-security.jpeg',
 }
 
-export const DEFAULT_COURSE_IMAGE = '/images/courses/digital-marketing.png'
+export const DEFAULT_COURSE_IMAGE = '/images/courses/digital-marketing.jpeg'
 
 /** Courses page hero background (student photo). */
 export const COURSES_PAGE_HERO_IMAGE = '/images/students/group-discussion.png'
