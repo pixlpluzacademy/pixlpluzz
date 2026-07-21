@@ -6,6 +6,7 @@ import Image from 'next/image'
 import type { Blog } from '@/lib/data'
 import { getBlogImage } from '@/lib/blog-assets'
 import { formatDate, cn } from '@/lib/utils'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 
 /**
  * Nova-inspired modern blog layout (editorial magazine):
@@ -52,7 +53,8 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
         />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <h1 className="font-black uppercase leading-[0.9] tracking-tight">
+            <h1 className="relative font-black uppercase leading-[0.9] tracking-tight">
+              <PixelTrail />
               <span className="block text-[clamp(3.5rem,12vw,8rem)] text-white">
                 Blogs
               </span>
@@ -62,7 +64,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
             </h1>
             <p className="max-w-md text-justify text-base leading-relaxed text-white/55 lg:pb-2">
               Career tips, AI tools guides, and digital marketing strategies from
-              Pixl Pluz instructors — built for learners who want practical
+              Pixl Pluz instructors, built for learners who want practical
               signal, not noise.
             </p>
           </div>

@@ -337,7 +337,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
           <SectionHeader
             className="course-reveal mb-10"
             align="center"
-            title="CURRICULUM"
+            title="STRUCTURE"
             titleClassName="text-[clamp(2rem,5vw,3.75rem)] uppercase"
             body="A structured path from foundations to portfolio work select a module to explore topics and outcomes."
           />

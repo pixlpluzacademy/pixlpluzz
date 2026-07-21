@@ -60,8 +60,7 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
             <PixelTrail />
             <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.5rem)]">
               <span className="text-white">Our</span>{' '}
-              <span className="text-green-accent">AI Integrated</span>{' '}
-              <span className="text-white">Courses</span>
+              <span className="text-green-accent">Courses</span>
             </span>
           </h2>
         </div>

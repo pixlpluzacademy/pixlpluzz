@@ -1,14 +1,15 @@
 'use client'
 
 import { useRef, useState, useLayoutEffect } from 'react'
-import { ArrowUpRight, MapPin, Calendar } from 'lucide-react'
+import Image from 'next/image'
+import { MapPin, Calendar } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import type { Career } from '@/lib/data'
 import { PixelButton } from '@/components/ui/PixelButton'
 import { PixelTrail } from '@/components/ui/PixelTrail'
-import { formatDate } from '@/lib/utils'
+import { formatDate, cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -148,9 +149,17 @@ export function CareerContent({ careers }: { careers: Career[] }) {
                       </span>
                       <span className="text-sm text-gray-500">({job.location})</span>
                     </span>
-                    <ArrowUpRight
-                      size={26}
-                      className={`shrink-0 text-gray-500 transition-all duration-300 group-hover:text-green-accent ${open ? 'rotate-90 text-green-accent' : 'group-hover:rotate-45'}`}
+                    <Image
+                      src="/icons/arrow.svg"
+                      alt=""
+                      width={18}
+                      height={24}
+                      className={cn(
+                        'h-6 w-auto shrink-0 transition-all duration-300',
+                        open
+                          ? 'rotate-90'
+                          : 'opacity-45 brightness-0 invert group-hover:rotate-45 group-hover:opacity-100 group-hover:brightness-100 group-hover:invert-0',
+                      )}
                     />
                   </button>
 

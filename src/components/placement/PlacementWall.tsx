@@ -62,7 +62,7 @@ export function PlacementWall() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center sm:mb-14">
           <h2 className="text-4xl font-black text-green-accent sm:text-5xl">
-           PLACEMENT SUCCESS STORIES
+            SUCCESS STORIES
           </h2>
         </div>
 

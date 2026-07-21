@@ -8,6 +8,7 @@ import type { Course } from '@/lib/data'
 import { CourseCard } from '@/components/courses/CourseCard'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { COURSES_PAGE_HERO_IMAGE } from '@/lib/course-assets'
+import { PixelTrail } from '@/components/ui/PixelTrail'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -66,12 +67,13 @@ export function CoursesContent({ courses }: CoursesContentProps) {
   }, [isSiteReady])
 
   return (
-    <div className="courses-page min-h-screen">
-      {/* Header */}
+    <div className="courses-page min-h-screen bg-black">
+      {/* Photo hero — courses listing only */}
       <section
         ref={heroRef}
         data-page-hero
-        className="relative min-h-[220px] overflow-hidden border-b border-white/10 px-4 pb-14 pt-28 md:min-h-[280px] md:pb-20 md:pt-32"
+        data-nav-solid
+        className="relative flex min-h-[clamp(22rem,58svh,34rem)] flex-col justify-end overflow-hidden border-b border-white/10 px-4 pb-14 pt-28 sm:px-6 sm:pb-16 md:pt-32 lg:px-12"
       >
         <div
           ref={parallaxRef}
@@ -89,18 +91,23 @@ export function CoursesContent({ courses }: CoursesContentProps) {
         </div>
         <div className="absolute inset-0 bg-black/65" aria-hidden />
 
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Our Courses
+        <div className="relative z-10 mx-auto w-full max-w-7xl">
+          <h1 className="relative font-black uppercase leading-[0.9] tracking-tight">
+            <PixelTrail />
+            <span className="block text-[clamp(2.75rem,10vw,7.5rem)]">
+              <span className="text-white">Our </span>
+              <span className="text-green-accent">AI </span>
+              <span className="text-white">Courses</span>
+            </span>
           </h1>
-          <p className="mt-3 max-w-xl text-sm md:text-base text-white/75">
+          <p className="mt-5 max-w-xl text-base text-white/75 sm:mt-6 sm:text-lg">
             AI-integrated programs with live projects, mentor support, and placement guidance.
           </p>
         </div>
       </section>
 
       {/* Cards */}
-      <section className="px-4 py-12 md:py-16">
+      <section className="bg-black px-4 py-12 md:py-16">
         <div
           ref={gridRef}
           className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-2 xl:grid-cols-4"

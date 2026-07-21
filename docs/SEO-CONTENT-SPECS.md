@@ -89,7 +89,7 @@
 | Field | Word target | Current (2026-07-17) | Notes |
 |-------|-------------|----------------------|-------|
 | Section label | — | — | Removed |
-| H2 | 4 | 4 — *"Our AI Integrated Courses"* | One line; Our + Courses white, AI Integrated green |
+| H2 | 2 | 2 — *"Our Courses"* | One line; Our white, Courses green |
 | Section subtitle | 12–20 | ~42 | AI-integrated course list; real-world AI skills |
 | Course card — title | 4–12 | from `course.title` | Larger type (`text-lg`/`sm:text-xl`); AI-integrated naming |
 | Course card — shortDescription | 18–28 | from `course.shortDescription` | `line-clamp-3`, justified |
@@ -106,7 +106,7 @@
 | Intro paragraph 1 | 35–50 | ~42 | AI changing industry; course list |
 | Intro paragraph 2 | 35–50 | ~40 | Graduates/professionals; Neo Digital Hub Dubai |
 | Intro paragraph 3 | 15–25 | ~18 | Job-ready skills; learning to doing |
-| Grid feature label | 2–4 | 2–4 each | 9 tiles; PLACEMENT SUPPORT (no % claims) |
+| Grid feature label | 2–4 | 2–4 each | 9 tiles; two-line bold labels for readability; PLACEMENT SUPPORT (no % claims) |
 
 ---
 
@@ -215,8 +215,8 @@ Not on homepage currently; include if re-enabled.
 | Page | H1 target | Meta description | Body sections |
 |------|-----------|------------------|---------------|
 | `/about` | 4–8 words | 120–160 chars | Stats row: **no ₹ or 100% labels** |
-| `/courses` | 4–8 words | 120–160 chars | Intro 25–40 words; cards same as homepage |
-| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Blue/white curriculum modules (left) + AI tools falling-stack (right); Who it’s for — no fake stats |
+| `/courses` | 3–5 — *"Our AI Courses"* | 120–160 chars | Photo hero + solid navbar bar; intro 25–40 words; cards same as homepage |
+| `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Structure heading; modules (left) + AI tools falling-stack (right); Who it’s for — no fake stats |
 | `/scholarship` | 1 word — *"Scholarship"* | 120–160 chars | Video hero (top-right outlined H1); steps + apply CTA — **no amounts** |
 | `/placement` | 4–8 words | 120–160 chars | Hero + wall — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
@@ -247,7 +247,7 @@ Not on homepage currently; include if re-enabled.
 | Date | Section | Change |
 |------|---------|--------|
 | 2026-07-20 | Blog listing | Nova-style magazine layout (hero + featured lead + latest grid); dark brand |
-| 2026-07-20 | Homepage Courses | H2 → *"Our AI Integrated Courses"* |
+| 2026-07-20 | Homepage Courses | H2 → *"Our Courses"* (Courses green) |
 | 2026-07-20 | Scholarship page steps | H2 → *"How it works"* (large); removed *"Four simple steps"* |
 | 2026-07-20 | Course detail | Removed Questions & Answers / FAQ section |
 | 2026-07-20 | Course detail curriculum | Modules left + AI tools falling-stack right (GSAP bounce pile); removed tools marquee |

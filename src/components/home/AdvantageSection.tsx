@@ -2,33 +2,31 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useEffect, useLayoutEffect, useState } from 'react'
+import { useRef, useEffect, useLayoutEffect } from 'react'
 import { useLenis } from 'lenis/react'
 import { ArrowRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FloatingPixels } from '@/components/ui/FloatingPixels'
-import { cn } from '@/lib/utils'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const FEATURES = [
-  { label: 'AI LEARNING', image: '/images/students/practical-learning.png' },
-  { label: 'LIVE PROJECT AND TRAINING', image: '/images/students/live-project-training.png' },
-  { label: 'INDUSTRY EXPERTS', image: '/images/students/industry-expert-mentors.png' },
-  { label: 'PLACEMENT SUPPORT', image: '/images/students/career-placement-support.png' },
-  { label: 'SCHOLARSHIP COURSES', image: '/images/students/scholarship-based-courses.png' },
-  { label: 'INDUSTRY CERTIFICATION', image: '/images/students/industry-certification.png' },
-  { label: 'PAID AI TOOLS', image: '/images/students/ai-tools-automation.png' },
-  { label: 'INTERVIEW PREPARATION', image: '/images/students/interview-preparation.png' },
-  { label: 'VERIFIED PORTFOLIO', image: '/images/students/verified-portfolio.png' },
+  { lines: ['AI', 'LEARNING'], image: '/images/students/practical-learning.png' },
+  { lines: ['LIVE PROJECT', 'AND TRAINING'], image: '/images/students/live-project-training.png' },
+  { lines: ['INDUSTRY', 'EXPERTS'], image: '/images/students/industry-expert-mentors.png' },
+  { lines: ['PLACEMENT', 'SUPPORT'], image: '/images/students/career-placement-support.png' },
+  { lines: ['SCHOLARSHIP', 'COURSES'], image: '/images/students/scholarship-based-courses.png' },
+  { lines: ['INDUSTRY', 'CERTIFICATION'], image: '/images/students/industry-certification.png' },
+  { lines: ['PAID', 'AI TOOLS'], image: '/images/students/ai-tools-automation.png' },
+  { lines: ['INTERVIEW', 'PREPARATION'], image: '/images/students/interview-preparation.png' },
+  { lines: ['VERIFIED', 'PORTFOLIO'], image: '/images/students/verified-portfolio.png' },
 ]
 
 export function AdvantageSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
   const gridRef = useRef<HTMLDivElement>(null)
-  const [openIdx, setOpenIdx] = useState<number | null>(null)
 
   const lenis = useLenis()
 
@@ -131,38 +129,17 @@ export function AdvantageSection() {
 
           <div
             ref={gridRef}
-            className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-5"
+            className="grid w-full grid-cols-1 gap-4 overflow-visible sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-5"
           >
-            {FEATURES.map(({ label, image }, i) => {
-              const isOpen = openIdx === i
-              const isHidden = openIdx !== null && !isOpen
+            {FEATURES.map(({ lines, image }, i) => {
+              const label = lines.join(' ')
 
               return (
                 <div
                   key={label}
                   ref={(el) => { cardsRef.current[i] = el }}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={isOpen}
-                  aria-label={isOpen ? `Collapse ${label}` : `Expand ${label}`}
-                  onClick={() => setOpenIdx(isOpen ? null : i)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault()
-                      setOpenIdx(isOpen ? null : i)
-                    }
-                  }}
-                  className={cn(
-                    'advantage-card group relative w-full cursor-pointer border border-white/10 bg-[#141414]',
-                    'transition-[border-color,box-shadow,width,height] duration-[400ms] ease-out',
-                    'hover:border-white/18',
-                    isOpen
-                      ? 'col-span-full z-40 mx-auto aspect-[5/3] w-full max-w-[min(100%,36rem)] border-white/15 shadow-[0_0_32px_rgba(84,227,70,0.35),0_0_64px_rgba(84,227,70,0.2)]'
-                      : 'h-36 sm:h-40 lg:h-44',
-                    isHidden && 'hidden',
-                  )}
+                  className="advantage-card group relative z-0 h-40 w-full origin-center border border-white/10 bg-[#141414] transition-[transform,z-index] duration-300 ease-out hover:z-30 hover:scale-[1.06] sm:h-44 lg:h-48"
                 >
-                  {/* Clip media inside so outer glow is not cut off */}
                   <div className="absolute inset-0 overflow-hidden">
                     <Image
                       src={image}
@@ -170,27 +147,16 @@ export function AdvantageSection() {
                       aria-hidden
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={cn(
-                        'object-cover transition-all duration-500 ease-out',
-                        isOpen
-                          ? 'scale-100 grayscale-0 brightness-100'
-                          : 'scale-110 grayscale brightness-90 group-hover:scale-100 group-hover:grayscale-0 group-hover:brightness-100',
-                      )}
+                      className="object-cover scale-110 grayscale brightness-90 transition-all duration-500 ease-out group-hover:scale-100 group-hover:grayscale-0 group-hover:brightness-100"
                     />
-                    <div
-                      className={cn(
-                        'absolute inset-0 transition-colors duration-500',
-                        isOpen ? 'bg-black/20' : 'bg-black/40 group-hover:bg-black/20',
-                      )}
-                    />
+                    <div className="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/20" />
                     <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
-                    <p
-                      className={cn(
-                        'absolute inset-x-0 bottom-0 z-10 truncate p-3.5 font-black uppercase leading-none tracking-wide text-white whitespace-nowrap sm:p-4',
-                        isOpen ? 'text-base sm:text-lg md:text-xl' : 'text-[11px] sm:text-xs lg:text-[13px]',
-                      )}
-                    >
-                      {label}
+                    <p className="absolute inset-x-0 bottom-0 z-10 p-3.5 text-sm font-black uppercase leading-[1.05] tracking-wide text-white sm:p-4 sm:text-base lg:text-lg">
+                      {lines.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
                     </p>
                   </div>
                 </div>

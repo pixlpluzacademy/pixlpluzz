@@ -116,6 +116,7 @@ export function BlurTextProvider() {
       !isSiteReady ||
       pathname.startsWith('/admin') ||
       pathname === '/' ||
+      pathname === '/courses' ||
       pathname === '/placement' ||
       pathname === '/event' ||
       isCourseDetail

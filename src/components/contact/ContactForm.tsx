@@ -61,8 +61,9 @@ export function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone Number</label>
+          <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone Number *</label>
           <input
+            required
             type="tel"
             placeholder="+91 98765 43210"
             className="w-full px-4 py-3 bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-primary dark:focus:border-green-accent pixel-corner-sm text-sm"

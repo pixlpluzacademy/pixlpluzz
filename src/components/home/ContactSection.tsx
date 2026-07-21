@@ -150,7 +150,8 @@ export function ContactSection() {
                   />
                   <input
                     type="tel"
-                    placeholder="Phone Number"
+                    placeholder="Phone Number *"
+                    required
                     value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                     className={FIELD}

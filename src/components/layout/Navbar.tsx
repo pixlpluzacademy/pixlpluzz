@@ -40,6 +40,11 @@ export function Navbar() {
   useLayoutEffect(() => {
     const update = () => {
       const hero = document.querySelector<HTMLElement>('[data-page-hero]')
+      // Courses listing keeps the solid glass bar (like scrolled state on other pages)
+      if (hero?.hasAttribute('data-nav-solid')) {
+        setGlass(true)
+        return
+      }
       if (!hero) {
         setGlass(true)
         return
