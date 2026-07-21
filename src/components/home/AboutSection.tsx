@@ -19,7 +19,7 @@ const FEATURES = [
     titleLines: ['PRACTICAL', 'LEARNING'],
     desc: 'Real projects, not just theory. Work on AI-assisted tasks, content plans, analytics exercises, and industry-style assignments designed to mirror actual job workflows.',
     more: 'Every brief mirrors workplace practice with clear goals, revisions, deadlines, and presentation. You grow confidence by shipping work instead of only watching lectures.',
-    image: '/images/students/group-discussion.png',
+    image: '/images/students/practical-learning.png',
     imageAlt: 'Students in a practical training session',
   },
   {

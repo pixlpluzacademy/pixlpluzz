@@ -8,7 +8,7 @@ export const COURSE_IMAGES: Record<string, string> = {
 export const DEFAULT_COURSE_IMAGE = '/images/courses/digital-marketing.jpeg'
 
 /** Courses page hero background (student photo). */
-export const COURSES_PAGE_HERO_IMAGE = '/images/students/group-discussion.png'
+export const COURSES_PAGE_HERO_IMAGE = '/images/students/group-discussion.jpeg'
 
 /** Resolves a course hero/card image — slug map first, then fallback. */
 export function getCourseImage(slug: string): string {

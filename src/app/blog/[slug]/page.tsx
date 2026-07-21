@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="relative mb-10 h-72 overflow-hidden border border-white/8 sm:h-96">
           <Image
-            src={getBlogImage(blogIndex)}
+            src={blog.thumbnail || getBlogImage(blogIndex)}
             alt={blog.title}
             fill
             sizes="(min-width: 768px) 48rem, 100vw"
@@ -145,7 +145,7 @@ export default async function BlogPostPage({ params }: Props) {
                   >
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
-                        src={getBlogImage(relatedIndex)}
+                        src={b.thumbnail || getBlogImage(relatedIndex)}
                         alt={b.title}
                         fill
                         sizes="(min-width: 640px) 33vw, 100vw"

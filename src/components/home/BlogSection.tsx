@@ -67,7 +67,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
                 <div className="p-4 pb-0">
                   <div className="relative h-44 overflow-hidden sm:h-48">
                     <Image
-                      src={getBlogImage(i)}
+                      src={blog.thumbnail || getBlogImage(i)}
                       alt={blog.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

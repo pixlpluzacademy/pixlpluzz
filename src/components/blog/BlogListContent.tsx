@@ -115,7 +115,10 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
               >
                 <div className="relative min-h-[18rem] overflow-hidden sm:min-h-[22rem] lg:col-span-7 lg:min-h-[28rem]">
                   <Image
-                    src={getBlogImage(imageIndexById.get(featured.id) ?? 0)}
+                    src={
+                      featured.thumbnail ||
+                      getBlogImage(imageIndexById.get(featured.id) ?? 0)
+                    }
                     alt={featured.title}
                     fill
                     priority
@@ -173,7 +176,10 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
                     >
                       <div className="relative mb-5 aspect-[16/10] overflow-hidden border border-white/8 bg-[#141414]">
                         <Image
-                          src={getBlogImage(imageIndexById.get(blog.id) ?? 0)}
+                          src={
+                            blog.thumbnail ||
+                            getBlogImage(imageIndexById.get(blog.id) ?? 0)
+                          }
                           alt={blog.title}
                           fill
                           sizes="(min-width: 640px) 50vw, 100vw"

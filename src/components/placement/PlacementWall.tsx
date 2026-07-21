@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger)
 const WALL_IMAGES = [
   '/images/students/offer-letter.png',
   '/images/students/career-placement-support.png',
-  '/images/students/group-discussion.png',
+  '/images/students/group-discussion.jpeg',
   '/images/students/interview-preparation.png',
   '/images/students/practical-learning.png',
   '/images/students/live-project-training.png',

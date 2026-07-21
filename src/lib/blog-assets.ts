@@ -1,7 +1,7 @@
 // Blog thumbnails — photos from /public/images/students/
 
 const BLOG_IMAGES = [
-  '/images/students/group-discussion.png',
+  '/images/students/group-discussion.jpeg',
   '/images/students/live-project-training.png',
   '/images/students/clearing-doubts.jpeg',
   '/images/students/practical-learning.png',
