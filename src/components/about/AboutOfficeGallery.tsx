@@ -362,12 +362,12 @@ export function AboutOfficeGallery() {
     >
       <AboutHeroBackground />
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-12 sm:px-6 sm:py-14 lg:px-16 lg:py-16 xl:px-20">
-        <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-10 xl:gap-12">
-          <div className="relative">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-10 sm:px-6 sm:py-14 lg:px-16 lg:py-16 xl:px-20">
+        <div className="grid items-stretch gap-5 sm:gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-10 xl:gap-12">
+          <div className="relative min-w-0">
             <div
               ref={stageRef}
-              className="relative aspect-[16/11] w-full overflow-hidden bg-black/40 touch-pan-y sm:aspect-[16/10] lg:aspect-[16/11] lg:min-h-[22rem] lg:max-h-[32rem]"
+              className="relative aspect-[4/3] w-full overflow-hidden bg-black/40 touch-pan-y sm:aspect-[16/10] lg:aspect-[16/11] lg:min-h-[22rem] lg:max-h-[32rem]"
               onPointerDown={onPointerDown}
               onPointerUp={onPointerUp}
               onPointerCancel={() => {
@@ -392,21 +392,10 @@ export function AboutOfficeGallery() {
                 </div>
               ))}
             </div>
-
-            <div className="absolute inset-x-0 bottom-3 z-30 flex items-center justify-between px-3 sm:bottom-4 sm:px-4 lg:hidden">
-              <NavButton direction="prev" onClick={() => { setPaused(true); goPrev() }} />
-              <span
-                className="rounded-sm bg-black/55 px-3 py-1 font-black tabular-nums text-sm tracking-widest text-white backdrop-blur-sm"
-                aria-live="polite"
-              >
-                {pad(index + 1)} / {pad(SLIDES.length)}
-              </span>
-              <NavButton direction="next" onClick={() => { setPaused(true); goNext() }} />
-            </div>
           </div>
 
-          <div className="flex min-h-0 flex-col justify-between gap-6 lg:py-1">
-            <div>
+          <div className="flex min-h-0 min-w-0 flex-col justify-between gap-5 sm:gap-6 lg:py-1">
+            <div className="min-w-0">
               <div className="mb-4 hidden items-center gap-4 lg:flex">
                 <span
                   className="font-black tabular-nums tracking-tight text-[clamp(1.5rem,2.5vw,2rem)]"
@@ -428,7 +417,7 @@ export function AboutOfficeGallery() {
               <div className="overflow-hidden">
                 <h3
                   ref={titleRef}
-                  className="font-black uppercase leading-[1.08] tracking-tight text-white text-[clamp(1.5rem,3.2vw,2.5rem)]"
+                  className="break-words font-black uppercase leading-[1.12] tracking-tight text-white text-[clamp(1.35rem,6vw,2.5rem)]"
                 >
                   {slide.title}
                 </h3>
@@ -436,11 +425,22 @@ export function AboutOfficeGallery() {
               <div className="mt-2 overflow-hidden sm:mt-3">
                 <p
                   ref={captionRef}
-                  className="text-sm tracking-[0.04em] sm:text-base"
+                  className="text-sm leading-relaxed tracking-[0.04em] sm:text-base"
                   style={{ color: 'rgba(255, 250, 164, 0.9)' }}
                 >
                   {slide.caption}
                 </p>
+              </div>
+
+              <div className="mt-5 flex items-center justify-between gap-3 lg:hidden">
+                <NavButton direction="prev" onClick={() => { setPaused(true); goPrev() }} />
+                <span
+                  className="rounded-sm bg-black/55 px-3 py-1.5 font-black tabular-nums text-sm tracking-widest text-white backdrop-blur-sm"
+                  aria-live="polite"
+                >
+                  {pad(index + 1)} / {pad(SLIDES.length)}
+                </span>
+                <NavButton direction="next" onClick={() => { setPaused(true); goNext() }} />
               </div>
             </div>
 
@@ -459,7 +459,7 @@ export function AboutOfficeGallery() {
             </div>
 
             <div
-              className="flex gap-2.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden"
+              className="flex gap-2.5 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory lg:hidden [&::-webkit-scrollbar]:hidden"
               role="tablist"
               aria-label="Office spaces"
             >
@@ -520,16 +520,21 @@ function Thumbnail({
       role="tab"
       aria-selected={active}
       aria-label={slide.title}
-      onClick={onSelect}
-      onMouseEnter={onSelect}
       className={cn(
         'group relative shrink-0 overflow-hidden border bg-black/30 transition-[border-color,box-shadow] duration-300',
-        compact ? 'h-16 w-24 sm:h-[4.5rem] sm:w-28' : 'aspect-[4/3] w-full',
+        compact ? 'h-16 w-[30%] min-w-[5.5rem] max-w-[7rem] snap-start sm:h-[4.5rem] sm:w-28' : 'aspect-[4/3] w-full',
         active
           ? 'border-[#54E345] shadow-[0_0_16px_rgba(84,227,69,0.28)]'
           : 'border-white/10 hover:border-[rgba(20,61,143,0.75)]',
       )}
       style={{ transitionTimingFunction: CSS_EASE }}
+      onMouseEnter={() => {
+        // Hover-to-select is desktop-only; touch devices use tap via onClick.
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          onSelect()
+        }
+      }}
+      onClick={onSelect}
     >
       <Image
         src={slide.src}

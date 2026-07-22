@@ -3,16 +3,12 @@
 import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { AboutMarquee } from '@/components/about/AboutMarquee'
 import { AboutBlurText } from '@/components/about/AboutBlurText'
 import { AboutOfficeGallery } from '@/components/about/AboutOfficeGallery'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { PixelButton } from '@/components/ui/PixelButton'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const MARQUEE_A = ['Practical', 'AI-Integrated', 'Career-First', 'Industry Mentors', 'Live Projects']
-const MARQUEE_B = ['Learn', 'Build', 'Launch', 'Grow', 'Pixl Pluz Academy']
 
 const VALUES = [
   {
@@ -93,18 +89,16 @@ export function AboutContent() {
   return (
     <div ref={containerRef} className="about-page">
 
-      <AboutMarquee items={MARQUEE_A} speed="fast" />
-
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="about-hero relative flex flex-col justify-end px-6 md:px-16 lg:px-20 pb-14 pt-28 sm:pb-20 md:pb-24 overflow-hidden" data-page-hero>
         <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] bg-blue-primary/20 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4" />
         <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-mid/10 rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4" />
 
-        <div className="relative z-10 max-w-[1400px] mx-auto w-full">
-          <div className="ab-fade flex flex-wrap items-end justify-between gap-8 mb-8 md:mb-14">
+        <div className="relative z-10 mx-auto w-full max-w-[1600px]">
+          <div className="ab-fade mb-8 flex flex-wrap items-end justify-between gap-8 md:mb-14">
             <div>
               <p className="about-kicker mb-3">Est. 2026</p>
-              <p className="about-muted text-sm md:text-base font-medium tracking-tight">
+              <p className="about-muted text-sm font-medium tracking-tight md:text-base">
                 Kerala&apos;s Best AI-Integrated<br className="hidden sm:block" /> Digital Academy.
               </p>
             </div>
@@ -114,24 +108,49 @@ export function AboutContent() {
             </div> */}
           </div>
 
-          <div className="mb-10 max-w-[1200px]">
+          <h1 className="mb-10 w-full max-w-none text-[clamp(2.1rem,6.2vw,5.5rem)] font-black uppercase leading-[1.1] tracking-tight">
+            <span className="about-display mb-[0.12em] block">
+              <AboutBlurText
+                as="p"
+                onLoad
+                className="about-display inline text-inherit text-white"
+                text="Work"
+              />
+              <AboutBlurText
+                as="p"
+                onLoad
+                className="about-display inline text-inherit text-green-accent"
+                text="smarter"
+              />
+            </span>
+            <span className="about-display mb-[0.12em] block">
+              <AboutBlurText
+                as="p"
+                onLoad
+                className="about-display inline text-inherit text-white"
+                text="Not"
+              />
+              <AboutBlurText
+                as="p"
+                onLoad
+                className="about-display inline text-inherit text-green-accent"
+                text="harder"
+              />
+            </span>
             <AboutBlurText
-              as="h1"
+              as="p"
               onLoad
-              className="about-display mb-[0.3em] text-[clamp(2rem,5.5vw,4.5rem)] font-black uppercase leading-[1.28] tracking-tight text-white"
-              text="Work smarter not harder"
+              className="about-display mb-[0.12em] block text-inherit text-white"
+              text="You can be anything"
             />
             <AboutBlurText
               as="p"
               onLoad
-              className="about-display whitespace-nowrap text-[clamp(2rem,5.5vw,4.5rem)] font-black uppercase leading-[1.28] tracking-tight text-white"
-              text="You can be anything with AI"
+              className="about-display block text-inherit text-green-accent"
+              text="With AI"
             />
-          </div>
+          </h1>
 
-          <p className="ab-fade about-body text-base md:text-lg max-w-xl mb-4">
-            At the intersection of skills, technology, and opportunity.
-          </p>
           <p className="ab-fade about-body text-sm md:text-base max-w-2xl">
             Pixl Pluz Academy helps students, graduates, freelancers, and career switchers
             build job-ready expertise through live projects, AI tools, and industry mentorship.
@@ -146,8 +165,6 @@ export function AboutContent() {
         </div>
       </section>
 
-      <AboutMarquee items={MARQUEE_B} />
-
       <AboutOfficeGallery />
 
       {/* ── Values ───────────────────────────────────────────────── */}
@@ -157,7 +174,7 @@ export function AboutContent() {
             <p className="ab-reveal about-kicker mb-5">Our values</p>
             <AboutBlurText
               as="h2"
-              className="about-display mb-5 whitespace-nowrap text-[clamp(1.75rem,4.8vw,3.25rem)] uppercase text-white"
+              className="about-display mb-5 text-[clamp(1.5rem,6.5vw,3.25rem)] uppercase text-white"
               text="What we believe shapes better learning"
             />
             <p className="ab-reveal about-body max-w-2xl text-base">

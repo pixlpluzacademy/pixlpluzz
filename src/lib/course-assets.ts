@@ -91,7 +91,7 @@ const DEFAULT_AI_TOOLS = [
   'Midjourney',
   'Notion AI',
   'Zapier',
-  'Make',
+  'Lovable',
 ]
 
 export function getCourseAiTools(slug: string): string[] {

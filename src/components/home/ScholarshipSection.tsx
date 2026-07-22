@@ -250,7 +250,7 @@ export function ScholarshipSection() {
                   <h3 className="mb-2 font-black leading-snug text-green-accent">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-justify text-gray-400 leading-relaxed">
+                  <p className="text-sm text-center text-gray-400 leading-relaxed lg:text-left lg:text-justify">
                     {step.desc}
                   </p>
                 </div>

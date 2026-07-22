@@ -107,58 +107,93 @@ export function MentorsSection() {
     const grid = gridRef.current
     if (!section || !top || !bottom || !grid) return
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let ctx: gsap.Context | null = null
+    let cancelled = false
+    let retryId = 0
+    let attempts = 0
 
-    const ctx = gsap.context(() => {
-      if (!reduceMotion) {
-        const loopWidthTop = top.scrollWidth / LOOP_SEGMENTS
-        const loopWidthBottom = bottom.scrollWidth / LOOP_SEGMENTS
+    const setup = () => {
+      if (cancelled) return
 
-        // Start on the middle segment so both sides are filled
-        gsap.set(top, { x: -loopWidthTop })
-        gsap.set(bottom, { x: -loopWidthBottom })
+      const loopWidthTop = top.scrollWidth / LOOP_SEGMENTS
+      const loopWidthBottom = bottom.scrollWidth / LOOP_SEGMENTS
 
-        const travel = () => Math.min(window.innerWidth * 1.1, 960)
-
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 85%',
-          end: 'bottom top',
-          scrub: 0.55,
-          onUpdate: (self) => {
-            const d = self.progress * travel()
-            // Top: left → right; bottom: right → left — same |d|, seamless wrap
-            gsap.set(top, {
-              x: gsap.utils.wrap(-loopWidthTop, 0, -loopWidthTop + d),
-            })
-            gsap.set(bottom, {
-              x: gsap.utils.wrap(-loopWidthBottom, 0, -loopWidthBottom - d),
-            })
-          },
-        })
+      // Marquee width can be 0 before fonts/layout settle — retry briefly
+      if ((!loopWidthTop || !loopWidthBottom) && attempts < 30) {
+        attempts += 1
+        retryId = window.requestAnimationFrame(setup)
+        return
       }
 
-      const cards = grid.querySelectorAll<HTMLElement>('.mentor-card')
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 36, immediateRender: false },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: grid,
-            start: 'top 85%',
-            once: true,
-          },
-        },
-      )
-    }, section)
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const safeTop = loopWidthTop || 1
+      const safeBottom = loopWidthBottom || 1
 
-    requestAnimationFrame(() => ScrollTrigger.refresh())
-    return () => ctx.revert()
+      ctx = gsap.context(() => {
+        if (!reduceMotion) {
+          gsap.set(top, { x: -safeTop })
+          gsap.set(bottom, { x: -safeBottom })
+
+          const travel = () => Math.min(window.innerWidth * 1.1, 960)
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.55,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (!top.isConnected || !bottom.isConnected) return
+              const d = self.progress * travel()
+              gsap.set(top, {
+                x: gsap.utils.wrap(-safeTop, 0, -safeTop + d),
+              })
+              gsap.set(bottom, {
+                x: gsap.utils.wrap(-safeBottom, 0, -safeBottom - d),
+              })
+            },
+          })
+        }
+
+        const cards = grid.querySelectorAll<HTMLElement>('.mentor-card')
+        if (!cards.length) return
+
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 36, immediateRender: false },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: grid,
+              start: 'top 85%',
+              once: true,
+              invalidateOnRefresh: true,
+            },
+          },
+        )
+      }, section)
+
+      window.requestAnimationFrame(() => {
+        if (cancelled) return
+        try {
+          ScrollTrigger.refresh()
+        } catch {
+          // Sibling Flip/ST races during dynamic mount can throw mid-refresh
+        }
+      })
+    }
+
+    retryId = window.requestAnimationFrame(setup)
+
+    return () => {
+      cancelled = true
+      window.cancelAnimationFrame(retryId)
+      ctx?.revert()
+    }
   }, [])
 
   return (
@@ -192,12 +227,12 @@ export function MentorsSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-10 pt-28 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 sm:pt-32 lg:grid-cols-3 lg:gap-x-10 lg:pt-36 xl:grid-cols-5 xl:gap-x-8"
+          className="grid grid-cols-1 gap-x-8 gap-y-16 pt-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-20 sm:pt-10 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16 lg:pt-12 xl:grid-cols-5 xl:gap-x-8 xl:gap-y-14"
         >
           {MENTORS.map(({ name, designation, image }) => (
             <article
               key={name}
-              className="mentor-card group relative flex flex-col overflow-visible bg-transparent"
+              className="mentor-card group relative z-0 flex flex-col overflow-visible bg-transparent pt-[36%]"
             >
               <ExpandableLogoPortrait
                 src={image}
@@ -205,7 +240,7 @@ export function MentorsSection() {
                 className="mx-auto w-full max-w-[340px] sm:max-w-[300px] lg:max-w-none"
               />
 
-              <div className="mt-5 text-center">
+              <div className="relative z-10 mt-5 text-center">
                 <h3 className="text-lg font-black tracking-tight text-white sm:text-xl">
                   {name}
                 </h3>

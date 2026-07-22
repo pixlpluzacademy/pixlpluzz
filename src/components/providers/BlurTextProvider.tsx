@@ -114,7 +114,6 @@ export function BlurTextProvider() {
     const isCourseDetail = /^\/courses\/[^/]+/.test(pathname)
     if (
       !isSiteReady ||
-      pathname.startsWith('/admin') ||
       pathname === '/' ||
       pathname === '/courses' ||
       pathname === '/placement' ||

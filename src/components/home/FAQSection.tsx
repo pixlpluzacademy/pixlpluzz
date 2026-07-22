@@ -47,25 +47,23 @@ export function FAQSection() {
   return (
     <section id="faq" className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute inset-y-0 right-4 w-[min(72%,40rem)] sm:right-8 sm:w-[min(65%,44rem)] lg:right-12 lg:w-[min(58%,48rem)]">
-          <Image
-            src="/images/bg-faq3.png"
-            alt=""
-            fill
-            sizes="(max-width: 640px) 72vw, (max-width: 1024px) 65vw, 48rem"
-            className="object-contain object-right object-center opacity-95"
-            priority={false}
-          />
-        </div>
-        <div className="absolute inset-0 bg-linear-to-l from-black/20 via-black/55 to-black" />
+        <Image
+          src="/images/background.jpeg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-[78%_center] opacity-95"
+          priority={false}
+        />
+        <div className="absolute inset-0 bg-linear-to-l from-black/15 via-black/55 to-black" />
       </div>
       <div className="relative z-10 mx-auto max-w-3xl">
         <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             <PixelTrail />
             <span className="text-green-accent">
-              FAQ
-              <span className="align-super text-[0.45em] leading-none tracking-normal">&apos;s</span>
+              FAQ&apos;
+              <span className="text-[0.55em] tracking-normal">s</span>
             </span>
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>

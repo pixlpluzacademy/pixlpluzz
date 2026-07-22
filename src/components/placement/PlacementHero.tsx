@@ -53,7 +53,7 @@ export function PlacementHero() {
       </div>
 
       <div className="plc-hero-pop relative z-10 mt-10 max-w-md self-end text-left sm:text-right">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-sky-400">across india & beyond</p>
+        <p className="font-mono text-[11px] uppercase tracking-widest text-blue-soft">across india & beyond</p>
         <p className="mt-2 text-base text-gray-400 sm:text-lg">
           Real Careers, Real Companies - No Shortcuts.<br></br> Just Work That Shows.
         </p>

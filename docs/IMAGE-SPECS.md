@@ -15,7 +15,7 @@ All sizes below are **export / deliverable** targets (width × height in px). Pr
 | **Hero** | Full-bleed background (if used) | ~16:9 or wider | **2560 × 1440** (min **1920 × 1080**) | Keep subject toward center; dark edges OK |
 | **FAQ – Questions & Answers** | Section background (`bg.png`) | ~16:10 | **1920 × 1080** or **2400 × 1350** | Neon art; leave readable center for FAQ panel |
 | **Advantage** | Section background (`bg-advantage.png`) | ~16:9 | **1920 × 1080** | Same idea as FAQ; text on left must stay readable under dark overlay |
-| **Advantage cards** (9 tiles) | Square tile photos | **1:1** | **800 × 800** (min **600 × 600**) | Shown blurred by default; clear on hover / expand |
+| **Advantage cards** (9 tiles) | Square tile photos | **1:1** | **800 × 800** (min **600 × 600**) | Crop near top (`object-position: center 18%`) so faces stay in frame |
 | **Advantage card – expanded** | Same assets, big square | **1:1** | Same **800 × 800** | Click expands to large square; crop must work at 1:1 |
 | **About feature cards** | Half-card photo (left of text) | **1:1** preferred | **800 × 800** or **900 × 900** | Card is 50% image / 50% text; faces near center |
 | **Mentors** | Portrait cards | **3:4** | **900 × 1200** | Matches current mentor PNGs; black edges blend with site |

@@ -130,14 +130,14 @@ export function EventContent({ events }: { events: Event[] }) {
       <section className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden px-4 pt-24 pb-12 sm:px-6 lg:px-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-        <div className="evt-hero-pop relative z-10 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-sky-400">
-          <span>[status:<span className="text-sky-400">active</span>]</span>
+        <div className="evt-hero-pop relative z-10 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-blue-soft">
+          <span>[status:<span className="text-blue-soft">active</span>]</span>
           <span>© PIXLPLUZ — {new Date().getFullYear()}</span>
           <span className="hidden sm:inline">{'//'} events.upcoming</span>
         </div>
 
         <div className="relative z-10">
-          <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-sky-400">
+          <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
             chapter index
           </p>
           <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
@@ -148,15 +148,15 @@ export function EventContent({ events }: { events: Event[] }) {
         </div>
 
         <div className="relative z-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-          <div className="evt-hero-pop font-mono text-xs leading-relaxed text-sky-400/80">
-            <p className="text-sky-400">[f] initEvents() {'{'}</p>
-            <p className="pl-5 text-sky-400/70">loadWorkshops();</p>
-            <p className="pl-5 text-sky-400/70">openScholarshipTest();</p>
-            <p className="pl-5 text-sky-400/70">reserveSeats();</p>
-            <p className="text-sky-400">{'}'}</p>
+          <div className="evt-hero-pop font-mono text-xs leading-relaxed text-blue-soft/80">
+            <p className="text-blue-soft">[f] initEvents() {'{'}</p>
+            <p className="pl-5 text-blue-soft/70">loadWorkshops();</p>
+            <p className="pl-5 text-blue-soft/70">openScholarshipTest();</p>
+            <p className="pl-5 text-blue-soft/70">reserveSeats();</p>
+            <p className="text-blue-soft">{'}'}</p>
           </div>
-          <div className="evt-hero-pop text-left sm:text-right">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-sky-400">upcoming</p>
+          <div className="evt-hero-pop self-end text-right">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-blue-soft">upcoming</p>
             <p className="text-6xl font-black text-gray-400 sm:text-7xl">{chapterNo(events.length - 1)}</p>
           </div>
         </div>
@@ -175,7 +175,7 @@ export function EventContent({ events }: { events: Event[] }) {
           </span>
 
           <div className="relative z-10 mx-auto max-w-7xl">
-            <p className="evt-reveal mb-10 font-mono text-xs uppercase tracking-[0.35em] text-sky-400">
+            <p className="evt-reveal mb-10 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
               chapter {chapterNo(i)}: {event.type === 'Online' ? 'online session' : 'on campus'}
             </p>
 
@@ -196,7 +196,7 @@ export function EventContent({ events }: { events: Event[] }) {
                     <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:rotate-45" />
                   </Link>
                   {event.isFree && (
-                    <span className="font-mono text-xs uppercase tracking-widest text-sky-400">
+                    <span className="font-mono text-xs uppercase tracking-widest text-blue-soft">
                       [price: free]
                     </span>
                   )}
@@ -204,7 +204,7 @@ export function EventContent({ events }: { events: Event[] }) {
               </div>
 
               <div>
-                <p className="evt-reveal mb-4 font-mono text-[11px] uppercase tracking-widest text-sky-400">
+                <p className="evt-reveal mb-4 font-mono text-[11px] uppercase tracking-widest text-blue-soft">
                   #current event specs
                 </p>
                 <dl className="border-t border-white/10">
@@ -219,7 +219,7 @@ export function EventContent({ events }: { events: Event[] }) {
                       key={label}
                       className="evt-spec-row flex items-baseline justify-between gap-6 border-b border-white/10 py-4"
                     >
-                      <dt className="font-mono text-xs uppercase tracking-widest text-sky-400">{label}</dt>
+                      <dt className="font-mono text-xs uppercase tracking-widest text-blue-soft">{label}</dt>
                       <dd className="text-right text-sm font-bold text-gray-400 sm:text-base">{value}</dd>
                     </div>
                   ))}
@@ -232,14 +232,14 @@ export function EventContent({ events }: { events: Event[] }) {
 
       {events.length === 0 && (
         <section className="border-t border-white/8 px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-12">
-          <p className="font-mono text-sm text-sky-400">[status: no upcoming events — check back soon]</p>
+          <p className="font-mono text-sm text-blue-soft">[status: no upcoming events — check back soon]</p>
         </section>
       )}
 
       <section className="relative overflow-hidden border-t border-white/8 px-4 py-20 sm:px-6 sm:py-28 lg:px-12">
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
         <div className="relative z-10 mx-auto max-w-7xl">
-          <p className="evt-outro-reveal mb-8 font-mono text-xs uppercase tracking-[0.35em] text-sky-400">
+          <p className="evt-outro-reveal mb-8 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
             final word
           </p>
           <h2 className="mb-10 max-w-4xl text-3xl font-black leading-tight text-gray-400 sm:text-5xl">

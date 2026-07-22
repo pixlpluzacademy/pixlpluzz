@@ -24,8 +24,6 @@ export function SiteLoader() {
   const rafRef = useRef<number>(0)
   const runIdRef = useRef(0)
 
-  const isAdmin = pathname.startsWith('/admin')
-
   const runExit = useCallback(() => {
     const root = rootRef.current
     if (!root) {
@@ -50,12 +48,6 @@ export function SiteLoader() {
   }, [setSiteReady])
 
   useEffect(() => {
-    if (isAdmin) {
-      setPhase('done')
-      setSiteReady(true)
-      return
-    }
-
     const runId = ++runIdRef.current
     setSiteReady(false)
     setPhase('loading')
@@ -99,15 +91,15 @@ export function SiteLoader() {
       window.removeEventListener('load', onLoad)
       cancelAnimationFrame(rafRef.current)
     }
-  }, [pathname, isAdmin, runExit, setSiteReady])
+  }, [pathname, runExit, setSiteReady])
 
   useEffect(() => {
-    if (phase === 'done' || isAdmin) {
+    if (phase === 'done') {
       document.body.style.overflow = ''
     }
-  }, [phase, isAdmin])
+  }, [phase])
 
-  if (isAdmin || phase === 'done') return null
+  if (phase === 'done') return null
 
   return (
     <div

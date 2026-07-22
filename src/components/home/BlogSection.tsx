@@ -32,13 +32,13 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
       />
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-12 text-center sm:mb-14">
-          <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
+          <h2 className="relative mx-auto mb-4 max-w-3xl text-center font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
             <PixelTrail />
             <span className="text-green-accent">AI Latest </span>
             <span className="text-white">Updates</span>
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="mx-auto max-w-2xl text-justify text-gray-400 sm:text-center">
+            <p className="mx-auto max-w-2xl text-center text-gray-400">
               New articles on AI tools, course news, and digital skills fresh guidance from Pixl Pluz
               so you stay current with what the industry is using now.
             </p>

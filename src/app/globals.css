@@ -10,6 +10,7 @@
   --color-blue-dark:     #0d2660;
   --color-blue-mid:      #143d8f;
   --color-blue-light:    #143d8f;
+  --color-blue-soft:     #5f8fd4; /* mid Command Blue — mono/UI chrome on black */
   --color-green-accent:  #54e345;
   --color-green-dark:    #54e345;
   --color-green-light:   #54e345;
@@ -268,21 +269,52 @@
   color: var(--soft-highlight);
 }
 
-/* Curriculum module switcher — blue card, white accents */
+/* Curriculum module switcher — bgg + darken + glass (like CTA card) */
 .course-detail-page .module-switch {
+  position: relative;
+  isolation: isolate;
   display: grid;
   width: 100%;
   max-width: none;
   margin-inline: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #143d8f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
+  background: #05070c;
+}
+
+.course-detail-page .module-switch::before {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/images/bgg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(18px);
+}
+
+.course-detail-page .module-switch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+.course-detail-page .module-switch > * {
+  position: relative;
+  z-index: 2;
 }
 
 .course-detail-page .module-switch-nav {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  background: #12367f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .course-detail-page .module-switch-nav-label {
@@ -292,7 +324,7 @@
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: #54e345;
 }
 
 .course-detail-page .module-switch-nav-list {
@@ -308,31 +340,53 @@
   width: 100%;
   padding: 0.95rem 1.15rem;
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: transparent;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0.02em;
   text-align: left;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .course-detail-page .module-switch-tab:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .course-detail-page .module-switch-tab.is-active {
-  background: #ffffff;
-  color: #143d8f;
+  background: #54e345;
+  color: #000000;
+  box-shadow: 0 8px 24px rgba(84, 227, 69, 0.28);
 }
 
 .course-detail-page .module-switch-panel {
   min-width: 0;
   padding: 1.35rem 1.25rem 1.5rem;
-  background: #143d8f;
+  background: transparent;
+  display: none;
+}
+
+.course-detail-page .module-switch-accordion {
+  display: block;
+}
+
+.course-detail-page .module-switch-accordion-inner {
+  padding: 0.85rem 1.15rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.course-detail-page .module-switch-accordion-inner .module-switch-title {
+  font-size: clamp(1.15rem, 4.5vw, 1.45rem);
+  margin-bottom: 0.75rem;
+}
+
+.course-detail-page .module-switch-accordion-inner .module-switch-brief {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .course-detail-page .module-switch-title {
@@ -350,19 +404,19 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: #54e345;
 }
 
 .course-detail-page .module-switch-brief {
   margin: 0 0 1.25rem;
   max-width: 42rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 0.95rem;
   line-height: 1.7;
 }
 
 .course-detail-page .module-switch-brief.course-body {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .course-detail-page .module-switch-topics-label {
@@ -371,7 +425,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .course-detail-page .module-switch-pills {
@@ -386,8 +440,8 @@
 .course-detail-page .module-switch-pill {
   display: inline-block;
   padding: 0.45rem 0.85rem;
-  border: none;
-  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   color: #ffffff;
   font-size: 0.8rem;
   font-weight: 600;
@@ -401,11 +455,22 @@
 
   .course-detail-page .module-switch-nav {
     border-bottom: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.14);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .course-detail-page .module-switch-accordion {
+    display: none;
   }
 
   .course-detail-page .module-switch-panel {
+    display: block;
     padding: 1.75rem 1.75rem 2rem;
+  }
+
+  .course-detail-page .module-switch-tab.is-selected {
+    background: #54e345;
+    color: #000000;
+    box-shadow: 0 8px 24px rgba(84, 227, 69, 0.28);
   }
 }
 
@@ -581,24 +646,25 @@
   }
 }
 
-/* Audience cards — blue + white (match curriculum card) */
+/* Audience cards — dark blue */
 .course-detail-page .audience-card {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #143d8f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0a1a42;
   color: #ffffff;
 }
 
 .course-detail-page .audience-card:hover {
-  background: #1746a3;
+  background: #0d2260;
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .course-detail-page .audience-card-icon {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .course-detail-page .audience-card-body {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 /* Scholarship page */
@@ -631,17 +697,18 @@ main:has(.scholarship-page) {
 
 .ai-tools-section .ai-word-hero {
   font-family: var(--font-heading), "Red Hat Display", Arial, Helvetica, sans-serif;
-  font-size: clamp(3rem, 9vw, 7rem);
+  font-size: clamp(1.65rem, 7.5vw, 2.4rem);
   font-weight: 900;
   letter-spacing: 0.02em;
   color: transparent;
-  -webkit-text-stroke: 3.5px #54e345;
+  -webkit-text-stroke: 2px #54e345;
   paint-order: stroke fill;
   text-shadow: none;
 }
 
 @media (min-width: 768px) {
   .ai-tools-section .ai-word-hero {
+    font-size: clamp(3rem, 9vw, 7rem);
     -webkit-text-stroke-width: 4.5px;
   }
 }
@@ -752,6 +819,12 @@ main:has([data-page-hero]) {
 .career-outline-word {
   color: transparent;
   -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 639px) {
+  .scholarship-page .sch-hero-letter.career-outline-word {
+    -webkit-text-stroke-width: 1.25px;
+  }
 }
 
 .evt-outline-muted {
@@ -918,6 +991,124 @@ body::-webkit-scrollbar,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ─── Advantage — interactive editorial bento ─────────────── */
+.advantage-section {
+  background-color: #030712;
+}
+
+.advantage-section-bg {
+  background:
+    radial-gradient(
+      circle at 75% 30%,
+      rgba(20, 61, 143, 0.26),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 20% 75%,
+      rgba(84, 227, 69, 0.05),
+      transparent 28%
+    ),
+    #030712;
+}
+
+.advantage-section-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 72%);
+}
+
+.advantage-bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.advantage-bento > [data-area] {
+  grid-column: 1;
+}
+
+.advantage-card[data-featured='true'] .advantage-card-inner {
+  transform: scale(1.015);
+}
+
+@keyframes advantage-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.advantage-progress-bar {
+  width: 100%;
+  transform-origin: left center;
+  animation: advantage-progress 4.5s linear forwards;
+}
+
+@media (min-width: 640px) {
+  .advantage-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(148px, auto);
+  }
+
+  .advantage-bento > [data-area='port'] {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .advantage-bento {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(128px, 1fr));
+    grid-template-areas:
+      'feat feat feat live live live'
+      'feat feat feat exp  exp  exp'
+      'plc  plc  sch  sch  cer  cer'
+      'paid paid paid int  int  int'
+      'port port port port port port';
+    gap: 0.85rem;
+    min-height: 640px;
+  }
+
+  .advantage-bento > [data-area] {
+    height: 100%;
+  }
+
+  .advantage-bento > [data-area='feat'] { grid-area: feat; }
+  .advantage-bento > [data-area='live'] { grid-area: live; }
+  .advantage-bento > [data-area='exp']  { grid-area: exp; }
+  .advantage-bento > [data-area='plc']  { grid-area: plc; }
+  .advantage-bento > [data-area='sch']  { grid-area: sch; }
+  .advantage-bento > [data-area='cer']  { grid-area: cer; }
+  .advantage-bento > [data-area='paid'] { grid-area: paid; }
+  .advantage-bento > [data-area='int']  { grid-area: int; }
+  .advantage-bento > [data-area='port'] { grid-area: port; }
+
+  .advantage-card,
+  .advantage-card-inner {
+    height: 100%;
+  }
+
+  /* Spotlighted card expands slightly inside its cell */
+  .advantage-card[data-featured='true'] {
+    z-index: 20;
+  }
+
+  .advantage-card[data-featured='true'] .advantage-card-inner {
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .advantage-progress-bar {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .advantage-card[data-featured='true'] .advantage-card-inner {
+    transform: none;
+  }
 }
 
 /* ─── Respect reduced-motion preference ──────────────────── */

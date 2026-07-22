@@ -103,41 +103,45 @@ export function ScholarshipContent() {
       data-no-blur-text
     >
       <section
-        className="relative min-h-svh overflow-hidden bg-black"
+        className="relative h-[min(58svh,26rem)] overflow-hidden bg-black sm:h-[min(72svh,38rem)] lg:h-auto lg:min-h-svh"
         data-page-hero
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <video
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-cover object-[center_28%] sm:object-center"
             src={SCHOLARSHIP_VIDEO}
             poster={SCHOLARSHIP_POSTER}
             autoPlay
             muted
             loop
             playsInline
+            preload="metadata"
           />
+          <div className="absolute inset-0 bg-linear-to-b from-black/45 via-transparent to-black/55" />
         </div>
 
-        <h1 className="absolute top-20 right-4 z-10 text-right text-[clamp(2.25rem,8vw,5rem)] font-black uppercase leading-[0.95] tracking-tight drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)] sm:top-24 sm:right-6 lg:top-28 lg:right-12">
-          {HERO_WORD.split('').map((ch, i) => (
-            <span
-              key={`${ch}-${i}`}
-              className="sch-hero-letter career-outline-word inline-block"
-              style={{ opacity: 0 }}
-            >
-              {ch}
-            </span>
-          ))}
+        <h1 className="pointer-events-none absolute right-4 top-[4.75rem] z-10 max-w-[calc(100%-1.5rem)] text-right font-black uppercase leading-[0.95] drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)] sm:right-6 sm:top-24 sm:max-w-none lg:right-12 lg:top-28">
+          <span className="inline-flex justify-end tracking-[-0.04em] sm:tracking-tight">
+            {HERO_WORD.split('').map((ch, i) => (
+              <span
+                key={`${ch}-${i}`}
+                className="sch-hero-letter career-outline-word inline-block text-[clamp(1.25rem,7.8vw,5rem)] sm:text-[clamp(2.25rem,8vw,5rem)]"
+                style={{ opacity: 0 }}
+              >
+                {ch}
+              </span>
+            ))}
+          </span>
         </h1>
       </section>
 
-      <section className="border-t border-white/8 bg-black px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <section className="border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="sch-apply-heading mb-12 text-[clamp(2.75rem,8vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-green-accent sm:mb-16">
+          <h2 className="sch-apply-heading mb-10 text-[clamp(2rem,9.5vw,5.5rem)] font-black uppercase leading-[1.05] tracking-tight text-green-accent sm:mb-16 sm:leading-[0.92]">
             {APPLY_WORDS.map((word) => (
               <span
                 key={word}
-                className="sch-apply-word mr-[0.28em] inline-block last:mr-0"
+                className="sch-apply-word mr-[0.22em] inline-block last:mr-0 sm:mr-[0.28em]"
                 style={{ opacity: 0 }}
               >
                 {word}

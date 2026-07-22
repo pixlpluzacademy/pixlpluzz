@@ -99,14 +99,14 @@
 
 ### 5. Advantage (`AdvantageSection.tsx`)
 
-| Field | Word target | Current (2026-07-17) | Notes |
+| Field | Word target | Current (2026-07-21) | Notes |
 |-------|-------------|----------------------|-------|
-| Section label | — | — | Removed |
-| H2 | 3–5 | 3 — *"Why AI / Courses?"* | White + green mix; same size as About heading |
-| Intro paragraph 1 | 35–50 | ~42 | AI changing industry; course list |
-| Intro paragraph 2 | 35–50 | ~40 | Graduates/professionals; Neo Digital Hub Dubai |
-| Intro paragraph 3 | 15–25 | ~18 | Job-ready skills; learning to doing |
-| Grid feature label | 2–4 | 2–4 each | 9 tiles; two-line bold labels for readability; PLACEMENT SUPPORT (no % claims) |
+| Micro-label | 1–3 | 2 — *"Academy edge"* | Butter Glow accent |
+| H2 | 3–5 | 4 — *"Why Learn / With AI?"* | White + Electric Verdant; sticky left editorial |
+| Intro paragraph 1 | 35–50 | ~42 | AI changing industry; course list; left-aligned, max ~480px |
+| Intro paragraph 2 | 25–40 | ~32 | Graduates/professionals; Neo Digital Hub Dubai |
+| Bento card title | 2–4 | 2–4 each | Original labels restored (AI Learning, Live Project and Training, …); no placement % |
+| Bento card blurb | 6–12 | ~8–10 each | Revealed on hover / spotlight |
 
 ---
 
@@ -132,7 +132,7 @@
 | Cloud hero word | 2 | *"AI TOOLS"* | Mid-size green label |
 | Tool labels | 1–3 each | ~30 famous tools (ChatGPT, Claude, Cursor, Midjourney, etc.) | Green / blue / butter / white |
 
-**UI note:** Sticky word-cloud hero on black background.
+**UI note:** Sticky scroll-dispersing word cloud on all breakpoints; mobile scales positions + fonts together and flattens vertical labels to avoid overlaps.
 
 ---
 
@@ -218,7 +218,7 @@ Not on homepage currently; include if re-enabled.
 | `/courses` | 3–5 — *"Our AI Courses"* | 120–160 chars | Photo hero + solid navbar bar; intro 25–40 words; cards same as homepage |
 | `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Structure heading; modules (left) + AI tools falling-stack (right); Who it’s for — no fake stats |
 | `/scholarship` | 1 word — *"Scholarship"* | 120–160 chars | Video hero (top-right outlined H1); steps + apply CTA — **no amounts** |
-| `/placement` | 4–8 words | 120–160 chars | Hero + wall — **no placement % / package / days stats** |
+| `/placement` | 4–8 words | 120–160 chars | Hero + wall (8 photos, 4/row) + client logo carousel — **no placement % / package / days stats** |
 | `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
 | `/blog` | 2–4 — *"Blog & Insights"* | 120–160 chars | Nova magazine layout: editorial hero, featured lead, latest grid |
 | `/blog/[slug]` | 6–14 words | 120–160 chars | Article 600–1200 words (editorial) |
@@ -246,7 +246,7 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
-| 2026-07-20 | Blog listing | Nova-style magazine layout (hero + featured lead + latest grid); dark brand |
+| 2026-07-21 | Advantage | Editorial sticky intro + asymmetric bento; H2 → *"Why Learn / With AI?"*; auto-spotlight Flip; card blurbs |
 | 2026-07-20 | Homepage Courses | H2 → *"Our Courses"* (Courses green) |
 | 2026-07-20 | Scholarship page steps | H2 → *"How it works"* (large); removed *"Four simple steps"* |
 | 2026-07-20 | Course detail | Removed Questions & Answers / FAQ section |

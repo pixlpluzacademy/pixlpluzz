@@ -9,11 +9,6 @@ function readJSON<T>(filename: string): T[] {
   return JSON.parse(raw) as T[]
 }
 
-function writeJSON<T>(filename: string, data: T[]): void {
-  const filePath = path.join(dataDir, filename)
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
-}
-
 /* ─── Types ─────────────────────────────────────────────── */
 export interface Course {
   id: string
@@ -97,25 +92,18 @@ export interface Career {
 export const getCourses = (): Course[] => readJSON<Course>('courses.json')
 export const getCourse  = (slug: string): Course | undefined =>
   getCourses().find(c => c.slug === slug)
-export const getCourseById = (id: string): Course | undefined =>
-  getCourses().find(c => c.id === id)
-export const saveCourses = (data: Course[]) => writeJSON('courses.json', data)
 
 /* ─── Blogs ──────────────────────────────────────────────── */
 export const getBlogs  = (): Blog[] => readJSON<Blog>('blogs.json')
 export const getBlog   = (slug: string): Blog | undefined =>
   getBlogs().find(b => b.slug === slug)
-export const saveBlogs = (data: Blog[]) => writeJSON('blogs.json', data)
 
 /* ─── Events ─────────────────────────────────────────────── */
 export const getEvents  = (): Event[] => readJSON<Event>('events.json')
-export const saveEvents = (data: Event[]) => writeJSON('events.json', data)
 
 /* ─── Placement ──────────────────────────────────────────── */
-export const getPlacement   = (): PlacementStudent[] => readJSON<PlacementStudent>('placement.json')
-export const savePlacement  = (data: PlacementStudent[]) => writeJSON('placement.json', data)
+export const getPlacement = (): PlacementStudent[] =>
+  readJSON<PlacementStudent>('placement.json')
 
 /* ─── Careers ────────────────────────────────────────────── */
-export const getCareers  = (): Career[] => readJSON<Career>('careers.json')
-export const saveCareer  = (data: Career[]) => writeJSON('careers.json', data)
-export const saveCareers = saveCareer
+export const getCareers = (): Career[] => readJSON<Career>('careers.json')

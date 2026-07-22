@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * Placement wall — student photos from public/images/students/
+ * Placement wall — 8 student photos, 4 per row
  */
 const WALL_IMAGES = [
   '/images/students/offer-letter.png',
@@ -19,10 +19,6 @@ const WALL_IMAGES = [
   '/images/students/live-project-training.png',
   '/images/students/verified-portfolio.png',
   '/images/students/industry-certification.png',
-  '/images/students/industry-expert-mentors.png',
-  '/images/students/clearing-doubts.jpeg',
-  '/images/students/scholarship-based-courses.png',
-  '/images/students/ai-tools-automation.png',
 ]
 
 export function PlacementWall() {
@@ -66,7 +62,7 @@ export function PlacementWall() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+        <div className="grid grid-cols-4 gap-2 sm:gap-4 lg:gap-6">
           {WALL_IMAGES.map((src, i) => (
             <div
               key={`${src}-${i}`}
@@ -76,7 +72,7 @@ export function PlacementWall() {
                 src={src}
                 alt={`Placed student ${i + 1}`}
                 fill
-                sizes="(min-width: 1024px) 25vw, 50vw"
+                sizes="25vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>

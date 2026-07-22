@@ -119,15 +119,50 @@ function cleanModuleTitle(title: string) {
   return title.replace(/^Module\s*\d+:\s*/i, '')
 }
 
+function ModuleDetail({
+  module,
+  index,
+}: {
+  module: Course['curriculum'][number]
+  index: number
+}) {
+  const fullTitle = cleanModuleTitle(module.title)
+  const brief =
+    module.description?.trim() || moduleBrief(fullTitle, module.lessons)
+
+  return (
+    <>
+      <p className="module-switch-eyebrow">
+        Module {String(index + 1).padStart(2, '0')}
+      </p>
+      <h3 className="module-switch-title">{fullTitle}</h3>
+      <p className="course-body module-switch-brief text-justify">{brief}</p>
+      <p className="module-switch-topics-label">Topics you will cover</p>
+      <ul className="module-switch-pills">
+        {module.lessons.map((lesson) => (
+          <li key={lesson.title}>
+            <span className="module-switch-pill">{lesson.title}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
+
 function CurriculumModules({ course }: { course: Course }) {
   const [activeIdx, setActiveIdx] = useState(0)
+  const [mobileOpen, setMobileOpen] = useState(true)
   const active = course.curriculum[activeIdx] ?? course.curriculum[0]
   if (!active) return null
 
-  const fullTitle = cleanModuleTitle(active.title)
-  const brief =
-    active.description?.trim() ||
-    moduleBrief(fullTitle, active.lessons)
+  const selectModule = (i: number) => {
+    if (i === activeIdx) {
+      setMobileOpen((open) => !open)
+      return
+    }
+    setActiveIdx(i)
+    setMobileOpen(true)
+  }
 
   return (
     <div className="module-switch">
@@ -136,16 +171,43 @@ function CurriculumModules({ course }: { course: Course }) {
         <ul className="module-switch-nav-list">
           {course.curriculum.map((module, i) => {
             const selected = activeIdx === i
+            const expanded = selected && mobileOpen
             return (
-              <li key={module.title}>
+              <li
+                key={module.title}
+                className={cn('module-switch-item', expanded && 'is-open')}
+              >
                 <button
                   type="button"
-                  className={cn('module-switch-tab', selected && 'is-active')}
-                  aria-current={selected ? 'true' : undefined}
-                  onClick={() => setActiveIdx(i)}
+                  className={cn(
+                    'module-switch-tab',
+                    selected && 'is-selected',
+                    expanded && 'is-active',
+                  )}
+                  aria-expanded={expanded}
+                  aria-controls={`module-panel-${i}`}
+                  onClick={() => selectModule(i)}
                 >
                   Module {String(i + 1).padStart(2, '0')}
                 </button>
+                <div className="module-switch-accordion" id={`module-panel-${i}`}>
+                  <AnimatePresence initial={false}>
+                    {expanded && (
+                      <motion.div
+                        key={module.title}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div className="module-switch-accordion-inner">
+                          <ModuleDetail module={module} index={i} />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </li>
             )
           })}
@@ -161,21 +223,7 @@ function CurriculumModules({ course }: { course: Course }) {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
           >
-            <p className="module-switch-eyebrow">
-              Module {String(activeIdx + 1).padStart(2, '0')}
-            </p>
-            <h3 className="module-switch-title">{fullTitle}</h3>
-            <p className="course-body module-switch-brief text-justify">
-              {brief}
-            </p>
-            <p className="module-switch-topics-label">Topics you will cover</p>
-            <ul className="module-switch-pills">
-              {active.lessons.map((lesson) => (
-                <li key={lesson.title}>
-                  <span className="module-switch-pill">{lesson.title}</span>
-                </li>
-              ))}
-            </ul>
+            <ModuleDetail module={active} index={activeIdx} />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -392,22 +440,24 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
           <div className="absolute inset-0" style={{ background: 'rgba(0, 0, 0, 0.72)' }} />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="course-card-surface overflow-hidden border p-8 backdrop-blur-md pixel-corner sm:p-12 lg:p-14">
+          <div className="course-card-surface overflow-hidden border p-6 backdrop-blur-md pixel-corner sm:p-12 lg:p-14">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-green-accent">
               Start your learning journey
             </p>
-            <h2 className="whitespace-nowrap text-2xl font-black leading-tight sm:text-3xl lg:text-4xl">
-              Ready to build real skills with{' '}
-              <span className="text-green-accent">Pixl Pluz Academy ?</span>
+            <h2 className="text-[1.25rem] font-black leading-snug sm:text-3xl sm:leading-tight lg:text-4xl">
+              Ready to build real skills&nbsp;with{' '}
+              <span className="whitespace-nowrap text-green-accent">
+                Pixl Pluz Academy?
+              </span>
             </h2>
-            <p className="course-body mt-4 max-w-none whitespace-nowrap text-sm leading-relaxed">
+            <p className="course-body mt-4 max-w-2xl text-sm leading-relaxed text-justify sm:text-left">
               Talk to admissions, explore scholarship support, or download the
               brochure to see the full course plan.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
+                className="btn-glaze btn-cta-green inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm sm:w-auto sm:px-8"
               >
                 Talk to Admissions
                 <ArrowRight size={16} />
