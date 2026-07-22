@@ -1014,7 +1014,15 @@ body::-webkit-scrollbar,
   }
 }
 
-/* AI Tools — static clustered cloud (no sticky scroll / disperse) */
+/* AI Tools — short sticky scrub; half-spread only (words stay visible) */
+.ai-tools-cloud-track {
+  height: calc(100svh + 220px);
+}
+
+.ai-tools-sticky-stage {
+  height: 100svh;
+}
+
 .ai-tools-cloud {
   width: min(90vw, 1400px);
   height: min(58svh, 560px);
