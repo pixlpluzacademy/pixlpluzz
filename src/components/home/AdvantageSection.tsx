@@ -261,17 +261,17 @@ export function AdvantageSection() {
   }
 
   return (
-    <section className="advantage-section relative overflow-x-clip overflow-hidden py-[clamp(64px,6vw,96px)]">
+    <section className="advantage-section relative overflow-x-clip overflow-hidden py-[clamp(72px,7vw,120px)]">
       <div className="advantage-section-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="advantage-section-grid pointer-events-none absolute inset-0 opacity-[0.04]" aria-hidden />
 
-      <div className="relative mx-auto w-full max-w-[1500px] overflow-hidden px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="site-container-wide relative overflow-hidden">
         <FloatingPixels />
 
-        <div className="relative z-10 grid items-center gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10 xl:gap-12">
+        <div className="relative z-10 grid items-center gap-10 lg:grid-cols-[clamp(340px,25vw,480px)_minmax(0,1fr)] lg:gap-[clamp(28px,2.5vw,56px)]">
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 max-w-[420px] flex-col lg:sticky lg:top-28 lg:self-start"
+            className="flex w-full min-w-0 flex-col lg:sticky lg:top-28 lg:self-start"
           >
             <h2 className="mb-6 font-black uppercase leading-[0.88] tracking-tight sm:mb-7">
               <span className="mb-[0.12em] block text-[clamp(2.25rem,6.5vw,4.5rem)] text-white">
@@ -282,7 +282,7 @@ export function AdvantageSection() {
               </span>
             </h2>
 
-            <div className="max-w-[420px] space-y-4">
+            <div className="space-y-4">
               <p className="m-0 text-justify text-[0.95rem] leading-[1.85] text-gray-300 sm:text-base">
                 AI is changing every industry and the way we learn needs to change too. Our courses
                 in Digital Marketing, Web Development, Data Science, and Cybersecurity are built
@@ -310,7 +310,7 @@ export function AdvantageSection() {
             </div>
           </div>
 
-          <div className="advantage-carousel-wrap mx-auto w-full min-w-0 max-w-[900px] lg:ml-auto lg:mr-0">
+          <div className="advantage-carousel-wrap mx-auto w-full min-w-0 max-w-[1100px] lg:ml-auto lg:mr-0">
             <div
               ref={stageRef}
               className={cn(

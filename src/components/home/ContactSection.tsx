@@ -74,7 +74,7 @@ export function ContactSection() {
       ref={sectionRef}
       className="relative overflow-x-clip bg-black py-[clamp(64px,6vw,96px)]"
     >
-      <div className="mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="site-container">
       {/* Image framed to About-style content width — black margins separate it from the body */}
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0" aria-hidden>

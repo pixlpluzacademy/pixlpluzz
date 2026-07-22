@@ -30,7 +30,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="site-container relative z-10">
         <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mx-auto mb-4 max-w-3xl text-center font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
             <PixelTrail />

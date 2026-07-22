@@ -57,11 +57,11 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="site-container-wide relative z-10 max-w-[1800px]">
         <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight">
             <PixelTrail />
-            <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.5rem)]">
+            <span className="block whitespace-nowrap text-[clamp(2rem,6.5vw,4.75rem)]">
               <span className="text-white">Our</span>{' '}
               <span className="text-green-accent">Courses</span>
             </span>
@@ -70,7 +70,7 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
 
         <div
           ref={gridRef}
-          className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
+          className="grid gap-[clamp(1rem,1.4vw,1.75rem)] sm:grid-cols-2 xl:grid-cols-4"
         >
           {courses.map((course) => (
             <CourseCard key={course.id} course={course} />

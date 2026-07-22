@@ -135,14 +135,14 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
       />
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
-        <div className="grid items-stretch gap-8 xl:grid-cols-[420px_minmax(0,1fr)] xl:gap-10">
+      <div className="site-container-wide relative z-10">
+        <div className="grid items-stretch gap-8 xl:grid-cols-[clamp(340px,24vw,470px)_minmax(0,1fr)] xl:gap-[clamp(28px,2.5vw,56px)]">
           {/* Intro — centered on mobile, left on desktop */}
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 flex-col items-center text-center xl:h-[clamp(430px,31vw,500px)] xl:items-start xl:text-left"
+            className="flex w-full min-w-0 flex-col items-center text-center xl:items-start xl:text-left"
           >
-            <div className="flex w-full max-w-[420px] flex-col items-center text-center xl:items-start xl:text-left">
+            <div className="flex w-full min-w-0 flex-col items-center text-center xl:items-start xl:text-left">
               <h2 className="relative mb-6 w-full font-black uppercase leading-[0.88] tracking-tight sm:mb-8">
                 <PixelTrail />
                 <span className="about-hero-pop block text-[clamp(2rem,7vw,3.75rem)] text-white">
@@ -187,7 +187,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
             xl+: original 2×2 absolute hover grid
           */}
           <motion.div
-            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 xl:block xl:h-[clamp(430px,31vw,500px)]"
+            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 xl:aspect-[16/11] xl:block xl:h-auto xl:min-h-0"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"

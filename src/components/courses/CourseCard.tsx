@@ -16,7 +16,7 @@ export function CourseCard({ course }: { course: Course }) {
         'transition-all duration-300 hover:border-green-accent/40 hover:shadow-lg hover:shadow-green-accent/10',
       )}
     >
-      <div className="relative h-44 sm:h-48 overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[16/9]">
         <Image
           src={image}
           alt={course.title}
@@ -27,11 +27,11 @@ export function CourseCard({ course }: { course: Course }) {
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
-        <h2 className="mb-2 text-lg font-black leading-snug text-green-accent transition-colors line-clamp-3 sm:text-xl">
+      <div className="flex flex-1 flex-col p-[clamp(1rem,1.2vw,1.35rem)]">
+        <h2 className="mb-2 text-[clamp(1.05rem,1.05vw,1.35rem)] font-black leading-snug text-green-accent transition-colors line-clamp-3">
           {course.title}
         </h2>
-        <p className="mb-5 flex-1 text-justify text-sm leading-relaxed text-white/60 line-clamp-3">
+        <p className="mb-5 flex-1 text-justify text-[clamp(0.8125rem,0.85vw,0.9375rem)] leading-relaxed text-white/60 line-clamp-3">
           {course.shortDescription}
         </p>
         <p className="text-xs text-white/50">{course.lessons} Lessons</p>

@@ -57,7 +57,7 @@ export function FAQSection() {
         />
         <div className="absolute inset-0 bg-linear-to-l from-black/15 via-black/55 to-black" />
       </div>
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="site-container relative z-10">
       <div className="mx-auto max-w-3xl">
         <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">

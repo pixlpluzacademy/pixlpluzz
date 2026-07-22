@@ -224,7 +224,7 @@ export function MentorsSection() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="site-container relative z-10">
         <div
           ref={gridRef}
           className="grid grid-cols-1 gap-x-8 gap-y-16 pt-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-20 sm:pt-10 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16 lg:pt-12 xl:grid-cols-5 xl:gap-x-8 xl:gap-y-14"

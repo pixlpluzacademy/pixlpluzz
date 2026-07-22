@@ -138,12 +138,9 @@ export function AiToolsSection() {
     <section className="ai-tools-section relative bg-black" aria-label="AI tools">
       <h2 className="sr-only">AI Tools</h2>
 
-      <div
-        ref={trackRef}
-        className="ai-tools-cloud-track relative h-[calc(100svh+140px)] max-h-[1120px]"
-      >
-        <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-black px-3 sm:px-4">
-          <div className="relative h-[min(760px,78svh)] w-[min(1400px,94vw)]">
+      <div ref={trackRef} className="ai-tools-cloud-track relative">
+        <div className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black px-3 sm:px-4">
+          <div className="ai-tools-cloud relative">
             {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
               <div
                 key={`${word.text}-${i}`}

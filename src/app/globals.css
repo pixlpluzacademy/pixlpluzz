@@ -993,6 +993,41 @@ body::-webkit-scrollbar,
   background-clip: text;
 }
 
+/* ─── Homepage layout containers ───────────────────────────── */
+.site-container {
+  width: min(92vw, 1600px);
+  margin-inline: auto;
+}
+
+.site-container-wide {
+  width: min(94vw, 1900px);
+  margin-inline: auto;
+}
+
+@media (min-width: 1800px) {
+  .site-container {
+    width: min(90vw, 1750px);
+  }
+
+  .site-container-wide {
+    width: min(92vw, 2000px);
+  }
+}
+
+/* AI Tools — capped sticky stage (no full-viewport sticky height) */
+.ai-tools-cloud-track {
+  height: calc(min(82svh, 820px) + 160px);
+}
+
+.ai-tools-sticky-stage {
+  height: min(82svh, 820px);
+}
+
+.ai-tools-cloud {
+  width: min(90vw, 1500px);
+  height: min(68svh, 650px);
+}
+
 /* ─── Advantage — interactive editorial bento ─────────────── */
 .advantage-section {
   background-color: #030712;
