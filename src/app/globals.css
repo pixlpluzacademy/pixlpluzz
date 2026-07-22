@@ -1029,15 +1029,15 @@ body::-webkit-scrollbar,
   height: min(58svh, 560px);
 }
 
-/* Scholarship — track must exceed viewport or scrub never runs on tall displays;
-   stage height is capped visually while pin distance stays reliable */
+/* Scholarship — sticky fills the viewport; track = stage + scrub only
+   (avoid leftover empty black that looks like a second scholarship block) */
 @media (min-width: 1024px) {
   .scholarship-scroll-track {
     height: calc(100svh + 640px);
   }
 
   .scholarship-sticky-stage {
-    height: min(88svh, 920px);
+    height: 100svh;
   }
 }
 

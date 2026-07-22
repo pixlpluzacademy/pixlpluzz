@@ -33,7 +33,7 @@ const MENTORS = [
     image: '/images/mentors/hina_javaid.png',
   },
   {
-    name: 'Hojjat',
+    name: 'Hojat Penhan',
     designation: 'Sr 3D Visualizer',
     image: '/images/mentors/hojat_penhan.png',
   },
