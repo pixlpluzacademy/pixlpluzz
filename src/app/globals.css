@@ -1021,93 +1021,176 @@ body::-webkit-scrollbar,
   mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 72%);
 }
 
-.advantage-bento {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
+.advantage-carousel-wrap {
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.advantage-bento > [data-area] {
-  grid-column: 1;
-}
-
-.advantage-card[data-featured='true'] .advantage-card-inner {
-  transform: scale(1.015);
-}
-
-@keyframes advantage-progress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.advantage-progress-bar {
+.advantage-carousel {
+  --carousel-card-w: clamp(200px, 34%, 300px);
+  height: clamp(540px, 58vw, 720px);
   width: 100%;
-  transform-origin: left center;
-  animation: advantage-progress 4.5s linear forwards;
+  max-width: none;
+  margin-inline: auto;
+  overflow: hidden;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  touch-action: manipulation;
+}
+
+.advantage-carousel--tablet {
+  --carousel-card-w: clamp(170px, 36%, 250px);
+  height: clamp(480px, 70vw, 600px);
+  max-width: none;
+  perspective: 1100px;
+}
+
+.advantage-carousel--mobile {
+  --carousel-card-w: min(78vw, 300px);
+  height: 460px;
+  max-width: 100%;
+  perspective: 900px;
+}
+
+.advantage-carousel-stage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+}
+
+.advantage-carousel-glow {
+  width: min(55%, 280px);
+  height: min(42%, 200px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(84, 227, 69, 0.18) 0%, transparent 68%),
+    radial-gradient(circle, rgba(20, 61, 143, 0.28) 0%, transparent 72%);
+  filter: blur(18px);
+  z-index: 0;
+}
+
+.advantage-carousel-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--carousel-card-w);
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #0a0f1a;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  -webkit-tap-highlight-color: transparent;
+  /* Prefer crisp rasterization while scaling */
+  backface-visibility: hidden;
+}
+
+.advantage-carousel-card.is-active {
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(20, 61, 143, 0.18);
+}
+
+.advantage-carousel-card:focus-visible {
+  outline: 2px solid #54e345;
+  outline-offset: 3px;
+}
+
+.advantage-carousel-card-media {
+  border-radius: 0;
+}
+
+.advantage-carousel-card-media.is-sharp,
+.advantage-carousel-card.is-active .advantage-carousel-card-media {
+  filter: none !important;
+}
+
+.advantage-carousel-card-media img {
+  transform: translateZ(0);
+}
+
+.advantage-carousel-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.advantage-carousel-nav:hover {
+  border-color: rgba(84, 227, 69, 0.65);
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.advantage-carousel-nav:focus-visible {
+  outline: 2px solid #54e345;
+  outline-offset: 2px;
+}
+
+.advantage-carousel-nav-icon {
+  width: 0.65rem;
+  height: auto;
+  display: block;
+}
+
+.advantage-carousel-nav--prev {
+  left: 0.35rem;
+}
+
+.advantage-carousel-nav--next {
+  right: 0.35rem;
 }
 
 @media (min-width: 640px) {
-  .advantage-bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: minmax(148px, auto);
+  .advantage-carousel-nav {
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
-  .advantage-bento > [data-area='port'] {
-    grid-column: 1 / -1;
+  .advantage-carousel-nav-icon {
+    width: 0.7rem;
+  }
+
+  .advantage-carousel-nav--prev {
+    left: 0.75rem;
+  }
+
+  .advantage-carousel-nav--next {
+    right: 0.75rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .advantage-bento {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-template-rows: repeat(5, minmax(128px, 1fr));
-    grid-template-areas:
-      'feat feat feat live live live'
-      'feat feat feat exp  exp  exp'
-      'plc  plc  sch  sch  cer  cer'
-      'paid paid paid int  int  int'
-      'port port port port port port';
-    gap: 0.85rem;
-    min-height: 640px;
-  }
-
-  .advantage-bento > [data-area] {
-    height: 100%;
-  }
-
-  .advantage-bento > [data-area='feat'] { grid-area: feat; }
-  .advantage-bento > [data-area='live'] { grid-area: live; }
-  .advantage-bento > [data-area='exp']  { grid-area: exp; }
-  .advantage-bento > [data-area='plc']  { grid-area: plc; }
-  .advantage-bento > [data-area='sch']  { grid-area: sch; }
-  .advantage-bento > [data-area='cer']  { grid-area: cer; }
-  .advantage-bento > [data-area='paid'] { grid-area: paid; }
-  .advantage-bento > [data-area='int']  { grid-area: int; }
-  .advantage-bento > [data-area='port'] { grid-area: port; }
-
-  .advantage-card,
-  .advantage-card-inner {
-    height: 100%;
-  }
-
-  /* Spotlighted card expands slightly inside its cell */
-  .advantage-card[data-featured='true'] {
-    z-index: 20;
-  }
-
-  .advantage-card[data-featured='true'] .advantage-card-inner {
-    transform: scale(1.025);
+  .advantage-carousel {
+    height: clamp(580px, 50vw, 760px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .advantage-progress-bar {
-    animation: none;
-    transform: scaleX(1);
-  }
-
-  .advantage-card[data-featured='true'] .advantage-card-inner {
-    transform: none;
+  .advantage-carousel-card,
+  .advantage-carousel-card-media {
+    transition: none !important;
   }
 }
 

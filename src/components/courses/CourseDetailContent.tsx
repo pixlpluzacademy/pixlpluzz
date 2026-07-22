@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { Course } from '@/lib/data'
 import { getCourseImage, getCourseAiTools } from '@/lib/course-assets'
 import { AiToolsFallingStack } from '@/components/courses/AiToolsFallingStack'
+import { CertificatesMarquee } from '@/components/home/CertificatesMarquee'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
 import { formatPrice, cn } from '@/lib/utils'
@@ -377,6 +378,8 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
           </div>
         </div>
       </section>
+
+      <CertificatesMarquee />
 
       {/* ── Curriculum + AI tools falling stack ── */}
       <section className="course-section-surface relative py-20 lg:py-24">

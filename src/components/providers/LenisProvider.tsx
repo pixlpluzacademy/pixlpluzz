@@ -50,6 +50,13 @@ function GSAPSync() {
     // All ScrollTriggers must read Lenis scroll, not native window.scrollY
     ScrollTrigger.defaults({ scroller: document.documentElement })
 
+    // Avoid mid-scroll refreshes from mobile URL-bar resize (innerHeight flicker),
+    // which rewrites sticky/scrub start-end positions and jumps the page.
+    ScrollTrigger.config({
+      autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
+      ignoreMobileResize: true,
+    })
+
     // Tell ScrollTrigger to refresh its trigger positions on every Lenis tick
     l.on('scroll', ScrollTrigger.update)
 
@@ -95,10 +102,11 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: 0.1,
+        lerp: 0.085,
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.5,
+        syncTouch: true,
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         // GSAP ticker drives the RAF — prevents a duplicate animation loop

@@ -123,7 +123,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
   return (
     <section
       ref={rootRef}
-      className="relative overflow-visible bg-black px-8 py-16 text-gray-400 sm:px-12 sm:py-24 lg:px-20"
+      className="relative overflow-visible bg-black px-10 py-16 text-gray-400 sm:px-16 sm:py-24 lg:px-28 xl:px-32"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -136,19 +136,19 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
       <div className="relative z-10">
-        <div className="grid items-stretch gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-5 xl:gap-6">
+        <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,24rem)_minmax(36rem,1fr)] lg:gap-5 xl:gap-6">
           {/* Intro — centered on mobile, left on desktop */}
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 flex-col items-center text-center lg:min-h-[30rem] lg:items-start lg:text-left"
+            className="flex w-full min-w-0 flex-col items-center text-center lg:min-h-[24rem] lg:items-start lg:text-left"
           >
-            <div className="flex w-full max-w-lg flex-col items-center text-center lg:max-w-md lg:items-start lg:text-left">
+            <div className="flex w-full max-w-lg flex-col items-center text-center lg:max-w-none lg:items-start lg:text-left">
               <h2 className="relative mb-6 w-full font-black uppercase leading-[0.88] tracking-tight sm:mb-8">
                 <PixelTrail />
-                <span className="about-hero-pop block text-[clamp(2rem,7vw,4.75rem)] text-white">
+                <span className="about-hero-pop block text-[clamp(2rem,7vw,3.75rem)] text-white">
                   About
                 </span>
-                <span className="about-hero-pop block text-[clamp(2rem,7vw,4.75rem)]">
+                <span className="about-hero-pop block whitespace-nowrap text-[clamp(1.75rem,5.5vw,3.75rem)]">
                   <span className="text-green-accent">Pixl</span>{' '}
                   <span
                     className="career-outline-word"
@@ -187,7 +187,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
             Desktop (lg+): original 2×2 absolute hover grid
           */}
           <motion.div
-            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 lg:block lg:min-h-[30rem]"
+            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 lg:block lg:min-h-[24rem]"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -251,50 +251,52 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
 
                     <div
                       className={cn(
-                        'flex min-w-0 flex-col justify-center gap-2',
-                        'items-center px-4 py-5 text-center',
-                        'lg:h-full lg:items-stretch lg:overflow-hidden lg:text-left',
+                        'flex min-w-0 flex-col',
+                        'items-center px-4 py-4 text-center',
+                        'lg:h-full lg:items-stretch lg:justify-center lg:overflow-hidden lg:text-left',
                         'transition-[padding] duration-400',
-                        isExpanded ? 'lg:p-8 xl:p-10' : 'lg:px-3 lg:py-2.5 xl:px-3.5 xl:py-3',
+                        isExpanded ? 'lg:px-6 lg:py-6 xl:px-8 xl:py-8' : 'lg:px-3 lg:py-3 xl:px-3.5 xl:py-3.5',
                       )}
                     >
-                      <h3
-                        className={cn(
-                          'w-full shrink-0 font-black tracking-tight text-green-accent transition-[font-size] duration-400',
-                          isExpanded
-                            ? 'text-xl leading-[1.2] lg:text-3xl xl:text-4xl'
-                            : 'text-[clamp(0.95rem,3.8vw,1.15rem)] leading-none lg:text-lg xl:text-xl lg:leading-[1.15]',
-                        )}
-                      >
-                        {/* Phone: one line · Desktop: two lines */}
-                        <span className="whitespace-nowrap lg:hidden">
-                          {titleLines.join(' ')}
-                        </span>
-                        <span className="hidden lg:block">
-                          <span className="block">{titleLines[0]}</span>
-                          <span className="block">{titleLines[1]}</span>
-                        </span>
-                      </h3>
-                      <p
-                        className={cn(
-                          'about-card-copy w-full shrink-0 text-justify leading-relaxed text-gray-400 transition-[font-size] duration-400',
-                          isExpanded ? 'text-sm lg:text-base' : 'text-sm lg:text-xs xl:text-sm',
-                        )}
-                      >
-                        {desc}
-                      </p>
-                      {/* Full text on phone; desktop only when expanded */}
-                      <p
-                        className={cn(
-                          'about-card-copy w-full text-justify leading-relaxed text-gray-400',
-                          'text-sm lg:overflow-hidden lg:transition-[opacity,max-height,margin,font-size] lg:duration-300 lg:ease-out',
-                          isExpanded
-                            ? 'mt-2 max-h-none opacity-100 lg:max-h-48 lg:text-base lg:opacity-100 lg:delay-200'
-                            : 'mt-2 max-h-none opacity-100 lg:mt-0 lg:max-h-0 lg:text-xs lg:opacity-0',
-                        )}
-                      >
-                        {more}
-                      </p>
+                      <div className="flex w-full min-w-0 flex-col gap-2">
+                        <h3
+                          className={cn(
+                            'w-full shrink-0 font-black tracking-tight text-green-accent transition-[font-size] duration-400',
+                            isExpanded
+                              ? 'text-xl leading-[1.2] lg:text-3xl xl:text-4xl'
+                              : 'text-[clamp(0.95rem,3.8vw,1.15rem)] leading-none lg:text-lg xl:text-xl lg:leading-[1.15]',
+                          )}
+                        >
+                          {/* Phone: one line · Desktop: two lines */}
+                          <span className="whitespace-nowrap lg:hidden">
+                            {titleLines.join(' ')}
+                          </span>
+                          <span className="hidden lg:block">
+                            <span className="block">{titleLines[0]}</span>
+                            <span className="block">{titleLines[1]}</span>
+                          </span>
+                        </h3>
+                        <p
+                          className={cn(
+                            'about-card-copy m-0 w-full shrink-0 text-justify leading-relaxed text-gray-400 transition-[font-size] duration-400',
+                            isExpanded ? 'text-sm lg:text-base' : 'text-sm lg:text-xs xl:text-sm',
+                          )}
+                        >
+                          {desc}
+                        </p>
+                        {/* Full text on phone; desktop only when expanded */}
+                        <p
+                          className={cn(
+                            'about-card-copy m-0 w-full text-justify leading-relaxed text-gray-400',
+                            'text-sm',
+                            isExpanded
+                              ? 'mt-2 max-h-none opacity-100 lg:max-h-48 lg:text-base lg:opacity-100'
+                              : 'mt-2 max-h-none opacity-100 lg:mt-0 lg:hidden',
+                          )}
+                        >
+                          {more}
+                        </p>
+                      </div>
                     </div>
                   </article>
                 </motion.div>

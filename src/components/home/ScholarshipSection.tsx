@@ -34,8 +34,6 @@ const STEPS = [
 ]
 
 export function ScholarshipSection() {
-  // Outer div — gets dynamic height injected on desktop so there is
-  // enough scroll room for the sticky section to animate through.
   const wrapperRef = useRef<HTMLDivElement>(null)
   const stepRefs   = useRef<(HTMLDivElement | null)[]>([])
   const iconRefs   = useRef<(HTMLDivElement | null)[]>([])
@@ -65,28 +63,16 @@ export function ScholarshipSection() {
           const icons = iconRefs.current.filter((el): el is HTMLDivElement => el !== null)
 
           // ── Desktop ────────────────────────────────────────────────
-          // The section is CSS-sticky (not GSAP-pinned).  We make the
-          // outer wrapper tall enough that ~900 px of scroll passes
-          // while the inner section is stuck at top:0.
-          // ScrollTrigger watches the wrapper; scrub drives the timeline.
+          // CSS sticky + stable svh track (no JS height from innerHeight —
+          // mobile URL-bar resize was rewriting height mid-scroll and jumping).
           if (isDesktop) {
-            // Stick only while the 4 steps reveal — release as soon as the last appears
-            const SCROLL_DIST = Math.round(window.innerHeight * 1.05)
-
-            const setHeight = () => {
-              if (wrapperRef.current) {
-                wrapperRef.current.style.height = `${window.innerHeight + SCROLL_DIST}px`
-              }
-            }
-            setHeight()
-            window.addEventListener('resize', setHeight)
-
             const tl = gsap.timeline({
               scrollTrigger: {
                 trigger: wrapperRef.current,
                 start:   'top top',
                 end:     'bottom bottom',
                 scrub:   0.4,
+                invalidateOnRefresh: true,
               },
             })
 
@@ -120,11 +106,6 @@ export function ScholarshipSection() {
                 )
               }
             })
-
-            return () => {
-              window.removeEventListener('resize', setHeight)
-              if (wrapperRef.current) wrapperRef.current.style.height = ''
-            }
           }
 
           // ── Mobile / tablet ────────────────────────────────────────
@@ -173,9 +154,9 @@ export function ScholarshipSection() {
 
   return (
     // Outer scroll-track wrapper.
-    // On desktop its height is set dynamically in the effect.
-    // On mobile it's height:auto (natural flow).
-    <div ref={wrapperRef} className="relative">
+    // Desktop: fixed svh track so sticky scrub distance stays stable while scrolling.
+    // Mobile: natural height (no sticky pin).
+    <div ref={wrapperRef} className="relative lg:h-[205svh]">
 
       {/*
         lg:sticky lg:top-0 lg:h-svh  — CSS pin (React-safe, no DOM moves)
