@@ -1014,16 +1014,7 @@ body::-webkit-scrollbar,
   }
 }
 
-/* AI Tools — pin against full viewport so scrub distance stays valid on tall monitors;
-   visual cloud stays capped inside the sticky stage */
-.ai-tools-cloud-track {
-  height: calc(100svh + 320px);
-}
-
-.ai-tools-sticky-stage {
-  height: 100svh;
-}
-
+/* AI Tools — static clustered cloud (no sticky scroll / disperse) */
 .ai-tools-cloud {
   width: min(90vw, 1400px);
   height: min(58svh, 560px);

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { useLenis } from 'lenis/react'
 import { AI_TOOLS_CLOUD_WORDS } from '@/lib/ai-tools-word-cloud'
 import { cn } from '@/lib/utils'
 
@@ -19,7 +18,6 @@ function layoutScales() {
   }
   const w = window.innerWidth
   const s = Math.min(1.18, Math.max(0.7, w / 1350))
-  // Extra-small type on phones so flattened labels don’t collide
   const fs =
     w < 640
       ? Math.min(0.55, Math.max(0.28, w / 1300))
@@ -31,137 +29,58 @@ function layoutScales() {
   }
 }
 
-function smoothstep(t: number) {
-  return t * t * (3 - 2 * t)
-}
-
 export function AiToolsSection() {
-  const trackRef = useRef<HTMLDivElement>(null)
-  const stageRef = useRef<HTMLDivElement>(null)
   const wordElsRef = useRef<(HTMLDivElement | null)[]>([])
-  const lenis = useLenis()
 
   useEffect(() => {
-    const track = trackRef.current
-    const stage = stageRef.current
     const els = wordElsRef.current.filter(Boolean) as HTMLDivElement[]
-    if (!track || !stage || !els.length) return
+    if (!els.length) return
 
-    let ticking = false
+    const layout = () => {
+      const { s, fs, allowRotate } = layoutScales()
 
-    const syncDatasets = (allowRotate: boolean) => {
       els.forEach((el, i) => {
         const word = AI_TOOLS_CLOUD_WORDS[i]
         const x = !allowRotate && word.mobileX !== undefined ? word.mobileX : word.x
         const y = !allowRotate && word.mobileY !== undefined ? word.mobileY : word.y
-        const mag = Math.hypot(x, y) || 1
-        el.dataset.x = String(x)
-        el.dataset.y = String(y)
-        el.dataset.rot = String(word.rotation)
-        el.dataset.dx = String(x / mag)
-        el.dataset.dy = String(y / mag)
-        el.dataset.speed = (0.65 + (i % 7) * 0.07).toFixed(2)
-        el.dataset.hero = word.tone === 'hero' ? 'true' : 'false'
-      })
-    }
+        const rot = allowRotate ? word.rotation : 0
+        const isHero = word.tone === 'hero'
 
-    const render = () => {
-      ticking = false
-      const rect = track.getBoundingClientRect()
-      // Progress vs viewport so disperse starts only after the cluster is pinned at top
-      const total = Math.max(1, track.offsetHeight - window.innerHeight)
-      const p = Math.min(1, Math.max(0, -rect.top / total))
-      const { s, fs, allowRotate } = layoutScales()
-      syncDatasets(allowRotate)
-
-      // Hold clustered while sticky settles at top, then spread across remaining scroll
-      const hold = 0.32
-      const t = Math.max(0, (p - hold) / (1 - hold))
-      const capped = Math.min(t, 1)
-      const disperse = smoothstep(capped)
-
-      els.forEach((el, i) => {
-        const word = AI_TOOLS_CLOUD_WORDS[i]
-        const x = Number(el.dataset.x) * s
-        const y = Number(el.dataset.y) * s
-        const speed = Number(el.dataset.speed)
-        const dx = Number(el.dataset.dx)
-        const dy = Number(el.dataset.dy)
-        const rot = allowRotate ? Number(el.dataset.rot) : 0
-        const isHero = el.dataset.hero === 'true'
-
-        const wp = Math.min(1, capped * speed * 1.05)
-        const ease = smoothstep(wp)
-
-        let tx: number
-        let ty: number
-        let scale: number
-        let opacity: number
-
-        if (isHero) {
-          tx = 0
-          ty = 0
-          scale = 1 - disperse * 0.18
-          opacity = 1
-        } else {
-          const fly = ease * (160 + 120 * speed) * s
-          tx = x + dx * fly
-          ty = y + dy * fly
-          scale = 1 - ease * 0.28
-          opacity = 1 - ease * 0.42
+        if (!isHero) {
           el.style.fontSize = `${word.sizeRem * fs}rem`
         }
 
         el.style.transform =
-          `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rot}deg) scale(${Math.max(scale, 0.55)})`
-        el.style.opacity = String(Math.max(opacity, 0.45))
+          `translate(calc(-50% + ${x * s}px), calc(-50% + ${y * s}px)) rotate(${rot}deg)`
+        el.style.opacity = '1'
       })
     }
 
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true
-        requestAnimationFrame(render)
-      }
-    }
-
-    syncDatasets(layoutScales().allowRotate)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    lenis?.on('scroll', onScroll)
-    render()
-
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      lenis?.off('scroll', onScroll)
-    }
-  }, [lenis])
+    layout()
+    window.addEventListener('resize', layout)
+    return () => window.removeEventListener('resize', layout)
+  }, [])
 
   return (
-    <section className="ai-tools-section relative bg-black" aria-label="AI tools">
+    <section
+      className="ai-tools-section relative flex items-center justify-center overflow-hidden bg-black py-[clamp(48px,6vw,80px)]"
+      aria-label="AI tools"
+    >
       <h2 className="sr-only">AI Tools</h2>
 
-      <div ref={trackRef} className="ai-tools-cloud-track relative">
-        <div
-          ref={stageRef}
-          className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black"
-        >
-          <div className="ai-tools-cloud relative mx-auto">
-            {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
-              <div
-                key={`${word.text}-${i}`}
-                ref={(el) => {
-                  wordElsRef.current[i] = el
-                }}
-                className={cn('ai-word absolute left-1/2 top-1/2', TONE_CLASS[word.tone])}
-                style={word.tone !== 'hero' ? { fontSize: `${word.sizeRem}rem` } : undefined}
-              >
-                {word.text}
-              </div>
-            ))}
+      <div className="ai-tools-cloud relative mx-auto">
+        {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
+          <div
+            key={`${word.text}-${i}`}
+            ref={(el) => {
+              wordElsRef.current[i] = el
+            }}
+            className={cn('ai-word absolute left-1/2 top-1/2', TONE_CLASS[word.tone])}
+            style={word.tone !== 'hero' ? { fontSize: `${word.sizeRem}rem` } : undefined}
+          >
+            {word.text}
           </div>
-        </div>
+        ))}
       </div>
     </section>
   )
