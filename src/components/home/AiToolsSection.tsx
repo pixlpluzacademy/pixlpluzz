@@ -68,15 +68,16 @@ export function AiToolsSection() {
     const render = () => {
       ticking = false
       const rect = track.getBoundingClientRect()
-      // Use sticky stage height (not 100vh) so capped stages still drive progress
-      const total = Math.max(1, track.offsetHeight - stage.offsetHeight)
+      // Progress vs viewport so disperse starts only after the cluster is pinned at top
+      const total = Math.max(1, track.offsetHeight - window.innerHeight)
       const p = Math.min(1, Math.max(0, -rect.top / total))
       const { s, fs, allowRotate } = layoutScales()
       syncDatasets(allowRotate)
 
-      const hold = 0.14
+      // Hold clustered while sticky settles at top, then spread across remaining scroll
+      const hold = 0.32
       const t = Math.max(0, (p - hold) / (1 - hold))
-      const capped = Math.min(t, 0.58)
+      const capped = Math.min(t, 1)
       const disperse = smoothstep(capped)
 
       els.forEach((el, i) => {
@@ -89,7 +90,7 @@ export function AiToolsSection() {
         const rot = allowRotate ? Number(el.dataset.rot) : 0
         const isHero = el.dataset.hero === 'true'
 
-        const wp = Math.min(1, capped * speed * 1.12)
+        const wp = Math.min(1, capped * speed * 1.05)
         const ease = smoothstep(wp)
 
         let tx: number

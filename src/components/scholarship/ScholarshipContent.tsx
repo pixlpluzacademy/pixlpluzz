@@ -103,7 +103,7 @@ export function ScholarshipContent() {
       data-no-blur-text
     >
       <section
-        className="relative h-[min(58svh,26rem)] overflow-hidden bg-black sm:h-[min(72svh,38rem)] lg:h-auto lg:min-h-[clamp(28rem,70svh,38rem)]"
+        className="relative h-[min(58svh,26rem)] overflow-hidden bg-black md:h-svh"
         data-page-hero
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden>

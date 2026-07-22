@@ -69,15 +69,16 @@ export function ScholarshipSection() {
               scrollTrigger: {
                 trigger: wrapperRef.current,
                 start:   'top top',
-                end:     'bottom bottom',
-                scrub:   0.4,
+                // Fixed scrub distance so tall viewports still reveal all 4 steps
+                end:     '+=640',
+                scrub:   0.45,
                 invalidateOnRefresh: true,
               },
             })
 
             // Sequential step + icon reveals (one by one while section stays stuck)
             steps.forEach((step, i) => {
-              const at = i * 0.6
+              const at = i * 0.55
 
               tl.fromTo(
                 step,
@@ -86,7 +87,7 @@ export function ScholarshipSection() {
                   autoAlpha: 1,
                   y: 0,
                   scale: 1,
-                  duration: 0.5,
+                  duration: 0.45,
                   ease: 'power2.out',
                 },
                 at,
@@ -98,13 +99,16 @@ export function ScholarshipSection() {
                   {
                     autoAlpha: 1,
                     y: 0,
-                    duration: 0.35,
+                    duration: 0.3,
                     ease: 'power2.out',
                   },
                   at + 0.06,
                 )
               }
             })
+
+            // Ensure triggers measure after sticky layout settles
+            requestAnimationFrame(() => ScrollTrigger.refresh())
           }
 
           // ── Mobile / tablet ────────────────────────────────────────

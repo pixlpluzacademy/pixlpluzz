@@ -43,17 +43,17 @@ export function ContactSection() {
     if (!section || !formCard) return
 
     const ctx = gsap.context(() => {
-      gsap.set(formCard, { opacity: 0, x: 40 })
+      gsap.set(formCard, { opacity: 0, y: 28 })
 
       gsap.to(formCard, {
         opacity: 1,
-        x: 0,
+        y: 0,
+        duration: 0.7,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: 1,
+          start: 'top 78%',
+          once: true,
           invalidateOnRefresh: true,
         },
       })

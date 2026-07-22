@@ -1014,13 +1014,14 @@ body::-webkit-scrollbar,
   }
 }
 
-/* AI Tools — content-capped sticky stage (no full-viewport empty space) */
+/* AI Tools — pin against full viewport so scrub distance stays valid on tall monitors;
+   visual cloud stays capped inside the sticky stage */
 .ai-tools-cloud-track {
-  height: calc(min(70svh, 700px) + 180px);
+  height: calc(100svh + 320px);
 }
 
 .ai-tools-sticky-stage {
-  height: min(70svh, 700px);
+  height: 100svh;
 }
 
 .ai-tools-cloud {
@@ -1028,14 +1029,15 @@ body::-webkit-scrollbar,
   height: min(58svh, 560px);
 }
 
-/* Scholarship — capped sticky pin (same idea as AI Tools / About) */
+/* Scholarship — track must exceed viewport or scrub never runs on tall displays;
+   stage height is capped visually while pin distance stays reliable */
 @media (min-width: 1024px) {
   .scholarship-scroll-track {
-    height: calc(min(78svh, 780px) + 480px);
+    height: calc(100svh + 640px);
   }
 
   .scholarship-sticky-stage {
-    height: min(78svh, 780px);
+    height: min(88svh, 920px);
   }
 }
 
