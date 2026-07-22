@@ -123,7 +123,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
   return (
     <section
       ref={rootRef}
-      className="relative overflow-visible bg-black px-10 py-16 text-gray-400 sm:px-16 sm:py-24 lg:px-28 xl:px-32"
+      className="relative overflow-visible bg-black px-6 py-14 text-gray-400 sm:px-10 sm:py-16 lg:px-16 lg:py-20 xl:px-20"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -135,7 +135,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
       />
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-      <div className="relative z-10">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px]">
         <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,24rem)_minmax(36rem,1fr)] lg:gap-5 xl:gap-6">
           {/* Intro — centered on mobile, left on desktop */}
           <div

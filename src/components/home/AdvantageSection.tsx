@@ -261,11 +261,11 @@ export function AdvantageSection() {
   }
 
   return (
-    <section className="advantage-section relative overflow-hidden py-16 sm:py-24">
+    <section className="advantage-section relative overflow-hidden py-14 sm:py-16 lg:py-20">
       <div className="advantage-section-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="advantage-section-grid pointer-events-none absolute inset-0 opacity-[0.04]" aria-hidden />
 
-      <div className="relative mx-auto max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[1500px] overflow-hidden px-4 sm:px-6 lg:px-8">
         <FloatingPixels />
 
         <div className="relative z-10 grid items-center gap-10 lg:grid-cols-[minmax(260px,380px)_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[minmax(280px,400px)_minmax(0,1fr)] xl:gap-14">

@@ -143,7 +143,7 @@ export function AiToolsSection() {
         className="ai-tools-cloud-track relative h-[calc(100svh+220px)] md:h-[calc(100svh+340px)]"
       >
         <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-black px-3 sm:px-4">
-          <div className="relative h-[min(520px,72svh)] w-[min(1100px,100%)] md:h-[min(620px,75svh)]">
+          <div className="relative h-[min(560px,74svh)] w-[min(1100px,100%)] md:h-[min(640px,78svh)] xl:h-[min(720px,80svh)] xl:w-[min(1320px,100%)] 2xl:h-[min(780px,82svh)] 2xl:w-[min(1480px,100%)]">
             {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
               <div
                 key={`${word.text}-${i}`}
