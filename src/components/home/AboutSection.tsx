@@ -45,15 +45,15 @@ const FEATURES = [
   },
 ]
 
-/** Desktop 2×2 slots — only applied from lg up */
+/** Desktop 2×2 slots — only from xl (1280px+) so mid laptops stay stacked */
 const SLOT = [
-  'lg:top-0 lg:left-0 lg:right-[calc(50%+0.625rem)] lg:bottom-[calc(50%+0.625rem)]',
-  'lg:top-0 lg:left-[calc(50%+0.625rem)] lg:right-0 lg:bottom-[calc(50%+0.625rem)]',
-  'lg:top-[calc(50%+0.625rem)] lg:left-0 lg:right-[calc(50%+0.625rem)] lg:bottom-0',
-  'lg:top-[calc(50%+0.625rem)] lg:left-[calc(50%+0.625rem)] lg:right-0 lg:bottom-0',
+  'xl:top-0 xl:left-0 xl:right-[calc(50%+0.625rem)] xl:bottom-[calc(50%+0.625rem)]',
+  'xl:top-0 xl:left-[calc(50%+0.625rem)] xl:right-0 xl:bottom-[calc(50%+0.625rem)]',
+  'xl:top-[calc(50%+0.625rem)] xl:left-0 xl:right-[calc(50%+0.625rem)] xl:bottom-0',
+  'xl:top-[calc(50%+0.625rem)] xl:left-[calc(50%+0.625rem)] xl:right-0 xl:bottom-0',
 ] as const
 
-const EXPANDED = 'lg:inset-0' as const
+const EXPANDED = 'xl:inset-0' as const
 
 const cardContainerVariants = {
   hidden: {},
@@ -67,7 +67,7 @@ const cardVariants = {
 
 function canHoverExpand() {
   if (typeof window === 'undefined') return false
-  return window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches
+  return window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1280px)').matches
 }
 
 export function AboutSection({ courses: _courses }: { courses: Course[] }) {
@@ -76,7 +76,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
   const siteReady = useSiteReady()
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 1024px)')
+    const mq = window.matchMedia('(min-width: 1280px)')
     const clear = () => {
       if (!mq.matches) setActive(null)
     }
@@ -123,7 +123,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
   return (
     <section
       ref={rootRef}
-      className="relative overflow-visible bg-black px-6 py-14 text-gray-400 sm:px-10 sm:py-16 lg:px-16 lg:py-20 xl:px-20"
+      className="relative overflow-x-clip overflow-y-visible bg-black py-[clamp(64px,6vw,96px)] text-gray-400"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -135,14 +135,14 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
       />
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px]">
-        <div className="grid items-stretch gap-8 lg:grid-cols-[minmax(0,24rem)_minmax(36rem,1fr)] lg:gap-5 xl:gap-6">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+        <div className="grid items-stretch gap-8 xl:grid-cols-[420px_minmax(0,1fr)] xl:gap-10">
           {/* Intro — centered on mobile, left on desktop */}
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 flex-col items-center text-center lg:min-h-[24rem] lg:items-start lg:text-left"
+            className="flex w-full min-w-0 flex-col items-center text-center xl:h-[clamp(430px,31vw,500px)] xl:items-start xl:text-left"
           >
-            <div className="flex w-full max-w-lg flex-col items-center text-center lg:max-w-none lg:items-start lg:text-left">
+            <div className="flex w-full max-w-[420px] flex-col items-center text-center xl:items-start xl:text-left">
               <h2 className="relative mb-6 w-full font-black uppercase leading-[0.88] tracking-tight sm:mb-8">
                 <PixelTrail />
                 <span className="about-hero-pop block text-[clamp(2rem,7vw,3.75rem)] text-white">
@@ -169,7 +169,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
               <motion.div
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.2 }}
-                className="about-reveal mt-8 flex w-full justify-center lg:mt-10 lg:justify-start"
+                className="about-reveal mt-8 flex w-full justify-center xl:mt-10 xl:justify-start"
               >
                 <Link
                   href="/about"
@@ -183,11 +183,11 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
           </div>
 
           {/*
-            Mobile: stacked cards one-by-one
-            Desktop (lg+): original 2×2 absolute hover grid
+            Below 1280px: stacked cards
+            xl+: original 2×2 absolute hover grid
           */}
           <motion.div
-            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 lg:block lg:min-h-[24rem]"
+            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 xl:block xl:h-[clamp(430px,31vw,500px)]"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -206,12 +206,12 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                   transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className={cn(
                     'relative overflow-visible',
-                    'lg:absolute lg:will-change-[top,right,bottom,left]',
-                    'lg:transition-[top,right,bottom,left,opacity,transform] lg:duration-[400ms] lg:ease-[cubic-bezier(0.25,0.1,0.25,1)]',
+                    'xl:absolute xl:will-change-[top,right,bottom,left]',
+                    'xl:transition-[top,right,bottom,left,opacity,transform] xl:duration-[400ms] xl:ease-[cubic-bezier(0.25,0.1,0.25,1)]',
                     isExpanded ? EXPANDED : SLOT[i],
-                    isExpanded && 'lg:z-30',
-                    isHidden && 'lg:pointer-events-none lg:z-0 lg:scale-95 lg:opacity-0',
-                    !isHidden && !isExpanded && 'lg:z-10',
+                    isExpanded && 'xl:z-30',
+                    isHidden && 'xl:pointer-events-none xl:z-0 xl:scale-95 xl:opacity-0',
+                    !isHidden && !isExpanded && 'xl:z-10',
                   )}
                   onMouseEnter={() => {
                     if (canHoverExpand()) setActive(i)
@@ -219,7 +219,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                 >
                   <div
                     className={cn(
-                      'pointer-events-none absolute -inset-6 z-0 hidden rounded-sm transition-opacity duration-[400ms] lg:block',
+                      'pointer-events-none absolute -inset-6 z-0 hidden rounded-sm transition-opacity duration-[400ms] xl:block',
                       isExpanded ? 'opacity-100' : 'opacity-0',
                     )}
                     style={{
@@ -233,18 +233,18 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                   <article
                     className={cn(
                       'relative z-10 grid w-full overflow-hidden border border-white/8 bg-[#141414]',
-                      'grid-cols-1 lg:h-full lg:grid-cols-2',
+                      'grid-cols-1 xl:h-full xl:grid-cols-2',
                       'transition-[border-color,box-shadow] duration-500',
                       isExpanded &&
-                        'lg:border-blue-400/60 lg:shadow-[0_0_0_1px_rgba(96,165,250,0.35),0_0_32px_rgba(96,165,250,0.55),0_0_72px_rgba(59,130,246,0.4),0_24px_48px_rgba(0,0,0,0.5)]',
+                        'xl:border-blue-400/60 xl:shadow-[0_0_0_1px_rgba(96,165,250,0.35),0_0_32px_rgba(96,165,250,0.55),0_0_72px_rgba(59,130,246,0.4),0_24px_48px_rgba(0,0,0,0.5)]',
                     )}
                   >
-                    <div className="relative aspect-[16/10] min-h-0 overflow-hidden lg:aspect-auto lg:h-full">
+                    <div className="relative aspect-[16/10] min-h-0 overflow-hidden xl:aspect-auto xl:h-full">
                       <Image
                         src={image}
                         alt={imageAlt}
                         fill
-                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        sizes="(max-width: 1280px) 100vw, 40vw"
                         className="object-cover object-center"
                       />
                     </div>
@@ -253,9 +253,9 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                       className={cn(
                         'flex min-w-0 flex-col',
                         'items-center px-4 py-4 text-center',
-                        'lg:h-full lg:items-stretch lg:justify-center lg:overflow-hidden lg:text-left',
+                        'xl:h-full xl:items-stretch xl:justify-center xl:overflow-hidden xl:text-left',
                         'transition-[padding] duration-400',
-                        isExpanded ? 'lg:px-6 lg:py-6 xl:px-8 xl:py-8' : 'lg:px-3 lg:py-3 xl:px-3.5 xl:py-3.5',
+                        isExpanded ? 'xl:px-6 xl:py-6 2xl:px-8 2xl:py-8' : 'xl:px-3 xl:py-3 2xl:px-3.5 2xl:py-3.5',
                       )}
                     >
                       <div className="flex w-full min-w-0 flex-col gap-2">
@@ -263,15 +263,15 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                           className={cn(
                             'w-full shrink-0 font-black tracking-tight text-green-accent transition-[font-size] duration-400',
                             isExpanded
-                              ? 'text-xl leading-[1.2] lg:text-3xl xl:text-4xl'
-                              : 'text-[clamp(0.95rem,3.8vw,1.15rem)] leading-none lg:text-lg xl:text-xl lg:leading-[1.15]',
+                              ? 'text-xl leading-[1.2] xl:text-3xl 2xl:text-4xl'
+                              : 'text-[clamp(0.95rem,3.8vw,1.15rem)] leading-none xl:text-lg 2xl:text-xl xl:leading-[1.15]',
                           )}
                         >
                           {/* Phone: one line · Desktop: two lines */}
-                          <span className="whitespace-nowrap lg:hidden">
+                          <span className="whitespace-nowrap xl:hidden">
                             {titleLines.join(' ')}
                           </span>
-                          <span className="hidden lg:block">
+                          <span className="hidden xl:block">
                             <span className="block">{titleLines[0]}</span>
                             <span className="block">{titleLines[1]}</span>
                           </span>
@@ -279,7 +279,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                         <p
                           className={cn(
                             'about-card-copy m-0 w-full shrink-0 text-justify leading-relaxed text-gray-400 transition-[font-size] duration-400',
-                            isExpanded ? 'text-sm lg:text-base' : 'text-sm lg:text-xs xl:text-sm',
+                            isExpanded ? 'text-sm xl:text-base' : 'text-sm xl:text-xs 2xl:text-sm',
                           )}
                         >
                           {desc}
@@ -290,8 +290,8 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                             'about-card-copy m-0 w-full text-justify leading-relaxed text-gray-400',
                             'text-sm',
                             isExpanded
-                              ? 'mt-2 max-h-none opacity-100 lg:max-h-48 lg:text-base lg:opacity-100'
-                              : 'mt-2 max-h-none opacity-100 lg:mt-0 lg:hidden',
+                              ? 'mt-2 max-h-none opacity-100 xl:max-h-48 xl:text-base xl:opacity-100'
+                              : 'mt-2 max-h-none opacity-100 xl:mt-0 xl:hidden',
                           )}
                         >
                           {more}

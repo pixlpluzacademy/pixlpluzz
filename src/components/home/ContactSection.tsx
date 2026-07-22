@@ -72,8 +72,9 @@ export function ContactSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-black px-4 py-16 sm:px-6 sm:py-20 lg:px-12 lg:py-24"
+      className="relative overflow-x-clip bg-black py-[clamp(64px,6vw,96px)]"
     >
+      <div className="mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
       {/* Image framed to About-style content width — black margins separate it from the body */}
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
@@ -212,6 +213,7 @@ export function ContactSection() {
             )}
           </div>
         </div>
+      </div>
       </div>
     </section>
   )

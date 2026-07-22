@@ -45,7 +45,7 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
+    <section id="faq" className="relative overflow-x-clip bg-black py-[clamp(64px,6vw,96px)]">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <Image
           src="/images/background.jpeg"
@@ -57,7 +57,8 @@ export function FAQSection() {
         />
         <div className="absolute inset-0 bg-linear-to-l from-black/15 via-black/55 to-black" />
       </div>
-      <div className="relative z-10 mx-auto max-w-3xl">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+      <div className="mx-auto max-w-3xl">
         <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             <PixelTrail />
@@ -136,6 +137,7 @@ export function FAQSection() {
             </motion.div>
           ))}
         </motion.div>
+      </div>
       </div>
     </section>
   )

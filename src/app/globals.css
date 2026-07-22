@@ -995,7 +995,7 @@ body::-webkit-scrollbar,
 
 /* ─── Advantage — interactive editorial bento ─────────────── */
 .advantage-section {
-  background-color: #000000;
+  background-color: #030712;
 }
 
 .advantage-section-bg {
@@ -1010,7 +1010,7 @@ body::-webkit-scrollbar,
       rgba(84, 227, 69, 0.05),
       transparent 28%
     ),
-    #000000;
+    #030712;
 }
 
 .advantage-section-grid {

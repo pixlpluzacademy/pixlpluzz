@@ -46,7 +46,10 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-black px-4 py-14 sm:py-16 lg:py-20">
+    <section
+      ref={sectionRef}
+      className="relative overflow-x-clip bg-[#0a0a0a] py-[clamp(64px,6vw,96px)]"
+    >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -54,8 +57,8 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto w-full max-w-[1500px]">
-        <div className="mb-10 text-center sm:mb-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
+        <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight">
             <PixelTrail />
             <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.5rem)]">

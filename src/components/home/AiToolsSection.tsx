@@ -18,7 +18,7 @@ function layoutScales() {
     return { s: 1, fs: 1, allowRotate: true }
   }
   const w = window.innerWidth
-  const s = Math.min(1, w / 1150)
+  const s = Math.min(1.18, Math.max(0.7, w / 1350))
   // Extra-small type on phones so flattened labels don’t collide
   const fs =
     w < 640
@@ -140,10 +140,10 @@ export function AiToolsSection() {
 
       <div
         ref={trackRef}
-        className="ai-tools-cloud-track relative h-[calc(100svh+220px)] md:h-[calc(100svh+340px)]"
+        className="ai-tools-cloud-track relative h-[calc(100svh+140px)] max-h-[1120px]"
       >
         <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-black px-3 sm:px-4">
-          <div className="relative h-[min(560px,74svh)] w-[min(1100px,100%)] md:h-[min(640px,78svh)] xl:h-[min(720px,80svh)] xl:w-[min(1320px,100%)] 2xl:h-[min(780px,82svh)] 2xl:w-[min(1480px,100%)]">
+          <div className="relative h-[min(760px,78svh)] w-[min(1400px,94vw)]">
             {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
               <div
                 key={`${word.text}-${i}`}

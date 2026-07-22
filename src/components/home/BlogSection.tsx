@@ -22,7 +22,7 @@ const blogCardVariants = {
 
 export function BlogSection({ blogs }: { blogs: Blog[] }) {
   return (
-    <section className="relative bg-[#0a0a0a] py-16 sm:py-24 px-4 overflow-hidden">
+    <section className="relative overflow-x-clip bg-[#0a0a0a] py-[clamp(64px,6vw,96px)]">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -30,7 +30,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
         <div className="mb-12 text-center sm:mb-14">
           <h2 className="relative mx-auto mb-4 max-w-3xl text-center font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
             <PixelTrail />

@@ -199,7 +199,7 @@ export function MentorsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-x-clip overflow-y-visible bg-black pb-14 pt-4 sm:pb-16 sm:pt-5 lg:pb-20"
+      className="relative overflow-x-clip overflow-y-visible border-t border-white/8 bg-black pt-4 pb-[clamp(64px,6vw,96px)] sm:pt-5"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -224,7 +224,7 @@ export function MentorsSection() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-12">
         <div
           ref={gridRef}
           className="grid grid-cols-1 gap-x-8 gap-y-16 pt-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-20 sm:pt-10 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16 lg:pt-12 xl:grid-cols-5 xl:gap-x-8 xl:gap-y-14"
