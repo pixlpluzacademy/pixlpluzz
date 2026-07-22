@@ -37,13 +37,15 @@ function smoothstep(t: number) {
 
 export function AiToolsSection() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
   const wordElsRef = useRef<(HTMLDivElement | null)[]>([])
   const lenis = useLenis()
 
   useEffect(() => {
     const track = trackRef.current
+    const stage = stageRef.current
     const els = wordElsRef.current.filter(Boolean) as HTMLDivElement[]
-    if (!track || !els.length) return
+    if (!track || !stage || !els.length) return
 
     let ticking = false
 
@@ -66,8 +68,9 @@ export function AiToolsSection() {
     const render = () => {
       ticking = false
       const rect = track.getBoundingClientRect()
-      const total = track.offsetHeight - window.innerHeight
-      const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0
+      // Use sticky stage height (not 100vh) so capped stages still drive progress
+      const total = Math.max(1, track.offsetHeight - stage.offsetHeight)
+      const p = Math.min(1, Math.max(0, -rect.top / total))
       const { s, fs, allowRotate } = layoutScales()
       syncDatasets(allowRotate)
 
@@ -139,7 +142,10 @@ export function AiToolsSection() {
       <h2 className="sr-only">AI Tools</h2>
 
       <div ref={trackRef} className="ai-tools-cloud-track relative">
-        <div className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black px-3 sm:px-4">
+        <div
+          ref={stageRef}
+          className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black px-3 sm:px-4"
+        >
           <div className="ai-tools-cloud relative">
             {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
               <div

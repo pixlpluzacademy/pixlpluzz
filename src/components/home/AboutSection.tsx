@@ -140,7 +140,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
           {/* Intro — centered on mobile, left on desktop */}
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 flex-col items-center text-center xl:items-start xl:text-left"
+            className="flex h-full w-full min-w-0 flex-col items-center text-center xl:items-start xl:justify-start xl:text-left"
           >
             <div className="flex w-full min-w-0 flex-col items-center text-center xl:items-start xl:text-left">
               <h2 className="relative mb-6 w-full font-black uppercase leading-[0.88] tracking-tight sm:mb-8">
@@ -184,10 +184,10 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
 
           {/*
             Below 1280px: stacked cards
-            xl+: original 2×2 absolute hover grid
+            xl+: 2×2 absolute hover grid — height follows the text column (no aspect-ratio)
           */}
           <motion.div
-            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 xl:aspect-[16/11] xl:block xl:h-auto xl:min-h-0"
+            className="relative flex w-full flex-col gap-4 overflow-visible sm:gap-5 xl:h-full xl:min-h-0 xl:block"
             variants={cardContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -239,7 +239,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                         'xl:border-blue-400/60 xl:shadow-[0_0_0_1px_rgba(96,165,250,0.35),0_0_32px_rgba(96,165,250,0.55),0_0_72px_rgba(59,130,246,0.4),0_24px_48px_rgba(0,0,0,0.5)]',
                     )}
                   >
-                    <div className="relative aspect-[16/10] min-h-0 overflow-hidden xl:aspect-auto xl:h-full">
+                    <div className="relative aspect-[16/10] min-h-0 overflow-hidden xl:aspect-auto xl:h-full xl:min-h-0">
                       <Image
                         src={image}
                         alt={imageAlt}
