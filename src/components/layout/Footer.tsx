@@ -48,7 +48,7 @@ const COURSES = [
 export function Footer() {
   return (
     <footer className="bg-black text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="site-container py-12 sm:py-16">
         {/* Brand column gets more room; link columns share the rest evenly so
             the visual gutters between all four columns look consistent */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-10 text-center sm:text-left">
@@ -148,7 +148,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-center gap-2">
+        <div className="site-container flex flex-col items-center justify-center gap-2 py-4 sm:flex-row">
           <p className="text-xs text-gray-600">Pixlpluz &copy; {new Date().getFullYear()}</p>
           {/* <p className="text-xs text-gray-600">
             Built by{' '}

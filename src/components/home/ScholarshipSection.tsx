@@ -63,8 +63,7 @@ export function ScholarshipSection() {
           const icons = iconRefs.current.filter((el): el is HTMLDivElement => el !== null)
 
           // ── Desktop ────────────────────────────────────────────────
-          // CSS sticky + stable svh track (no JS height from innerHeight —
-          // mobile URL-bar resize was rewriting height mid-scroll and jumping).
+          // CSS sticky + capped stage (no JS height from innerHeight)
           if (isDesktop) {
             const tl = gsap.timeline({
               scrollTrigger: {
@@ -110,8 +109,6 @@ export function ScholarshipSection() {
 
           // ── Mobile / tablet ────────────────────────────────────────
           // No sticky needed — steps stack vertically in natural flow.
-          // Each step gets its own scrub ScrollTrigger that fires as it
-          // enters the viewport, producing the "one by one" reveal.
           if (isMobile) {
             steps.forEach((step, i) => {
               gsap.fromTo(
@@ -153,16 +150,9 @@ export function ScholarshipSection() {
   }, [])
 
   return (
-    // Outer scroll-track wrapper.
-    // Desktop: fixed svh track so sticky scrub distance stays stable while scrolling.
-    // Mobile: natural height (no sticky pin).
-    <div ref={wrapperRef} className="relative lg:h-[205svh]">
-
-      {/*
-        lg:sticky lg:top-0 lg:h-svh  — CSS pin (React-safe, no DOM moves)
-        py-24 lg:py-0                   — normal padding on mobile; centered via flex on desktop
-      */}
-      <section className="lg:sticky lg:top-0 lg:h-svh relative bg-black py-16 sm:py-24 lg:py-[clamp(2rem,6vh,4.5rem)] px-4 lg:flex lg:flex-col lg:justify-center overflow-hidden">
+    // Desktop: capped sticky stage + scrub track. Mobile: natural height.
+    <div ref={wrapperRef} className="scholarship-scroll-track relative">
+      <section className="scholarship-sticky-stage relative overflow-hidden bg-black py-[clamp(64px,6vw,96px)] lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center lg:py-[clamp(2rem,4vh,3.5rem)]">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src="/images/bg-scholarship-2.jpeg"
@@ -174,23 +164,23 @@ export function ScholarshipSection() {
           />
           <div className="absolute inset-0 bg-black/75" />
         </div>
-        <div className="relative z-10 mx-auto max-w-7xl w-full text-center">
+        <div className="site-container relative z-10 w-full text-center">
 
           {/* Heading — always visible; stays fixed while steps animate */}
-          <h2 className="mb-6 font-black uppercase leading-[0.92] tracking-tight sm:mb-8 text-[clamp(2.25rem,7vw,4.75rem)]">
+          <h2 className="mb-5 font-black uppercase leading-[0.92] tracking-tight sm:mb-6 text-[clamp(2rem,6.5vw,4.25rem)]">
             <span className="text-white">Merit Based</span>{' '}
             <span className="text-green-accent">Scholarship</span>
           </h2>
 
-          <p className="max-w-2xl mx-auto text-center text-gray-400 mb-3">
+          <p className="mx-auto mb-3 max-w-[42rem] text-center text-gray-400">
           As we begin, we're opening doors not just to a new batch, but to opportunity. Our scholarship fund is here to make sure talent, not tuition, decides who gets to build a career in AI. 
           </p>
-          <p className="max-w-2xl mx-auto text-center text-gray-400 mb-10">
+          <p className="mx-auto mb-8 max-w-[42rem] text-center text-gray-400">
           Limited seats. Limited time. Unlimited potential.
           </p>
 
-          <div className="mb-16">
-            <div className="inline-block hover:scale-105 active:scale-95 transition-transform duration-150">
+          <div className="mb-10 sm:mb-12">
+            <div className="inline-block transition-transform duration-150 hover:scale-105 active:scale-95">
               <Link
                 href="/scholarship"
                 className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest pixel-corner-sm"
@@ -202,7 +192,7 @@ export function ScholarshipSection() {
 
           {/* Steps */}
           <div className="relative">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="grid gap-[clamp(1rem,1.5vw,1.75rem)] sm:grid-cols-2 lg:grid-cols-4">
               {STEPS.map((step, i) => (
                 <div
                   key={step.num}
@@ -210,13 +200,12 @@ export function ScholarshipSection() {
                   className="relative flex flex-col items-center text-center lg:items-start lg:text-left"
                   style={{ opacity: 0 }}
                 >
-                  {/* Step number + icon — flat, no circle, no arrow */}
                   <div
                     ref={(el) => { iconRefs.current[i] = el }}
-                    className="mb-5 flex flex-col items-center lg:items-start gap-3"
+                    className="mb-5 flex flex-col items-center gap-3 lg:items-start"
                     style={{ opacity: 0 }}
                   >
-                    <span className="font-mono text-xs tracking-[0.22em] text-white/40 uppercase select-none">
+                    <span className="font-mono text-xs uppercase tracking-[0.22em] text-white/40 select-none">
                       {step.num}
                     </span>
                     <Image
@@ -231,13 +220,12 @@ export function ScholarshipSection() {
                   <h3 className="mb-2 font-black leading-snug text-green-accent">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-center text-gray-400 leading-relaxed lg:text-left lg:text-justify">
+                  <p className="text-center text-sm leading-relaxed text-gray-400 lg:text-left lg:text-justify">
                     {step.desc}
                   </p>
                 </div>
               ))}
             </div>
-
           </div>
         </div>
       </section>

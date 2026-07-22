@@ -40,7 +40,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
     <div className="blog-nova bg-black" data-no-blur-text>
       {/* ── Editorial hero ── */}
       <header
-        className="relative overflow-hidden border-b border-white/8 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8"
+        className="relative overflow-hidden border-b border-white/8 pb-12 pt-28 sm:pb-16 sm:pt-32"
         data-page-hero
       >
         <div
@@ -51,7 +51,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
           }}
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="site-container-wide relative z-10">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <h1 className="relative font-black uppercase leading-[0.9] tracking-tight">
               <PixelTrail />
@@ -100,7 +100,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <div className="site-container-wide py-[clamp(64px,6vw,96px)]">
         {filtered.length === 0 ? (
           <p className="text-center text-white/45">
             No articles in this category yet.

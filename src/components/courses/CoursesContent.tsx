@@ -73,7 +73,7 @@ export function CoursesContent({ courses }: CoursesContentProps) {
         ref={heroRef}
         data-page-hero
         data-nav-solid
-        className="relative flex min-h-[clamp(22rem,58svh,34rem)] flex-col justify-end overflow-hidden border-b border-white/10 px-4 pb-14 pt-28 sm:px-6 sm:pb-16 md:pt-32 lg:px-12"
+        className="relative flex min-h-[clamp(22rem,58svh,34rem)] flex-col justify-end overflow-hidden border-b border-white/10 pb-14 pt-28 sm:pb-16 md:pt-32"
       >
         <div
           ref={parallaxRef}
@@ -91,7 +91,7 @@ export function CoursesContent({ courses }: CoursesContentProps) {
         </div>
         <div className="absolute inset-0 bg-black/65" aria-hidden />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <div className="site-container-wide relative z-10 w-full">
           <h1 className="relative font-black uppercase leading-[0.9] tracking-tight">
             <PixelTrail />
             <span className="block text-[clamp(2.75rem,10vw,7.5rem)]">
@@ -107,10 +107,10 @@ export function CoursesContent({ courses }: CoursesContentProps) {
       </section>
 
       {/* Cards */}
-      <section className="bg-black px-4 py-12 md:py-16">
+      <section className="bg-black py-[clamp(64px,6vw,96px)]">
         <div
           ref={gridRef}
-          className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-2 xl:grid-cols-4"
+          className="site-container-wide grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
         >
           {courses.map((course) => (
             <CourseCard key={course.id} course={course} />

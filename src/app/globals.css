@@ -1014,18 +1014,29 @@ body::-webkit-scrollbar,
   }
 }
 
-/* AI Tools — capped sticky stage (no full-viewport sticky height) */
+/* AI Tools — content-capped sticky stage (no full-viewport empty space) */
 .ai-tools-cloud-track {
-  height: calc(min(82svh, 820px) + 160px);
+  height: calc(min(70svh, 700px) + 180px);
 }
 
 .ai-tools-sticky-stage {
-  height: min(82svh, 820px);
+  height: min(70svh, 700px);
 }
 
 .ai-tools-cloud {
-  width: min(90vw, 1500px);
-  height: min(68svh, 650px);
+  width: min(90vw, 1400px);
+  height: min(58svh, 560px);
+}
+
+/* Scholarship — capped sticky pin (same idea as AI Tools / About) */
+@media (min-width: 1024px) {
+  .scholarship-scroll-track {
+    height: calc(min(78svh, 780px) + 480px);
+  }
+
+  .scholarship-sticky-stage {
+    height: min(78svh, 780px);
+  }
 }
 
 /* ─── Advantage — interactive editorial bento ─────────────── */

@@ -58,9 +58,9 @@ export function FAQSection() {
         <div className="absolute inset-0 bg-linear-to-l from-black/15 via-black/55 to-black" />
       </div>
       <div className="site-container relative z-10">
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-12 text-center sm:mb-14">
-          <h2 className="relative mb-4 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+      <div className="mx-auto w-full max-w-[min(100%,820px)]">
+        <div className="mb-8 text-center sm:mb-10">
+          <h2 className="relative mb-3 font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,6vw,3.5rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             <PixelTrail />
             <span className="text-green-accent">
               FAQ&apos;
@@ -68,7 +68,7 @@ export function FAQSection() {
             </span>
           </h2>
           <AnimatedSection variant="fadeUp" delay={0.1}>
-            <p className="mx-auto max-w-2xl text-justify text-gray-400 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] sm:text-center">
+            <p className="mx-auto max-w-[42rem] text-justify text-gray-400 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] sm:text-center">
               Quick answers on courses, AI tools, scholarships, and placement support so you know
               what to expect before you enrol at Pixl Pluz.
             </p>

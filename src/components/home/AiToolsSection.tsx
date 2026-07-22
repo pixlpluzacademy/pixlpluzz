@@ -144,9 +144,9 @@ export function AiToolsSection() {
       <div ref={trackRef} className="ai-tools-cloud-track relative">
         <div
           ref={stageRef}
-          className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black px-3 sm:px-4"
+          className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black"
         >
-          <div className="ai-tools-cloud relative">
+          <div className="ai-tools-cloud relative mx-auto">
             {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
               <div
                 key={`${word.text}-${i}`}

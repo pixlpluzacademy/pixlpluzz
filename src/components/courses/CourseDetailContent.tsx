@@ -301,7 +301,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       {/* ── Hero: full-bleed visual + composition ── */}
       <section
         data-page-hero
-        className="relative min-h-[min(92svh,920px)] overflow-hidden"
+        className="relative min-h-[clamp(32rem,70svh,48rem)] overflow-hidden"
       >
         <div
           ref={heroImgRef}
@@ -319,7 +319,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
           <div className="absolute inset-0" style={{ background: 'rgba(0, 0, 0, 0.88)' }} />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[min(92svh,920px)] max-w-7xl flex-col justify-end px-4 pb-8 pt-28 sm:px-6 lg:px-8 lg:pb-10 lg:pt-32">
+        <div className="site-container relative z-10 flex min-h-[clamp(32rem,70svh,48rem)] flex-col justify-end pb-8 pt-28 lg:pb-10 lg:pt-32">
           <Link
             href="/courses"
             className="course-hero-fade course-body mb-10 inline-flex w-fit items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] transition-colors hover:text-green-accent"
@@ -382,9 +382,9 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       <CertificatesMarquee />
 
       {/* ── Curriculum + AI tools falling stack ── */}
-      <section className="course-section-surface relative py-20 lg:py-24">
+      <section className="course-section-surface relative py-[clamp(64px,6vw,96px)]">
         <div className="course-section-glow pointer-events-none absolute inset-0" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="site-container-wide relative z-10">
           <SectionHeader
             className="course-reveal mb-10"
             align="center"
@@ -402,8 +402,8 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       </section>
 
       {/* ── Audience ── */}
-      <section className="course-section-surface relative border-t border-[color:var(--card-border)] py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="course-section-surface relative border-t border-[color:var(--card-border)] py-[clamp(64px,6vw,96px)]">
+        <div className="site-container">
           <SectionHeader
             className="course-reveal"
             title="WHO THIS COURSE IS FOR ?"
@@ -431,7 +431,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section className="course-reveal relative overflow-hidden border-t border-[color:var(--card-border)] py-20">
+      <section className="course-reveal relative overflow-hidden border-t border-[color:var(--card-border)] py-[clamp(64px,6vw,96px)]">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src="/images/bgg.jpeg"
@@ -442,7 +442,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0, 0, 0, 0.72)' }} />
         </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="site-container relative z-10">
           <div className="course-card-surface overflow-hidden border p-6 backdrop-blur-md pixel-corner sm:p-12 lg:p-14">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-green-accent">
               Start your learning journey

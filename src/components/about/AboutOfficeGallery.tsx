@@ -362,7 +362,7 @@ export function AboutOfficeGallery() {
     >
       <AboutHeroBackground />
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-10 sm:px-6 sm:py-14 lg:px-16 lg:py-16 xl:px-20">
+      <div className="site-container-wide relative z-10 py-10 sm:py-14 lg:py-16">
         <div className="grid items-stretch gap-5 sm:gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-10 xl:gap-12">
           <div className="relative min-w-0">
             <div

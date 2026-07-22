@@ -13,7 +13,7 @@ const CTA_PIXELS = [
 
 export function CTASection() {
   return (
-    <section className="relative bg-black py-16 sm:py-24 px-4 overflow-hidden">
+    <section className="relative overflow-hidden bg-black py-[clamp(64px,6vw,96px)]">
       <div className="pointer-events-none absolute inset-0 pixel-dot-bg opacity-15" aria-hidden />
       <FloatingPixels pixels={CTA_PIXELS} />
 
@@ -26,7 +26,8 @@ export function CTASection() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl text-center" data-no-blur-text>
+      <div className="site-container relative z-10">
+        <div className="mx-auto max-w-3xl text-center" data-no-blur-text>
         <h2 className="mb-6 text-4xl font-black leading-tight text-green-accent sm:text-5xl">
           Pass the Test. Show Your Work.<br />Start Your Career.
         </h2>
@@ -59,6 +60,7 @@ export function CTASection() {
             </motion.div>
           </div>
         </AnimatedSection>
+        </div>
       </div>
     </section>
   )

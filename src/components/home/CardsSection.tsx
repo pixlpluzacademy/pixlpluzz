@@ -129,9 +129,9 @@ export function CardsSection() {
 
   // Pin only on lg+ with a fixed scrub distance — mobile/tablet flow naturally
   return (
-    <section ref={sectionRef} className="relative bg-navy-900 lg:h-[calc(100svh+480px)]">
-      <div className="flex items-center overflow-hidden py-14 sm:py-20 px-4 lg:sticky lg:top-0 lg:h-svh lg:py-16">
-        <div className="mx-auto max-w-7xl w-full">
+    <section ref={sectionRef} className="relative bg-navy-900 lg:h-[calc(38rem+480px)]">
+      <div className="flex items-center overflow-hidden py-14 sm:py-20 lg:sticky lg:top-0 lg:h-[clamp(28rem,70svh,38rem)] lg:py-16">
+        <div className="site-container-wide w-full">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {CARDS.map((card) => (
               <div key={card.title} className="card-fan-item">

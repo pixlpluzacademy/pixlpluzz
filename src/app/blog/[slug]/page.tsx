@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="min-h-screen bg-black pt-24" data-no-blur-text>
-      <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="site-container pb-20">
         <Link
           href="/blog"
           className="mb-10 inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.2em] text-green-accent transition-colors hover:text-white"

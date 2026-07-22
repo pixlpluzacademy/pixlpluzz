@@ -103,7 +103,7 @@ export function ScholarshipContent() {
       data-no-blur-text
     >
       <section
-        className="relative h-[min(58svh,26rem)] overflow-hidden bg-black sm:h-[min(72svh,38rem)] lg:h-auto lg:min-h-svh"
+        className="relative h-[min(58svh,26rem)] overflow-hidden bg-black sm:h-[min(72svh,38rem)] lg:h-auto lg:min-h-[clamp(28rem,70svh,38rem)]"
         data-page-hero
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden>
@@ -135,8 +135,8 @@ export function ScholarshipContent() {
         </h1>
       </section>
 
-      <section className="border-t border-white/8 bg-black px-4 py-16 sm:px-6 sm:py-28 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <section className="border-t border-white/8 bg-black py-[clamp(64px,6vw,96px)]">
+        <div className="site-container-wide">
           <h2 className="sch-apply-heading mb-10 text-[clamp(2rem,9.5vw,5.5rem)] font-black uppercase leading-[1.05] tracking-tight text-green-accent sm:mb-16 sm:leading-[0.92]">
             {APPLY_WORDS.map((word) => (
               <span
@@ -178,7 +178,7 @@ export function ScholarshipContent() {
 
       <section
         id="apply"
-        className="relative overflow-hidden border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        className="relative overflow-hidden border-t border-white/8 py-[clamp(64px,6vw,96px)]"
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
@@ -190,24 +190,26 @@ export function ScholarshipContent() {
           />
           <div className="absolute inset-0 bg-black/55" />
         </div>
-        <div className="relative z-10 mx-auto max-w-5xl overflow-hidden border border-white/10 bg-black/50 px-8 py-12 text-center backdrop-blur-md pixel-corner sm:px-12 sm:py-14 lg:max-w-7xl lg:px-14">
-          <h2 className="mb-4 text-3xl font-black text-white sm:text-4xl">
-            Your Future Shouldn't Wait for Permission.
-          </h2>
-          <p className="mb-10 text-white/80">
-            Fill out the form and we will contact you with the scholarship test
-            schedule.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <PixelButton href="/contact" variant="green" size="lg">
-              Apply Now
-            </PixelButton>
-            <Link
-              href="/courses"
-              className="text-sm font-semibold uppercase tracking-widest text-white/70 transition-colors hover:text-white"
-            >
-              View courses →
-            </Link>
+        <div className="site-container relative z-10">
+          <div className="overflow-hidden border border-white/10 bg-black/50 px-8 py-12 text-center backdrop-blur-md pixel-corner sm:px-12 sm:py-14 lg:px-14">
+            <h2 className="mb-4 text-3xl font-black text-white sm:text-4xl">
+              Your Future Shouldn&apos;t Wait for Permission.
+            </h2>
+            <p className="mb-10 text-white/80">
+              Fill out the form and we will contact you with the scholarship test
+              schedule.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <PixelButton href="/contact" variant="green" size="lg">
+                Apply Now
+              </PixelButton>
+              <Link
+                href="/courses"
+                className="text-sm font-semibold uppercase tracking-widest text-white/70 transition-colors hover:text-white"
+              >
+                View courses →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

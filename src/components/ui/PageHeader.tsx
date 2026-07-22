@@ -26,7 +26,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   const titleColor = greenTitle ? 'text-green-accent' : 'text-white'
   return (
-    <section className="relative overflow-hidden bg-black px-4 pb-10 pt-28 sm:pb-12" data-page-hero>
+    <section className="relative overflow-hidden bg-black pb-10 pt-28 sm:pb-12" data-page-hero>
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-15" aria-hidden />
       {noise && <NoiseParticles />}
       <FloatingPixels pixels={[
@@ -34,7 +34,7 @@ export function PageHeader({
         { size: 6,  top: '60%', right: '8%', delay: '0.8s', color: 'blue',  speed: 'normal' },
         { size: 10, top: '20%', right: '15%',delay: '0.4s', color: 'white', speed: 'fast' },
       ]} />
-      <div className="relative z-10 mx-auto max-w-7xl text-center">
+      <div className="site-container relative z-10 text-center">
         {breadcrumb && (
           <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">
             Home / {breadcrumb}

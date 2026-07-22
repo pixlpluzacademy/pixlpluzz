@@ -75,7 +75,7 @@ export function ContactSection() {
       className="relative overflow-x-clip bg-black py-[clamp(64px,6vw,96px)]"
     >
       <div className="site-container">
-      {/* Image framed to About-style content width — black margins separate it from the body */}
+      {/* Image framed to content width — form height drives the block (no forced min-height) */}
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
@@ -83,24 +83,24 @@ export function ContactSection() {
             alt=""
             fill
             className="object-cover object-center"
-            sizes="(min-width: 1024px) calc(100vw - 6rem), (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
+            sizes="(min-width: 1024px) 92vw, 100vw"
             priority={false}
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
 
-        <div className="relative z-10 grid items-stretch gap-10 p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10 xl:gap-16">
-          {/* Left — image only (empty column for balance) */}
-          <div className="hidden min-h-[22rem] lg:block" aria-hidden />
+        <div className="relative z-10 grid items-stretch gap-8 p-5 sm:p-7 lg:grid-cols-2 lg:gap-[clamp(28px,2.5vw,56px)] lg:p-8 xl:p-10">
+          {/* Left — image only (empty column for balance; height follows the form) */}
+          <div className="hidden lg:block" aria-hidden />
 
           {/* Right — sharp pixel form card (no radius) */}
           <div
             ref={formRef}
-            className="@container border border-white/10 bg-[#141414] p-6 sm:p-8 lg:p-9"
+            className="@container border border-white/10 bg-[#141414] p-5 sm:p-7 lg:p-8"
             data-no-blur-text
           >
             {sent ? (
-              <div className="flex min-h-[22rem] flex-col items-center justify-center gap-4 py-10">
+              <div className="flex flex-col items-center justify-center gap-4 py-12">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}

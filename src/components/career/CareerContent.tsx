@@ -68,62 +68,66 @@ export function CareerContent({ careers }: { careers: Career[] }) {
   return (
     <div ref={rootRef} className="bg-navy-950 text-white">
       {/* ── Hero — giant stacked type ─────────────────────────── */}
-      <section className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden px-4 pt-24 pb-14 sm:px-6 lg:px-12" data-page-hero>
+      <section className="relative overflow-hidden pt-24 pb-14" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-        <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
-          <PixelTrail />
-          <span className="block overflow-hidden">
-            <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
-              Work
+        <div className="site-container relative z-10 flex min-h-[clamp(28rem,70svh,38rem)] flex-col justify-between">
+          <h1 className="font-black uppercase leading-[0.88] tracking-tight">
+            <PixelTrail />
+            <span className="block overflow-hidden">
+              <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
+                Work
+              </span>
             </span>
-          </span>
-          <span className="block overflow-hidden">
-            <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
-              With
+            <span className="block overflow-hidden">
+              <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
+                With
+              </span>
             </span>
-          </span>
-          <span className="block overflow-hidden">
-            <span className="block whitespace-nowrap text-[clamp(2.5rem,14vw,12rem)]">
-              {/* Separate pop targets so Pluz appears after Pixl, same line */}
-              <span className="career-hero-word inline-block text-green-accent">Pixl</span>{' '}
-              <span className="career-hero-word inline-block career-outline-word">Pluz</span>
+            <span className="block overflow-hidden">
+              <span className="block whitespace-nowrap text-[clamp(2.5rem,14vw,12rem)]">
+                {/* Separate pop targets so Pluz appears after Pixl, same line */}
+                <span className="career-hero-word inline-block text-green-accent">Pixl</span>{' '}
+                <span className="career-hero-word inline-block career-outline-word">Pluz</span>
+              </span>
             </span>
-          </span>
-        </h1>
+          </h1>
 
-        <div className="career-hero-tag relative z-10 mt-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-md text-lg text-gray-400 sm:text-xl">
-            We&apos;re building something special.
-            <br />
-            <span className="text-white">Come build it with us.</span>
-          </p>
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-butter-glow">
-            {careers.length} open position{careers.length !== 1 ? 's' : ''} — Kochi
-          </p>
+          <div className="career-hero-tag mt-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <p className="max-w-md text-lg text-gray-400 sm:text-xl">
+              We&apos;re building something special.
+              <br />
+              <span className="text-white">Come build it with us.</span>
+            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-butter-glow">
+              {careers.length} open position{careers.length !== 1 ? 's' : ''} — Kochi
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ── What we believe ───────────────────────────────────── */}
-      <section className="border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
-        <div className="mx-auto max-w-4xl">
-          <p className="career-reveal mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-10">
-            What we believe
-          </p>
-          <p className="career-reveal text-justify text-lg leading-relaxed text-white/75 sm:text-xl sm:leading-relaxed lg:text-2xl lg:leading-relaxed">
-            Great careers aren&apos;t built on textbooks they&apos;re built on
-            doing. We believe in real projects over passive lessons, mentors who
-            guide over lectures that just inform, and skills that keep up with
-            how the world actually works. For us, opportunity should never be
-            locked behind tuition fees it should be earned through talent and
-            effort.
-          </p>
+      <section className="border-t border-white/8 py-[clamp(64px,6vw,96px)]">
+        <div className="site-container">
+          <div className="mx-auto max-w-4xl">
+            <p className="career-reveal mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-10">
+              What we believe
+            </p>
+            <p className="career-reveal text-justify text-lg leading-relaxed text-white/75 sm:text-xl sm:leading-relaxed lg:text-2xl lg:leading-relaxed">
+              Great careers aren&apos;t built on textbooks they&apos;re built on
+              doing. We believe in real projects over passive lessons, mentors who
+              guide over lectures that just inform, and skills that keep up with
+              how the world actually works. For us, opportunity should never be
+              locked behind tuition fees it should be earned through talent and
+              effort.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ── Open positions ────────────────────────────────────── */}
-      <section className="border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12">
-        <div className="mx-auto max-w-7xl">
+      <section className="border-t border-white/8 py-[clamp(64px,6vw,96px)]">
+        <div className="site-container">
           <p className="career-reveal mb-10 text-xs font-semibold uppercase tracking-[0.35em] text-green-accent sm:mb-14">
             Open positions
           </p>

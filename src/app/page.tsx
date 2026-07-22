@@ -62,7 +62,6 @@ export default function HomePage() {
         <MentorsSection />
         <AiToolsSection />
         <ScholarshipSection />
-        <div className="h-10 bg-black sm:h-14" aria-hidden />
         <ContactSection />
         <BlogSection blogs={blogs} />
         <FAQSection />

@@ -90,11 +90,11 @@ export function AboutContent() {
     <div ref={containerRef} className="about-page">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="about-hero relative flex flex-col justify-end px-6 md:px-16 lg:px-20 pb-14 pt-28 sm:pb-20 md:pb-24 overflow-hidden" data-page-hero>
+      <section className="about-hero relative flex flex-col justify-end overflow-hidden pb-14 pt-28 sm:pb-20 md:pb-24" data-page-hero>
         <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] bg-blue-primary/20 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4" />
         <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-mid/10 rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4" />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1600px]">
+        <div className="site-container-wide relative z-10 w-full">
           <div className="ab-fade mb-8 flex flex-wrap items-end justify-between gap-8 md:mb-14">
             <div>
               <p className="about-kicker mb-3">Est. 2026</p>
@@ -168,8 +168,8 @@ export function AboutContent() {
       <AboutOfficeGallery />
 
       {/* ── Values ───────────────────────────────────────────────── */}
-      <section className="px-6 md:px-16 lg:px-20 py-14 sm:py-20 md:py-24 border-b border-blue-primary/20">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="border-b border-blue-primary/20 py-[clamp(64px,6vw,96px)]">
+        <div className="site-container-wide">
           <div className="mb-10 md:mb-20">
             <p className="ab-reveal about-kicker mb-5">Our values</p>
             <AboutBlurText

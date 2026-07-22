@@ -22,7 +22,7 @@ export function ClientLogoCarousel({ className }: { className?: string }) {
       )}
       aria-label="Hiring partners and clients"
     >
-      <div className="mx-auto mb-8 max-w-7xl px-4 text-center sm:mb-10 sm:px-6">
+      <div className="site-container mb-8 text-center sm:mb-10">
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-green-accent">
           Our network
         </p>

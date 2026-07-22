@@ -127,37 +127,39 @@ export function EventContent({ events }: { events: Event[] }) {
   return (
     <div ref={rootRef} className="bg-black text-gray-400">
       {/* ── Hero ── */}
-      <section className="relative flex min-h-[clamp(28rem,78svh,42rem)] flex-col justify-between overflow-hidden px-4 pt-24 pb-12 sm:px-6 lg:px-12" data-page-hero>
+      <section className="relative overflow-hidden pt-24 pb-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-        <div className="evt-hero-pop relative z-10 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-blue-soft">
-          <span>[status:<span className="text-blue-soft">active</span>]</span>
-          <span>© PIXLPLUZ — {new Date().getFullYear()}</span>
-          <span className="hidden sm:inline">{'//'} events.upcoming</span>
-        </div>
-
-        <div className="relative z-10">
-          <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
-            chapter index
-          </p>
-          <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
-            <PixelTrail />
-            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word evt-outline-muted">What&apos;s</span>
-            <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-gray-400">Happening</span>
-          </h1>
-        </div>
-
-        <div className="relative z-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-          <div className="evt-hero-pop font-mono text-xs leading-relaxed text-blue-soft/80">
-            <p className="text-blue-soft">[f] initEvents() {'{'}</p>
-            <p className="pl-5 text-blue-soft/70">loadWorkshops();</p>
-            <p className="pl-5 text-blue-soft/70">openScholarshipTest();</p>
-            <p className="pl-5 text-blue-soft/70">reserveSeats();</p>
-            <p className="text-blue-soft">{'}'}</p>
+        <div className="site-container-wide relative z-10 flex min-h-[clamp(28rem,70svh,38rem)] flex-col justify-between">
+          <div className="evt-hero-pop flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-blue-soft">
+            <span>[status:<span className="text-blue-soft">active</span>]</span>
+            <span>© PIXLPLUZ — {new Date().getFullYear()}</span>
+            <span className="hidden sm:inline">{'//'} events.upcoming</span>
           </div>
-          <div className="evt-hero-pop self-end text-right">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-blue-soft">upcoming</p>
-            <p className="text-6xl font-black text-gray-400 sm:text-7xl">{chapterNo(events.length - 1)}</p>
+
+          <div>
+            <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
+              chapter index
+            </p>
+            <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
+              <PixelTrail />
+              <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word evt-outline-muted">What&apos;s</span>
+              <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-gray-400">Happening</span>
+            </h1>
+          </div>
+
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+            <div className="evt-hero-pop font-mono text-xs leading-relaxed text-blue-soft/80">
+              <p className="text-blue-soft">[f] initEvents() {'{'}</p>
+              <p className="pl-5 text-blue-soft/70">loadWorkshops();</p>
+              <p className="pl-5 text-blue-soft/70">openScholarshipTest();</p>
+              <p className="pl-5 text-blue-soft/70">reserveSeats();</p>
+              <p className="text-blue-soft">{'}'}</p>
+            </div>
+            <div className="evt-hero-pop self-end text-right">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-blue-soft">upcoming</p>
+              <p className="text-6xl font-black text-gray-400 sm:text-7xl">{chapterNo(events.length - 1)}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -165,7 +167,7 @@ export function EventContent({ events }: { events: Event[] }) {
       {events.map((event, i) => (
         <section
           key={event.id}
-          className="evt-chapter relative overflow-hidden border-t border-white/8 px-4 py-16 sm:px-6 sm:py-24 lg:px-12"
+          className="evt-chapter relative overflow-hidden border-t border-white/8 py-[clamp(64px,6vw,96px)]"
         >
           <span
             className="evt-ghost-num pointer-events-none absolute -right-4 top-1/2 -translate-y-1/2 select-none font-black leading-none text-white/[0.04] text-[clamp(12rem,32vw,26rem)]"
@@ -174,7 +176,7 @@ export function EventContent({ events }: { events: Event[] }) {
             {chapterNo(i)}
           </span>
 
-          <div className="relative z-10 mx-auto max-w-7xl">
+          <div className="site-container-wide relative z-10">
             <p className="evt-reveal mb-10 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
               chapter {chapterNo(i)}: {event.type === 'Online' ? 'online session' : 'on campus'}
             </p>
@@ -231,14 +233,14 @@ export function EventContent({ events }: { events: Event[] }) {
       ))}
 
       {events.length === 0 && (
-        <section className="border-t border-white/8 px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-12">
+        <section className="border-t border-white/8 py-[clamp(64px,6vw,96px)] text-center">
           <p className="font-mono text-sm text-blue-soft">[status: no upcoming events — check back soon]</p>
         </section>
       )}
 
-      <section className="relative overflow-hidden border-t border-white/8 px-4 py-20 sm:px-6 sm:py-28 lg:px-12">
+      <section className="relative overflow-hidden border-t border-white/8 py-[clamp(64px,6vw,96px)]">
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="site-container relative z-10">
           <p className="evt-outro-reveal mb-8 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
             final word
           </p>

@@ -71,10 +71,10 @@ export function Navbar() {
   const showBar = glass || menuOpen
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 px-3 pt-3 sm:px-4 sm:pt-3.5">
+    <header className="fixed top-0 inset-x-0 z-50 pt-3 sm:pt-3.5">
       <div
         className={cn(
-          'mx-auto max-w-7xl px-4 transition-[background,box-shadow,border-color,backdrop-filter] duration-300 sm:px-6 lg:px-8',
+          'site-container transition-[background,box-shadow,border-color,backdrop-filter] duration-300',
           showBar
             ? 'border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.45)] backdrop-blur-md'
             : 'border border-transparent bg-transparent shadow-none',
@@ -88,7 +88,7 @@ export function Navbar() {
             : undefined
         }
       >
-        <div className="flex h-[4.5rem] items-center justify-between">
+        <div className="flex h-[4.5rem] items-center justify-between px-4 sm:px-6">
 
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <PixlLogo variant="white" className="h-11 w-[148px] sm:h-12 sm:w-[162px]" />
@@ -169,7 +169,7 @@ export function Navbar() {
         </div>
 
         {menuOpen && (
-          <div className="lg:hidden max-h-[calc(100dvh-5.5rem)] space-y-1 overflow-y-auto border-t border-white/10 px-0 py-4">
+          <div className="lg:hidden max-h-[calc(100dvh-5.5rem)] space-y-1 overflow-y-auto border-t border-white/10 px-4 py-4 sm:px-6">
             {NAV_LINKS.map(link =>
               link.children ? (
                 <div key={link.label}>
