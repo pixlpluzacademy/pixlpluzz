@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useLenis } from 'lenis/react'
-import { Menu, X } from 'lucide-react'
+import { LogOut, Menu, X } from 'lucide-react'
 import { PixlLogo } from '@/components/ui/PixlLogo'
 import { cn } from '@/lib/utils'
+import { createClient } from '@/lib/supabase/client'
 
 const COURSE_LINKS = [
   { label: 'AI Digital Marketing', href: '/courses/digital-marketing-course' },
@@ -29,13 +30,35 @@ const NAV_OFFSET = 72
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const lenis = useLenis()
   const [menuOpen, setMenuOpen]       = useState(false)
   const [coursesOpen, setCoursesOpen] = useState(false)
   /** Transparent over hero; light-gray glass once scrolled past (or on pages without a hero). */
   const [glass, setGlass] = useState(true)
+  const [signedIn, setSignedIn] = useState(false)
 
   useEffect(() => { setMenuOpen(false) }, [pathname])
+
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getSession().then(({ data }) => {
+      setSignedIn(!!data.session)
+    })
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSignedIn(!!session)
+    })
+    return () => sub.subscription.unsubscribe()
+  }, [])
+
+  async function signOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    setSignedIn(false)
+    setMenuOpen(false)
+    router.replace('/')
+    router.refresh()
+  }
 
   useLayoutEffect(() => {
     const update = () => {
@@ -151,6 +174,24 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
+            {signedIn && (
+              <>
+                <Link
+                  href="/admin"
+                  className="hidden sm:inline-flex text-sm font-medium text-gray-300 transition-colors hover:text-green-accent"
+                >
+                  Admin
+                </Link>
+                <button
+                  type="button"
+                  onClick={signOut}
+                  className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-gray-300 transition-colors hover:text-green-accent"
+                >
+                  <LogOut size={15} />
+                  Sign out
+                </button>
+              </>
+            )}
             <Link
               href="/contact"
               className="btn-glaze btn-primary-fill hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold uppercase tracking-wide pixel-corner-sm"
@@ -208,6 +249,24 @@ export function Navbar() {
                   {link.label}
                 </Link>
               )
+            )}
+            {signedIn && (
+              <>
+                <Link
+                  href="/admin"
+                  className="block px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-green-accent"
+                >
+                  Admin
+                </Link>
+                <button
+                  type="button"
+                  onClick={signOut}
+                  className="flex w-full items-center gap-2 px-3 py-2.5 text-left text-sm font-medium text-gray-300 hover:text-green-accent"
+                >
+                  <LogOut size={15} />
+                  Sign out
+                </button>
+              </>
             )}
             <div className="pt-2">
               <Link

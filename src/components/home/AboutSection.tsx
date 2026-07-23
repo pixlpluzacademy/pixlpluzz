@@ -158,7 +158,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                   </span>
                 </span>
               </h2>
-              <p className="about-reveal m-0 w-full text-justify text-base leading-relaxed text-gray-400 sm:text-lg">
+              <p className="about-reveal m-0 w-full text-justify text-sm leading-relaxed text-gray-400 xl:text-base">
                 At Pixl Pluz Academy, we believe learning should move as fast as the modern industry.
                 We bring international standards from Neo Digital Hub in Dubai directly to our Kochi
                 campus, focusing on the AI-integrated skills that top companies are hiring for today.
@@ -217,26 +217,10 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
                     if (canHoverExpand()) setActive(i)
                   }}
                 >
-                  <div
-                    className={cn(
-                      'pointer-events-none absolute -inset-6 z-0 hidden rounded-sm transition-opacity duration-[400ms] xl:block',
-                      isExpanded ? 'opacity-100' : 'opacity-0',
-                    )}
-                    style={{
-                      background:
-                        'radial-gradient(ellipse 75% 65% at 50% 50%, rgba(96, 165, 250, 0.65) 0%, rgba(59, 130, 246, 0.4) 35%, transparent 70%)',
-                      filter: 'blur(28px)',
-                    }}
-                    aria-hidden
-                  />
-
                   <article
                     className={cn(
-                      'relative z-10 grid w-full overflow-hidden border border-white/8 bg-[#141414]',
+                      'relative z-10 grid w-full overflow-hidden bg-[#141414]',
                       'grid-cols-1 xl:h-full xl:grid-cols-2',
-                      'transition-[border-color,box-shadow] duration-500',
-                      isExpanded &&
-                        'xl:border-blue-400/60 xl:shadow-[0_0_0_1px_rgba(96,165,250,0.35),0_0_32px_rgba(96,165,250,0.55),0_0_72px_rgba(59,130,246,0.4),0_24px_48px_rgba(0,0,0,0.5)]',
                     )}
                   >
                     <div className="relative aspect-[16/10] min-h-0 overflow-hidden xl:aspect-auto xl:h-full xl:min-h-0">

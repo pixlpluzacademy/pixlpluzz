@@ -1078,7 +1078,7 @@ body::-webkit-scrollbar,
 
 .advantage-carousel {
   --carousel-card-w: clamp(200px, 34%, 300px);
-  height: clamp(540px, 58vw, 720px);
+  height: clamp(480px, 48vw, 640px);
   width: 100%;
   max-width: none;
   margin-inline: auto;
@@ -1230,7 +1230,7 @@ body::-webkit-scrollbar,
 
 @media (min-width: 1024px) {
   .advantage-carousel {
-    height: clamp(580px, 50vw, 760px);
+    height: clamp(520px, 44vw, 680px);
   }
 }
 

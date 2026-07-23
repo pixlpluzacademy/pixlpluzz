@@ -15,9 +15,10 @@ type Phase = 'loading' | 'exit' | 'done'
 
 export function SiteLoader() {
   const pathname = usePathname()
+  const isAdmin = pathname?.startsWith('/admin') ?? false
   const { setSiteReady } = useSiteLoaderControl()
-  const [phase, setPhase] = useState<Phase>('loading')
-  const [progress, setProgress] = useState(0)
+  const [phase, setPhase] = useState<Phase>(() => (isAdmin ? 'done' : 'loading'))
+  const [progress, setProgress] = useState(isAdmin ? 100 : 0)
 
   const rootRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef(0)
@@ -33,7 +34,6 @@ export function SiteLoader() {
     }
 
     setPhase('exit')
-    // Start page animations while loader still covers — avoids hero text flashing through the fade
     setSiteReady(true)
 
     gsap.to(root, {
@@ -48,6 +48,14 @@ export function SiteLoader() {
   }, [setSiteReady])
 
   useEffect(() => {
+    if (pathname?.startsWith('/admin')) {
+      cancelAnimationFrame(rafRef.current)
+      setSiteReady(true)
+      setPhase('done')
+      document.body.style.overflow = ''
+      return
+    }
+
     const runId = ++runIdRef.current
     setSiteReady(false)
     setPhase('loading')
@@ -59,7 +67,9 @@ export function SiteLoader() {
     const start = performance.now()
     let pageReady = document.readyState === 'complete'
 
-    const onLoad = () => { pageReady = true }
+    const onLoad = () => {
+      pageReady = true
+    }
     window.addEventListener('load', onLoad)
 
     const tick = (now: number) => {

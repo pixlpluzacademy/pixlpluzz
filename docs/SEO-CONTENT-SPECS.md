@@ -189,10 +189,12 @@
 
 ### 12. FAQ (`FAQSection.tsx`)
 
-| Field | Word target | Current (2026-07-20) | Notes |
+Two-column layout: left intro + “Still Have Questions?” / Contact; right accordion.
+
+| Field | Word target | Current (2026-07-23) | Notes |
 |-------|-------------|----------------------|-------|
-| H2 | 1–3 | 1 — *"FAQ's"* | Same size as Blog: `clamp(2rem,7vw,3.75rem)`; green + white |
-| Subtitle | 18–30 | ~26 | Tied to heading — courses, AI tools, scholarship, placement |
+| H2 | 3 | Frequently / Asked / Questions | Three lines; first letter of each word green |
+| Still have questions body | 12–25 | ~18 | + Contact Us link to `/contact` |
 | Question | 10–22 | 12–18 each | 5 items; include location/skill keywords |
 | Answer | 22–45 | 25–35 each | Use "comprehensive placement support" — no "100%" |
 
@@ -219,7 +221,7 @@ Not on homepage currently; include if re-enabled.
 | `/courses/[slug]` | 4–12 words | 120–160 chars | Hero + enroll CTAs; Structure heading; modules (left) + AI tools falling-stack (right); Who it’s for — no fake stats |
 | `/scholarship` | 1 word — *"Scholarship"* | 120–160 chars | Video hero (top-right outlined H1); steps + apply CTA — **no amounts** |
 | `/placement` | 4–8 words | 120–160 chars | Hero + wall (8 photos, 4/row) + client logo carousel — **no placement % / package / days stats** |
-| `/contact` | 4–8 words | 120–160 chars | Match Contact section tone |
+| `/contact` | 2–4 — *"Contact Us"* | 120–160 chars | Image hero; form card heading *"Connect With Pixl Pluz"* + contact grid + map; office CTA → WhatsApp consultation |
 | `/blog` | 2–4 — *"Blog & Insights"* | 120–160 chars | Nova magazine layout: editorial hero, featured lead, latest grid |
 | `/blog/[slug]` | 6–14 words | 120–160 chars | Article 600–1200 words (editorial) |
 
@@ -247,6 +249,7 @@ Not on homepage currently; include if re-enabled.
 | Date | Section | Change |
 |------|---------|--------|
 | 2026-07-21 | Advantage | Editorial sticky intro + asymmetric bento; H2 → *"Why Learn / With AI?"*; auto-spotlight Flip; card blurbs |
+| 2026-07-23 | Contact page | Image hero; form card + 2×2 details + map; office CTA → WhatsApp free consultation |
 | 2026-07-20 | Homepage Courses | H2 → *"Our Courses"* (Courses green) |
 | 2026-07-20 | Scholarship page steps | H2 → *"How it works"* (large); removed *"Four simple steps"* |
 | 2026-07-20 | Course detail | Removed Questions & Answers / FAQ section |

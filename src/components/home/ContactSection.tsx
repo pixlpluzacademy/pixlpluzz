@@ -24,6 +24,8 @@ const FIELD =
 
 export function ContactSection() {
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [interest, setInterest] = useState<string>('General')
   const [form, setForm] = useState({
     firstName: '',
@@ -64,9 +66,35 @@ export function ContactSection() {
     return () => ctx.revert()
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSent(true)
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'home',
+          full_name: `${form.firstName} ${form.lastName}`.trim(),
+          email: form.email,
+          phone: form.phone,
+          interest,
+          message: form.message,
+          website: '',
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.')
+        setLoading(false)
+        return
+      }
+      setSent(true)
+    } catch {
+      setError('Network error. Please try again.')
+    }
+    setLoading(false)
   }
 
   return (
@@ -201,13 +229,20 @@ export function ContactSection() {
                   className={cn(FIELD, 'min-h-[7rem] resize-none')}
                 />
 
+                {error && (
+                  <p className="text-sm text-red-400" role="alert">
+                    {error}
+                  </p>
+                )}
+
                 <motion.button
                   type="submit"
+                  disabled={loading}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-glaze btn-cta-green w-full py-3.5 text-sm font-bold uppercase tracking-widest"
+                  className="btn-glaze btn-cta-green w-full py-3.5 text-sm font-bold uppercase tracking-widest disabled:opacity-60"
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </form>
             )}

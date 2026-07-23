@@ -1,26 +1,32 @@
 import Link from 'next/link'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { PixlLogo } from '@/components/ui/PixlLogo'
+import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
-function IconFacebook() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  )
-}
-
-function IconInstagram() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-
-function IconLinkedin() {
+function SocialIcon({ name }: { name: SocialIconName }) {
+  if (name === 'facebook') {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    )
+  }
+  if (name === 'instagram') {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    )
+  }
+  if (name === 'youtube') {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
+      </svg>
+    )
+  }
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -63,18 +69,18 @@ export function Footer() {
               creative learning, AI-powered workflows, and career-focused training.
             </p>
             <div className="flex gap-3 justify-center sm:justify-start">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-white/10 text-gray-400 hover:border-green-accent hover:text-green-accent transition-colors pixel-corner-sm">
-                <IconFacebook />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-white/10 text-gray-400 hover:border-green-accent hover:text-green-accent transition-colors pixel-corner-sm">
-                <IconInstagram />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-white/10 text-gray-400 hover:border-green-accent hover:text-green-accent transition-colors pixel-corner-sm">
-                <IconLinkedin />
-              </a>
+              {SOCIAL_LINKS.map(profile => (
+                <a
+                  key={profile.label}
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={profile.label}
+                  className="p-2 border border-white/10 text-gray-400 hover:border-green-accent hover:text-green-accent transition-colors pixel-corner-sm"
+                >
+                  <SocialIcon name={profile.icon} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -121,7 +127,7 @@ export function Footer() {
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Call us directly</p>
                   <a href="tel:+919999900000" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
-                    (+91) XXXXX-XXXXX
+                    ( +91 ) 77360 60370
                   </a>
                 </div>
               </li>
@@ -129,8 +135,8 @@ export function Footer() {
                 <Mail size={15} className="mt-0.5 text-green-accent shrink-0" />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Mail us directly</p>
-                  <a href="mailto:info@pixlpluz.com" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
-                    info@pixlpluz.com
+                  <a href="mailto:office@pixlpluz.com" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
+                    office@pixlpluz.com
                   </a>
                 </div>
               </li>

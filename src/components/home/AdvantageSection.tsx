@@ -261,17 +261,17 @@ export function AdvantageSection() {
   }
 
   return (
-    <section className="advantage-section relative overflow-x-clip overflow-hidden py-[clamp(72px,7vw,120px)]">
+    <section className="advantage-section relative overflow-x-clip overflow-hidden py-[clamp(32px,3vw,56px)]">
       <div className="advantage-section-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="advantage-section-grid pointer-events-none absolute inset-0 opacity-[0.04]" aria-hidden />
 
       <div className="site-container-wide relative overflow-hidden">
         <FloatingPixels />
 
-        <div className="relative z-10 grid items-center gap-10 lg:grid-cols-[clamp(340px,25vw,480px)_minmax(0,1fr)] lg:gap-[clamp(28px,2.5vw,56px)]">
+        <div className="relative z-10 grid items-start gap-8 lg:grid-cols-[clamp(340px,25vw,480px)_minmax(0,1fr)] lg:gap-[clamp(28px,2.5vw,56px)]">
           <div
             data-no-blur-text
-            className="flex w-full min-w-0 flex-col lg:sticky lg:top-28 lg:self-start"
+            className="flex w-full min-w-0 flex-col lg:sticky lg:top-[4.75rem] lg:self-start"
           >
             <h2 className="mb-6 font-black uppercase leading-[0.88] tracking-tight sm:mb-7">
               <span className="mb-[0.12em] block text-[clamp(2.25rem,6.5vw,4.5rem)] text-white">
@@ -283,12 +283,12 @@ export function AdvantageSection() {
             </h2>
 
             <div className="space-y-4">
-              <p className="m-0 text-justify text-[0.95rem] leading-[1.85] text-gray-300 sm:text-base">
+              <p className="m-0 text-justify text-[0.95rem] leading-[1.85] text-gray-400 sm:text-base">
                 AI is changing every industry and the way we learn needs to change too. Our courses
                 in Digital Marketing, Web Development, Data Science, and Cybersecurity are built
                 around real AI skills employers want today.
               </p>
-              <p className="m-0 text-justify text-[0.95rem] leading-[1.85] text-gray-300 sm:text-base">
+              <p className="m-0 text-justify text-[0.95rem] leading-[1.85] text-gray-400 sm:text-base">
                 Whether you&apos;re a fresh graduate, a working professional, or switching careers,
                 we meet you where you are. You&apos;ll learn by doing live projects, mentor feedback,
                 and real portfolio work backed by Neo Digital Hub, Dubai. No heavy theory. Just

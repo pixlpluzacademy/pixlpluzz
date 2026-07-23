@@ -2,98 +2,180 @@
 
 import { useState } from 'react'
 import { CheckCircle } from 'lucide-react'
-import { PixelButton } from '@/components/ui/PixelButton'
+import { cn } from '@/lib/utils'
 
 const COURSES = [
-  'Digital Marketing Course with AI',
-  'AI Powered Web Development Course',
-  'Data Science & AI Course',
-  'Cyber Security Course with AI',
+  'Digital Marketing',
+  'Web Development',
+  'Data Science',
+  'Cybersecurity',
   'Not sure yet',
-]
+] as const
+
+const FIELD =
+  'w-full border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-green-accent focus:bg-black/55'
 
 export function ContactForm() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [course, setCourse] = useState<(typeof COURSES)[number]>('Digital Marketing')
+  const [form, setForm] = useState({
+    full_name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 800))
+    setError(null)
+
+    try {
+      const res = await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'contact',
+          full_name: form.full_name,
+          email: form.email,
+          phone: form.phone,
+          interest: course,
+          message: form.message,
+          website: '',
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.')
+        setLoading(false)
+        return
+      }
+      setSent(true)
+    } catch {
+      setError('Network error. Please try again.')
+    }
     setLoading(false)
-    setSent(true)
   }
 
   if (sent) {
     return (
-      <div className="flex flex-col items-center justify-center h-full min-h-80 text-center py-16">
-        <CheckCircle size={56} className="text-green-accent mb-4" />
-        <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2">Message Sent!</h3>
-        <p className="text-gray-500 dark:text-gray-400">We will get back to you within one business day.</p>
+      <div className="flex min-h-80 flex-col items-center justify-center py-12 text-center">
+        <CheckCircle size={56} className="mb-4 text-green-accent" />
+        <h3 className="mb-2 text-2xl font-black text-white">Message Sent!</h3>
+        <p className="text-gray-400">We will get back to you within one business day.</p>
       </div>
     )
   }
 
   return (
-    <div>
-      <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Full Name *</label>
-            <input
-              required
-              type="text"
-              placeholder="Your name"
-              className="w-full px-4 py-3 bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-primary dark:focus:border-green-accent pixel-corner-sm text-sm"
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Email *</label>
-            <input
-              required
-              type="email"
-              placeholder="you@email.com"
-              className="w-full px-4 py-3 bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-primary dark:focus:border-green-accent pixel-corner-sm text-sm"
-            />
-          </div>
-        </div>
-
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone Number *</label>
+          <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+            Full Name *
+          </label>
           <input
             required
-            type="tel"
-            placeholder="+91 98765 43210"
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-primary dark:focus:border-green-accent pixel-corner-sm text-sm"
+            type="text"
+            placeholder="Your name"
+            value={form.full_name}
+            onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))}
+            className={FIELD}
           />
         </div>
-
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Interested Course</label>
-          <select
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white focus:outline-none focus:border-blue-primary dark:focus:border-green-accent pixel-corner-sm text-sm"
-          >
-            <option value="">Select a course</option>
-            {COURSES.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Message</label>
-          <textarea
-            rows={4}
-            placeholder="Tell us how we can help..."
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-navy-800 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-primary dark:focus:border-green-accent pixel-corner-sm text-sm resize-none"
+          <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+            Email *
+          </label>
+          <input
+            required
+            type="email"
+            placeholder="you@email.com"
+            value={form.email}
+            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+            className={FIELD}
           />
         </div>
+      </div>
 
+      <div>
+        <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+          Phone Number *
+        </label>
+        <input
+          required
+          type="tel"
+          placeholder="+91 98765 43210"
+          value={form.phone}
+          onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+          className={FIELD}
+        />
+      </div>
 
-        <PixelButton type="submit" disabled={loading} className="w-full justify-center">
-          {loading ? 'Sending...' : 'Send Message'}
-        </PixelButton>
-      </form>
-    </div>
+      <div>
+        <p className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+          Interested Course
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {COURSES.map((item) => {
+            const active = course === item
+            return (
+              <button
+                key={item}
+                type="button"
+                onClick={() => setCourse(item)}
+                className={cn(
+                  'border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide transition-colors',
+                  active
+                    ? 'border-green-accent bg-green-accent text-black'
+                    : 'border-white/15 bg-transparent text-gray-300 hover:border-white/35 hover:text-white',
+                )}
+              >
+                {item}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div>
+        <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+          Message
+        </label>
+        <textarea
+          rows={4}
+          placeholder="Tell us how we can help..."
+          value={form.message}
+          onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+          className={`${FIELD} min-h-[7rem] resize-none`}
+        />
+      </div>
+
+      {/* Honeypot */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        aria-hidden
+      />
+
+      {error && (
+        <p className="text-sm text-red-400" role="alert">
+          {error}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="btn-glaze btn-cta-green mt-2 w-full py-3.5 text-sm font-bold uppercase tracking-widest disabled:opacity-60"
+      >
+        {loading ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
   )
 }
