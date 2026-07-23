@@ -1,5 +1,5 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, Mail, MapPin } from 'lucide-react'
 import { PixlLogo } from '@/components/ui/PixlLogo'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
@@ -123,16 +123,30 @@ export function Footer() {
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 justify-center sm:justify-start">
-                <Phone size={15} className="mt-0.5 text-green-accent shrink-0" />
+                <Image
+                  src="/icons/phone.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="mt-0.5 h-4 w-4 shrink-0"
+                  aria-hidden
+                />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Call us directly</p>
-                  <a href="tel:+919999900000" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
+                  <a href="tel:+917736060370" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
                     ( +91 ) 77360 60370
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3 justify-center sm:justify-start">
-                <Mail size={15} className="mt-0.5 text-green-accent shrink-0" />
+                <Image
+                  src="/icons/mail.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="mt-0.5 h-4 w-4 shrink-0"
+                  aria-hidden
+                />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Mail us directly</p>
                   <a href="mailto:office@pixlpluz.com" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
@@ -141,7 +155,14 @@ export function Footer() {
                 </div>
               </li>
               <li className="flex items-start gap-3 justify-center sm:justify-start">
-                <MapPin size={15} className="mt-0.5 text-green-accent shrink-0" />
+                <Image
+                  src="/icons/map.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="mt-0.5 h-4 w-4 shrink-0"
+                  aria-hidden
+                />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Our location</p>
                   <p className="text-sm text-white">Kochi, Kerala, India</p>

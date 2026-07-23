@@ -34,32 +34,50 @@ const CONTACT_CARDS = [
 function SocialIcon({ name }: { name: SocialIconName }) {
   if (name === 'facebook') {
     return (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden>
+        <path
+          fill="#1877F2"
+          d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.8-4.7 4.56-4.7 1.32 0 2.7.24 2.7.24v2.97h-1.52c-1.5 0-1.97.93-1.97 1.89v2.26h3.35l-.54 3.49h-2.81V24C19.61 23.1 24 18.1 24 12.07"
+        />
       </svg>
     )
   }
   if (name === 'instagram') {
     return (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden>
+        <defs>
+          <radialGradient id="ig-grad" cx="30%" cy="107%" r="150%">
+            <stop offset="0%" stopColor="#fdf497" />
+            <stop offset="5%" stopColor="#fdf497" />
+            <stop offset="45%" stopColor="#fd5949" />
+            <stop offset="60%" stopColor="#d6249f" />
+            <stop offset="90%" stopColor="#285AEB" />
+          </radialGradient>
+        </defs>
+        <path
+          fill="url(#ig-grad)"
+          d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zm0-2.16C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.69 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"
+        />
       </svg>
     )
   }
   if (name === 'youtube') {
     return (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden>
+        <path
+          fill="#FF0000"
+          d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8z"
+        />
+        <path fill="#fff" d="M9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
       </svg>
     )
   }
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect x="2" y="9" width="4" height="12" />
-      <circle cx="4" cy="4" r="2" />
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden>
+      <path
+        fill="#0A66C2"
+        d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"
+      />
     </svg>
   )
 }
@@ -81,7 +99,7 @@ export default function ContactPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/85" />
+          <div className="absolute inset-0 bg-black/65" />
           <div
             className="absolute inset-0"
             style={{
@@ -114,16 +132,14 @@ export default function ContactPage() {
           <div className="grid items-start gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12 xl:gap-16">
             {/* Left — form card */}
             <div className="border border-white/10 bg-[#141414] p-6 sm:p-8 lg:h-full lg:p-9">
-              <h2 className="relative mb-10 w-full text-center font-black uppercase leading-[1.05] tracking-tight">
+              <h2 className="relative mb-8 w-full text-center font-black uppercase leading-[1.1] tracking-tight text-[clamp(1.15rem,3.2vw,1.85rem)]">
                 <PixelTrail />
-                <span className="mb-[0.18em] block text-[clamp(1.75rem,5.5vw,3.5rem)] text-white">
-                  Connect With
-                </span>
-                <span className="block whitespace-nowrap text-[clamp(1.75rem,5.5vw,3.5rem)]">
+                <span className="whitespace-nowrap text-white">Connect With </span>
+                <span className="whitespace-nowrap">
                   <span className="text-green-accent">Pixl</span>{' '}
                   <span
                     className="career-outline-word"
-                    style={{ WebkitTextStroke: '2px #54e345' }}
+                    style={{ WebkitTextStroke: '1.5px #54e345' }}
                   >
                     Pluz
                   </span>
@@ -188,10 +204,9 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={profile.label}
-                      className="inline-flex items-center gap-2 border border-white/15 bg-black/40 px-4 py-2.5 text-sm font-semibold text-gray-300 transition-colors hover:border-green-accent hover:text-green-accent"
+                      className="inline-flex h-11 w-11 items-center justify-center border border-white/15 bg-black/40 transition-colors hover:border-white/35 hover:bg-black/60"
                     >
                       <SocialIcon name={profile.icon} />
-                      {profile.label}
                     </a>
                   ))}
                 </div>
@@ -241,7 +256,7 @@ export default function ContactPage() {
             Talk To Us
           </p>
           <h2 className="mx-auto mb-8 max-w-3xl font-black uppercase leading-[1.1] tracking-tight text-[clamp(1.75rem,5vw,3.25rem)] text-white">
-            Free Consultation Through WhatsApp
+            Free Consultation
           </h2>
           <Link
             href={getWhatsAppUrl()}
