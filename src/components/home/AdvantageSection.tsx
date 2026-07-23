@@ -379,11 +379,11 @@ export function AdvantageSection() {
                           style={{ opacity: pose.dim }}
                           aria-hidden
                         />
-                        <span className="absolute inset-0 bg-linear-to-t from-black/90 via-black/25 to-transparent" />
+                        <span className="absolute inset-0 bg-linear-to-t from-black via-black/55 to-transparent" />
                       </span>
 
                       {pose.isActive && (
-                        <span className="absolute inset-x-0 bottom-8 z-10 px-3.5 sm:bottom-10 sm:px-4">
+                        <span className="absolute inset-x-0 bottom-0 z-10 bg-linear-to-t from-black/80 via-black/35 to-transparent px-3.5 pb-8 pt-14 sm:bottom-0 sm:px-4 sm:pb-10 sm:pt-16">
                           <span
                             className="block font-black uppercase leading-[1.05] tracking-wide text-white"
                             style={{ fontSize: 'clamp(0.9rem, 1.3vw, 1.25rem)' }}
