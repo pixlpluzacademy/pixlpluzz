@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { PixelTrail } from '@/components/ui/PixelTrail'
@@ -126,12 +126,16 @@ export function FAQSection() {
                     aria-expanded={open}
                   >
                     <span className="text-sm font-bold leading-snug sm:text-base">{faq.q}</span>
-                    <ChevronDown
-                      size={18}
+                    <Image
+                      src="/icons/arrow.svg"
+                      alt=""
+                      width={14}
+                      height={18}
                       className={cn(
-                        'shrink-0 transition-transform duration-200',
-                        open ? 'rotate-180 text-white' : 'text-green-accent',
+                        'h-[18px] w-auto shrink-0 transition-transform duration-200',
+                        open ? 'rotate-[-90deg] brightness-0 invert' : 'rotate-90',
                       )}
+                      aria-hidden
                     />
                   </button>
 
