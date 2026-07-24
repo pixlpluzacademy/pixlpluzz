@@ -364,7 +364,7 @@ export function CourseDetailContent({ course }: CourseDetailContentProps) {
               href="/contact"
               className="btn-glaze btn-cta-green inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold uppercase tracking-wide pixel-corner-sm"
             >
-              Enrol Now
+              Enroll Now
               <ArrowRight size={16} />
             </Link>
             <a

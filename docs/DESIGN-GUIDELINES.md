@@ -74,7 +74,7 @@ Avoid: navy section fills, blue primary CTAs, butter on headings/buttons.
 
 | Type | Style | Example labels |
 |------|-------|----------------|
-| **Primary CTA** | Green fill (`btn-cta-green`, dark text) | Apply For Scholarship, Apply Now, Enrol Now |
+| **Primary CTA** | Green fill (`btn-cta-green`, dark text) | Apply For Scholarship, Apply Now, Enroll Now |
 | **Secondary CTA** | Outline — white border, green border + text on hover | Explore Courses, Learn More, View All |
 | **Tertiary / text link** | `text-green-accent` with underline on hover | join our counselling session |
 
