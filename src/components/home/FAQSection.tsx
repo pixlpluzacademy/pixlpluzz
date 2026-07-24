@@ -8,26 +8,67 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { PixelTrail } from '@/components/ui/PixelTrail'
 import { cn } from '@/lib/utils'
 
-const FAQS = [
+type FaqItem = {
+  q: string
+  a?: string
+  bullets?: string[]
+}
+
+const FAQS: FaqItem[] = [
   {
-    q: 'Why is Pixl Pluz Academy the best option for an AI-integrated course in Kochi?',
-    a: 'Pixl Pluz Academy offers a scholarship-based, AI-integrated 2-month digital and tech-based course in Kochi focused on practical learning, live projects, agency-style training, placement support, and mentorship from industry professionals.',
+    q: ' Why Pixl Pluz Academy the best option for an AI-integrated course in Kochi?',
+    a: 'Pixl Pluz Academy combines AI-integrated, scholarship-based training with a strong focus on practical learning. Live projects, agency-style training, placement support, International exposure, and mentorship from industry professionals make it a well-rounded choice for building real, job-ready skills.',
   },
   {
-    q: 'What skills will I gain from the digital marketing course at Pixl Pluz Academy?',
-    a: 'You will gain hands-on skills in SEO, Google Ads, social media marketing, content strategy, email marketing, analytics, AI tools automation, portfolio building, and career preparation.',
+    q: 'What AI courses does Pixl Pluz provide?',
+    bullets: [
+      'AI-integrated digital marketing course',
+      'AI-powered web development course',
+      'Data science and AI course',
+      'Cybersecurity course with AI',
+    ],
   },
   {
-    q: 'What are the career opportunities available after a digital marketing course?',
-    a: 'Graduates can pursue roles like Digital Marketing Executive, SEO Specialist, Social Media Manager, Content Strategist, Google Ads Manager, and more in agencies, startups, or as freelancers.',
+    q: 'Does Pixl Pluz offer an online AI-integrated course in Kochi?',
+    a: 'Yes. Pixl Pluz provides flexible learning options for students looking for an online/offline digital marketing course in Kochi with practical assignments, mentor support, and a live project with global exposure.',
+  },
+  {
+    q: 'What are the eligibility criteria for Pixl Pluz scholarship-based AI-integrated course?',
+    a: 'At Pixl Pluz, Candidates must register and attend the entrance test. Our counsellor then contacts shortlisted candidates, and scholarship winners are selected based on the results.',
   },
   {
     q: 'Does Pixl Pluz provide an AI tools subscription for the students?',
-    a: 'Yes. We provide access to pro-versions of the key AI tools needed for each course — including AI writing assistants, design tools, SEO tools, and automation platforms.',
+    a: 'Yes. We provide access to pro-versions of the key AI tools needed for each course including AI writing assistants, design tools, SEO tools, and automation platforms.',
+    bullets: [
+      'ChatGPT Plus',
+      'Perplexity Pro',
+      'Canva Pro',
+      'Notion AI Plus',
+      'Claude Pro',
+      'Jasper Creator',
+      'Grammarly Premium',
+      'Leonardo AI Pro',
+    ],
   },
   {
-    q: 'Does Pixl Pluz offer placement support after the course?',
-    a: 'Yes. We offer comprehensive placement support including portfolio reviews, resume coaching, LinkedIn optimisation, mock interviews, and connections to hiring companies.',
+    q: 'Does Pixl Plus provide placement assistance after the course?',
+    a: 'Yes, Pixl Plus offers placement assistance to help students transition smoothly into the industry, including support with resume building, interview preparation, and connecting learners to relevant job opportunities after course completion.',
+  },
+  {
+    q:'Do I need any prior knowledge of AI or coding to join Pixl Plus?',
+    a:'No, the courses are designed for beginners, so you can start with zero prior experience.',
+  },
+  {
+    q:'Which course should I choose if I&apos;m not sure what I want to specialize in?',
+    a:'Start with our AI-integrated digital marketing course it&apos;s the most beginner-friendly and helps you explore the digital field before specializing further.',
+  },
+  {
+    q:'How is "AI-integrated" different from a normal digital marketing or web development course?',
+    a:'Our courses teach you to use AI tools alongside core skills, so you learn faster, work smarter, and stay updated with how the industry actually works today.',
+  },
+  {
+    q:'Is the data science and AI course suitable for non-engineering students?',
+    a:'Yes, the course is designed to be beginner-friendly, so non-engineering students can join and learn step by step.',
   },
 ]
 
@@ -57,9 +98,9 @@ export function FAQSection() {
 
       <div className="site-container relative z-10">
         <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
-          {/* Left — heading top, still have questions bottom-aligned with accordion */}
-          <div className="flex flex-col justify-between gap-10 lg:col-span-5">
-            <h2 className="relative font-black leading-[1.02] tracking-tight text-[clamp(2.25rem,6vw,4.5rem)]">
+          {/* Left — heading + still have questions kept together */}
+          <div className="lg:col-span-5">
+            <h2 className="relative mb-8 font-black leading-[1.02] tracking-tight text-[clamp(2.25rem,6vw,4.5rem)]">
               <PixelTrail />
               <span className="block">
                 <span className="text-green-accent">F</span>
@@ -149,8 +190,23 @@ export function FAQSection() {
                         transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
                         style={{ overflow: 'hidden' }}
                       >
-                        <div className="border-t border-white/10 bg-black/40 px-5 py-4 text-sm font-medium leading-relaxed text-justify text-gray-400 sm:px-6 sm:py-5 sm:text-base">
-                          {faq.a}
+                        <div className="border-t border-white/10 bg-black/40 px-5 py-4 text-sm font-medium leading-relaxed text-gray-400 sm:px-6 sm:py-5 sm:text-base">
+                          {faq.a && (
+                            <p className={cn('text-justify', faq.bullets && 'mb-3')}>{faq.a}</p>
+                          )}
+                          {faq.bullets && (
+                            <ul className="space-y-2.5">
+                              {faq.bullets.map((item) => (
+                                <li key={item} className="flex gap-3 text-left">
+                                  <span
+                                    className="mt-[0.55em] h-1.5 w-1.5 shrink-0 bg-[#143d8f]"
+                                    aria-hidden
+                                  />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       </motion.div>
                     )}

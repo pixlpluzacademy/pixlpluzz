@@ -196,7 +196,7 @@ Two-column layout: left intro + “Still Have Questions?” / Contact; right acc
 | H2 | 3 | Frequently / Asked / Questions | Three lines; first letter of each word green |
 | Still have questions body | 12–25 | ~18 | + Contact Us link to `/contact` |
 | Question | 10–22 | 12–18 each | 5 items; include location/skill keywords |
-| Answer | 22–45 | 25–35 each | Use "comprehensive placement support" — no "100%" |
+| Answer | 22–45 | 25–35 each | Use "comprehensive placement support" — no "100%"; courses FAQ uses blue (#143d8f) bullet list |
 
 ---
 
