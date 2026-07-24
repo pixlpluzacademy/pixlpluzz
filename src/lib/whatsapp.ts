@@ -1,9 +1,7 @@
-/** WhatsApp business contact — digits only, with country code. */
-export const WHATSAPP_NUMBER = '917736060370'
+/** Public path — status-bar hover shows this instead of wa.me + message. */
+export const WHATSAPP_HREF = '/whatsapp'
 
-export const WHATSAPP_MESSAGE =
-  'Hi Pixl Pluz! I would like a free consultation about your courses.'
-
-export function getWhatsAppUrl(message: string = WHATSAPP_MESSAGE) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+/** @deprecated Prefer WHATSAPP_HREF — kept as alias for existing imports. */
+export function getWhatsAppUrl() {
+  return WHATSAPP_HREF
 }

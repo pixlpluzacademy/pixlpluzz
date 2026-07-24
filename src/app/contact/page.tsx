@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { PixelTrail } from '@/components/ui/PixelTrail'
-import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
 export const metadata: Metadata = {
@@ -259,7 +258,7 @@ export default function ContactPage() {
             Free Consultation
           </h2>
           <Link
-            href={getWhatsAppUrl()}
+            href="/whatsapp"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-glaze btn-cta-green inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold uppercase tracking-widest pixel-corner-sm"

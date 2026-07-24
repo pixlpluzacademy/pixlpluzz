@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import { getWhatsAppUrl } from '@/lib/whatsapp'
 
 const POP_INTERVAL_MS = 8000
 /** Start below the viewport edge so it feels like it rises onto the page. */
@@ -21,12 +20,8 @@ function WhatsAppIcon({ className }: { className?: string }) {
   )
 }
 
-function openWhatsApp() {
-  window.open(getWhatsAppUrl(), '_blank', 'noopener,noreferrer')
-}
-
 export function WhatsAppFloat() {
-  const rootRef = useRef<HTMLButtonElement>(null)
+  const rootRef = useRef<HTMLAnchorElement>(null)
   const [hiddenByHero, setHiddenByHero] = useState(true)
 
   // Hide while any page hero is in view (hero already has Free Consultation → WhatsApp)
@@ -112,10 +107,11 @@ export function WhatsAppFloat() {
   }, [hiddenByHero])
 
   return (
-    <button
+    <a
       ref={rootRef}
-      type="button"
-      onClick={openWhatsApp}
+      href="/whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
       aria-hidden={hiddenByHero}
       tabIndex={hiddenByHero ? -1 : 0}
@@ -133,6 +129,6 @@ export function WhatsAppFloat() {
       <span className="flex h-11 w-11 items-center justify-center pixel-corner-sm bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-transform duration-200 group-hover:scale-110 group-active:scale-95 sm:h-12 sm:w-12">
         <WhatsAppIcon className="h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" />
       </span>
-    </button>
+    </a>
   )
 }

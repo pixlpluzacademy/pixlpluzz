@@ -7,7 +7,6 @@ import { ArrowRight, ChevronRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
-import { getWhatsAppUrl } from '@/lib/whatsapp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -155,7 +154,7 @@ export function HeroSection() {
                 Apply For Scholarship <ChevronRight size={15} />
               </Link>
               <a
-                href={getWhatsAppUrl()}
+                href="/whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-glaze btn-outline-bright inline-flex items-center gap-2 border-2 px-7 py-3 text-sm font-bold uppercase tracking-widest transition-colors pixel-corner-sm"

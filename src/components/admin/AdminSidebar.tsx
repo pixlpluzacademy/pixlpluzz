@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   MessageSquareText,
   Users,
+  X,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { canManageUsers, type Profile } from '@/lib/supabase/types'
@@ -22,16 +23,39 @@ const NAV: {
   { href: '/admin/users', label: 'Users', icon: Users, managersOnly: true },
 ]
 
-export function AdminSidebar({ profile }: { profile: Profile }) {
+export function AdminSidebar({
+  profile,
+  open,
+  onClose,
+}: {
+  profile: Profile
+  open: boolean
+  onClose: () => void
+}) {
   const pathname = usePathname()
 
   return (
-    <aside className="flex w-56 shrink-0 flex-col border-r border-white/10 bg-[#0a0a0a]">
-      <div className="border-b border-white/10 px-4 py-5">
-        <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-green-accent">
-          Pixl Pluz
-        </p>
-        <p className="mt-1 text-sm font-bold text-white">Admin</p>
+    <aside
+      className={cn(
+        'fixed inset-y-0 left-0 z-50 flex w-64 max-w-[85vw] flex-col border-r border-white/10 bg-[#0a0a0a] transition-transform duration-200 ease-out lg:static lg:z-auto lg:w-56 lg:max-w-none lg:translate-x-0 lg:shrink-0',
+        open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
+      )}
+    >
+      <div className="flex items-start justify-between gap-3 border-b border-white/10 px-4 py-5">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-green-accent">
+            Pixl Pluz
+          </p>
+          <p className="mt-1 text-sm font-bold text-white">Admin</p>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="inline-flex h-9 w-9 items-center justify-center border border-white/15 text-white/70 transition-colors hover:border-white/30 hover:text-white lg:hidden"
+          aria-label="Close sidebar"
+        >
+          <X size={18} />
+        </button>
       </div>
 
       <nav className="flex flex-1 flex-col gap-1 p-3">
@@ -47,6 +71,7 @@ export function AdminSidebar({ profile }: { profile: Profile }) {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={cn(
                 'flex items-center gap-2.5 rounded-sm px-3 py-2.5 text-sm font-medium transition-colors',
                 active
