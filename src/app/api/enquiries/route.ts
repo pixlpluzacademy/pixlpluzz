@@ -21,13 +21,14 @@ export async function POST(request: Request) {
     const full_name = clean(body.full_name, 120)
     const email = clean(body.email, 160).toLowerCase()
     const phone = clean(body.phone, 40)
+    const city = clean(body.city, 80)
     const interest = clean(body.interest, 80)
     const message = clean(body.message, 4000)
 
     if (!SOURCES.has(source)) {
       return NextResponse.json({ error: 'Invalid source' }, { status: 400 })
     }
-    if (!full_name || !email || !phone) {
+    if (!full_name || !email || !phone || !city) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -42,6 +43,7 @@ export async function POST(request: Request) {
         full_name,
         email,
         phone,
+        city,
         interest,
         message,
         status: 'new',

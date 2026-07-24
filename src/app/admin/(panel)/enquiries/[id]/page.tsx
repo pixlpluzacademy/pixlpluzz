@@ -53,6 +53,10 @@ export default async function EnquiryDetailPage({
           </dd>
         </div>
         <div>
+          <dt className="text-[10px] font-bold uppercase tracking-wider text-white/40">City</dt>
+          <dd className="mt-1 text-white">{enquiry.city || '—'}</dd>
+        </div>
+        <div>
           <dt className="text-[10px] font-bold uppercase tracking-wider text-white/40">Interest</dt>
           <dd className="mt-1 text-white">{enquiry.interest || '—'}</dd>
         </div>

@@ -15,6 +15,8 @@ const COURSES = [
 const FIELD =
   'w-full border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-green-accent focus:bg-black/55'
 
+const LABEL = 'mb-2.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400'
+
 export function ContactForm() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -24,6 +26,7 @@ export function ContactForm() {
     full_name: '',
     email: '',
     phone: '',
+    city: '',
     message: '',
   })
 
@@ -41,6 +44,7 @@ export function ContactForm() {
           full_name: form.full_name,
           email: form.email,
           phone: form.phone,
+          city: form.city,
           interest: course,
           message: form.message,
           website: '',
@@ -70,12 +74,10 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6 pb-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-            Full Name *
-          </label>
+          <label className={LABEL}>Full Name *</label>
           <input
             required
             type="text"
@@ -86,9 +88,7 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-            Email *
-          </label>
+          <label className={LABEL}>Email *</label>
           <input
             required
             type="email"
@@ -100,24 +100,33 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div>
-        <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-          Phone Number *
-        </label>
-        <input
-          required
-          type="tel"
-          placeholder="+91 98765 43210"
-          value={form.phone}
-          onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-          className={FIELD}
-        />
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label className={LABEL}>Phone Number *</label>
+          <input
+            required
+            type="tel"
+            placeholder="+91 98765 43210"
+            value={form.phone}
+            onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+            className={FIELD}
+          />
+        </div>
+        <div>
+          <label className={LABEL}>City *</label>
+          <input
+            required
+            type="text"
+            placeholder="Your city"
+            value={form.city}
+            onChange={(e) => setForm((f) => ({ ...f, city: e.target.value }))}
+            className={FIELD}
+          />
+        </div>
       </div>
 
       <div>
-        <p className="mb-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-          Interested Course
-        </p>
+        <p className={LABEL}>Interested Course</p>
         <div className="flex flex-wrap gap-2">
           {COURSES.map((item) => {
             const active = course === item
@@ -141,9 +150,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-          Message
-        </label>
+        <label className={LABEL}>Message</label>
         <textarea
           rows={4}
           placeholder="Tell us how we can help..."
@@ -172,7 +179,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="btn-glaze btn-cta-green mt-2 w-full py-3.5 text-sm font-bold uppercase tracking-widest disabled:opacity-60"
+        className="btn-glaze btn-cta-green mt-1 w-full py-3.5 text-sm font-bold uppercase tracking-widest disabled:opacity-60"
       >
         {loading ? 'Sending...' : 'Send Message'}
       </button>

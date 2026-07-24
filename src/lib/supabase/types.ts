@@ -19,6 +19,7 @@ export type Enquiry = {
   full_name: string
   email: string
   phone: string
+  city: string
   interest: string
   message: string
   status: EnquiryStatus

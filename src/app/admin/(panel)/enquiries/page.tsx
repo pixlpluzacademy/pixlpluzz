@@ -33,7 +33,7 @@ export default async function EnquiriesPage({
     const q = params.q.trim().replace(/[%_,]/g, '')
     if (q) {
       query = query.or(
-        `full_name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%,interest.ilike.%${q}%`,
+        `full_name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%,city.ilike.%${q}%,interest.ilike.%${q}%`,
       )
     }
   }
@@ -59,7 +59,7 @@ export default async function EnquiriesPage({
           <input
             name="q"
             defaultValue={params.q ?? ''}
-            placeholder="Name, email, phone…"
+            placeholder="Name, email, phone, city…"
             className="border border-white/15 bg-black/40 px-3 py-2 text-sm text-white outline-none focus:border-green-accent"
           />
         </div>
@@ -104,12 +104,13 @@ export default async function EnquiriesPage({
       </form>
 
       <div className="mt-6 overflow-x-auto border border-white/10">
-        <table className="w-full min-w-[720px] text-left text-sm">
+        <table className="w-full min-w-[800px] text-left text-sm">
           <thead className="border-b border-white/10 bg-white/5 text-[10px] uppercase tracking-wider text-white/45">
             <tr>
               <th className="px-4 py-3 font-semibold">Name</th>
               <th className="px-4 py-3 font-semibold">Email</th>
               <th className="px-4 py-3 font-semibold">Phone</th>
+              <th className="px-4 py-3 font-semibold">City</th>
               <th className="px-4 py-3 font-semibold">Source</th>
               <th className="px-4 py-3 font-semibold">Interest</th>
               <th className="px-4 py-3 font-semibold">Status</th>
@@ -119,7 +120,7 @@ export default async function EnquiriesPage({
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={7} className="px-4 py-10 text-center text-white/40">
+                <td colSpan={8} className="px-4 py-10 text-center text-white/40">
                   No matching enquiries.
                 </td>
               </tr>
@@ -136,6 +137,7 @@ export default async function EnquiriesPage({
                   </td>
                   <td className="px-4 py-3 text-white/60">{row.email}</td>
                   <td className="px-4 py-3 text-white/60">{row.phone}</td>
+                  <td className="px-4 py-3 text-white/60">{row.city || '—'}</td>
                   <td className="px-4 py-3 capitalize text-white/60">{row.source}</td>
                   <td className="px-4 py-3 text-white/60">{row.interest || '—'}</td>
                   <td className="px-4 py-3 capitalize text-white/70">{row.status}</td>

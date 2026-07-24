@@ -32,6 +32,7 @@ export function ContactSection() {
     lastName: '',
     email: '',
     phone: '',
+    city: '',
     message: '',
     updates: false,
   })
@@ -79,6 +80,7 @@ export function ContactSection() {
           full_name: `${form.firstName} ${form.lastName}`.trim(),
           email: form.email,
           phone: form.phone,
+          city: form.city,
           interest,
           message: form.message,
           website: '',
@@ -142,7 +144,7 @@ export function ContactSection() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6 pb-2">
                 <div className="min-w-0 overflow-visible">
                   <h2 className="mb-1.5 w-full whitespace-nowrap font-black uppercase leading-[0.88] tracking-tight text-[clamp(1.1rem,6.8cqi,3.75rem)]">
                     <span className="text-white">Your </span>
@@ -160,7 +162,7 @@ export function ContactSection() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     type="text"
                     placeholder="First Name *"
@@ -186,12 +188,20 @@ export function ContactSection() {
                     className={FIELD}
                   />
                   <input
+                    type="text"
+                    placeholder="City *"
+                    required
+                    value={form.city}
+                    onChange={e => setForm(f => ({ ...f, city: e.target.value }))}
+                    className={FIELD}
+                  />
+                  <input
                     type="email"
                     placeholder="Email Address *"
                     required
                     value={form.email}
                     onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                    className={FIELD}
+                    className={cn(FIELD, 'sm:col-span-2')}
                   />
                 </div>
 
@@ -240,7 +250,7 @@ export function ContactSection() {
                   disabled={loading}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-glaze btn-cta-green w-full py-3.5 text-sm font-bold uppercase tracking-widest disabled:opacity-60"
+                  className="btn-glaze btn-cta-green mt-1 w-full py-3.5 text-sm font-bold uppercase tracking-widest disabled:opacity-60"
                 >
                   {loading ? 'Sending...' : 'Send Message'}
                 </motion.button>

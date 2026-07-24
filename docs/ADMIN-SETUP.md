@@ -18,6 +18,8 @@ In Supabase Dashboard → SQL Editor, paste and run:
 
 [`supabase/migrations/001_admin_enquiries.sql`](../supabase/migrations/001_admin_enquiries.sql)
 
+Also apply later migrations in order (`002_…`, `003_…`, `004_enquiry_city.sql` for the required city field).
+
 ## 3. First admin user
 
 1. Dashboard → Authentication → Users → Add user (email + password).
