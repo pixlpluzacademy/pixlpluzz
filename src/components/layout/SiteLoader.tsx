@@ -15,10 +15,9 @@ type Phase = 'loading' | 'exit' | 'done'
 
 export function SiteLoader() {
   const pathname = usePathname()
-  const isAdmin = pathname?.startsWith('/admin') ?? false
   const { setSiteReady } = useSiteLoaderControl()
-  const [phase, setPhase] = useState<Phase>(() => (isAdmin ? 'done' : 'loading'))
-  const [progress, setProgress] = useState(isAdmin ? 100 : 0)
+  const [phase, setPhase] = useState<Phase>('loading')
+  const [progress, setProgress] = useState(0)
 
   const rootRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef(0)
@@ -48,14 +47,6 @@ export function SiteLoader() {
   }, [setSiteReady])
 
   useEffect(() => {
-    if (pathname?.startsWith('/admin')) {
-      cancelAnimationFrame(rafRef.current)
-      setSiteReady(true)
-      setPhase('done')
-      document.body.style.overflow = ''
-      return
-    }
-
     const runId = ++runIdRef.current
     setSiteReady(false)
     setPhase('loading')

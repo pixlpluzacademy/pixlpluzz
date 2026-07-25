@@ -69,7 +69,7 @@ const FAQS: FaqItem[] = [
   {
     q:'Is the data science and AI course suitable for non-engineering students?',
     a:'Yes, the course is designed to be beginner-friendly, so non-engineering students can join and learn step by step.',
-  },
+  }, 
 ]
 
 const faqContainerVariants = {

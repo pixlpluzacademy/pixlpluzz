@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createAdminClient } from '@/lib/supabase/admin'
+import { createAcademyClient } from '@/lib/supabase/academy'
 
 const SOURCES = new Set(['contact', 'home'])
 
@@ -35,9 +35,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
 
-    const supabase = createAdminClient()
-    const { data, error } = await supabase
-      .from('enquiries')
+    const academy = createAcademyClient()
+    const { data, error } = await academy
+      .from('admission_enquiry')
       .insert({
         source,
         full_name,
@@ -46,13 +46,12 @@ export async function POST(request: Request) {
         city,
         interest,
         message,
-        status: 'new',
       })
       .select('id')
       .single()
 
     if (error) {
-      console.error('enquiry insert', error)
+      console.error('enquiry insert (academy)', error)
       return NextResponse.json({ error: 'Failed to save enquiry' }, { status: 500 })
     }
 

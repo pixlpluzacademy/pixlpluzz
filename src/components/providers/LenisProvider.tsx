@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 import { ReactLenis, useLenis } from 'lenis/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -99,13 +98,6 @@ function GSAPSync() {
 }
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const isAdmin = pathname?.startsWith('/admin')
-
-  if (isAdmin) {
-    return <>{children}</>
-  }
-
   return (
     <ReactLenis
       root
