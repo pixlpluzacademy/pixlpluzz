@@ -133,8 +133,8 @@ export function Footer() {
                 />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Call us directly</p>
-                  <a href="tel:+917736060370" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
-                    ( +91 ) 77360 60370
+                  <a href="tel:+919895501234" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
+                    ( +91 ) 98955 01234
                   </a>
                 </div>
               </li>

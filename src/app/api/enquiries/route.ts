@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server'
 import { createAcademyClient } from '@/lib/supabase/academy'
+import { sendEnquiryEmail } from '@/lib/send-enquiry-email'
 
 const SOURCES = new Set(['contact', 'home'])
+
+/** Set ENQUIRY_STORAGE_ENABLED=true to resume academy Supabase inserts. */
+const STORAGE_ENABLED = process.env.ENQUIRY_STORAGE_ENABLED === 'true'
 
 function clean(s: unknown, max = 500) {
   if (typeof s !== 'string') return ''
@@ -35,27 +39,37 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
 
-    const academy = createAcademyClient()
-    const { data, error } = await academy
-      .from('admission_enquiry')
-      .insert({
-        source,
-        full_name,
-        email,
-        phone,
-        city,
-        interest,
-        message,
-      })
-      .select('id')
-      .single()
-
-    if (error) {
-      console.error('enquiry insert (academy)', error)
-      return NextResponse.json({ error: 'Failed to save enquiry' }, { status: 500 })
+    const row = {
+      source,
+      full_name,
+      email,
+      phone,
+      city,
+      interest,
+      message,
     }
 
-    return NextResponse.json({ ok: true, id: data.id })
+    try {
+      await sendEnquiryEmail(row)
+    } catch (err) {
+      console.error('enquiry email', err)
+      return NextResponse.json(
+        { error: 'Failed to send enquiry email. Please try again.' },
+        { status: 500 },
+      )
+    }
+
+    // Academy DB storage still paused unless ENQUIRY_STORAGE_ENABLED=true
+    if (STORAGE_ENABLED) {
+      const academy = createAcademyClient()
+      const { error } = await academy.from('admission_enquiry').insert(row)
+      if (error) {
+        console.error('enquiry insert (academy)', error)
+        // Email already sent — don't fail the user on paused/secondary storage
+      }
+    }
+
+    return NextResponse.json({ ok: true })
   } catch (err) {
     console.error('enquiry api', err)
     return NextResponse.json({ error: 'Bad request' }, { status: 400 })

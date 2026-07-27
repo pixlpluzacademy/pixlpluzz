@@ -1,23 +1,41 @@
-# Academy form sync
+# Enquiry email (Gmail via Nodemailer)
 
-Website contact/home forms `POST /api/enquiries` and insert **only form fields** into the academy Supabase table `admission_enquiry`.
+Form submissions are emailed to **pixlpluz@gmail.com** as:
 
-## Environment (`.env.local` + Vercel)
+`New enquiry from {user name}`
+
+WhatsApp CTA buttons still open WhatsApp as before. Academy DB storage stays paused unless `ENQUIRY_STORAGE_ENABLED=true`.
+
+## 1. Create a Gmail App Password
+
+1. Open Google Account for `pixlpluz@gmail.com`
+2. Enable **2-Step Verification**
+3. Go to [App passwords](https://myaccount.google.com/apppasswords)
+4. Create one for “Mail” / “Other (Pixl Pluz website)”
+5. Copy the 16-character password
+
+## 2. Environment
+
+`.env.local` and Vercel:
 
 ```
-ACADEMY_API_URL=https://YOUR_ACADEMY_PROJECT.supabase.co
-ACADEMY_SUPABASE_SERVICE_ROLE_KEY=sb_secret_...
+GMAIL_USER=pixlpluz@gmail.com
+GMAIL_APP_PASSWORD=xxxxxxxxxxxxxxxx
 ```
 
-Never commit secrets. Website admin Supabase keys are no longer required.
+Restart `pnpm run dev` after saving. Add the same vars in Vercel for production.
 
-## Database
+## 3. Smoke test
 
-Run in the **academy** project SQL editor:
+1. Submit home or contact form
+2. Check inbox of `pixlpluz@gmail.com`
+3. Subject looks like: `New enquiry from Lakshmi Nair`
+4. Reply-To is the visitor’s email
 
-[`supabase/academy/001_admission_enquiry.sql`](../supabase/academy/001_admission_enquiry.sql)
+## Optional: resume academy storage
 
-## Smoke test
-
-1. Submit homepage form → row with `source = home` in `admission_enquiry`.
-2. Submit contact form → row with `source = contact`.
+```
+ENQUIRY_STORAGE_ENABLED=true
+ACADEMY_API_URL=...
+ACADEMY_SUPABASE_SERVICE_ROLE_KEY=...
+```

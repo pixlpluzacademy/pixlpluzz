@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export function GET() {
-  const phone = '917736060370'
+  const phone = '919895501234'
   const message =
     'Hi Pixl Pluz! I would like a free consultation about your courses.'
 

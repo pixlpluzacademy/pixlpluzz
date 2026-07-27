@@ -14,8 +14,8 @@ const CONTACT_CARDS = [
   {
     icon: '/icons/phone.svg',
     label: 'Phone Number',
-    value: '+91 77360 60370',
-    href: 'tel:+917736060370',
+    value: '+91 98955 01234',
+    href: 'tel:+919895501234',
   },
   {
     icon: '/icons/mail.svg',
