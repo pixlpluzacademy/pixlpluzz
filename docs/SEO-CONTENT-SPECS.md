@@ -132,7 +132,7 @@
 | Cloud hero word | 2 | *"AI TOOLS"* | Mid-size green label |
 | Tool labels | 1–3 each | ~30 famous tools (ChatGPT, Claude, Cursor, Midjourney, etc.) | Green / blue / butter / white |
 
-**UI note:** Sticky scroll-dispersing word cloud on all breakpoints; mobile scales positions + fonts together and flattens vertical labels to avoid overlaps.
+**UI note:** Desktop: sticky scroll-dispersing word cloud. Mobile: no pin — words spread as the section scrolls through mid-viewport so the motion is visible; tighter scale + clamps keep labels on screen.
 
 ---
 
@@ -193,7 +193,7 @@ Two-column layout: left intro + “Still Have Questions?” / Contact; right acc
 
 | Field | Word target | Current (2026-07-23) | Notes |
 |-------|-------------|----------------------|-------|
-| H2 | 3 | Frequently / Asked / Questions | Three lines; first letter of each word green |
+| H2 | 3 | Frequently / Asked / Questions | Desktop: three lines; mobile: two centered lines (*Frequently Asked* / *Questions*); first letter of each word green |
 | Still have questions body | 12–25 | ~18 | + Contact Us link to `/contact` |
 | Question | 10–22 | 12–18 each | 5 items; include location/skill keywords |
 | Answer | 22–45 | 25–35 each | Use "comprehensive placement support" — no "100%"; courses FAQ uses blue (#143d8f) bullet list |

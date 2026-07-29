@@ -156,7 +156,7 @@ export function ScholarshipSection() {
   return (
     // Desktop: capped sticky stage + scrub track. Mobile: natural height.
     <div ref={wrapperRef} className="scholarship-scroll-track relative">
-      <section className="scholarship-sticky-stage relative overflow-hidden bg-black py-[clamp(64px,6vw,96px)] lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center lg:py-[clamp(2rem,4vh,3.5rem)]">
+      <section className="scholarship-sticky-stage relative overflow-hidden bg-black py-8 sm:py-10 md:py-[clamp(64px,6vw,96px)] lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center lg:py-[clamp(2rem,4vh,3.5rem)]">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src="/images/bg-scholarship-2.jpeg"
@@ -171,9 +171,9 @@ export function ScholarshipSection() {
         <div className="site-container relative z-10 w-full text-center">
 
           {/* Heading — always visible; stays fixed while steps animate */}
-          <h2 className="mb-5 font-black uppercase leading-[0.92] tracking-tight sm:mb-6 text-[clamp(2rem,6.5vw,4.25rem)]">
-            <span className="text-white">Merit Based</span>{' '}
-            <span className="text-green-accent">Scholarship</span>
+          <h2 className="mb-3 font-black uppercase leading-[0.92] tracking-tight sm:mb-5 md:mb-6 text-[clamp(1.75rem,8vw,4.25rem)]">
+            <span className="block text-white sm:inline">Merit Based</span>{' '}
+            <span className="block text-green-accent sm:inline">Scholarship</span>
           </h2>
 
           <p className="mx-auto mb-3 max-w-[42rem] text-center text-gray-400">

@@ -99,27 +99,39 @@ export function FAQSection() {
       <div className="site-container relative z-10">
         <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
           {/* Left — heading + still have questions kept together */}
-          <div className="lg:col-span-5">
+          <div className="text-center lg:col-span-5 lg:text-left">
             <h2 className="relative mb-8 font-black leading-[1.02] tracking-tight text-[clamp(2.25rem,6vw,4.5rem)]">
               <PixelTrail />
-              <span className="block">
+              {/* Mobile: two centered lines */}
+              <span className="block lg:hidden">
                 <span className="text-green-accent">F</span>
-                <span className="text-white">requently</span>
-              </span>
-              <span className="block">
+                <span className="text-white">requently </span>
                 <span className="text-green-accent">A</span>
                 <span className="text-white">sked</span>
               </span>
-              <span className="block">
+              <span className="block lg:hidden">
+                <span className="text-green-accent">Q</span>
+                <span className="text-white">uestions</span>
+              </span>
+              {/* Desktop: three stacked lines */}
+              <span className="hidden lg:block">
+                <span className="text-green-accent">F</span>
+                <span className="text-white">requently</span>
+              </span>
+              <span className="hidden lg:block">
+                <span className="text-green-accent">A</span>
+                <span className="text-white">sked</span>
+              </span>
+              <span className="hidden lg:block">
                 <span className="text-green-accent">Q</span>
                 <span className="text-white">uestions</span>
               </span>
             </h2>
 
             <AnimatedSection variant="fadeUp" delay={0.12}>
-              <div>
+              <div className="mx-auto max-w-sm lg:mx-0">
                 <h3 className="mb-2 text-lg font-bold text-white">Still Have Questions?</h3>
-                <p className="mb-4 max-w-sm text-sm leading-relaxed text-gray-400 text-justify">
+                <p className="mb-4 text-sm leading-relaxed text-gray-400 text-center lg:text-justify">
                   Reach out and our team will guide you through courses, scholarships, and next
                   steps.
                 </p>

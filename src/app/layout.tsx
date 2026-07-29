@@ -51,7 +51,7 @@ export default function RootLayout({
       className={`dark ${redHatDisplay.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <LenisProvider>
           <ThemeProvider>
             <SiteLoaderProvider>

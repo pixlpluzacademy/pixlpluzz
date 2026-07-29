@@ -15,18 +15,23 @@ const TONE_CLASS = {
 
 function layoutScales() {
   if (typeof window === 'undefined') {
-    return { s: 1, fs: 1, allowRotate: true }
+    return { s: 1, fs: 1, allowRotate: true, isMobile: false }
   }
   const w = window.innerWidth
-  const s = Math.min(1.18, Math.max(0.7, w / 1350))
-  const fs =
-    w < 640
-      ? Math.min(0.55, Math.max(0.28, w / 1300))
-      : Math.min(1, Math.max(0.34, w / 1150))
+  const isMobile = w < 768
+  // Mobile: keep the desktop composition, but pull words well inside the viewport
+  const s = isMobile
+    ? Math.min(0.36, Math.max(0.26, w / 1400))
+    : Math.min(1.18, Math.max(0.7, w / 1350))
+  const fs = isMobile
+    ? Math.min(0.48, Math.max(0.3, w / 1200))
+    : Math.min(1, Math.max(0.34, w / 1150))
   return {
     s,
     fs,
-    allowRotate: w >= 900,
+    isMobile,
+    // Keep rotated (vertical) labels on mobile — same composition as desktop
+    allowRotate: true,
   }
 }
 
@@ -64,17 +69,34 @@ export function AiToolsSection() {
 
     const render = () => {
       ticking = false
-      const rect = track.getBoundingClientRect()
-      const total = Math.max(1, track.offsetHeight - window.innerHeight)
-      const p = Math.min(1, Math.max(0, -rect.top / total))
-      const { s, fs, allowRotate } = layoutScales()
+      const stage = track.querySelector('.ai-tools-sticky-stage') as HTMLElement | null
+      const { s, fs, allowRotate, isMobile } = layoutScales()
       syncDatasets(allowRotate)
 
-      // Hold cluster at top, then ease to a half-spread (not full fly-away)
-      const hold = 0.22
+      let p = 0
+      if (isMobile && stage) {
+        // Drive motion while the cloud is mid-screen — not only after it sticks to top
+        const viewH = window.innerHeight
+        const r = stage.getBoundingClientRect()
+        const mid = r.top + r.height / 2
+        const start = viewH * 0.72 // clustered when entering view
+        const end = viewH * 0.32 // fully spread while still visible
+        p = Math.min(1, Math.max(0, (start - mid) / Math.max(1, start - end)))
+      } else {
+        const rect = track.getBoundingClientRect()
+        const stageH = stage?.offsetHeight ?? window.innerHeight
+        const total = Math.max(1, track.offsetHeight - stageH)
+        p = Math.min(1, Math.max(0, -rect.top / total))
+      }
+
+      // Hold, then ease outward — mobile still moves, but stays on-screen
+      const hold = isMobile ? 0 : 0.22
       const t = Math.max(0, (p - hold) / (1 - hold))
       const capped = Math.min(t, 1)
-      const disperse = smoothstep(capped) * 0.5
+      const disperse = smoothstep(capped) * (isMobile ? 0.45 : 0.5)
+      const flyBase = isMobile ? 48 : 70
+      const flySpan = isMobile ? 36 : 55
+      const maxOffset = isMobile ? window.innerWidth * 0.42 : Number.POSITIVE_INFINITY
 
       els.forEach((el, i) => {
         const word = AI_TOOLS_CLOUD_WORDS[i]
@@ -86,8 +108,8 @@ export function AiToolsSection() {
         const rot = allowRotate ? Number(el.dataset.rot) : 0
         const isHero = el.dataset.hero === 'true'
 
-        const wp = Math.min(1, capped * speed * 1.05)
-        const ease = smoothstep(wp) * 0.5
+        const wp = Math.min(1, capped * speed * (isMobile ? 1.25 : 1.05))
+        const ease = smoothstep(wp) * (isMobile ? 0.55 : 0.5)
 
         let tx: number
         let ty: number
@@ -100,10 +122,12 @@ export function AiToolsSection() {
           scale = 1 - disperse * 0.08
           opacity = 1
         } else {
-          // Half the previous fly distance — words nudge out, stay readable
-          const fly = ease * (70 + 55 * speed) * s
+          const fly = ease * (flyBase + flySpan * speed) * s
           tx = x + dx * fly
           ty = y + dy * fly
+          // Keep mobile labels inside the screen while they still move
+          tx = Math.max(-maxOffset, Math.min(maxOffset, tx))
+          ty = Math.max(-maxOffset * 0.9, Math.min(maxOffset * 0.9, ty))
           scale = 1 - ease * 0.1
           opacity = 1 - ease * 0.12
           el.style.fontSize = `${word.sizeRem * fs}rem`
@@ -140,7 +164,7 @@ export function AiToolsSection() {
       <h2 className="sr-only">AI Tools</h2>
 
       <div ref={trackRef} className="ai-tools-cloud-track relative">
-        <div className="ai-tools-sticky-stage sticky top-0 flex items-center justify-center overflow-hidden bg-black">
+        <div className="ai-tools-sticky-stage relative top-0 flex items-center justify-center overflow-hidden bg-black md:sticky">
           <div className="ai-tools-cloud relative mx-auto">
             {AI_TOOLS_CLOUD_WORDS.map((word, i) => (
               <div

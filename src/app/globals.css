@@ -1028,6 +1028,24 @@ body::-webkit-scrollbar,
   height: min(58svh, 560px);
 }
 
+/* Mobile: no sticky pin — motion plays while the cloud scrolls through mid-screen */
+@media (max-width: 767px) {
+  .ai-tools-cloud-track {
+    height: auto;
+  }
+
+  .ai-tools-sticky-stage {
+    height: min(40svh, 300px);
+    min-height: 240px;
+    max-height: 300px;
+  }
+
+  .ai-tools-cloud {
+    width: min(94vw, 1400px);
+    height: 100%;
+  }
+}
+
 /* Scholarship — sticky fills the viewport; track = stage + scrub only
    (avoid leftover empty black that looks like a second scholarship block) */
 @media (min-width: 1024px) {
