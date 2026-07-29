@@ -148,8 +148,8 @@ export default function ContactPage() {
             </div>
 
             {/* Right — intro, contact grid, map */}
-            <div className="flex min-w-0 flex-col gap-8 lg:h-full">
-              <p className="m-0 text-justify text-base leading-relaxed text-gray-400 sm:text-[1.05rem]">
+            <div className="flex min-w-0 flex-col gap-8 text-center lg:h-full lg:text-left">
+              <p className="m-0 text-center text-base leading-relaxed text-gray-400 sm:text-[1.05rem] lg:text-justify">
                 Whether you want to enrol, apply for a scholarship, or just want more information,
                 reach out and we will get back to you within one business day.<br></br> Office hours:
                 Mon – Sat, 9:00 AM – 6:00 PM.
@@ -159,7 +159,7 @@ export default function ContactPage() {
                 {CONTACT_CARDS.map(item => {
                   const content = (
                     <>
-                      <div className="mb-3 flex h-11 w-11 items-center justify-center border border-white/15 bg-black/40">
+                      <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center border border-white/15 bg-black/40 lg:mx-0">
                         <Image
                           src={item.icon}
                           alt=""
@@ -195,7 +195,7 @@ export default function ContactPage() {
                 <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-green-accent">
                   Our Social Profiles
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
                   {SOCIAL_LINKS.map(profile => (
                     <a
                       key={profile.label}
