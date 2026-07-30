@@ -336,7 +336,8 @@ export function HeroPixelField({ className }: { className?: string }) {
         : null
     resizeObserver?.observe(mount)
 
-    const clock = new THREE.Clock()
+    const timer = new THREE.Timer()
+    timer.connect(document)
     let raf = 0
     let smoothScatter = 0
 
@@ -346,12 +347,13 @@ export function HeroPixelField({ className }: { className?: string }) {
       writeInstances(0, 0)
       renderer.render(scene, camera)
     } else {
-      const animate = () => {
+      const animate = (timestamp: number) => {
         raf = requestAnimationFrame(animate)
         if (document.hidden) return
 
-        const delta = Math.min(clock.getDelta(), 0.05)
-        const time = clock.getElapsedTime()
+        timer.update(timestamp)
+        const delta = Math.min(timer.getDelta(), 0.05)
+        const time = timer.getElapsed()
 
         readScroll()
         // Smooth the scroll value so the scatter feels weighty, not jittery
@@ -386,11 +388,12 @@ export function HeroPixelField({ className }: { className?: string }) {
 
         renderer.render(scene, camera)
       }
-      animate()
+      raf = requestAnimationFrame(animate)
     }
 
     return () => {
       cancelAnimationFrame(raf)
+      timer.dispose()
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('resize', onResize)
       window.removeEventListener('scroll', readScroll)
