@@ -4,7 +4,6 @@ import './globals.css'
 import { ThemeProvider }  from '@/components/ThemeProvider'
 import { SiteShell }      from '@/components/layout/SiteShell'
 import { SiteLoaderProvider } from '@/components/providers/SiteLoaderProvider'
-import { SiteLoader }     from '@/components/layout/SiteLoader'
 import { LenisProvider }  from '@/components/providers/LenisProvider'
 
 const redHatDisplay = Red_Hat_Display({
@@ -36,9 +35,14 @@ export const metadata: Metadata = {
     'web development course kochi',
   ],
   icons: {
-    icon: '/logo-icon.svg',
-    shortcut: '/logo-icon.svg',
-    apple: '/logo-icon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon-32.png',
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 }
 
@@ -55,7 +59,6 @@ export default function RootLayout({
         <LenisProvider>
           <ThemeProvider>
             <SiteLoaderProvider>
-              <SiteLoader />
               <SiteShell>{children}</SiteShell>
             </SiteLoaderProvider>
           </ThemeProvider>

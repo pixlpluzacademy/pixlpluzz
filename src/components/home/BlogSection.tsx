@@ -32,7 +32,7 @@ export function BlogSection({ blogs }: { blogs: Blog[] }) {
       />
       <div className="site-container relative z-10">
         <div className="mb-12 text-center sm:mb-14">
-          <h2 className="relative mx-auto mb-4 max-w-3xl text-center font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
+          <h2 className="relative z-10 mx-auto mb-4 max-w-3xl text-center font-black uppercase leading-[1.12] tracking-tight text-[clamp(2rem,7vw,3.75rem)]">
             <PixelTrail />
             <span className="text-green-accent">AI Latest </span>
             <span className="text-white">Updates</span>

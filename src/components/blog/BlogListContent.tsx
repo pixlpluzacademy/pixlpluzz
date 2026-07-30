@@ -53,7 +53,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
         />
         <div className="site-container-wide relative z-10">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <h1 className="relative font-black uppercase leading-[0.9] tracking-tight">
+            <h1 className="relative z-10 font-black uppercase leading-[0.9] tracking-tight">
               <PixelTrail />
               <span className="block text-[clamp(3.5rem,12vw,8rem)] text-white">
                 Blogs

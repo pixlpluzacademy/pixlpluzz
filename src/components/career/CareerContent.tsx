@@ -71,8 +71,8 @@ export function CareerContent({ careers }: { careers: Career[] }) {
       <section className="relative overflow-hidden pt-24 pb-14" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-        <div className="site-container relative z-10 flex min-h-[clamp(28rem,70svh,38rem)] flex-col justify-between">
-          <h1 className="font-black uppercase leading-[0.88] tracking-tight">
+        <div className="site-container relative z-10 flex min-h-0 flex-col justify-start md:min-h-[clamp(28rem,70svh,38rem)] md:justify-between">
+          <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
             <PixelTrail />
             <span className="block overflow-hidden">
               <span className="career-hero-word block text-[clamp(2.5rem,14vw,12rem)] text-white">
@@ -93,7 +93,7 @@ export function CareerContent({ careers }: { careers: Career[] }) {
             </span>
           </h1>
 
-          <div className="career-hero-tag mt-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="career-hero-tag mt-8 flex flex-col gap-6 sm:mt-12 sm:flex-row sm:items-end sm:justify-between">
             <p className="max-w-md text-lg text-gray-400 sm:text-xl">
               We&apos;re building something special.
               <br />

@@ -76,15 +76,16 @@ export function HeroPixelField({ className }: { className?: string }) {
 
     const scene = new THREE.Scene()
     // Softer near fog on mobile so the closer cluster stays crisp
-    scene.fog = new THREE.Fog(0x060b16, isMobile ? 22 : 16, isMobile ? 42 : 34)
+    scene.fog = new THREE.Fog(0x060b16, isMobile ? 20 : 16, isMobile ? 44 : 34)
 
     const camera = new THREE.PerspectiveCamera(
-      isMobile ? 48 : 55,
+      // Slightly wider FOV on mobile; keep camera close enough to fill the frame
+      isMobile ? 52 : 55,
       Math.max(mount.clientWidth, 1) / Math.max(mount.clientHeight, 1),
       0.1,
       100,
     )
-    camera.position.set(0, 0, isMobile ? 14 : 16)
+    camera.position.set(0, 0, isMobile ? 15.5 : 16)
 
     let renderer: THREE.WebGLRenderer
     try {
@@ -143,10 +144,10 @@ export function HeroPixelField({ className }: { className?: string }) {
 
       const aspect = w / h
       if (aspect < 1) {
-        // Portrait — centred cluster, drifts slightly up as text reveals on scroll
-        clusterStart.set(0, 0.1, 1.0)
-        clusterEnd.set(0.2, 2.4, 0.2)
-        cluster.scale.setScalar(0.92)
+        // Portrait — fill most of the screen with a small edge margin
+        clusterStart.set(0, 0.05, 0)
+        clusterEnd.set(0.15, 2.1, -0.4)
+        cluster.scale.setScalar(0.82)
       } else {
         clusterStart.set(0, -0.8, -1)
         clusterEnd.set(Math.min(7.2, aspect * 4.4), 0, -1)
@@ -163,8 +164,8 @@ export function HeroPixelField({ className }: { className?: string }) {
     const dummy = new THREE.Object3D()
     const color = new THREE.Color()
 
-    // Tighter radius on mobile so the swarm reads as one solid cluster
-    const MAX_R = isMobile ? 5.2 : 7.5
+    // Slightly tighter than desktop so the swarm fills portrait without heavy crop
+    const MAX_R = isMobile ? 4.8 : 7.5
 
     interface Cube {
       x: number
@@ -206,7 +207,7 @@ export function HeroPixelField({ className }: { className?: string }) {
         const sinPhi = Math.sqrt(1 - cosPhi * cosPhi)
         const r = MAX_R * Math.pow(rng(), 0.55)
 
-        x = Math.cos(theta) * sinPhi * r * 1.25
+        x = Math.cos(theta) * sinPhi * r * (isMobile ? 1.12 : 1.25)
         y = cosPhi * r * 0.95
         z = Math.sin(theta) * sinPhi * r * 0.8
 
@@ -363,8 +364,10 @@ export function HeroPixelField({ className }: { className?: string }) {
         writeInstances(time, smoothScatter)
 
         // Idle tumble + scroll-driven swing and drift
-        cluster.rotation.y = Math.sin(time * 0.08) * 0.35 + smoothScatter * 1.1
-        cluster.rotation.x = Math.cos(time * 0.06) * 0.12 - smoothScatter * 0.3
+        const yaw = isMobile ? 0.22 : 0.35
+        const pitch = isMobile ? 0.1 : 0.12
+        cluster.rotation.y = Math.sin(time * 0.08) * yaw + smoothScatter * (isMobile ? 0.7 : 1.1)
+        cluster.rotation.x = Math.cos(time * 0.06) * pitch - smoothScatter * (isMobile ? 0.22 : 0.3)
 
         // Glide from centre to the side anchor during the first 55% of scroll,
         // then keep drifting upward as the cubes scatter away
@@ -373,10 +376,12 @@ export function HeroPixelField({ className }: { className?: string }) {
         cluster.position.lerpVectors(clusterStart, clusterEnd, eased)
         cluster.position.y += smoothScatter * (isMobile ? 2.4 : 3.5)
 
-        camTarget.x += (pointer.x * 1.0 - camTarget.x) * 0.04
-        camTarget.y += (-pointer.y * 0.6 - camTarget.y) * 0.04
+        const parallax = isMobile ? 0.45 : 1.0
+        camTarget.x += (pointer.x * parallax - camTarget.x) * 0.04
+        camTarget.y += (-pointer.y * parallax * 0.6 - camTarget.y) * 0.04
         camera.position.x = camTarget.x
         camera.position.y = camTarget.y
+        camera.position.z = isMobile ? 15.5 : 16
         camera.lookAt(0, 0, 0)
 
         renderer.render(scene, camera)

@@ -130,7 +130,7 @@ export function EventContent({ events }: { events: Event[] }) {
       <section className="relative overflow-hidden pt-24 pb-12" data-page-hero>
         <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-        <div className="site-container-wide relative z-10 flex min-h-[clamp(28rem,70svh,38rem)] flex-col justify-between">
+        <div className="site-container-wide relative z-10 flex min-h-0 flex-col justify-start gap-8 md:min-h-[clamp(28rem,70svh,38rem)] md:justify-between md:gap-0">
           <div className="evt-hero-pop flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-blue-soft">
             <span>[status:<span className="text-blue-soft">active</span>]</span>
             <span>© PIXLPLUZ — {new Date().getFullYear()}</span>
@@ -141,7 +141,7 @@ export function EventContent({ events }: { events: Event[] }) {
             <p className="evt-hero-pop mb-4 font-mono text-xs uppercase tracking-[0.35em] text-blue-soft">
               chapter index
             </p>
-            <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
+            <h1 className="relative z-10 isolate font-black uppercase leading-[0.88] tracking-tight">
               <PixelTrail />
               <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word evt-outline-muted">What&apos;s</span>
               <span className="evt-hero-pop block text-[clamp(2.5rem,13vw,11rem)] text-gray-400">Happening</span>

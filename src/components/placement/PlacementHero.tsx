@@ -35,13 +35,13 @@ export function PlacementHero() {
   return (
     <section
       ref={rootRef}
-      className="relative overflow-hidden bg-black pt-24 pb-12"
+      className="relative overflow-hidden bg-black pt-24 pb-10 sm:pb-12"
       data-page-hero
     >
       <div className="pointer-events-none absolute inset-0 pixel-grid-bg opacity-10" aria-hidden />
 
-      <div className="site-container relative z-10 flex min-h-[clamp(28rem,70svh,38rem)] flex-col justify-between">
-        <div className="mt-auto">
+      <div className="site-container relative z-10 flex min-h-0 flex-col justify-start md:min-h-[clamp(28rem,70svh,38rem)] md:justify-between">
+        <div className="md:mt-auto">
           <h1 className="relative z-10 font-black uppercase leading-[0.88] tracking-tight">
             <PixelTrail />
             <span className="plc-hero-pop block text-[clamp(2.5rem,13vw,11rem)] career-outline-word evt-outline-muted">
@@ -53,7 +53,7 @@ export function PlacementHero() {
           </h1>
         </div>
 
-        <div className="plc-hero-pop mt-10 max-w-md self-end text-left sm:text-right">
+        <div className="plc-hero-pop mt-6 max-w-md self-start text-left sm:mt-10 sm:self-end sm:text-right">
           <p className="font-mono text-[11px] uppercase tracking-widest text-blue-soft">across india & beyond</p>
           <p className="mt-2 text-base text-gray-400 sm:text-lg">
             Real Careers, Real Companies - No Shortcuts.<br></br> Just Work That Shows.

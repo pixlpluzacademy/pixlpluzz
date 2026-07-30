@@ -1,41 +1,21 @@
 'use client'
 
-import { createContext, useContext, useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 
-type SiteLoaderContextValue = {
-  isSiteReady: boolean
-  setSiteReady: (ready: boolean) => void
+/** Kept as a no-op wrapper so existing imports keep working. */
+export function SiteLoaderProvider({ children }: { children: ReactNode }) {
+  return children
 }
 
-const SiteLoaderContext = createContext<SiteLoaderContextValue | null>(null)
-
-export function SiteLoaderProvider({ children }: { children: React.ReactNode }) {
-  const [isSiteReady, setSiteReady] = useState(false)
-
-  const value = useMemo(
-    () => ({ isSiteReady, setSiteReady }),
-    [isSiteReady],
-  )
-
-  return (
-    <SiteLoaderContext.Provider value={value}>
-      {children}
-    </SiteLoaderContext.Provider>
-  )
-}
-
+/** Site loader removed — animations can start immediately. */
 export function useSiteReady() {
-  const ctx = useContext(SiteLoaderContext)
-  if (!ctx) {
-    throw new Error('useSiteReady must be used within SiteLoaderProvider')
-  }
-  return ctx.isSiteReady
+  return true
 }
 
+/** @deprecated Site loader removed */
 export function useSiteLoaderControl() {
-  const ctx = useContext(SiteLoaderContext)
-  if (!ctx) {
-    throw new Error('useSiteLoaderControl must be used within SiteLoaderProvider')
+  return {
+    isSiteReady: true,
+    setSiteReady: (_ready: boolean) => {},
   }
-  return ctx
 }
