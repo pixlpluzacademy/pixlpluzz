@@ -249,6 +249,7 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-08-04 | Sitemap review | Course pages priority 0.9; stable lastmod via `sitemap-dates.ts`; canonical stays non-www |
 | 2026-08-04 | Technical SEO | Added `sitemap.ts` + `robots.ts`; unique meta/OG per page; unique blog excerpts; Coming Soon → `/` 301 |
 | 2026-07-21 | Advantage | Editorial sticky intro + asymmetric bento; H2 → *"Why Learn / With AI?"*; auto-spotlight Flip; card blurbs |
 | 2026-07-23 | Contact page | Image hero; form card + 2×2 details + map; office CTA → WhatsApp free consultation |

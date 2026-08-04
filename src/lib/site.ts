@@ -1,4 +1,8 @@
-/** Canonical production origin for sitemap, robots, and Open Graph URLs. */
+/**
+ * Canonical production origin (apex / non-www).
+ * Keep sitemap, robots, Open Graph, and Hostinger redirects aligned to this host.
+ * Do not switch to www unless the live canonical also becomes www.
+ */
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://pixlpluz.com'
 
