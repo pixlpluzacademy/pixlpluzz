@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogs, getBlog } from '@/lib/data'
 import { getBlogImage } from '@/lib/blog-assets'
+import { pageMetadata } from '@/lib/seo'
 import { formatDate } from '@/lib/utils'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -16,7 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const blog = getBlog(slug)
   if (!blog) return { title: 'Post Not Found' }
-  return { title: blog.title, description: blog.excerpt }
+  return pageMetadata({
+    title: blog.title,
+    description: blog.excerpt,
+    path: `/blog/${blog.slug}`,
+    image: blog.thumbnail,
+    type: 'article',
+  })
 }
 
 function renderContent(content: string) {

@@ -4,8 +4,8 @@
 >
 > **Maintenance rule:** Update the **Current copy snapshot** and **Last updated** date in this file **every time** section copy is created or changed in the codebase. Word counts below are targets — the snapshot reflects what is live in components today.
 
-**Last updated:** 2026-07-18  
-**Snapshot source:** `src/components/home/*`, `src/components/courses/*`, `src/components/scholarship/*`, `src/app/layout.tsx`, `src/app/page.tsx`
+**Last updated:** 2026-08-04  
+**Snapshot source:** `src/components/home/*`, `src/components/courses/*`, `src/components/scholarship/*`, `src/app/layout.tsx`, `src/app/page.tsx`, `src/data/blogs.json`
 
 ---
 
@@ -230,7 +230,8 @@ Not on homepage currently; include if re-enabled.
 | Field | Target | Current issue |
 |-------|--------|---------------|
 | `title` default | 50–60 chars | OK |
-| `description` | 120–160 chars | Remove "₹50 Lakh scholarship fund" |
+| `description` | 120–160 chars | Fixed — no scholarship rupee amount; Open Graph + canonical set |
+| `sitemap` / `robots` | Live URLs | `src/app/sitemap.ts`, `src/app/robots.ts` |
 
 ---
 
@@ -248,6 +249,7 @@ Not on homepage currently; include if re-enabled.
 
 | Date | Section | Change |
 |------|---------|--------|
+| 2026-08-04 | Technical SEO | Added `sitemap.ts` + `robots.ts`; unique meta/OG per page; unique blog excerpts; Coming Soon → `/` 301 |
 | 2026-07-21 | Advantage | Editorial sticky intro + asymmetric bento; H2 → *"Why Learn / With AI?"*; auto-spotlight Flip; card blurbs |
 | 2026-07-23 | Contact page | Image hero; form card + 2×2 details + map; office CTA → WhatsApp free consultation |
 | 2026-07-20 | Homepage Courses | H2 → *"Our Courses"* (Courses green) |

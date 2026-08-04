@@ -5,6 +5,7 @@ import { ThemeProvider }  from '@/components/ThemeProvider'
 import { SiteShell }      from '@/components/layout/SiteShell'
 import { SiteLoaderProvider } from '@/components/providers/SiteLoaderProvider'
 import { LenisProvider }  from '@/components/providers/LenisProvider'
+import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ['latin'],
@@ -20,13 +21,17 @@ const caveat = Caveat({
   display: 'swap',
 })
 
+const defaultTitle = 'Pixl Pluz Academy | AI Integrated Courses in Kochi'
+const defaultDescription =
+  "Kerala's AI-integrated digital marketing and tech academy in Kochi. Practical courses, mentorship, and a merit-based scholarship program."
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Pixl Pluz Academy | AI Integrated Courses in Kochi',
+    default: defaultTitle,
     template: '%s | Pixl Pluz Academy',
   },
-  description:
-    "Kerala's best AI-integrated digital marketing academy. ₹50 Lakh scholarship fund. Courses in Kochi, Thiruvananthapuram, and Calicut.",
+  description: defaultDescription,
   keywords: [
     'digital marketing course kochi',
     'AI integrated courses kerala',
@@ -34,6 +39,31 @@ export const metadata: Metadata = {
     'pixl pluz academy',
     'web development course kochi',
   ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: SITE_URL,
+    siteName: 'Pixl Pluz Academy',
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'Pixl Pluz Academy campus in Kochi',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [DEFAULT_OG_IMAGE],
+  },
   icons: {
     icon: [
       { url: '/logo-icon.svg', type: 'image/svg+xml' },

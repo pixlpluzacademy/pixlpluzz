@@ -3,12 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { PixelTrail } from '@/components/ui/PixelTrail'
+import { pageMetadata } from '@/lib/seo'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Contact',
-  description: 'Get in touch with Pixl Pluz Academy — call, email, or visit us in Kochi.',
-}
+  description:
+    'Get in touch with Pixl Pluz Academy — call, email, or visit our campus in Kochi, Kerala.',
+  path: '/contact',
+})
 
 const CONTACT_CARDS = [
   {
