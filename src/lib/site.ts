@@ -7,4 +7,4 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://pixlpluz.com'
 
 /** Default social preview image (served from /public). */
-export const DEFAULT_OG_IMAGE = '/images/office/pixl-pluz-academy-reception.png'
+export const DEFAULT_OG_IMAGE = '/media/images/office/pixl-pluz-academy-reception.png'

@@ -21,32 +21,32 @@ const AUDIENCES = [
   {
     title: 'Students & fresh graduates',
     desc: 'Exploring creative, digital, and AI-integrated career paths with guided practice.',
-    icon: '/icons/dark-mode/students.svg',
+    icon: '/media/icons/dark-mode/students.svg',
   },
   {
     title: 'Working professionals',
     desc: 'Upskilling or shifting into modern digital roles without pausing your career.',
-    icon: '/icons/dark-mode/career.svg',
+    icon: '/media/icons/dark-mode/career.svg',
   },
   {
     title: 'Career switchers',
     desc: 'Moving from a non-tech background into practical, portfolio-led work.',
-    icon: '/icons/dark-mode/workstream.svg',
+    icon: '/media/icons/dark-mode/workstream.svg',
   },
   {
     title: 'Freelancers',
     desc: 'Building stronger delivery habits and client-ready project skills.',
-    icon: '/icons/dark-mode/portfolio.svg',
+    icon: '/media/icons/dark-mode/portfolio.svg',
   },
   {
     title: 'Entrepreneurs',
     desc: 'Learning workflows that help grow brands, products, and campaigns.',
-    icon: '/icons/dark-mode/analytics.svg',
+    icon: '/media/icons/dark-mode/analytics.svg',
   },
   {
     title: 'Beginners',
     desc: 'Starting from the basics with clear steps, mentors, and hands-on practice.',
-    icon: '/icons/dark-mode/admission.svg',
+    icon: '/media/icons/dark-mode/admission.svg',
   },
 ]
 

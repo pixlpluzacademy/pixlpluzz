@@ -119,7 +119,7 @@ export function FAQSection() {
                   >
                     <span className="text-sm font-bold leading-snug sm:text-base">{faq.q}</span>
                     <Image
-                      src="/icons/arrow.svg"
+                      src="/media/icons/arrow.svg"
                       alt=""
                       width={14}
                       height={18}

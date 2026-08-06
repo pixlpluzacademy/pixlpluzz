@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 const CLIENT_LOGOS = [
-  { src: '/images/client logo/neo.svg', alt: 'Neo Digital Hub' },
-  { src: '/images/client logo/copernicus.svg', alt: 'Copernicus' },
-  { src: '/images/client logo/latief-production.svg', alt: 'Latheif Productions' },
-  { src: '/images/client logo/blackwhite.svg', alt: 'Black & White' },
+  { src: '/media/images/client logo/neo.svg', alt: 'Neo Digital Hub' },
+  { src: '/media/images/client logo/copernicus.svg', alt: 'Copernicus' },
+  { src: '/media/images/client logo/latief-production.svg', alt: 'Latheif Productions' },
+  { src: '/media/images/client logo/blackwhite.svg', alt: 'Black & White' },
 ] as const
 
 export function ClientLogoCarousel({ className }: { className?: string }) {

@@ -154,7 +154,7 @@ export function CareerContent({ careers }: { careers: Career[] }) {
                       <span className="text-sm text-gray-500">({job.location})</span>
                     </span>
                     <Image
-                      src="/icons/arrow.svg"
+                      src="/media/icons/arrow.svg"
                       alt=""
                       width={18}
                       height={24}

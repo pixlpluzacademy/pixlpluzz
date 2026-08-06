@@ -124,7 +124,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Image
-                  src="/icons/phone.svg"
+                  src="/media/icons/phone.svg"
                   alt=""
                   width={16}
                   height={16}
@@ -140,7 +140,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Image
-                  src="/icons/mail.svg"
+                  src="/media/icons/mail.svg"
                   alt=""
                   width={16}
                   height={16}
@@ -156,7 +156,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 justify-center sm:justify-start">
                 <Image
-                  src="/icons/map.svg"
+                  src="/media/icons/map.svg"
                   alt=""
                   width={16}
                   height={16}

@@ -289,7 +289,7 @@
   inset: -24px;
   z-index: 0;
   pointer-events: none;
-  background-image: url('/images/bgg.jpeg');
+  background-image: url('/media/images/bgg.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -11,25 +11,25 @@ const STEPS = [
     num: '01',
     title: 'REGISTER ONLINE',
     desc: 'Fill out the scholarship application form with your basic details.',
-    icon: '/icons/register-online.svg',
+    icon: '/media/icons/register-online.svg',
   },
   {
     num: '02',
     title: 'ENTRANCE TEST',
     desc: 'Complete the entrance test and show us your interest, effort, and learning potential.',
-    icon: '/icons/attend-the-test.svg',
+    icon: '/media/icons/attend-the-test.svg',
   },
   {
     num: '03',
     title: 'INTERVIEW',
     desc: 'Share your ideas, portfolio or assignment based on the program requirement.',
-    icon: '/icons/interview.svg',
+    icon: '/media/icons/interview.svg',
   },
   {
     num: '04',
     title: 'START YOUR CAREER',
     desc: 'Selected students join the first batch with scholarship support and practical training.',
-    icon: '/icons/start-your-career.svg',
+    icon: '/media/icons/start-your-career.svg',
   },
 ]
 

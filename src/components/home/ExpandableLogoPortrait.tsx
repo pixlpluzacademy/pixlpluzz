@@ -100,7 +100,10 @@ interface ExpandableLogoPortraitProps {
   className?: string
 }
 
-/** Hostinger proxies `/_next/*` to Node but not `/images/*`, so SVG must use the optimizer. */
+/**
+ * Hostinger Apache intercepts `/images/*` before Node. The image optimizer
+ * still reads those files from disk, so SVG `<image>` uses `/_next/image`.
+ */
 function optimizedImageSrc(src: string, width = 640, quality = 90) {
   if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('/_next/')) {
     return src

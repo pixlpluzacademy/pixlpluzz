@@ -19,19 +19,19 @@ export const metadata: Metadata = pageMetadata({
 
 const CONTACT_CARDS = [
   {
-    icon: '/icons/phone.svg',
+    icon: '/media/icons/phone.svg',
     label: 'Phone Number',
     value: '+91 98955 01234',
     href: 'tel:+919895501234',
   },
   {
-    icon: '/icons/mail.svg',
+    icon: '/media/icons/mail.svg',
     label: 'Email Address',
     value: 'office@pixlpluz.com',
     href: 'mailto:office@pixlpluz.com',
   },
   {
-    icon: '/icons/map.svg',
+    icon: '/media/icons/map.svg',
     label: 'Location',
     value: 'Pixl Pluz Academy, Kochi, Kerala',
   },

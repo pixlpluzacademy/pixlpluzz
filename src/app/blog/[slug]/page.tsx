@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: Props) {
           className="mb-10 inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.2em] text-green-accent transition-colors hover:text-white"
         >
           <Image
-            src="/icons/arrow.svg"
+            src="/media/icons/arrow.svg"
             alt=""
             width={28}
             height={18}

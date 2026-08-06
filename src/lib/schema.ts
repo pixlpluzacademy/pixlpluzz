@@ -5,8 +5,8 @@ import { SOCIAL_LINKS } from '@/lib/social'
 
 export type JsonLdObject = Record<string, unknown>
 
-const LOGO_URL = `${SITE_URL}/icon-192.png`
-const ORG_IMAGE = `${SITE_URL}/images/students/practical-learning.png`
+const LOGO_URL = `${SITE_URL}/media/icon-192.png`
+const ORG_IMAGE = `${SITE_URL}/media/images/students/practical-learning.png`
 const DEFAULT_IMAGE = `${SITE_URL}${DEFAULT_OG_IMAGE}`
 
 export const ORG_ID = `${SITE_URL}/#organization`

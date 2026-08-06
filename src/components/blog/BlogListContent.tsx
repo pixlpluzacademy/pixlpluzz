@@ -144,7 +144,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
                   <span className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.2em] text-green-accent">
                     Read full article
                     <Image
-                      src="/icons/arrow.svg"
+                      src="/media/icons/arrow.svg"
                       alt=""
                       width={28}
                       height={18}
@@ -206,7 +206,7 @@ export function BlogListContent({ blogs }: { blogs: Blog[] }) {
                       <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-green-accent">
                         Read more
                         <Image
-                          src="/icons/arrow.svg"
+                          src="/media/icons/arrow.svg"
                           alt=""
                           width={28}
                           height={18}

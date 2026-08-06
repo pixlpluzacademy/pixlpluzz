@@ -408,7 +408,7 @@ export function AdvantageSection() {
                 aria-label="Previous advantage"
               >
                 <Image
-                  src="/icons/arrow.svg"
+                  src="/media/icons/arrow.svg"
                   alt=""
                   width={12}
                   height={16}
@@ -423,7 +423,7 @@ export function AdvantageSection() {
                 aria-label="Next advantage"
               >
                 <Image
-                  src="/icons/arrow.svg"
+                  src="/media/icons/arrow.svg"
                   alt=""
                   width={12}
                   height={16}
