@@ -100,6 +100,14 @@ interface ExpandableLogoPortraitProps {
   className?: string
 }
 
+/** Hostinger proxies `/_next/*` to Node but not `/images/*`, so SVG must use the optimizer. */
+function optimizedImageSrc(src: string, width = 640, quality = 90) {
+  if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('/_next/')) {
+    return src
+  }
+  return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`
+}
+
 export function ExpandableLogoPortrait({
   src,
   alt,
@@ -112,6 +120,7 @@ export function ExpandableLogoPortrait({
   const [geo, setGeo] = useState(() => geometry(W_SMALL))
   const [lift, setLift] = useState(1)
   const [expanded, setExpanded] = useState(false)
+  const imageHref = optimizedImageSrc(src)
 
   const draw = useCallback((W: number, liftScale: number) => {
     setGeo(geometry(W))
@@ -219,7 +228,7 @@ export function ExpandableLogoPortrait({
 
           {/* Cutout lift shares logo progress + ease (bottom pivot) */}
           <image
-            href={src}
+            href={imageHref}
             x={CUTOUT.x}
             y={CUTOUT.y}
             width={CUTOUT.w}
