@@ -22,7 +22,7 @@ const blogCardVariants = {
 
 export function BlogSection({ blogs }: { blogs: Blog[] }) {
   return (
-    <section className="relative overflow-x-clip bg-[#0a0a0a] py-[clamp(64px,6vw,96px)]">
+    <section id="blog" className="relative overflow-x-clip bg-[#0a0a0a] py-[clamp(64px,6vw,96px)]">
       <div
         className="pointer-events-none absolute inset-0"
         style={{

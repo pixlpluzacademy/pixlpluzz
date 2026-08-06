@@ -4,6 +4,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogs, getBlog } from '@/lib/data'
 import { getBlogImage } from '@/lib/blog-assets'
+import { JsonLd } from '@/components/seo/JsonLd'
+import {
+  blogPostingSchema,
+  breadcrumbSchema,
+  webPageSchema,
+} from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { formatDate } from '@/lib/utils'
 
@@ -88,6 +94,23 @@ export default async function BlogPostPage({ params }: Props) {
   )
 
   return (
+    <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            path: `/blog/${blog.slug}`,
+            name: blog.title,
+            description: blog.excerpt,
+            image: blog.thumbnail,
+          }),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+            { name: blog.title, path: `/blog/${blog.slug}` },
+          ]),
+          blogPostingSchema(blog),
+        ]}
+      />
     <article className="min-h-screen bg-black pt-24" data-no-blur-text>
       <div className="site-container pb-20">
         <Link
@@ -183,5 +206,6 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </div>
     </article>
+    </>
   )
 }

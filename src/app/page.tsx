@@ -1,7 +1,14 @@
 import { Suspense }    from 'react'
 import dynamic         from 'next/dynamic'
 import { HeroSection } from '@/components/home/HeroSection'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { HOME_FAQS } from '@/data/home-faqs'
 import { getBlogs, getCourses } from '@/lib/data'
+import {
+  faqPageSchema,
+  HOME_SECTIONS,
+  webPageSchema,
+} from '@/lib/schema'
 
 // ─── Hero is above-the-fold → always eager ─────────────────────────────────
 
@@ -46,6 +53,18 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            path: '/',
+            name: 'Pixl Pluz Academy | AI Integrated Courses in Kochi',
+            description:
+              "Kerala's AI-integrated digital marketing and tech academy in Kochi. Practical courses, mentorship, and a merit-based scholarship program.",
+            sections: [...HOME_SECTIONS],
+          }),
+          faqPageSchema(HOME_FAQS),
+        ]}
+      />
       {/* Hero — critical path, no lazy wrapping */}
       <HeroSection />
 

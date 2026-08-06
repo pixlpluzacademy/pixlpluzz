@@ -261,7 +261,7 @@ export function AdvantageSection() {
   }
 
   return (
-    <section className="advantage-section relative overflow-x-clip overflow-hidden py-[clamp(32px,3vw,56px)]">
+    <section id="advantage" className="advantage-section relative overflow-x-clip overflow-hidden py-[clamp(32px,3vw,56px)]">
       <div className="advantage-section-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="advantage-section-grid pointer-events-none absolute inset-0 opacity-[0.04]" aria-hidden />
 

@@ -94,6 +94,7 @@ export function HeroSection() {
   // Sticky hero — pixel cluster first; copy reveals on scroll.
   return (
     <section
+      id="hero"
       ref={sectionRef}
       className="relative h-[calc(100svh+min(480px,50dvh))] bg-black"
       data-page-hero

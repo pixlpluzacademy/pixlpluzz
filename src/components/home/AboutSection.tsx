@@ -122,6 +122,7 @@ export function AboutSection({ courses: _courses }: { courses: Course[] }) {
 
   return (
     <section
+      id="about"
       ref={rootRef}
       className="relative overflow-x-clip overflow-y-visible bg-black py-[clamp(64px,6vw,96px)] text-gray-400"
     >

@@ -160,7 +160,7 @@ export function AiToolsSection() {
   }, [lenis])
 
   return (
-    <section className="ai-tools-section relative bg-black" aria-label="AI tools">
+    <section id="ai-tools" className="ai-tools-section relative bg-black" aria-label="AI tools">
       <h2 className="sr-only">AI Tools</h2>
 
       <div ref={trackRef} className="ai-tools-cloud-track relative">

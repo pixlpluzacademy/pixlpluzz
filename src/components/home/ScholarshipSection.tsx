@@ -156,7 +156,7 @@ export function ScholarshipSection() {
   return (
     // Desktop: capped sticky stage + scrub track. Mobile: natural height.
     <div ref={wrapperRef} className="scholarship-scroll-track relative">
-      <section className="scholarship-sticky-stage relative overflow-hidden bg-black py-8 sm:py-10 md:py-[clamp(64px,6vw,96px)] lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center lg:py-[clamp(2rem,4vh,3.5rem)]">
+      <section id="scholarship" className="scholarship-sticky-stage relative overflow-hidden bg-black py-8 sm:py-10 md:py-[clamp(64px,6vw,96px)] lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center lg:py-[clamp(2rem,4vh,3.5rem)]">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
             src="/images/bg-scholarship-2.jpeg"

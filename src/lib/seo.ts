@@ -4,12 +4,17 @@ import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
 type PageMetaInput = {
   title: string
   description: string
+  /** Pathname starting with `/`, e.g. `/courses` or `/blog/my-post`. */
   path: string
   image?: string
   type?: 'website' | 'article'
 }
 
-/** Unique title, description, canonical, and Open Graph tags for a route. */
+/**
+ * Unique title, description, canonical, and Open Graph tags for a route.
+ * Canonicals are path-relative and resolved via root `metadataBase`
+ * (`https://pixlpluz.com`) so www/apex stays consistent.
+ */
 export function pageMetadata({
   title,
   description,
@@ -17,7 +22,9 @@ export function pageMetadata({
   image = DEFAULT_OG_IMAGE,
   type = 'website',
 }: PageMetaInput): Metadata {
-  const url = path === '/' ? SITE_URL : `${SITE_URL}${path}`
+  const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '')
+  const absoluteUrl =
+    normalizedPath === '/' ? SITE_URL : `${SITE_URL}${normalizedPath}`
   const ogTitle = title.includes('Pixl Pluz')
     ? title
     : `${title} | Pixl Pluz Academy`
@@ -25,11 +32,14 @@ export function pageMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      // Relative path → metadataBase (recommended Next.js pattern)
+      canonical: normalizedPath === '/' ? './' : normalizedPath,
+    },
     openGraph: {
       title: ogTitle,
       description,
-      url,
+      url: absoluteUrl,
       siteName: 'Pixl Pluz Academy',
       type,
       locale: 'en_IN',

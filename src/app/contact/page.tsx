@@ -2,14 +2,18 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact/ContactForm'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { PixelTrail } from '@/components/ui/PixelTrail'
+import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
+const description =
+  'Get in touch with Pixl Pluz Academy — call, email, or visit our campus in Kochi, Kerala.'
+
 export const metadata: Metadata = pageMetadata({
   title: 'Contact',
-  description:
-    'Get in touch with Pixl Pluz Academy — call, email, or visit our campus in Kochi, Kerala.',
+  description,
   path: '/contact',
 })
 
@@ -86,6 +90,21 @@ function SocialIcon({ name }: { name: SocialIconName }) {
 
 export default function ContactPage() {
   return (
+    <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            path: '/contact',
+            name: 'Contact',
+            description,
+            type: 'ContactPage',
+          }),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+        ]}
+      />
     <div className="bg-black text-white" data-no-blur-text>
       {/* Hero — background image */}
       <section
@@ -271,5 +290,6 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

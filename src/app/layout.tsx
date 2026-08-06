@@ -5,7 +5,9 @@ import { ThemeProvider }  from '@/components/ThemeProvider'
 import { SiteShell }      from '@/components/layout/SiteShell'
 import { SiteLoaderProvider } from '@/components/providers/SiteLoaderProvider'
 import { LenisProvider }  from '@/components/providers/LenisProvider'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
+import { globalSchemas } from '@/lib/schema'
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ['latin'],
@@ -39,8 +41,9 @@ export const metadata: Metadata = {
     'pixl pluz academy',
     'web development course kochi',
   ],
+  // Relative './' resolves against metadataBase per route (Next Metadata API).
   alternates: {
-    canonical: '/',
+    canonical: './',
   },
   openGraph: {
     type: 'website',
@@ -88,6 +91,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="antialiased" suppressHydrationWarning>
+        <JsonLd data={globalSchemas()} />
         <LenisProvider>
           <ThemeProvider>
             <SiteLoaderProvider>

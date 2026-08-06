@@ -101,6 +101,7 @@ export function ContactSection() {
 
   return (
     <section
+      id="contact"
       ref={sectionRef}
       className="relative overflow-x-clip bg-black py-[clamp(64px,6vw,96px)]"
     >

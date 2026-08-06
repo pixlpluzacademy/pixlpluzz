@@ -198,6 +198,7 @@ export function MentorsSection() {
 
   return (
     <section
+      id="mentors"
       ref={sectionRef}
       className="relative overflow-x-clip overflow-y-visible border-t border-white/8 bg-black pt-4 pb-[clamp(64px,6vw,96px)] sm:pt-5"
     >

@@ -47,6 +47,7 @@ export function CoursesSection({ courses }: { courses: Course[] }) {
 
   return (
     <section
+      id="courses"
       ref={sectionRef}
       className="relative overflow-x-clip bg-[#0a0a0a] py-[clamp(64px,6vw,96px)]"
     >
