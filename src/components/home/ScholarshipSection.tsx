@@ -218,6 +218,7 @@ export function ScholarshipSection() {
                       width={28}
                       height={28}
                       className="h-7 w-7 object-contain"
+                      unoptimized
                     />
                   </div>
 

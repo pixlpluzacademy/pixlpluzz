@@ -37,8 +37,8 @@ const STEPS = [
   },
 ]
 
-const SCHOLARSHIP_VIDEO = '/video/scholarship-bg-video.mp4'
-const SCHOLARSHIP_POSTER = '/images/bg-scholarship5.png'
+const SCHOLARSHIP_VIDEO = '/media/video/scholarship-bg-video.mp4'
+const SCHOLARSHIP_POSTER = '/media/images/bg-scholarship-2.jpeg'
 const HERO_WORD = 'SCHOLARSHIP'
 const APPLY_WORDS = ['How', 'To', 'Apply'] as const
 
@@ -163,6 +163,7 @@ export function ScholarshipContent() {
                   width={44}
                   height={44}
                   className="mb-6 h-11 w-11 object-contain"
+                  unoptimized
                 />
                 <h3 className="mb-3 text-xl font-black leading-snug text-green-accent sm:text-2xl">
                   {step.title}
@@ -182,11 +183,12 @@ export function ScholarshipContent() {
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
-            src="/images/bgg.jpeg"
+            src="/media/images/bgg.jpeg"
             alt=""
             fill
             className="object-cover object-center"
             sizes="100vw"
+            unoptimized
           />
           <div className="absolute inset-0 bg-black/55" />
         </div>
