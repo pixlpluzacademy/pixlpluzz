@@ -7,15 +7,14 @@ import {
   courseListSchema,
   webPageSchema,
 } from '@/lib/schema'
+import { PAGE_SEO } from '@/data/page-seo'
 import { pageMetadata } from '@/lib/seo'
 
-const description =
-  'Explore AI-integrated courses in digital marketing, web development, data science, and cybersecurity at Pixl Pluz Academy, Kochi.'
-
 export const metadata: Metadata = pageMetadata({
-  title: 'Courses',
-  description,
+  title: PAGE_SEO.courses.title,
+  description: PAGE_SEO.courses.description,
   path: '/courses',
+  absoluteTitle: true,
 })
 
 export default function CoursesPage() {

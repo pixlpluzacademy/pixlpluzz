@@ -3,6 +3,7 @@ import dynamic         from 'next/dynamic'
 import { HeroSection } from '@/components/home/HeroSection'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { HOME_FAQS } from '@/data/home-faqs'
+import { HOME_SEO } from '@/data/page-seo'
 import { getBlogs, getCourses } from '@/lib/data'
 import {
   faqPageSchema,
@@ -57,9 +58,8 @@ export default function HomePage() {
         data={[
           webPageSchema({
             path: '/',
-            name: 'Pixl Pluz Academy | AI Integrated Courses in Kochi',
-            description:
-              "Kerala's AI-integrated digital marketing and tech academy in Kochi. Practical courses, mentorship, and a merit-based scholarship program.",
+            name: HOME_SEO.title,
+            description: HOME_SEO.description,
             sections: [...HOME_SECTIONS],
           }),
           faqPageSchema(HOME_FAQS),

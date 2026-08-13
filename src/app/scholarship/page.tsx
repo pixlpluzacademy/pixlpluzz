@@ -2,15 +2,14 @@ import type { Metadata } from 'next'
 import { ScholarshipContent } from '@/components/scholarship/ScholarshipContent'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
+import { PAGE_SEO } from '@/data/page-seo'
 import { pageMetadata } from '@/lib/seo'
 
-const description =
-  "Apply for the Pixl Pluz Academy scholarship program. A test-based merit scholarship for students who can't afford digital education."
-
 export const metadata: Metadata = pageMetadata({
-  title: 'Scholarship',
-  description,
+  title: PAGE_SEO.scholarship.title,
+  description: PAGE_SEO.scholarship.description,
   path: '/scholarship',
+  absoluteTitle: true,
 })
 
 export default function ScholarshipPage() {

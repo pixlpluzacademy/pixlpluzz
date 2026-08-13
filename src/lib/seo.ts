@@ -8,8 +8,14 @@ type PageMetaInput = {
   path: string
   image?: string
   type?: 'website' | 'article'
+  keywords?: string | string[]
   /** Set true for admin / thank-you / internal pages that must not be indexed. */
   noIndex?: boolean
+  /**
+   * Full SEO title from keyword plan — skip root `title.template`
+   * so brand is not duplicated.
+   */
+  absoluteTitle?: boolean
 }
 
 /**
@@ -23,18 +29,28 @@ export function pageMetadata({
   path,
   image = DEFAULT_OG_IMAGE,
   type = 'website',
+  keywords,
   noIndex = false,
+  absoluteTitle = false,
 }: PageMetaInput): Metadata {
   const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '')
   const absoluteUrl =
     normalizedPath === '/' ? SITE_URL : `${SITE_URL}${normalizedPath}`
-  const ogTitle = title.includes('Pixl Pluz')
+  const useAbsolute =
+    absoluteTitle ||
+    /Pixl\s*Pluz/i.test(title) ||
+    title.includes('|') ||
+    title.includes(' - ')
+  const ogTitle = useAbsolute
     ? title
-    : `${title} | Pixl Pluz Academy`
+    : title.includes('Pixl Pluz')
+      ? title
+      : `${title} | Pixl Pluz Academy`
 
   return {
-    title,
+    title: useAbsolute ? { absolute: title } : title,
     description,
+    ...(keywords ? { keywords } : {}),
     robots: noIndex
       ? { index: false, follow: false, nocache: true }
       : { index: true, follow: true, nocache: true },

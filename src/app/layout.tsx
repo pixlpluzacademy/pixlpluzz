@@ -6,6 +6,7 @@ import { SiteShell }      from '@/components/layout/SiteShell'
 import { SiteLoaderProvider } from '@/components/providers/SiteLoaderProvider'
 import { LenisProvider }  from '@/components/providers/LenisProvider'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { HOME_SEO } from '@/data/page-seo'
 import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
 import { globalSchemas } from '@/lib/schema'
 
@@ -23,9 +24,8 @@ const caveat = Caveat({
   display: 'swap',
 })
 
-const defaultTitle = 'Pixl Pluz Academy | AI Integrated Courses in Kochi'
-const defaultDescription =
-  "Kerala's AI-integrated digital marketing and tech academy in Kochi. Practical courses, mentorship, and a merit-based scholarship program."
+const defaultTitle = HOME_SEO.title
+const defaultDescription = HOME_SEO.description
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,13 +34,7 @@ export const metadata: Metadata = {
     template: '%s | Pixl Pluz Academy',
   },
   description: defaultDescription,
-  keywords: [
-    'digital marketing course kochi',
-    'AI integrated courses kerala',
-    'scholarship based courses',
-    'pixl pluz academy',
-    'web development course kochi',
-  ],
+  keywords: [...HOME_SEO.keywords],
   // Site-wide: allow indexing and following (SEO technical activation)
   robots: {
     index: true,

@@ -7,15 +7,14 @@ import {
   jobPostingSchema,
   webPageSchema,
 } from '@/lib/schema'
+import { PAGE_SEO } from '@/data/page-seo'
 import { pageMetadata } from '@/lib/seo'
 
-const description =
-  'Join the Pixl Pluz Academy team. View open positions for trainers, instructors, and counsellors in Kochi.'
-
 export const metadata: Metadata = pageMetadata({
-  title: 'Careers',
-  description,
+  title: PAGE_SEO.career.title,
+  description: PAGE_SEO.career.description,
   path: '/career',
+  absoluteTitle: true,
 })
 
 export default function CareerPage() {

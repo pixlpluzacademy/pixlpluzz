@@ -7,15 +7,14 @@ import {
   breadcrumbSchema,
   webPageSchema,
 } from '@/lib/schema'
+import { PAGE_SEO } from '@/data/page-seo'
 import { pageMetadata } from '@/lib/seo'
 
-const description =
-  'Digital marketing tips, career guides, AI tool insights, and industry news from Pixl Pluz Academy.'
-
 export const metadata: Metadata = pageMetadata({
-  title: 'Blog',
-  description,
+  title: PAGE_SEO.blog.title,
+  description: PAGE_SEO.blog.description,
   path: '/blog',
+  absoluteTitle: true,
 })
 
 export default function BlogPage() {

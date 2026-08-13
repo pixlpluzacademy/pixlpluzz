@@ -55,7 +55,7 @@
 | Primary CTA label | 2–4 | 4 — *"Apply For Scholarship"* | |
 | Secondary CTA label | 2–3 | 2 — *"Free Consultation"* | Opens WhatsApp; float button hidden over hero |
 
-**SEO title pattern (page meta):** `Pixl Pluz Academy | AI-Integrated Digital Marketing Courses in Kochi`
+**SEO title pattern (page meta):** See `src/data/page-seo.ts` (keyword distribution). Home: *Kerala's Best AI Integrated Digital Career Providers in Kochi, Kerala - Pixl Pluz Academy*
 
 ---
 

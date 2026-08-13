@@ -7,15 +7,14 @@ import {
   eventSchema,
   webPageSchema,
 } from '@/lib/schema'
+import { PAGE_SEO } from '@/data/page-seo'
 import { pageMetadata } from '@/lib/seo'
 
-const description =
-  'Upcoming events, bootcamps, workshops, and scholarship tests at Pixl Pluz Academy in Kochi.'
-
 export const metadata: Metadata = pageMetadata({
-  title: 'Events',
-  description,
+  title: PAGE_SEO.event.title,
+  description: PAGE_SEO.event.description,
   path: '/event',
+  absoluteTitle: true,
 })
 
 export default function EventPage() {
