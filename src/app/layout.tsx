@@ -41,6 +41,12 @@ export const metadata: Metadata = {
     'pixl pluz academy',
     'web development course kochi',
   ],
+  // Site-wide: allow indexing and following (SEO technical activation)
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
   // Relative './' resolves against metadataBase per route (Next Metadata API).
   alternates: {
     canonical: './',

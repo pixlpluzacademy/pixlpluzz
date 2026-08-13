@@ -8,6 +8,8 @@ type PageMetaInput = {
   path: string
   image?: string
   type?: 'website' | 'article'
+  /** Set true for admin / thank-you / internal pages that must not be indexed. */
+  noIndex?: boolean
 }
 
 /**
@@ -21,6 +23,7 @@ export function pageMetadata({
   path,
   image = DEFAULT_OG_IMAGE,
   type = 'website',
+  noIndex = false,
 }: PageMetaInput): Metadata {
   const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '')
   const absoluteUrl =
@@ -32,6 +35,9 @@ export function pageMetadata({
   return {
     title,
     description,
+    robots: noIndex
+      ? { index: false, follow: false, nocache: true }
+      : { index: true, follow: true, nocache: true },
     alternates: {
       // Relative path → metadataBase (recommended Next.js pattern)
       canonical: normalizedPath === '/' ? './' : normalizedPath,
