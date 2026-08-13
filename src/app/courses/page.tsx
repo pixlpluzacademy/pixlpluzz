@@ -26,8 +26,8 @@ export default function CoursesPage() {
         data={[
           webPageSchema({
             path: '/courses',
-            name: 'Courses',
-            description,
+            name: PAGE_SEO.courses.title,
+            description: PAGE_SEO.courses.description,
             type: 'CollectionPage',
           }),
           breadcrumbSchema([

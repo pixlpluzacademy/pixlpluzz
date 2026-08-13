@@ -19,8 +19,8 @@ export default function ScholarshipPage() {
         data={[
           webPageSchema({
             path: '/scholarship',
-            name: 'Scholarship',
-            description,
+            name: PAGE_SEO.scholarship.title,
+            description: PAGE_SEO.scholarship.description,
           }),
           breadcrumbSchema([
             { name: 'Home', path: '/' },

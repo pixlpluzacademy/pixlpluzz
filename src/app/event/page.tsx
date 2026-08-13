@@ -25,8 +25,8 @@ export default function EventPage() {
         data={[
           webPageSchema({
             path: '/event',
-            name: 'Events',
-            description,
+            name: PAGE_SEO.event.title,
+            description: PAGE_SEO.event.description,
             type: 'CollectionPage',
           }),
           breadcrumbSchema([

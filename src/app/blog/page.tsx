@@ -26,8 +26,8 @@ export default function BlogPage() {
         data={[
           webPageSchema({
             path: '/blog',
-            name: 'Blog',
-            description,
+            name: PAGE_SEO.blog.title,
+            description: PAGE_SEO.blog.description,
             type: 'CollectionPage',
           }),
           breadcrumbSchema([

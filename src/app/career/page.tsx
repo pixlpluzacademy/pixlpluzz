@@ -25,8 +25,8 @@ export default function CareerPage() {
         data={[
           webPageSchema({
             path: '/career',
-            name: 'Careers',
-            description,
+            name: PAGE_SEO.career.title,
+            description: PAGE_SEO.career.description,
           }),
           breadcrumbSchema([
             { name: 'Home', path: '/' },

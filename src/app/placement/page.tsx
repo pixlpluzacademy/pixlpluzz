@@ -21,8 +21,8 @@ export default function PlacementPage() {
         data={[
           webPageSchema({
             path: '/placement',
-            name: 'Placement',
-            description,
+            name: PAGE_SEO.placement.title,
+            description: PAGE_SEO.placement.description,
           }),
           breadcrumbSchema([
             { name: 'Home', path: '/' },
