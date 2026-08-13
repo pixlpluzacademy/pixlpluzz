@@ -1,12 +1,12 @@
 /**
- * Meta titles/descriptions from “PixlPluz SEO - Keyword Distribution”.
+ * Meta titles/descriptions from “PixlPluz SEO - Keyword Distribution” (reupload).
  * Guarantee / “100% placement” claims rewritten to match brand SEO rules.
  * Metadata only — not used for on-page UI copy.
  */
 
 export const HOME_SEO = {
   title:
-    "Kerala's Best AI Integrated Digital Career Providers in Kochi, Kerala - Pixl Pluz Academy",
+    "Kerala's Best AI Integrated Skill Academy in Kochi, Kerala - Pixl Pluz Academy",
   description:
     'Level up with AI Integrated courses in Kochi. Pixl Pluz offers career-focused training in Digital Marketing, Web Development, Data Science & Cybersecurity. Start your scholarship-based career in Kochi.',
   keywords: [
@@ -25,15 +25,15 @@ export const HOME_SEO = {
 export const PAGE_SEO = {
   courses: {
     title:
-      'Pixl Pluz Providing Courses | AI Digital Marketing, Web Development, Data Science & AI Cyber Security',
+      'Pixl Pluz Courses | AI Digital Marketing, Web Development, Cyber Security, Data Science & AI',
     description:
       'Looking for career-focused AI courses in Kochi? Master Digital Marketing, Data Science, Web Development, and AI Cyber Security with Pixl Pluz’s advanced certification programs.',
   },
   scholarship: {
     title:
-      'Scholarships Based Academy in Kochi | Digital Marketing Course Scholarships',
+      'Scholarships Courses in Kochi | Digital Marketing Course Scholarships',
     description:
-      'We want to help you learn. Apply for our digital marketing scholarships in Kochi!',
+      'Looking for affordable digital marketing training in Kochi? Discover scholarship opportunities at Pixl Pluz and start learning from industry experts.',
   },
   placement: {
     title: 'Placement Support Courses Kochi | AI Integrated Course Placements',
@@ -41,9 +41,10 @@ export const PAGE_SEO = {
       'Meet our students placed in top companies across Kochi after completing our AI Integrated courses. Start your career with placement support and practical training.',
   },
   career: {
-    title: 'Future AI Career | Pixl Pluz Academy',
+    title:
+      'Build Your Future with Pixl Pluz | Explore Current Career Opportunities',
     description:
-      'Explore our current job openings and hiring details. Join our team!',
+      'Ready to level up your career? Discover current job openings at Pixl Pluz Academy and become a part of our dynamic learning ecosystem in Kochi!',
   },
   blog: {
     title: 'Pixl Pluz Academy Blogs | Upcoming AI Updates and Features',
@@ -62,8 +63,7 @@ export const COURSE_SEO: Record<
   { title: string; description: string; keywords?: string[] }
 > = {
   'digital-marketing-course': {
-    title:
-      'Advanced AI Integrated Digital Marketing Course Kochi, Kerala | Pixl Pluz Academy',
+    title: 'Advanced AI Integrated Digital Marketing Course Kochi',
     description:
       'Join Pixl Pluz to learn advanced AI integrated Digital Marketing, SEO, Social Media, and PPC in Kochi. Our job-oriented course in Kerala provides scholarship-based training with placement support.',
     keywords: [
@@ -81,7 +81,7 @@ export const COURSE_SEO: Record<
   'ai-powered-web-development-course': {
     title: 'Best Web Development Course in Kochi with Placement Support',
     description:
-      'Turn your coding skills into a career. Career-focused web development training in Ernakulam with placement support. Start learning and building today!',
+      'Turn your coding skills into a career. Join Pixl Pluz for full-stack development training in Kochi featuring live sessions and practical learning.',
     keywords: [
       'AI powered web development course Kochi',
       'Web development Course Kochi with placement support',
@@ -90,8 +90,7 @@ export const COURSE_SEO: Record<
     ],
   },
   'data-science-ai-course': {
-    title:
-      'Data Science & AI Courses in Kochi with Placement Support | Pixl Pluz Academy',
+    title: 'Data Science & AI Courses in Kochi with Placement Support',
     description:
       'Get certified in advanced tech. Master practical Data Science, Generative AI, and Machine Learning with Pixl Pluz in Kochi.',
     keywords: [
