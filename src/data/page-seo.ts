@@ -47,14 +47,14 @@ export const PAGE_SEO = {
       'Ready to level up your career? Discover current job openings at Pixl Pluz Academy and become a part of our dynamic learning ecosystem in Kochi!',
   },
   blog: {
-    title: 'Pixl Pluz Academy Blogs | Upcoming AI Updates and Features',
+    title: 'Pixl Pluz Blogs | Upcoming AI Updates and Features',
     description:
       'Stay ahead in Kochi with Pixl Pluz Academy’s blog. Discover practical insights into upcoming AI updates and modern features in Digital Marketing and Tech.',
   },
   event: {
     title: 'Upcoming AI and Tech Events in Kochi, Kerala',
     description:
-      'Get details on upcoming AI, data science, digital and web development events in Kochi. Pixl Pluz Academy brings practical tech training to Kerala.',
+      'Find upcoming AI, technology, and digital marketing events in Kochi. Discover top conferences, workshops, and summits happening live and online!',
   },
 } as const
 
