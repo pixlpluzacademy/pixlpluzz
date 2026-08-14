@@ -23,7 +23,7 @@
 
 ### Tone & SEO
 
-- Primary location keywords: **Kochi**, **Kerala**, **Thiruvananthapuram**, **Calicut** (use naturally, not stuffed).
+- Primary location keywords: **Kochi**, **Kerala** (use naturally, not stuffed). Do not present Thiruvananthapuram or Calicut as current campus locations — academy launch is Kochi-first.
 - Brand name: **Pixl Pluz** or **Pixl Pluz Academy** (consistent spelling).
 - Differentiator keywords: AI-integrated academy, Neo Digital Hub Dubai, international exposure, practical learning, scholarship-based.
 - Body text: **justified** in UI (`text-justify`) — write sentences that flow well when justified (avoid very short choppy lines).
