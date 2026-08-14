@@ -6,10 +6,14 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { PixelTrail } from '@/components/ui/PixelTrail'
 import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
+import {
+  COMPANY_ADDRESS_SHORT,
+  COMPANY_MAPS_EMBED_URL,
+} from '@/lib/company'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
 const description =
-  'Get in touch with Pixl Pluz Academy — call, email, or visit our campus in Kochi, Kerala.'
+  'Get in touch with Pixl Pluz Academy — call, email, or visit our campus in Kakkanad, Ernakulam, Kerala.'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Contact',
@@ -33,7 +37,7 @@ const CONTACT_CARDS = [
   {
     icon: '/media/icons/map.svg',
     label: 'Location',
-    value: 'Pixl Pluz Academy, Kochi, Kerala',
+    value: COMPANY_ADDRESS_SHORT,
   },
 ] as const
 
@@ -235,8 +239,8 @@ export default function ContactPage() {
 
               <div className="relative mt-2 min-h-56 w-full flex-1 overflow-hidden border border-white/10 sm:min-h-64 lg:min-h-[22rem]">
                 <iframe
-                  title="Pixl Pluz Academy location — Kochi, Kerala"
-                  src="https://www.google.com/maps?q=Pixl+Pluz+Academy,+Kochi,+Kerala,+India&z=15&hl=en&output=embed"
+                  title="Pixlpluz Pvt Limited — Kakkanad, Ernakulam"
+                  src={COMPANY_MAPS_EMBED_URL}
                   className="absolute inset-0 h-full w-full border-0 contrast-[1.05] saturate-[0.85]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

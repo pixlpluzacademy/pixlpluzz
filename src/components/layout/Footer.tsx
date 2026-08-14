@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { PixlLogo } from '@/components/ui/PixlLogo'
+import {
+  COMPANY_ADDRESS_LINES,
+  COMPANY_MAPS_LINK,
+} from '@/lib/company'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
 function SocialIcon({ name }: { name: SocialIconName }) {
@@ -165,7 +169,18 @@ export function Footer() {
                 />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Our location</p>
-                  <p className="text-sm text-white">Kochi, Kerala, India</p>
+                  <a
+                    href={COMPANY_MAPS_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-white hover:text-green-accent transition-colors"
+                  >
+                    {COMPANY_ADDRESS_LINES.map((line) => (
+                      <span key={line} className="block leading-snug">
+                        {line}
+                      </span>
+                    ))}
+                  </a>
                 </div>
               </li>
             </ul>

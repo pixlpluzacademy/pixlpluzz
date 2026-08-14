@@ -2,6 +2,7 @@ import type { Blog, Career, Course, Event } from '@/lib/data'
 import type { HomeFaqItem } from '@/data/home-faqs'
 import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
 import { SOCIAL_LINKS } from '@/lib/social'
+import { COMPANY_ADDRESS, COMPANY_LEGAL_NAME } from '@/lib/company'
 
 export type JsonLdObject = Record<string, unknown>
 
@@ -15,10 +16,11 @@ export const LOCAL_BUSINESS_ID = `${SITE_URL}/#localbusiness`
 
 const POSTAL_ADDRESS = {
   '@type': 'PostalAddress',
-  streetAddress: 'Kattanadu',
-  addressLocality: 'Kochi',
-  addressRegion: 'Kerala',
-  addressCountry: 'IN',
+  streetAddress: COMPANY_ADDRESS.streetAddress,
+  addressLocality: COMPANY_ADDRESS.addressLocality,
+  addressRegion: COMPANY_ADDRESS.addressRegion,
+  postalCode: COMPANY_ADDRESS.postalCode,
+  addressCountry: COMPANY_ADDRESS.addressCountry,
 } as const
 
 function absoluteUrl(pathOrUrl: string): string {
@@ -49,7 +51,8 @@ export function collegeOrUniversitySchema(): JsonLdObject {
     '@type': 'CollegeOrUniversity',
     '@id': ORG_ID,
     name: 'Pixl Pluz Academy',
-    alternateName: ['PixlPluz', 'Pixl Pluz', 'PixlPluz Academy'],
+    alternateName: ['PixlPluz', 'Pixl Pluz', 'PixlPluz Academy', COMPANY_LEGAL_NAME],
+    legalName: COMPANY_LEGAL_NAME,
     url: SITE_URL,
     logo: LOGO_URL,
     image: ORG_IMAGE,
