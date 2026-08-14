@@ -7,12 +7,20 @@ import { ArrowRight, ChevronRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useSiteReady } from '@/components/providers/SiteLoaderProvider'
+import { HeroPixelFallback } from '@/components/home/HeroPixelFallback'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const HeroPixelField = dynamic(
   () => import('@/components/home/HeroPixelField').then(m => ({ default: m.HeroPixelField })),
-  { ssr: false },
+  {
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 z-0" aria-hidden>
+        <HeroPixelFallback />
+      </div>
+    ),
+  },
 )
 
 export function HeroSection() {
@@ -118,14 +126,8 @@ export function HeroSection() {
         />
         <div className="pointer-events-none absolute inset-0 z-[1] pixel-grid-bg opacity-10" aria-hidden />
 
-        {/* Hidden until siteReady; then GSAP owns opacity (no React style prop to overwrite tweens) */}
-        <div
-          className={
-            siteReady
-              ? 'hero-copy relative z-10 flex flex-1 flex-col items-center px-6 pt-28 pb-10 sm:px-12 lg:px-20'
-              : 'hero-copy relative z-10 flex flex-1 flex-col items-center px-6 pt-28 pb-10 opacity-0 invisible sm:px-12 lg:px-20'
-          }
-        >
+        {/* Hidden on first paint; GSAP reveals mid-scroll (no React style prop to overwrite tweens) */}
+        <div className="hero-copy relative z-10 flex flex-1 flex-col items-center px-6 pt-28 pb-10 opacity-0 invisible sm:px-12 lg:px-20">
           <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center text-center">
 
 

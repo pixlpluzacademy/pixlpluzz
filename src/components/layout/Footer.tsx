@@ -137,7 +137,7 @@ export function Footer() {
                 />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Call us directly</p>
-                  <a href="tel:+919895501234" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
+                  <a href="tel:+919895501234" className="text-sm font-semibold text-white/70 hover:text-green-accent transition-colors">
                     ( +91 ) 98955 01234
                   </a>
                 </div>
@@ -153,7 +153,7 @@ export function Footer() {
                 />
                 <div className="text-left">
                   <p className="text-xs text-gray-500">Mail us directly</p>
-                  <a href="mailto:office@pixlpluz.com" className="text-sm font-semibold text-white hover:text-green-accent transition-colors">
+                  <a href="mailto:office@pixlpluz.com" className="text-sm font-semibold text-white/70 hover:text-green-accent transition-colors">
                     office@pixlpluz.com
                   </a>
                 </div>
@@ -168,15 +168,22 @@ export function Footer() {
                   aria-hidden
                 />
                 <div className="text-left">
-                  <p className="text-xs text-gray-500">Our location</p>
+                  <p className="mb-1.5 text-xs text-gray-500">Our location</p>
                   <a
                     href={COMPANY_MAPS_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-white hover:text-green-accent transition-colors"
+                    className="block text-[12px] font-normal leading-[1.65] text-white/65 transition-colors hover:text-green-accent sm:text-[13px]"
                   >
-                    {COMPANY_ADDRESS_LINES.map((line) => (
-                      <span key={line} className="block leading-snug">
+                    {COMPANY_ADDRESS_LINES.map((line, i) => (
+                      <span
+                        key={line}
+                        className={
+                          i === 0
+                            ? 'block whitespace-nowrap font-medium text-white/80'
+                            : 'block whitespace-nowrap'
+                        }
+                      >
                         {line}
                       </span>
                     ))}

@@ -3,25 +3,25 @@
 export const COMPANY_LEGAL_NAME = 'Pixlpluz Pvt Limited'
 
 export const COMPANY_ADDRESS = {
-  line1: 'No.14A Santhi Hills View, Divine Park Road, Kakkanad',
-  line2: 'Cochin Special Economic Zone, Ernakulam 682037, Kerala',
   streetAddress:
-    'No.14A Santhi Hills View, Divine Park Road, Kakkanad, Cochin Special Economic Zone',
+    '14A Santhi Hills View, Divine Park Road, Kakkanad, Cochin Special Economic Zone',
   addressLocality: 'Ernakulam',
   addressRegion: 'Kerala',
   postalCode: '682037',
   addressCountry: 'IN',
 } as const
 
-/** Single-line for cards / compact UI. */
+/** Single-line for schema / maps / compact places that need one string. */
 export const COMPANY_ADDRESS_SHORT =
-  'No.14A Santhi Hills View, Divine Park Road, Kakkanad, Ernakulam 682037, Kerala'
+  '14A Santhi Hills View, Divine Park Road, Kakkanad, Cochin Special Economic Zone, Ernakulam 682037, Kerala'
 
-/** Multi-line display (footer / contact). */
+/**
+ * Exact 3-line display (footer / contact).
+ */
 export const COMPANY_ADDRESS_LINES = [
   COMPANY_LEGAL_NAME,
-  COMPANY_ADDRESS.line1,
-  COMPANY_ADDRESS.line2,
+  '14A Santhi Hills View, Divine Park Road,',
+  'Kakkanad, Cochin Special Economic Zone, Ernakulam 682037, Kerala',
 ] as const
 
 const MAPS_QUERY = [

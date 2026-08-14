@@ -7,8 +7,9 @@ import { PixelTrail } from '@/components/ui/PixelTrail'
 import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import {
-  COMPANY_ADDRESS_SHORT,
+  COMPANY_ADDRESS_LINES,
   COMPANY_MAPS_EMBED_URL,
+  COMPANY_MAPS_LINK,
 } from '@/lib/company'
 import { SOCIAL_LINKS, type SocialIconName } from '@/lib/social'
 
@@ -37,7 +38,8 @@ const CONTACT_CARDS = [
   {
     icon: '/media/icons/map.svg',
     label: 'Location',
-    value: COMPANY_ADDRESS_SHORT,
+    lines: COMPANY_ADDRESS_LINES,
+    href: COMPANY_MAPS_LINK,
   },
 ] as const
 
@@ -181,11 +183,16 @@ export default function ContactPage() {
                 Mon – Sat, 9:00 AM – 6:00 PM.
               </p>
 
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-5">
-                {CONTACT_CARDS.map(item => {
-                  const content = (
-                    <>
-                      <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center border border-white/15 bg-black/40 lg:mx-0">
+              <div className="flex w-full flex-col gap-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+                  {CONTACT_CARDS.filter((item) => !('lines' in item)).map(item => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      aria-label={item.label}
+                      className="group flex min-w-0 items-center gap-3 text-left"
+                    >
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 bg-black/40">
                         <Image
                           src={item.icon}
                           alt=""
@@ -194,27 +201,41 @@ export default function ContactPage() {
                           className="h-5 w-5"
                         />
                       </div>
-                      <p className="mb-1 text-sm font-black tracking-tight text-white transition-colors group-hover:text-green-accent">
-                        {item.label}
-                      </p>
-                      <p className="text-sm leading-relaxed text-gray-400">{item.value}</p>
-                    </>
-                  )
+                      <p className="min-w-0 text-sm leading-relaxed text-gray-400">{item.value}</p>
+                    </a>
+                  ))}
+                </div>
 
-                  if ('href' in item && item.href) {
-                    return (
-                      <a key={item.label} href={item.href} className="group block min-w-0">
-                        {content}
-                      </a>
-                    )
-                  }
-
-                  return (
-                    <div key={item.label} className="block min-w-0">
-                      {content}
+                {CONTACT_CARDS.filter((item) => 'lines' in item).map(item => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    aria-label={item.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex min-w-0 items-start gap-3 text-left"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 bg-black/40">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="h-5 w-5"
+                      />
                     </div>
-                  )
-                })}
+                    <p className="min-w-0 pt-0.5 text-sm font-normal leading-[1.55] text-gray-400">
+                      {item.lines.map((line, i) => (
+                        <span
+                          key={line}
+                          className={i === 0 ? 'block text-gray-300' : 'block'}
+                        >
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                  </a>
+                ))}
               </div>
 
               <div>

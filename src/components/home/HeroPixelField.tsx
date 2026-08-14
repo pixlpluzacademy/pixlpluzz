@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
+import { HeroPixelFallback } from '@/components/home/HeroPixelFallback'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -37,28 +38,14 @@ function canUseWebGL() {
   }
 }
 
-function HeroPixelFallback() {
-  return (
-    <>
-      <div
-        className="absolute inset-0 opacity-80"
-        style={{
-          background:
-            'radial-gradient(ellipse 55% 45% at 72% 48%, rgba(21,62,144,0.42) 0%, transparent 68%), radial-gradient(ellipse 40% 35% at 28% 62%, rgba(84,227,70,0.14) 0%, transparent 62%)',
-        }}
-      />
-      <div className="absolute inset-0 pixel-grid-bg opacity-15" />
-    </>
-  )
-}
-
 // Strict brand palette only
 const CORE_COLORS = [0x54e346, 0x54e346, 0x54e346]
 const EDGE_COLORS = [0x153e90, 0x153e90, 0x54e346, 0x153e90]
 
 export function HeroPixelField({ className }: { className?: string }) {
   const mountRef = useRef<HTMLDivElement>(null)
-  const [useFallback, setUseFallback] = useState(false)
+  // Show CSS stand-in until the first WebGL frame (or permanently if WebGL fails)
+  const [showFallback, setShowFallback] = useState(true)
 
   useEffect(() => {
     const mount = mountRef.current
@@ -66,7 +53,7 @@ export function HeroPixelField({ className }: { className?: string }) {
 
     // Skip Three.js when WebGL is unavailable (sandboxed GPU, etc.) — avoids console errors
     if (!canUseWebGL()) {
-      setUseFallback(true)
+      setShowFallback(true)
       return
     }
 
@@ -96,13 +83,13 @@ export function HeroPixelField({ className }: { className?: string }) {
         failIfMajorPerformanceCaveat: false,
       })
     } catch {
-      setUseFallback(true)
+      setShowFallback(true)
       return
     }
 
     if (!renderer.getContext()) {
       renderer.dispose()
-      setUseFallback(true)
+      setShowFallback(true)
       return
     }
     renderer.setSize(mount.clientWidth, mount.clientHeight)
@@ -346,7 +333,9 @@ export function HeroPixelField({ className }: { className?: string }) {
       cluster.position.copy(clusterEnd)
       writeInstances(0, 0)
       renderer.render(scene, camera)
+      setShowFallback(false)
     } else {
+      let firstFrame = true
       const animate = (timestamp: number) => {
         raf = requestAnimationFrame(animate)
         if (document.hidden) return
@@ -387,6 +376,10 @@ export function HeroPixelField({ className }: { className?: string }) {
         camera.lookAt(0, 0, 0)
 
         renderer.render(scene, camera)
+        if (firstFrame) {
+          firstFrame = false
+          setShowFallback(false)
+        }
       }
       raf = requestAnimationFrame(animate)
     }
@@ -410,7 +403,7 @@ export function HeroPixelField({ className }: { className?: string }) {
 
   return (
     <div ref={mountRef} className={className} aria-hidden>
-      {useFallback ? <HeroPixelFallback /> : null}
+      {showFallback ? <HeroPixelFallback /> : null}
     </div>
   )
 }
