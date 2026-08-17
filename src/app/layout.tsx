@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     follow: true,
     nocache: true,
   },
-  // Absolute apex canonical — home must match GSC preferred form.
+  // Absolute www canonical — home must match preferred host form.
   alternates: {
     canonical: canonicalUrl('/'),
   },

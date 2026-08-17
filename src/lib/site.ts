@@ -1,14 +1,13 @@
 /**
- * Canonical production origin (apex / non-www).
+ * Canonical production origin (www).
  * Keep sitemap, robots, Open Graph, and Hostinger redirects aligned to this host.
- * Do not switch to www unless the live canonical also becomes www.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://pixlpluz.com'
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://www.pixlpluz.com'
 
 /**
  * Absolute canonical URL for a path.
- * Home always ends with `/` (matches preferred GSC form: https://pixlpluz.com/).
+ * Home always ends with `/` (preferred form: https://www.pixlpluz.com/).
  * Other routes have no trailing slash.
  */
 export function canonicalUrl(path = '/'): string {

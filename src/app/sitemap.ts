@@ -3,7 +3,7 @@ import { SITEMAP_LASTMOD } from '@/data/sitemap-dates'
 import { getBlogs, getCourses } from '@/lib/data'
 import { canonicalUrl } from '@/lib/site'
 
-/** Canonical host is apex (non-www): https://pixlpluz.com — matches metadataBase. */
+/** Canonical host is www: https://www.pixlpluz.com — matches metadataBase. */
 function entry(
   path: string,
   lastModified: string | Date,

@@ -20,8 +20,8 @@ type PageMetaInput = {
 
 /**
  * Unique title, description, canonical, and Open Graph tags for a route.
- * Canonicals are absolute apex URLs (`https://pixlpluz.com/...`) so Google
- * never inherits a www or coming-soon host from crawl context.
+ * Canonicals are absolute www URLs (`https://www.pixlpluz.com/...`) so Google
+ * never inherits an apex or coming-soon host from crawl context.
  */
 export function pageMetadata({
   title,

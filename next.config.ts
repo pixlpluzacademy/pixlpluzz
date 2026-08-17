@@ -7,11 +7,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Consolidate www → apex so Google indexes one host only
+      // Consolidate apex → www so Google indexes one host only
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.pixlpluz.com" }],
-        destination: "https://pixlpluz.com/:path*",
+        has: [{ type: "host", value: "pixlpluz.com" }],
+        destination: "https://www.pixlpluz.com/:path*",
         permanent: true,
       },
       // Legacy Hostinger / WordPress "coming soon" URLs → live home
