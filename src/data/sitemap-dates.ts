@@ -4,7 +4,7 @@
  * ISO date strings (YYYY-MM-DD) — never use `new Date()` at build time.
  */
 export const SITEMAP_LASTMOD = {
-  home: '2026-08-04',
+  home: '2026-08-17',
   about: '2026-07-23',
   courses: '2026-07-20',
   /** Shared date for all /courses/[slug] pages — bump when courses.json changes */

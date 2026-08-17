@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SITEMAP_LASTMOD } from '@/data/sitemap-dates'
 import { getBlogs, getCourses } from '@/lib/data'
-import { SITE_URL } from '@/lib/site'
+import { canonicalUrl } from '@/lib/site'
 
 /** Canonical host is apex (non-www): https://pixlpluz.com — matches metadataBase. */
 function entry(
@@ -11,7 +11,7 @@ function entry(
   priority: number,
 ): MetadataRoute.Sitemap[number] {
   return {
-    url: path === '/' ? SITE_URL : `${SITE_URL}${path}`,
+    url: canonicalUrl(path),
     lastModified,
     changeFrequency,
     priority,

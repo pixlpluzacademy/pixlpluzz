@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
+import { canonicalUrl, DEFAULT_OG_IMAGE } from '@/lib/site'
 
 type PageMetaInput = {
   title: string
@@ -20,8 +20,8 @@ type PageMetaInput = {
 
 /**
  * Unique title, description, canonical, and Open Graph tags for a route.
- * Canonicals are path-relative and resolved via root `metadataBase`
- * (`https://pixlpluz.com`) so www/apex stays consistent.
+ * Canonicals are absolute apex URLs (`https://pixlpluz.com/...`) so Google
+ * never inherits a www or coming-soon host from crawl context.
  */
 export function pageMetadata({
   title,
@@ -33,9 +33,7 @@ export function pageMetadata({
   noIndex = false,
   absoluteTitle = false,
 }: PageMetaInput): Metadata {
-  const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '')
-  const absoluteUrl =
-    normalizedPath === '/' ? SITE_URL : `${SITE_URL}${normalizedPath}`
+  const absolute = canonicalUrl(path)
   const useAbsolute =
     absoluteTitle ||
     /Pixl\s*Pluz/i.test(title) ||
@@ -55,13 +53,12 @@ export function pageMetadata({
       ? { index: false, follow: false, nocache: true }
       : { index: true, follow: true, nocache: true },
     alternates: {
-      // Relative path → metadataBase (recommended Next.js pattern)
-      canonical: normalizedPath === '/' ? './' : normalizedPath,
+      canonical: absolute,
     },
     openGraph: {
       title: ogTitle,
       description,
-      url: absoluteUrl,
+      url: absolute,
       siteName: 'Pixl Pluz Academy',
       type,
       locale: 'en_IN',

@@ -1,6 +1,6 @@
 import type { Blog, Career, Course, Event } from '@/lib/data'
 import type { HomeFaqItem } from '@/data/home-faqs'
-import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
+import { DEFAULT_OG_IMAGE, SITE_URL, canonicalUrl } from '@/lib/site'
 import { SOCIAL_LINKS } from '@/lib/social'
 import { COMPANY_ADDRESS, COMPANY_LEGAL_NAME } from '@/lib/company'
 
@@ -32,8 +32,7 @@ function absoluteUrl(pathOrUrl: string): string {
 }
 
 function pageUrl(path: string): string {
-  const normalized = path === '/' ? '/' : path.replace(/\/$/, '')
-  return normalized === '/' ? SITE_URL : `${SITE_URL}${normalized}`
+  return canonicalUrl(path)
 }
 
 function faqAnswerText(item: HomeFaqItem | { q: string; a: string }): string {

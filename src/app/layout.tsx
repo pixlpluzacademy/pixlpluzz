@@ -7,7 +7,7 @@ import { SiteLoaderProvider } from '@/components/providers/SiteLoaderProvider'
 import { LenisProvider }  from '@/components/providers/LenisProvider'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { HOME_SEO } from '@/data/page-seo'
-import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site'
+import { DEFAULT_OG_IMAGE, SITE_URL, canonicalUrl } from '@/lib/site'
 import { globalSchemas } from '@/lib/schema'
 
 const redHatDisplay = Red_Hat_Display({
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
     follow: true,
     nocache: true,
   },
-  // Relative './' resolves against metadataBase per route (Next Metadata API).
+  // Absolute apex canonical — home must match GSC preferred form.
   alternates: {
-    canonical: './',
+    canonical: canonicalUrl('/'),
   },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: SITE_URL,
+    url: canonicalUrl('/'),
     siteName: 'Pixl Pluz Academy',
     title: defaultTitle,
     description: defaultDescription,
