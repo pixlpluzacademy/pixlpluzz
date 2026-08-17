@@ -22,7 +22,7 @@ export const metadata: Metadata = pageMetadata({
   path: '/contact',
 })
 
-const CONTACT_CARDS = [
+const CONTACT_LINKS = [
   {
     icon: '/media/icons/phone.svg',
     label: 'Phone Number',
@@ -35,13 +35,14 @@ const CONTACT_CARDS = [
     value: 'office@pixlpluz.com',
     href: 'mailto:office@pixlpluz.com',
   },
-  {
-    icon: '/media/icons/map.svg',
-    label: 'Location',
-    lines: COMPANY_ADDRESS_LINES,
-    href: COMPANY_MAPS_LINK,
-  },
 ] as const
+
+const CONTACT_LOCATION = {
+  icon: '/media/icons/map.svg',
+  label: 'Location',
+  lines: COMPANY_ADDRESS_LINES,
+  href: COMPANY_MAPS_LINK,
+} as const
 
 function SocialIcon({ name }: { name: SocialIconName }) {
   if (name === 'facebook') {
@@ -185,7 +186,7 @@ export default function ContactPage() {
 
               <div className="flex w-full flex-col gap-5">
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-                  {CONTACT_CARDS.filter((item) => !('lines' in item)).map(item => (
+                  {CONTACT_LINKS.map(item => (
                     <a
                       key={item.label}
                       href={item.href}
@@ -206,36 +207,33 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                {CONTACT_CARDS.filter((item) => 'lines' in item).map(item => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    aria-label={item.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex min-w-0 items-start gap-3 text-left"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 bg-black/40">
-                      <Image
-                        src={item.icon}
-                        alt=""
-                        width={20}
-                        height={20}
-                        className="h-5 w-5"
-                      />
-                    </div>
-                    <p className="min-w-0 pt-0.5 text-sm font-normal leading-[1.55] text-gray-400">
-                      {item.lines.map((line, i) => (
-                        <span
-                          key={line}
-                          className={i === 0 ? 'block text-gray-300' : 'block'}
-                        >
-                          {line}
-                        </span>
-                      ))}
-                    </p>
-                  </a>
-                ))}
+                <a
+                  href={CONTACT_LOCATION.href}
+                  aria-label={CONTACT_LOCATION.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex min-w-0 items-start gap-3 text-left"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 bg-black/40">
+                    <Image
+                      src={CONTACT_LOCATION.icon}
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
+                    />
+                  </div>
+                  <p className="min-w-0 pt-0.5 text-sm font-normal leading-[1.55] text-gray-400">
+                    {CONTACT_LOCATION.lines.map((line, i) => (
+                      <span
+                        key={line}
+                        className={i === 0 ? 'block text-gray-300' : 'block'}
+                      >
+                        {line}
+                      </span>
+                    ))}
+                  </p>
+                </a>
               </div>
 
               <div>
